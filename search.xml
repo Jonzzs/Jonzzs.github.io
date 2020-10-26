@@ -174,6 +174,62 @@
       </tags>
   </entry>
   <entry>
+    <title>使用 git.oschina 码云 来托管 Hexo 搭建的博客</title>
+    <url>/2017/05/08/Hexo/201705081542/</url>
+    <content><![CDATA[<blockquote>
+<p>首先还没有搭建博客的先转到我的另一篇文章：<a href="http://www.jianshu.com/p/8f1e1b17417b">使用 Hexo 免费搭建属于自己的个人博客</a> ，一般我们都是使用 <code>GitHub + Hexo</code> 来搭建我们的 <code>博客</code> ，下面分享一下如何用国内的 <code>码云</code> 来托管我们的 <code>博客</code> 。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<ul>
+<li>首先进入 <a href="http://git.oschina.net/">码云</a> 创建一个仓库，<code>仓库名称</code> 和 <code>仓库路径</code> 都必须和你的 <code>用户名</code> 也就是上面的 <code>归属</code> 一样。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/16834649/57365229-44477b80-71b7-11e9-8216-7b08377dad5d.png" alt="创建仓库"></p>
+<ul>
+<li>打开本地 <code>博客</code> 下的 <code>_config.yml</code> 文件，将刚才创建的仓库 <code>Git</code> 地址配置进去。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/16834649/57365270-532e2e00-71b7-11e9-826b-79f4927bc6a4.png" alt="仓库 Git 地址"></p>
+<ul>
+<li>如果想使用 <code>GitHub</code> 和 <code>码云</code> 同时托管 <code>博客</code> ，就这样配置：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span></span><br><span class="line">    <span class="attr">github:</span> <span class="string">https://github.com/Jonzzs/Jonzzs.github.io.git</span></span><br><span class="line">    <span class="attr">oschina:</span> <span class="string">https://git.oschina.net/Jonzzs/Jonzzs.git</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果只想使用 <code>码云</code> 托管 <code>博客</code> ，就这样配置：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://git.oschina.net/Jonzzs/Jonzzs.git</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>保存文件后打开终端 <code>cd</code> 到 <code>博客</code> 目录下，使用以下命令重新部署一下博客。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>再次打开刚才 <code>码云</code> 上创建的仓库刷新一下，<code>博客</code> 的 <code>HTML</code> 页面应该已经传到仓库中了，打开 <code>服务</code> 中的 <code>Pages</code>，点击 <code>启动服务</code> 。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/16834649/57365311-62ad7700-71b7-11e9-8bf5-4ae7823a65cd.png" alt="Pages"></p>
+<ul>
+<li>此时你就可以使用 <code>用户名.oschina.io</code> 来访问你的 <code>博客</code> 了。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/16834649/57365346-735ded00-71b7-11e9-93d5-91e0cc89a385.png" alt="jonzzs.oschina.io"></p>
+<hr>
+<blockquote>
+<p>大功告成，使用 <code>码云</code> 托管 <code>博客</code> 后访问速度会快很多，大家块试试看吧。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Hexo 博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo 博客</tag>
+        <tag>码云</tag>
+        <tag>git.oschina</tag>
+        <tag>码云 Pages</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>给 Hexo 搭建的博客增加 百度 和 谷歌 的搜索引擎验证</title>
     <url>/2017/05/05/Hexo/201705051311/</url>
     <content><![CDATA[<blockquote>
@@ -245,62 +301,6 @@
         <tag>Hexo 博客</tag>
         <tag>百度</tag>
         <tag>谷歌</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 git.oschina 码云 来托管 Hexo 搭建的博客</title>
-    <url>/2017/05/08/Hexo/201705081542/</url>
-    <content><![CDATA[<blockquote>
-<p>首先还没有搭建博客的先转到我的另一篇文章：<a href="http://www.jianshu.com/p/8f1e1b17417b">使用 Hexo 免费搭建属于自己的个人博客</a> ，一般我们都是使用 <code>GitHub + Hexo</code> 来搭建我们的 <code>博客</code> ，下面分享一下如何用国内的 <code>码云</code> 来托管我们的 <code>博客</code> 。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<ul>
-<li>首先进入 <a href="http://git.oschina.net/">码云</a> 创建一个仓库，<code>仓库名称</code> 和 <code>仓库路径</code> 都必须和你的 <code>用户名</code> 也就是上面的 <code>归属</code> 一样。</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/16834649/57365229-44477b80-71b7-11e9-8216-7b08377dad5d.png" alt="创建仓库"></p>
-<ul>
-<li>打开本地 <code>博客</code> 下的 <code>_config.yml</code> 文件，将刚才创建的仓库 <code>Git</code> 地址配置进去。</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/16834649/57365270-532e2e00-71b7-11e9-826b-79f4927bc6a4.png" alt="仓库 Git 地址"></p>
-<ul>
-<li>如果想使用 <code>GitHub</code> 和 <code>码云</code> 同时托管 <code>博客</code> ，就这样配置：</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span></span><br><span class="line">    <span class="attr">github:</span> <span class="string">https://github.com/Jonzzs/Jonzzs.github.io.git</span></span><br><span class="line">    <span class="attr">oschina:</span> <span class="string">https://git.oschina.net/Jonzzs/Jonzzs.git</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果只想使用 <code>码云</code> 托管 <code>博客</code> ，就这样配置：</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://git.oschina.net/Jonzzs/Jonzzs.git</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>保存文件后打开终端 <code>cd</code> 到 <code>博客</code> 目录下，使用以下命令重新部署一下博客。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>再次打开刚才 <code>码云</code> 上创建的仓库刷新一下，<code>博客</code> 的 <code>HTML</code> 页面应该已经传到仓库中了，打开 <code>服务</code> 中的 <code>Pages</code>，点击 <code>启动服务</code> 。</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/16834649/57365311-62ad7700-71b7-11e9-8bf5-4ae7823a65cd.png" alt="Pages"></p>
-<ul>
-<li>此时你就可以使用 <code>用户名.oschina.io</code> 来访问你的 <code>博客</code> 了。</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/16834649/57365346-735ded00-71b7-11e9-93d5-91e0cc89a385.png" alt="jonzzs.oschina.io"></p>
-<hr>
-<blockquote>
-<p>大功告成，使用 <code>码云</code> 托管 <code>博客</code> 后访问速度会快很多，大家块试试看吧。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Hexo 博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo 博客</tag>
-        <tag>码云</tag>
-        <tag>git.oschina</tag>
-        <tag>码云 Pages</tag>
       </tags>
   </entry>
   <entry>
@@ -610,84 +610,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Java 开发】mac 忘记 MySQL 数据库密码后重置密码的方法</title>
-    <url>/2017/05/19/Java/201705190959/</url>
-    <content><![CDATA[<blockquote>
-<p>由于有个同事的 <code>mac mini</code> 刚装了 <code>MySQL</code> ，然后忘记一开始设的密码是什么了，但是最近又要用到本地的 <code>MySQL</code> 数据库，网上找了一大堆方法全都没用，但又不想删了重装，最后终于被我找到了一个正确的方法，这里分享一下解决办法。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="1-重启-MySQL-服务器"><a href="#1-重启-MySQL-服务器" class="headerlink" title="1. 重启 MySQL 服务器"></a>1. 重启 MySQL 服务器</h2><ul>
-<li>打开 <code>系统偏好设置</code> - <code>MySQL</code> ，然后点击 <code>Stop MySQL Server</code> 关闭 <code>MySQL</code> 服务器。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163759.png" alt="关闭 MySQL 服务器"></p>
-<ul>
-<li>关闭 <code>MySQL</code> 服务器后打开终端，输入以下命令进入 <code>MySQL</code> 目录。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/mysql/bin</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>再输入以下命令获取权限。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后输入以下命令重启 <code>MySQL</code> 服务器。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">./mysqld_safe --skip-grant-tables &amp;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-修改-MySQL-密码"><a href="#2-修改-MySQL-密码" class="headerlink" title="2. 修改 MySQL 密码"></a>2. 修改 MySQL 密码</h2><ul>
-<li>刚才的终端不要关掉，按下 <code>command + N</code> 另开一个终端窗口，输入以下命令配置短命令。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> mysql=/usr/<span class="built_in">local</span>/mysql/bin/mysql</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>接着输入以下命令进入 <code>MySQL</code> 命令模式。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mysql</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>再输入以下命令进入 <code>MySQL</code> 数据库。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">use mysql</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后输入以下命令获取权限。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>现在可以输入以下命令修改你的 <code>MySQL</code> 密码了，<code>xxx</code> 处填写你的新密码。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> password <span class="keyword">for</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>=password(<span class="string">&#x27;xxx&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-验证-MySQL-新密码"><a href="#3-验证-MySQL-新密码" class="headerlink" title="3. 验证 MySQL 新密码"></a>3. 验证 MySQL 新密码</h2><ul>
-<li>打开终端输入以下命令登录 <code>MySQL</code> 数据库。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>接着输入你的新密码，如果 <code>MySQL</code> 数据库连接上就表示密码修改成功了。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163813.png" alt="登录 `MySQL` 数据库"></p>
-<hr>
-<blockquote>
-<p>最后附上本文的 <a href="http://www.cnblogs.com/lihuanqing/p/5623872.html">参考地址</a> ，给这个博主点赞，找了这么多方法，就这个是靠谱的，所以分享出来让更多的人看到，希望能帮助大家少走一些坑。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Java 开发</category>
-      </categories>
-      <tags>
-        <tag>Java 开发</tag>
-        <tag>Mac</tag>
-        <tag>macOS</tag>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Java 开发】mac 安装多版本 Java JDK 和随时切换 JDK 版本的方法</title>
     <url>/2017/04/17/Java/201704171814/</url>
     <content><![CDATA[<blockquote>
@@ -810,6 +732,613 @@
       <tags>
         <tag>Java 开发</tag>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Java 开发】mac 忘记 MySQL 数据库密码后重置密码的方法</title>
+    <url>/2017/05/19/Java/201705190959/</url>
+    <content><![CDATA[<blockquote>
+<p>由于有个同事的 <code>mac mini</code> 刚装了 <code>MySQL</code> ，然后忘记一开始设的密码是什么了，但是最近又要用到本地的 <code>MySQL</code> 数据库，网上找了一大堆方法全都没用，但又不想删了重装，最后终于被我找到了一个正确的方法，这里分享一下解决办法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="1-重启-MySQL-服务器"><a href="#1-重启-MySQL-服务器" class="headerlink" title="1. 重启 MySQL 服务器"></a>1. 重启 MySQL 服务器</h2><ul>
+<li>打开 <code>系统偏好设置</code> - <code>MySQL</code> ，然后点击 <code>Stop MySQL Server</code> 关闭 <code>MySQL</code> 服务器。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163759.png" alt="关闭 MySQL 服务器"></p>
+<ul>
+<li>关闭 <code>MySQL</code> 服务器后打开终端，输入以下命令进入 <code>MySQL</code> 目录。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/mysql/bin</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>再输入以下命令获取权限。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后输入以下命令重启 <code>MySQL</code> 服务器。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">./mysqld_safe --skip-grant-tables &amp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-修改-MySQL-密码"><a href="#2-修改-MySQL-密码" class="headerlink" title="2. 修改 MySQL 密码"></a>2. 修改 MySQL 密码</h2><ul>
+<li>刚才的终端不要关掉，按下 <code>command + N</code> 另开一个终端窗口，输入以下命令配置短命令。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> mysql=/usr/<span class="built_in">local</span>/mysql/bin/mysql</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接着输入以下命令进入 <code>MySQL</code> 命令模式。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mysql</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>再输入以下命令进入 <code>MySQL</code> 数据库。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">use mysql</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后输入以下命令获取权限。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>现在可以输入以下命令修改你的 <code>MySQL</code> 密码了，<code>xxx</code> 处填写你的新密码。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> password <span class="keyword">for</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>=password(<span class="string">&#x27;xxx&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-验证-MySQL-新密码"><a href="#3-验证-MySQL-新密码" class="headerlink" title="3. 验证 MySQL 新密码"></a>3. 验证 MySQL 新密码</h2><ul>
+<li>打开终端输入以下命令登录 <code>MySQL</code> 数据库。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接着输入你的新密码，如果 <code>MySQL</code> 数据库连接上就表示密码修改成功了。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163813.png" alt="登录 `MySQL` 数据库"></p>
+<hr>
+<blockquote>
+<p>最后附上本文的 <a href="http://www.cnblogs.com/lihuanqing/p/5623872.html">参考地址</a> ，给这个博主点赞，找了这么多方法，就这个是靠谱的，所以分享出来让更多的人看到，希望能帮助大家少走一些坑。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Java 开发</category>
+      </categories>
+      <tags>
+        <tag>Java 开发</tag>
+        <tag>Mac</tag>
+        <tag>macOS</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>macOS Sierra 10.12+ 软件提示已损坏，移除到废纸篓的解决方法</title>
+    <url>/2017/04/05/Mac/201704051635/</url>
+    <content><![CDATA[<blockquote>
+<p>在升级了 <code>macOS Sierra 10.12+</code> 版本前，只要在 <code>设置</code> - <code>安全性与隐私</code> 中设置 <code>任何来源</code> 选项即可，但是升级过 <code>macOS Sierra 10.12+</code> 版本后，这个选项就不见了，于是运行很多个人开发者软件都会提示 <code> xx 软件已损坏，打不开。您应该将它移到废纸篓。</code> 解决方法请继续看下文。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<ul>
+<li>刚升级了 <code>macOS Sierra 10.12+</code> 版本后，<code>任何来源</code> 选项是消失的。</li>
+</ul>
+<p><strong>如下图：</strong></p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163936.png" alt="任何来源消失"></p>
+<ul>
+<li>接下来，打开终端，然后输入以下命令，输入后，可能会让你输入电脑的密码。（屏幕上不会显示密码，你管你输入就可以了，Linux 和 Unix 核心输入密码都是这样的，输入完直接回车就行了）</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo spctl --master-disable</span><br></pre></td></tr></table></figure>
+
+<p><strong>如下图：</strong></p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163936.png" alt="打开终端"></p>
+<ul>
+<li>然后再重新打开 <code>设置</code> - <code>安全性与隐私</code> ，你会发现 <code>任何来源</code> 选项又回来了！</li>
+</ul>
+<p><strong>如下图：</strong></p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164000.png" alt="任何来源又有了"></p>
+<ul>
+<li>最后选中 <code>任何来源</code> 选项，然后那些个人开发者软件就可以正常打开了。</li>
+</ul>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用指南</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+        <tag>macOS</tag>
+        <tag>Mac 使用指南</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac 关闭系统完整性保护 SIP（System Integrity Protection）的方法</title>
+    <url>/2017/07/03/Mac/201707031450/</url>
+    <content><![CDATA[<blockquote>
+<p>在 <code>OS X El Capitan</code> 中有一个跟安全相关的模式叫 <code>SIP（System Integrity Protection ）</code> ，它禁止让软件以 <code>root</code> 身份来在 <code>mac</code> 上运行，并且对于目录 <code>/System 、/sbin、/usr（不包含/usr/local/）</code> 仅仅供系统使用，其它用户或者程序无法直接使用，下面记录一下禁用 <code>SIP</code> 的方法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="禁用-SIP-保护机制的步骤"><a href="#禁用-SIP-保护机制的步骤" class="headerlink" title="禁用 SIP 保护机制的步骤"></a>禁用 SIP 保护机制的步骤</h2><ul>
+<li><p>重启系统，按住 <code>Command + R</code> 进入恢复模式。</p>
+</li>
+<li><p>点击顶部菜单栏 <code>实用工具</code> 中的 <code>终端</code> 。</p>
+</li>
+<li><p>输入以下命令来禁用 <code>SIP</code> 保护机制。</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">csrutil <span class="built_in">disable</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>执行后输出以下信息表示禁用成功。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Successfully disabled System Integrity Protection. Please restart the machine for the changes to take effect.</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>然后再次重启系统即可。</p>
+</li>
+<li><p>重新打开 <code>SIP</code> 的方法同上，只是终端中输入的命令改为以下命令。</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">csrutil <span class="built_in">enable</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用指南</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+        <tag>Mac 使用指南</tag>
+        <tag>mac</tag>
+        <tag>SIP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 macOS 版 iTunes 在 AppStore 无法更新的问题</title>
+    <url>/2017/04/14/Mac/201704141640/</url>
+    <content><![CDATA[<blockquote>
+<p>相信用 <code>mac</code> 系统的都遇到过，每次 <code>iTunes</code> 更新版本，<code>mac AppStore</code> 提示更新了，但是点击更新，却怎么也更新不了，很无奈，接下来告诉大家如何解决这个问题。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<p>很多人选择的办法是将自带的 <code>iTunes</code> 删掉，然后去网上直接下载 <code>iTunes</code> 的 <code>dmg</code> 安装包来直接安装，这也是一个办法，然后接下来告诉大家如何在 <code>mac AppStore</code> 直接更新 <code>iTunes</code> 。</p>
+<ul>
+<li>打开 <code>系统偏好设置</code> - <code>网络</code> - <code>高级</code>。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164019.png" alt="如图"></p>
+<ul>
+<li>选择 <code>DNS</code> ，点击左下角的 <code>+</code> 号。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164030.png" alt="如图"></p>
+<ul>
+<li>输入 <code>8.8.8.8</code> 。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164042.png" alt="如图"></p>
+<ul>
+<li><p>点击 <code>好</code>，接着别忘了要 <code>应用</code> 一下。</p>
+</li>
+<li><p>打开 <code>mac AppStore</code> ，开始更新吧，就是这么神奇。</p>
+</li>
+</ul>
+<p><strong>注意：</strong>更新完以后，一定要把刚才添加的 <code>8.8.8.8</code> 给删除掉，否则上网会变的非常之慢，切记！！</p>
+<hr>
+<blockquote>
+<p>方法就是这样，是不是非常简单，希望对大家有所帮助。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用指南</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+        <tag>macOS</tag>
+        <tag>Mac 使用指南</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 Alfred 每次开机都提示请求通讯录权限的问题</title>
+    <url>/2017/08/29/Mac/201708291128/</url>
+    <content><![CDATA[<blockquote>
+<p>安装完 <code>Alfred</code> 以后，每次开机都会提示请求通讯录权限，把设置里的通讯录关掉也没用，每次都提示又非常烦人，这里把解决方法记录一下。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<ul>
+<li>依次打开 <code>应用程序</code> - <code>Alfred 3.app</code> - <code>右键显示包内容</code> - <code>Contents</code> - <code>Frameworks</code> - <code>Alfred Framework.framework</code> - <code>Versions</code> - <code>A</code> 下找到一个叫 <code>Alfred Framework</code> 的文件。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163906.png" alt="Alfred Framework"></p>
+<ul>
+<li>接着打开终端，输入以下命令（最后的 <code>-</code> 后面有个空格）。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo codesign -f -d -s -</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后将刚才的 <code>Alfred Framework</code> 文件直接拖到终端，接着回车输入用户密码。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163917.png" alt="终端"></p>
+<ul>
+<li>最后提示 <code>replacing existing signature</code> 就表示成功了。</li>
+</ul>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用指南</category>
+      </categories>
+      <tags>
+        <tag>Mac 使用指南</tag>
+        <tag>mac</tag>
+        <tag>Alfred</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac 删除自带 ABC 输入法的方法</title>
+    <url>/2017/08/25/Mac/201708251803/</url>
+    <content><![CDATA[<blockquote>
+<p>在使用 <code>mac</code> 时相信很多都习惯使用第三方输入法，而 <code>mac</code> 规定必须保留一个自带的 <code>ABC</code> 输入法，这样导致平时在打字的时候，老是莫名其妙的自己切换成了自带的 <code>ABC</code> 输入法，还要老是切换回第三方输入法（快捷键是 <code>control + 空格</code>），这个问题困扰我好久了，终于被我找到了删除自带的 <code>ABC</code> 输入法的方法，这里分享一下。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<ul>
+<li><p>首先需要关闭 <code>mac</code> 系统的 <code>SIP</code> ，不然删不掉，不会关的可以查看我的另一篇文章：<a href="http://www.jianshu.com/p/d7d73b2846d1">mac 关闭系统完整性保护 SIP（System Integrity Protection）的方法</a> 。</p>
+</li>
+<li><p>关闭 <code>SIP</code> 重启完成后，先将输入法切换为系统自带的 <code>ABC</code> 输入法，然后打开终端输入以下命令。</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo open ~/Library/Preferences/com.apple.HIToolbox.plist</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接着输入密码即可打开 <code>com.apple.HIToolbox.plist</code> 文件。（打开 <code>.plist</code> 文件需要安装有 <code>Xcode</code> 或者 <code>PlistEdit Pro</code> 也行）</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164334.png" alt="com.apple.HIToolbox.plist"></p>
+<ul>
+<li>依次点开 <code>Root</code> - <code>AppleEnabledInputSources</code> ，会看到一列 <code>item</code> ，找到其中 <code>KeyboardLayout Name</code> 为 <code>ABC</code> 的那一列，将整列 <code>item</code> 删掉，然后 <code>command + S</code> 保存。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164345.png" alt="com.apple.HIToolbox.plist"></p>
+<ul>
+<li>接着重启电脑，打开键盘设置，就可以看到系统自带的 <code>ABC</code> 输入法已经被删掉了。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164402.png" alt="键盘"></p>
+<ul>
+<li>如果又想用回自带输入法，只要在 <code>偏好设置</code> - <code>键盘</code> - <code>输入法</code> 里，按 <code>+</code> 号，把自带的输入法重新添加就可以了。</li>
+</ul>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用指南</category>
+      </categories>
+      <tags>
+        <tag>Mac 使用指南</tag>
+        <tag>mac</tag>
+        <tag>输入法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac 删除 Windows 或 EFI Boot 启动盘的方法</title>
+    <url>/2017/11/21/Mac/201711211402/</url>
+    <content><![CDATA[<blockquote>
+<p>由于我的 <code>mac</code> 之前装了 <code>Windows</code> 双系统，然后 <code>mac</code> 系统升级后，我想把 <code>Windows</code> 系统给删掉，但是发现升级 <code>mac</code> 系统以后不能用 <code>Boot Camp</code> 删除 <code>Windows</code> 了，然后我就用 <code>磁盘工具</code> 把 <code>Windows</code> 分区给删除合并到 <code>mac</code> 分区了，但是发现系统虽然删除了，但是开机按住 <code>option</code> 键还是会出现 <code>Windows</code> 启动盘，虽然没什么影响但是强迫症当然不能忍 ，下面就记录一下解决方法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163832.jpg" alt="启动界面"></p>
+<ul>
+<li>因为以下命令需要 <code>root</code> 用户执行，所以打开终端执行以下命令切换到 <code>root</code> 用户，输入密码后回车即可。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接着在终端执行以下命令，作用是在 <code>Macintosh HD</code> 根目录新建一个目录 <code>mnt</code> 。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mkdir /mnt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接着在终端执行以下命令，作用是将该 <code>windows</code> 盘挂在到 <code>/mnt</code> 目录下。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo mount -t msdos /dev/disk0s1 /mnt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>打开 <code>Finder</code> ，在 <code>Macintosh HD</code> 根目录会看到一个叫 <code>EFI</code> 的磁盘（桌面应该也会显示这个磁盘，和 <code>Finder</code> 置有关）。</p>
+</li>
+<li><p>打开 <code>EFI</code> 磁盘，这里要说一下，如果你只想删除 <code>Windows</code> 启动盘，可以找到有个 <code>Microsoft</code> 文件夹删除即可，但是如果只删除这个的话，开机还是会显示一个叫 <code>EFI Boot</code> 的启动盘，个人建议将 <code>EFI</code> 磁盘里面的东西全部删除，这样 <code>Windows</code> 和 <code>EFI Boot</code> 启动盘就都没了，亲测有效无副作用。</p>
+</li>
+<li><p>删除以后清空废纸篓然后把 <code>EFI</code> 磁盘推出，然后重启按住 <code>option</code> 键检验是否删除。</p>
+</li>
+</ul>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用指南</category>
+      </categories>
+      <tags>
+        <tag>Mac 使用指南</tag>
+        <tag>mac</tag>
+        <tag>EFI Boot</tag>
+        <tag>Windows</tag>
+        <tag>启动盘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac 终端使用自动补全时忽略大小写的方法</title>
+    <url>/2017/12/06/Mac/201712061436/</url>
+    <content><![CDATA[<blockquote>
+<p><code>mac</code> 终端在使用 <code>tab</code> 补全路径时是默认大小写敏感的，以下方法可以忽略大小写，方法同样适用于 <code>iTerm2</code> 。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<ul>
+<li>打开终端输入以下命令。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">nano .inputrc</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接着将以下命令复制进去。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> completion-ignore-case on</span><br><span class="line"><span class="built_in">set</span> show-all-if-ambiguous on</span><br><span class="line">TAB: menu-complete</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163847.png" alt="终端"></p>
+<ul>
+<li><p>然后按下 <code>control + O</code> 之后回车保存，重启终端即可（注意是 <code>control</code> 不是 <code>command</code>）。</p>
+</li>
+<li><p>终端重启后，就会发现已经忽略大小写了。</p>
+</li>
+</ul>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用指南</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+        <tag>终端</tag>
+        <tag>iTerm2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Magic Mouse 苹果鼠标移动速度改快的方法</title>
+    <url>/2018/01/20/Mac/201801201111/</url>
+    <content><![CDATA[<blockquote>
+<p>买了一个 <code>Magic Mouse</code> 之后发现移动速度比之前鼠标要慢好多，设置里已经设置到最快了还是很慢，非常不习惯，最后查到可以在终端里输入命令调整 <code>Magic Mouse</code> 的移动速度，下面记录一下方法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<ul>
+<li>打开终端输入以下命令可以查看当前鼠标的速度，一般设置里调到最快的话，就是 <code>3</code> 的速度。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">defaults <span class="built_in">read</span> -g com.apple.mouse.scaling</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后输入以下命令可以设置鼠标的速度，建议设置到 <code>6~8</code> 左右，不然移动速度太快了，可以根据自己需求来调，我自己设置速度为 <code>7</code> 。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">defaults write -g com.apple.mouse.scaling 7</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后重启电脑，必须要重启电脑以后设置才会生效，而且生效以后就不要再去设置里面调鼠标速度了，不然会还原覆盖掉之前改的速度。</li>
+</ul>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用指南</category>
+      </categories>
+      <tags>
+        <tag>Mac 使用指南</tag>
+        <tag>Magic Mouse</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac 使用 BootCamp 安装双系统时出现磁盘分区错误的解决方法.md</title>
+    <url>/2018/02/11/Mac/201802111604/</url>
+    <content><![CDATA[<blockquote>
+<p>最近在使用 <code>BootCamp</code> 安装 <code>Windows</code> 双系统时，突然出现 <code>您的磁盘未能分区</code> 的错误，以前一直好好的，突然就报错了，我的系统版本是 <code>macOS High Sierra 10.13.3</code> ，经过一番搜索终于解决了，下面记录一下解决方法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h4 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h4><ul>
+<li>如果开启了磁盘加密，请到 <code>设置</code> - <code>安全性与隐私</code> - <code>文件保险箱</code> 关闭加密（时间较长，耐心等待）</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172022.jpg"></p>
+<ul>
+<li>若没有加密，重启电脑，开机时按住 <code>command + R</code> 进入恢复模式，选择磁盘工具，找到你的 <code>macOS</code> 所在硬盘分区，点击急救，运行完成之后重启，多试几次。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172033.jpg"></p>
+<ul>
+<li>若上述两种方法都不能解决问题，那就是 <code>Time Machine（时间机器）</code> 的本地快照造成的问题，将 <code>Time Machine</code> 的自动备份关闭，然后打开终端输入以下命令，就能够删除存储在本地磁盘上本地快照，一般本地快照会占用本地磁盘好几十个G的容量，也能够解决磁盘容量被无故占用的问题。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">tmutil thinlocalsnapshots / 9999999999999999</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开终端输入以下命令能够开启和关闭本地快照功能。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">// 关闭本地快照</span><br><span class="line">sudo tmutil disablelocal</span><br><span class="line"></span><br><span class="line">// 开启本地快照</span><br><span class="line">sudo tmutil enablelocal</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果上述方法都没有效果的话，那就重装 <code>mac</code> 系统把（节哀）。</li>
+</ul>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用指南</category>
+      </categories>
+      <tags>
+        <tag>mac</tag>
+        <tag>Windows</tag>
+        <tag>BootCamp</tag>
+        <tag>双系统</tag>
+        <tag>分区错误</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac 更改所有文件夹显示选项的方法</title>
+    <url>/2018/04/12/Mac/201804121027/</url>
+    <content><![CDATA[<blockquote>
+<p><code>mac</code> 的 <code>Finder</code> 中文件夹的显示选项只在当前目录生效，每次新目录都得重新选择显示选项，强迫症表示非常不爽，下面是如何一次性更改所有文件夹显示选项的方法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<ul>
+<li><p>打开 <code>Finder</code>，使劲点击 <code>⌘ + ↑</code> 数次，直到没反应可查看到磁盘的图标为止。</p>
+</li>
+<li><p>进入磁盘，右键空白处打开 <code>查看显示选项</code> ，在显示选项内调整好自己想要的效果后点击下方 <code>用作默认</code> 。</p>
+</li>
+<li><p>打开终端界面输入以下命令，回车后根据提示输入你的账户密码再回车等待即可。</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo find / -name .DS_Store -<span class="built_in">exec</span> rm &#123;&#125; +</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>完成后，点击菜单栏左上角的小苹果图标选择 <code>强制退出</code> ，在菜单内选择 <code>Finder</code> 后点击 <code>重新开启</code> 完成。</li>
+</ul>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用指南</category>
+      </categories>
+      <tags>
+        <tag>mac</tag>
+        <tag>文件夹显示选项</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac 上配置 aria2 加快下载速度的方法</title>
+    <url>/2018/09/18/Mac/201809181727/</url>
+    <content><![CDATA[<blockquote>
+<p><code>mac</code> 用户肯定都受够了各种下载限速，浏览器自带的下载器极为蛋疼，花点时间来配置 <code>aria2</code>，结合 <code>Chrome</code> 插件，一次配置终身受益。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="aria2-是什么？"><a href="#aria2-是什么？" class="headerlink" title="aria2 是什么？"></a>aria2 是什么？</h2><p><code>aria2</code> 是一款支持多种协议的轻量级命令行下载工具。有以下特性：</p>
+<ul>
+<li><p>多线程连线：<code>aria2</code> 会自动从多个线程下载文件，并充分利用你的带宽。</p>
+</li>
+<li><p>轻量：运行时不会占用过多资源，根据官方介绍，内存占用通常在 <code>4MB~9MB</code> ，使用 <code>BitTorrent</code> 协议，下行速度 <code>2.8MB/s</code> 时 <code>CPU</code> 占用率约 <code>6%</code> 。</p>
+</li>
+<li><p>全功能 <code>BitTorrent</code> 客户端。</p>
+</li>
+<li><p>支持 <code>RPC</code> 界面远程控制。</p>
+</li>
+</ul>
+<h2 id="1-安装-Homebrew"><a href="#1-安装-Homebrew" class="headerlink" title="1. 安装 Homebrew"></a>1. 安装 Homebrew</h2><p>由于是使用 <code>Homebrew</code> 方式安装，所以需要先安装 <code>Homebrew</code> ，已经装过了可以跳过这一步，终端输入以下命令安装。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ruby -e <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-安装-aria2"><a href="#2-安装-aria2" class="headerlink" title="2. 安装 aria2"></a>2. 安装 aria2</h2><p>在终端输入以下命令安装。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">brew install aria2</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-设置配置文件"><a href="#3-设置配置文件" class="headerlink" title="3. 设置配置文件"></a>3. 设置配置文件</h2><p><code>aria2</code> 提供两种方式使用，一种是直接命令行模式下载，不推荐使用这种方法，推荐使用另外一种 <code>RPC</code> 模式，这种方式 <code>aria2</code> 启动之后只会安静的等待下载请求，下载完成后也只会安静的驻留后台不会自动退出。而使用 <code>RPC</code> 模式推荐做一个配置文件方便使用。</p>
+<p>我们把配置文件放在 <code>~/.aria2</code> 下，终端依次输入以下命令：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mkdir .aria2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> .aria2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">touch aria2.conf</span><br></pre></td></tr></table></figure>
+
+<p>接着打开 <code>Finder</code>，利用 <code>shift + command + G</code> 进入路径：<code>~/.aria2/aria2.conf</code>，用文本编辑器打开 <code>aria2.conf</code>，将 <a href="https://blog.icehoney.me/about">雪月秋水君</a> 提供的以下配置直接拷贝进去：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment">#用户名</span></span><br><span class="line"><span class="comment">#rpc-user=user</span></span><br><span class="line"><span class="comment">#密码</span></span><br><span class="line"><span class="comment">#rpc-passwd=passwd</span></span><br><span class="line"><span class="comment">#上面的认证方式不建议使用,建议使用下面的token方式</span></span><br><span class="line"><span class="comment">#设置加密的密钥</span></span><br><span class="line"><span class="comment">#rpc-secret=token</span></span><br><span class="line"><span class="comment">#允许rpc</span></span><br><span class="line"><span class="meta">enable-rpc</span>=<span class="string">true</span></span><br><span class="line"><span class="comment">#允许所有来源, web界面跨域权限需要</span></span><br><span class="line"><span class="meta">rpc-allow-origin-all</span>=<span class="string">true</span></span><br><span class="line"><span class="comment">#允许外部访问，false的话只监听本地端口</span></span><br><span class="line"><span class="meta">rpc-listen-all</span>=<span class="string">true</span></span><br><span class="line"><span class="comment">#RPC端口, 仅当默认端口被占用时修改</span></span><br><span class="line"><span class="comment">#rpc-listen-port=6800</span></span><br><span class="line"><span class="comment">#最大同时下载数(任务数), 路由建议值: 3</span></span><br><span class="line"><span class="meta">max-concurrent-downloads</span>=<span class="string">5</span></span><br><span class="line"><span class="comment">#断点续传</span></span><br><span class="line"><span class="attr">continue</span>=<span class="string">true</span></span><br><span class="line"><span class="comment">#同服务器连接数</span></span><br><span class="line"><span class="meta">max-connection-per-server</span>=<span class="string">5</span></span><br><span class="line"><span class="comment">#最小文件分片大小, 下载线程数上限取决于能分出多少片, 对于小文件重要</span></span><br><span class="line"><span class="meta">min-split-size</span>=<span class="string">10M</span></span><br><span class="line"><span class="comment">#单文件最大线程数, 路由建议值: 5</span></span><br><span class="line"><span class="attr">split</span>=<span class="string">10</span></span><br><span class="line"><span class="comment">#下载速度限制</span></span><br><span class="line"><span class="meta">max-overall-download-limit</span>=<span class="string">0</span></span><br><span class="line"><span class="comment">#单文件速度限制</span></span><br><span class="line"><span class="meta">max-download-limit</span>=<span class="string">0</span></span><br><span class="line"><span class="comment">#上传速度限制</span></span><br><span class="line"><span class="meta">max-overall-upload-limit</span>=<span class="string">0</span></span><br><span class="line"><span class="comment">#单文件速度限制</span></span><br><span class="line"><span class="meta">max-upload-limit</span>=<span class="string">0</span></span><br><span class="line"><span class="comment">#断开速度过慢的连接</span></span><br><span class="line"><span class="comment">#lowest-speed-limit=0</span></span><br><span class="line"><span class="comment">#验证用，需要1.16.1之后的release版本</span></span><br><span class="line"><span class="comment">#referer=*</span></span><br><span class="line"><span class="comment">#文件保存路径, 默认为当前启动位置</span></span><br><span class="line"><span class="attr">dir</span>=<span class="string">/Users/xxx/Downloads</span></span><br><span class="line"><span class="comment">#文件缓存, 使用内置的文件缓存, 如果你不相信Linux内核文件缓存和磁盘内置缓存时使用, 需要1.16及以上版本</span></span><br><span class="line"><span class="comment">#disk-cache=0</span></span><br><span class="line"><span class="comment">#另一种Linux文件缓存方式, 使用前确保您使用的内核支持此选项, 需要1.15及以上版本(?)</span></span><br><span class="line"><span class="comment">#enable-mmap=true</span></span><br><span class="line"><span class="comment">#文件预分配, 能有效降低文件碎片, 提高磁盘性能. 缺点是预分配时间较长</span></span><br><span class="line"><span class="comment">#所需时间 none &lt; falloc ? trunc « prealloc, falloc和trunc需要文件系统和内核支持</span></span><br><span class="line"><span class="meta">file-allocation</span>=<span class="string">prealloc</span></span><br></pre></td></tr></table></figure>
+
+<p>默认下载路径的 <code>/Users/xxx/Downloads</code> 可以改为任何你想要的绝对路径。此处写为 <code>Downloads</code> 目录，<code>xxx</code> 请自行替换成你的 <code>mac</code> 用户名，然后保存，退出编辑器。</p>
+<h2 id="4-启动-RPC-模式"><a href="#4-启动-RPC-模式" class="headerlink" title="4. 启动 RPC 模式"></a>4. 启动 RPC 模式</h2><p>在终端输入以下命令启动 <code>RPC</code> 模式，将 <code>xxx</code> 替换成你的 <code>mac</code> 用户名。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">aria2c --conf-path=<span class="string">&quot;/Users/xxx/.aria2/aria2.conf&quot;</span> -D</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-开始使用"><a href="#5-开始使用" class="headerlink" title="5. 开始使用"></a>5. 开始使用</h2><p>下载 <code>chrome</code> 浏览器下载插件：<a href="https://github.com/jae-jae/Camtd">Camtd - Aria2下载管理器</a>, 下载完成后右键下载链接点击 <code>Send to Aria2</code> 即可下载，也支持拦截下载。</p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172051.jpg"></p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172102.jpg"></p>
+<p>这个插件不满意的话，也可以搜索其他类似插件，但必须启动 <code>RPC</code> 模式才能够使用此类插件。</p>
+<hr>
+<blockquote>
+<p>本文部分内容参考自 <a href="https://sspai.com/post/32167">Mac 上使用百度网盘很烦躁？花点时间配置 aria2 吧</a> 。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用指南</category>
+      </categories>
+      <tags>
+        <tag>mac</tag>
+        <tag>aria2</tag>
+        <tag>下载</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一条命令轻松解决 Mac 上「应用程序 “xxx” 不能打开」的问题</title>
+    <url>/2019/02/18/Mac/201902181519/</url>
+    <content><![CDATA[<blockquote>
+<p>除了在 <code>Mac App Store</code> 下载应用之外，有时候我也会直接在一些网站上下载应用，而这就会出现一些稀奇古怪的问题，比如我下载的应用是经过压缩的打包文件，解压缩之后会发现软件打不开，会显示 <code>应用程序 “xxx” 不能打开</code>，下面即可以通过一条命令轻松解决这个问题。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<p>显示的弹窗信息如下：</p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172457.jpg"></p>
+<p>其实这个错误主要是解压缩软件在解压文件时，破坏了应用里面可执行文件的权限造成的，当然修复起来也不复杂。</p>
+<ul>
+<li><p>首先在应用上点击右键，选择「显示包内容」：</p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172507.jpg"></p>
+</li>
+</ul>
+<ul>
+<li><p>之后依次展开<code>Contents</code> - <code>MacOS</code>，找到对应文件夹下的文件，比如说截图中显示的 <code>StarCraft-II-Setup</code>。如果权限正确的话，该文件应该是一个 <code>Unix</code> 可执行的文件，而不是现在这种类型不明的文件。</p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172518.jpg"></p>
+</li>
+</ul>
+<ul>
+<li><p>接下来打开终端，直接输入以下代码（注意 <code>+x</code> 前后都有空格）：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod +x</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>之后再将文件 <code>StarCraft-II-Setup</code> 拖入终端（为了输入完整的执行路径），完整的命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod +x &#x2F;Users&#x2F;liuxiaofeng&#x2F;Downloads&#x2F;StarCraft-II-Setup-CN.app&#x2F;Contents&#x2F;MacOS&#x2F;StarCraft-II-Setup</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172530.jpg"></p>
+</li>
+</ul>
+<ul>
+<li><p>最后点击回车，这时候在访达中原本不明类型的文件现在变成了 Unix 可执行文件，图标也变成正常的了。</p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172545.jpg"></p>
+</li>
+</ul>
+<ul>
+<li><p>重新打开下载的软件，你会发现下载的程序可以正常使用并执行了！</p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172611.jpg"></p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>本文参考自：<a href="https://sspai.com/post/52828">一条命令轻松解决 Mac 上「应用程序 “xxx” 不能打开」的问题 | 一日一技</a></p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用指南</category>
+      </categories>
+      <tags>
+        <tag>mac</tag>
+        <tag>应用程序</tag>
       </tags>
   </entry>
   <entry>
@@ -953,6 +1482,57 @@
       </tags>
   </entry>
   <entry>
+    <title>为 Git 远程仓库配置 SSH Key 的方法</title>
+    <url>/2017/04/17/Other/201704171145/</url>
+    <content><![CDATA[<blockquote>
+<p>首先，为何要配置 <code>SSH Key</code> ？从 <code>Git</code> 远程仓库 <code>clone</code> 代码的方式有两种，一种是 <code>Https</code> ，另一种是 <code>SSH</code> 。如果使用 <code>Https</code> 方式，不需要任何配置，但是当你 <code>clone</code> 下来后会发现，每次 <code>commit</code> 提交代码，都需要你输入  <code>Git</code> 远程仓库的密码（使用终端操作会这样，有些 <code>Git</code> 管理客户端可能不会），这样就极大的影响了我们的工作效率。这时候就需要使用 <code>SSH</code> 方式了，使用这种方式就不再需要每次都输入密码这么麻烦了，但是需要配置 <code>SSH Key</code> ，配置方法请看下面。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="1-查看是否已经生成过-SSH-Key"><a href="#1-查看是否已经生成过-SSH-Key" class="headerlink" title="1. 查看是否已经生成过 SSH Key"></a>1. 查看是否已经生成过 SSH Key</h2><p>打开终端，输入以下命令：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ls ~/.ssh</span><br></pre></td></tr></table></figure>
+
+<p>如果如下图显示有 <code>id_rsa</code> 和 <code>id_rsa.pub</code> 这两个文件，就表示已经生成过，可以直接跳过 <code>生成 SSH Key</code> 这一步。</p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164416.png" alt="查看是否已经生成过 SSH Key"></p>
+<h2 id="2-生成-SSH-Key"><a href="#2-生成-SSH-Key" class="headerlink" title="2. 生成 SSH Key"></a>2. 生成 SSH Key</h2><p>如果上一步验证没有生成过 <code>SSH Key</code> 的话，就输入以下命令来生成 <code>SSH Key</code> ：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/* 下面邮箱改成你自己的个人邮箱就行 */</span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;292710547@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>第一次生成的话，直接一路回车，不需要输入密码。不是第一次生成的话，会提示 <code>overwrite (y/n)?</code> 问你是否覆盖旧的 <code>SSH Key</code> ，直接填 <code>y</code> ，然后一直回车就行了，出现如下图就代表 <code>SSH Key</code> 已经生成。</p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164432.png" alt="生成 SSH Key"></p>
+<p>生成以后，<code>~/.ssh</code> 路径下会多出 <code>id_rsa</code> 和 <code>id_rsa.pub</code> 这两个文件， <code>id_rsa</code> 中存的是私钥， <code>id_rsa.pub</code> 中存的是公钥。</p>
+<h2 id="3-将私钥添加到-ssh-agent"><a href="#3-将私钥添加到-ssh-agent" class="headerlink" title="3. 将私钥添加到 ssh-agent"></a>3. 将私钥添加到 ssh-agent</h2><ul>
+<li>输入以下命令打开 <code>ssh-agent</code> ：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">eval</span> <span class="string">&quot;<span class="subst">$(ssh-agent -s)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>输入以下命令将私钥添加到 <code>ssh-agent</code>：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-将公钥添加到远程仓库"><a href="#4-将公钥添加到远程仓库" class="headerlink" title="4. 将公钥添加到远程仓库"></a>4. 将公钥添加到远程仓库</h2><p>以 <code>GitHub</code> 为例，使用文本编辑器打开 <code>~/.ssh</code> 路径下 <code>id_rsa.pub</code> 这个文件，将里面的公钥复制，然后打开 <code>GitHub</code> 的个人设置，如下图将公钥添加即可。</p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164444.png" alt="添加 SSH Key"></p>
+<p><strong>注意：</strong> <code>~/.ssh</code>这个文件夹是默认隐藏的，如果找不到的话可以使用以下命令，直接复制 <code>id_rsa.pub</code> 中的内容。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/* macOS 系统 */</span><br><span class="line">pbcopy &lt; ~/.ssh/id_rsa.pub</span><br><span class="line"></span><br><span class="line">/* windows 系统 */</span><br><span class="line">clip &lt; ~/.ssh/id_rsa.pub</span><br><span class="line"></span><br><span class="line">/* Linux 系统 */</span><br><span class="line">sudo apt-get install xclip</span><br><span class="line">xclip -sel clip &lt; ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p>添加完 <code>SSH Key</code> 以后，你就可以开始使用 <code>SSH</code> 方式 <code>clone</code> 代码了，之后 <code>commit</code> 提交代码再也不用输入密码了，但是如果你之前代码是用 <code>Https</code> 方式 <code>clone</code> 下来的，需要用 <code>SSH</code> 方式重新 <code>clone</code> 一下，或者修改 <code>.git</code> 文件夹下 <code>config</code> 中的 <code>url</code> 才行，如何修改我就不说了，嫌麻烦就直接重新 <code>clone</code> 吧。</p>
+<hr>
+<blockquote>
+<p>具体方法就是这样，并不麻烦，一般来说一台电脑只需要生成一次 <code>SSH Key</code> 就行了，不同的 <code>Git</code> 远程仓库都添加这同一个 <code>SSH Key</code> 就行了，有什么问题或者建议可以提出来。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>其他相关</category>
+      </categories>
+      <tags>
+        <tag>GitHub</tag>
+        <tag>其他相关</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>将项目同时 push 到 github 、git.oschina 或 gitlab 的方法</title>
     <url>/2017/04/21/Other/201704211034/</url>
     <content><![CDATA[<blockquote>
@@ -1022,44 +1602,40 @@
       </tags>
   </entry>
   <entry>
-    <title>为 Git 远程仓库配置 SSH Key 的方法</title>
-    <url>/2017/04/17/Other/201704171145/</url>
+    <title>查看 / 修改本地 Git 用户名和邮箱地址</title>
+    <url>/2017/05/10/Other/201705101116/</url>
     <content><![CDATA[<blockquote>
-<p>首先，为何要配置 <code>SSH Key</code> ？从 <code>Git</code> 远程仓库 <code>clone</code> 代码的方式有两种，一种是 <code>Https</code> ，另一种是 <code>SSH</code> 。如果使用 <code>Https</code> 方式，不需要任何配置，但是当你 <code>clone</code> 下来后会发现，每次 <code>commit</code> 提交代码，都需要你输入  <code>Git</code> 远程仓库的密码（使用终端操作会这样，有些 <code>Git</code> 管理客户端可能不会），这样就极大的影响了我们的工作效率。这时候就需要使用 <code>SSH</code> 方式了，使用这种方式就不再需要每次都输入密码这么麻烦了，但是需要配置 <code>SSH Key</code> ，配置方法请看下面。</p>
+<p><code>用户名</code> 和 <code>邮箱地址</code> 是本地 <code>Git</code> 客户端的一个变量，当你安装 <code>Git</code> 后首先要做的事情就是设置你的 <code>用户名</code> 和 <code>邮箱地址</code> ，因为每次 <code>Git</code> 提交都会使用这个 <code>用户名</code> 和 <code>邮箱地址</code> 来记录提交信息，下面分享一下本地 <code>Git</code> 如何查看 / 修改 <code>用户名</code> 和 <code>邮箱地址</code> 。</p>
 </blockquote>
 <a id="more"></a>
 
 <hr>
-<h2 id="1-查看是否已经生成过-SSH-Key"><a href="#1-查看是否已经生成过-SSH-Key" class="headerlink" title="1. 查看是否已经生成过 SSH Key"></a>1. 查看是否已经生成过 SSH Key</h2><p>打开终端，输入以下命令：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ls ~/.ssh</span><br></pre></td></tr></table></figure>
-
-<p>如果如下图显示有 <code>id_rsa</code> 和 <code>id_rsa.pub</code> 这两个文件，就表示已经生成过，可以直接跳过 <code>生成 SSH Key</code> 这一步。</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164416.png" alt="查看是否已经生成过 SSH Key"></p>
-<h2 id="2-生成-SSH-Key"><a href="#2-生成-SSH-Key" class="headerlink" title="2. 生成 SSH Key"></a>2. 生成 SSH Key</h2><p>如果上一步验证没有生成过 <code>SSH Key</code> 的话，就输入以下命令来生成 <code>SSH Key</code> ：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/* 下面邮箱改成你自己的个人邮箱就行 */</span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;292710547@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>第一次生成的话，直接一路回车，不需要输入密码。不是第一次生成的话，会提示 <code>overwrite (y/n)?</code> 问你是否覆盖旧的 <code>SSH Key</code> ，直接填 <code>y</code> ，然后一直回车就行了，出现如下图就代表 <code>SSH Key</code> 已经生成。</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164432.png" alt="生成 SSH Key"></p>
-<p>生成以后，<code>~/.ssh</code> 路径下会多出 <code>id_rsa</code> 和 <code>id_rsa.pub</code> 这两个文件， <code>id_rsa</code> 中存的是私钥， <code>id_rsa.pub</code> 中存的是公钥。</p>
-<h2 id="3-将私钥添加到-ssh-agent"><a href="#3-将私钥添加到-ssh-agent" class="headerlink" title="3. 将私钥添加到 ssh-agent"></a>3. 将私钥添加到 ssh-agent</h2><ul>
-<li>输入以下命令打开 <code>ssh-agent</code> ：</li>
+<h2 id="查看用户名和邮箱地址"><a href="#查看用户名和邮箱地址" class="headerlink" title="查看用户名和邮箱地址"></a>查看用户名和邮箱地址</h2><ul>
+<li>打开终端，分别输入以下命令即可查看 <code>用户名</code> 和 <code>邮箱地址</code> 。</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">eval</span> <span class="string">&quot;<span class="subst">$(ssh-agent -s)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">//查看用户名</span><br><span class="line">git config user.name</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">//查看邮箱地址</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改用户名和邮箱地址"><a href="#修改用户名和邮箱地址" class="headerlink" title="修改用户名和邮箱地址"></a>修改用户名和邮箱地址</h2><p>这个 <code>用户名</code> 和 <code>邮箱地址</code> 的设置是全局的，所有 <code>Git</code> 仓库的提交都会使用这个 <code>用户名</code> 和 <code>邮箱地址</code> 。</p>
 <ul>
-<li>输入以下命令将私钥添加到 <code>ssh-agent</code>：</li>
+<li>打开终端，分别输入以下命令即可修改 <code>用户名</code> 和 <code>邮箱地址</code> 。</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">//修改用户名，xxx 处填写你的用户名</span><br><span class="line">git config --global user.name <span class="string">&quot;xxx&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="4-将公钥添加到远程仓库"><a href="#4-将公钥添加到远程仓库" class="headerlink" title="4. 将公钥添加到远程仓库"></a>4. 将公钥添加到远程仓库</h2><p>以 <code>GitHub</code> 为例，使用文本编辑器打开 <code>~/.ssh</code> 路径下 <code>id_rsa.pub</code> 这个文件，将里面的公钥复制，然后打开 <code>GitHub</code> 的个人设置，如下图将公钥添加即可。</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164444.png" alt="添加 SSH Key"></p>
-<p><strong>注意：</strong> <code>~/.ssh</code>这个文件夹是默认隐藏的，如果找不到的话可以使用以下命令，直接复制 <code>id_rsa.pub</code> 中的内容。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/* macOS 系统 */</span><br><span class="line">pbcopy &lt; ~/.ssh/id_rsa.pub</span><br><span class="line"></span><br><span class="line">/* windows 系统 */</span><br><span class="line">clip &lt; ~/.ssh/id_rsa.pub</span><br><span class="line"></span><br><span class="line">/* Linux 系统 */</span><br><span class="line">sudo apt-get install xclip</span><br><span class="line">xclip -sel clip &lt; ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">//修改邮箱地址，xxx 处填写你的邮箱地址</span><br><span class="line">git config --global user.email <span class="string">&quot;xxx&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>添加完 <code>SSH Key</code> 以后，你就可以开始使用 <code>SSH</code> 方式 <code>clone</code> 代码了，之后 <code>commit</code> 提交代码再也不用输入密码了，但是如果你之前代码是用 <code>Https</code> 方式 <code>clone</code> 下来的，需要用 <code>SSH</code> 方式重新 <code>clone</code> 一下，或者修改 <code>.git</code> 文件夹下 <code>config</code> 中的 <code>url</code> 才行，如何修改我就不说了，嫌麻烦就直接重新 <code>clone</code> 吧。</p>
+<h2 id="修改指定项目的用户名和邮箱地址"><a href="#修改指定项目的用户名和邮箱地址" class="headerlink" title="修改指定项目的用户名和邮箱地址"></a>修改指定项目的用户名和邮箱地址</h2><p>如果你希望在一个特定的项目中使用不同的 <code>用户名</code> 和 <code>邮箱地址</code> 来提交，可以使用下面的方法单独设置  <code>用户名</code> 和 <code>邮箱地址</code> ，如果不设置就会默认使用上面全局设置的 <code>用户名</code> 和 <code>邮箱地址</code> 。</p>
+<ul>
+<li>打开终端 <code>cd</code> 到指定项目的仓库下，分别输入以下命令即可单独修改 <code>用户名</code> 和 <code>邮箱地址</code> 。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">//修改用户名，xxx 处填写你的用户名</span><br><span class="line">git config user.name <span class="string">&quot;xxx&quot;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">//修改邮箱地址，xxx 处填写你的邮箱地址</span><br><span class="line">git config user.email <span class="string">&quot;xxx&quot;</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <blockquote>
-<p>具体方法就是这样，并不麻烦，一般来说一台电脑只需要生成一次 <code>SSH Key</code> 就行了，不同的 <code>Git</code> 远程仓库都添加这同一个 <code>SSH Key</code> 就行了，有什么问题或者建议可以提出来。</p>
+<p>最后说明一下这个 <code>用户名</code> 和 <code>邮箱地址</code> 只是用来记录本地 <code>Git</code> 提交信息的一个标识，和你远程仓库账号下的 <code>用户名</code> 或 <code>邮箱地址</code> 没有任何关系。</p>
 </blockquote>
 <p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
 ]]></content>
@@ -1067,7 +1643,6 @@
         <category>其他相关</category>
       </categories>
       <tags>
-        <tag>GitHub</tag>
         <tag>其他相关</tag>
         <tag>Git</tag>
       </tags>
@@ -1126,52 +1701,6 @@
         <tag>GitHub</tag>
         <tag>其他相关</tag>
         <tag>DMCA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>查看 / 修改本地 Git 用户名和邮箱地址</title>
-    <url>/2017/05/10/Other/201705101116/</url>
-    <content><![CDATA[<blockquote>
-<p><code>用户名</code> 和 <code>邮箱地址</code> 是本地 <code>Git</code> 客户端的一个变量，当你安装 <code>Git</code> 后首先要做的事情就是设置你的 <code>用户名</code> 和 <code>邮箱地址</code> ，因为每次 <code>Git</code> 提交都会使用这个 <code>用户名</code> 和 <code>邮箱地址</code> 来记录提交信息，下面分享一下本地 <code>Git</code> 如何查看 / 修改 <code>用户名</code> 和 <code>邮箱地址</code> 。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="查看用户名和邮箱地址"><a href="#查看用户名和邮箱地址" class="headerlink" title="查看用户名和邮箱地址"></a>查看用户名和邮箱地址</h2><ul>
-<li>打开终端，分别输入以下命令即可查看 <code>用户名</code> 和 <code>邮箱地址</code> 。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">//查看用户名</span><br><span class="line">git config user.name</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">//查看邮箱地址</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改用户名和邮箱地址"><a href="#修改用户名和邮箱地址" class="headerlink" title="修改用户名和邮箱地址"></a>修改用户名和邮箱地址</h2><p>这个 <code>用户名</code> 和 <code>邮箱地址</code> 的设置是全局的，所有 <code>Git</code> 仓库的提交都会使用这个 <code>用户名</code> 和 <code>邮箱地址</code> 。</p>
-<ul>
-<li>打开终端，分别输入以下命令即可修改 <code>用户名</code> 和 <code>邮箱地址</code> 。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">//修改用户名，xxx 处填写你的用户名</span><br><span class="line">git config --global user.name <span class="string">&quot;xxx&quot;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">//修改邮箱地址，xxx 处填写你的邮箱地址</span><br><span class="line">git config --global user.email <span class="string">&quot;xxx&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="修改指定项目的用户名和邮箱地址"><a href="#修改指定项目的用户名和邮箱地址" class="headerlink" title="修改指定项目的用户名和邮箱地址"></a>修改指定项目的用户名和邮箱地址</h2><p>如果你希望在一个特定的项目中使用不同的 <code>用户名</code> 和 <code>邮箱地址</code> 来提交，可以使用下面的方法单独设置  <code>用户名</code> 和 <code>邮箱地址</code> ，如果不设置就会默认使用上面全局设置的 <code>用户名</code> 和 <code>邮箱地址</code> 。</p>
-<ul>
-<li>打开终端 <code>cd</code> 到指定项目的仓库下，分别输入以下命令即可单独修改 <code>用户名</code> 和 <code>邮箱地址</code> 。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">//修改用户名，xxx 处填写你的用户名</span><br><span class="line">git config user.name <span class="string">&quot;xxx&quot;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">//修改邮箱地址，xxx 处填写你的邮箱地址</span><br><span class="line">git config user.email <span class="string">&quot;xxx&quot;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<blockquote>
-<p>最后说明一下这个 <code>用户名</code> 和 <code>邮箱地址</code> 只是用来记录本地 <code>Git</code> 提交信息的一个标识，和你远程仓库账号下的 <code>用户名</code> 或 <code>邮箱地址</code> 没有任何关系。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>其他相关</category>
-      </categories>
-      <tags>
-        <tag>其他相关</tag>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -1469,590 +1998,210 @@
       </tags>
   </entry>
   <entry>
-    <title>macOS Sierra 10.12+ 软件提示已损坏，移除到废纸篓的解决方法</title>
-    <url>/2017/04/05/Mac/201704051635/</url>
+    <title>【PHP 开发】mac 下配置 PHP 环境的方法</title>
+    <url>/2017/06/12/PHP/201706121218/</url>
     <content><![CDATA[<blockquote>
-<p>在升级了 <code>macOS Sierra 10.12+</code> 版本前，只要在 <code>设置</code> - <code>安全性与隐私</code> 中设置 <code>任何来源</code> 选项即可，但是升级过 <code>macOS Sierra 10.12+</code> 版本后，这个选项就不见了，于是运行很多个人开发者软件都会提示 <code> xx 软件已损坏，打不开。您应该将它移到废纸篓。</code> 解决方法请继续看下文。</p>
+<p>最近在试着将 <code>showdoc</code> 配置到自己服务器上，需要 <code>PHP</code> 环境，所以自己配置了一下，这里将方法记录一下。</p>
 </blockquote>
 <a id="more"></a>
 
 <hr>
-<ul>
-<li>刚升级了 <code>macOS Sierra 10.12+</code> 版本后，<code>任何来源</code> 选项是消失的。</li>
-</ul>
-<p><strong>如下图：</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163936.png" alt="任何来源消失"></p>
-<ul>
-<li>接下来，打开终端，然后输入以下命令，输入后，可能会让你输入电脑的密码。（屏幕上不会显示密码，你管你输入就可以了，Linux 和 Unix 核心输入密码都是这样的，输入完直接回车就行了）</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo spctl --master-disable</span><br></pre></td></tr></table></figure>
+<h2 id="1-开启-Apache-服务"><a href="#1-开启-Apache-服务" class="headerlink" title="1. 开启 Apache 服务"></a>1. 开启 Apache 服务</h2><p><code>Mac</code> 系统下是自带 <code>Apache</code> 服务的，只需要开启即可，下面是几个 <code>Apache</code> 服务的常用命令。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/* 启动 Apache 服务 */</span><br><span class="line">sudo apachectl start</span><br><span class="line"></span><br><span class="line">/* 重启 Apache 服务 */</span><br><span class="line">sudo apachectl restart</span><br><span class="line"></span><br><span class="line">/* 停止 Apache 服务 */</span><br><span class="line">sudo apachectl stop</span><br><span class="line"></span><br><span class="line">/* 查看 Apache 版本 */</span><br><span class="line">httpd -v</span><br></pre></td></tr></table></figure>
 
-<p><strong>如下图：</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163936.png" alt="打开终端"></p>
 <ul>
-<li>然后再重新打开 <code>设置</code> - <code>安全性与隐私</code> ，你会发现 <code>任何来源</code> 选项又回来了！</li>
+<li>打开终端输入以下命令开启 <code>Apache </code> 服务。</li>
 </ul>
-<p><strong>如下图：</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164000.png" alt="任何来源又有了"></p>
-<ul>
-<li>最后选中 <code>任何来源</code> 选项，然后那些个人开发者软件就可以正常打开了。</li>
-</ul>
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Mac 使用指南</category>
-      </categories>
-      <tags>
-        <tag>Mac</tag>
-        <tag>macOS</tag>
-        <tag>Mac 使用指南</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决 macOS 版 iTunes 在 AppStore 无法更新的问题</title>
-    <url>/2017/04/14/Mac/201704141640/</url>
-    <content><![CDATA[<blockquote>
-<p>相信用 <code>mac</code> 系统的都遇到过，每次 <code>iTunes</code> 更新版本，<code>mac AppStore</code> 提示更新了，但是点击更新，却怎么也更新不了，很无奈，接下来告诉大家如何解决这个问题。</p>
-</blockquote>
-<a id="more"></a>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apachectl start</span><br></pre></td></tr></table></figure>
 
-<hr>
-<p>很多人选择的办法是将自带的 <code>iTunes</code> 删掉，然后去网上直接下载 <code>iTunes</code> 的 <code>dmg</code> 安装包来直接安装，这也是一个办法，然后接下来告诉大家如何在 <code>mac AppStore</code> 直接更新 <code>iTunes</code> 。</p>
 <ul>
-<li>打开 <code>系统偏好设置</code> - <code>网络</code> - <code>高级</code>。</li>
+<li>打开浏览器在地址栏输入 <a href="http://localhost/">http://localhost</a> ，如果出现 <code>It Works</code> 就表示 <code>Apache </code> 服务开启成功。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164019.png" alt="如图"></p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164721.png" alt="启动 Apache 服务"></p>
 <ul>
-<li>选择 <code>DNS</code> ，点击左下角的 <code>+</code> 号。</li>
+<li><code>Apache</code> 的网站服务器默认根目录在下面这个路径下。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164030.png" alt="如图"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;Library&#x2F;WebServer&#x2F;Documents</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 你的 <code>Mac</code> 下如果装有 <code>Server</code> 这个软件要卸载掉（图标是蓝色地球的那个），否则输入 <a href="http://localhost/">http://localhost</a> 会显示 <code>Server</code> 的信息会冲突，具体原因我没去管，有兴趣的可以了解一下。</p>
+<h2 id="2-配置-PHP-环境"><a href="#2-配置-PHP-环境" class="headerlink" title="2. 配置 PHP 环境"></a>2. 配置 PHP 环境</h2><p><code>Mac</code> 系统下也是自带 <code>PHP</code> 环境的，只要将其打开即可，如果想另外自行安装的话，就自己去搜一下吧。</p>
 <ul>
-<li>输入 <code>8.8.8.8</code> 。</li>
+<li>打开 <code>Finder</code> ，然后按下 <code>shift + command + G</code> 打开前往文件夹，前往以下地址：</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164042.png" alt="如图"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;etc&#x2F;apache2&#x2F;httpd.conf</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><p>点击 <code>好</code>，接着别忘了要 <code>应用</code> 一下。</p>
-</li>
-<li><p>打开 <code>mac AppStore</code> ，开始更新吧，就是这么神奇。</p>
-</li>
+<li>打开 <code>httpd.conf</code> 这个文件，找到下面这一行，然后将前面的 <code>#</code> 注释符去掉，然后 <code>command + s</code> 保存。</li>
 </ul>
-<p><strong>注意：</strong>更新完以后，一定要把刚才添加的 <code>8.8.8.8</code> 给删除掉，否则上网会变的非常之慢，切记！！</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">LoadModule</span> <span class="string">php5_module libexec/apache2/libphp5.so</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164740.png" alt="开启PHP环境"></p>
+<ul>
+<li>输入以下命令重启 <code>Apache </code> 服务。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apachectl restart</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开 <code>Finder</code> ，然后按下 <code>shift + command + G</code> 打开前往文件夹，前往以下地址，这个地址是 <code>Apache</code> 的默认网站服务器根目录。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;Library&#x2F;WebServer&#x2F;Documents</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>新建一个名为 <code>phpinfo.php</code> 的文件，在里面输入以下代码后，<code>command + s</code> 保存。</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">phpinfo();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开浏览器在地址栏输入 <a href="http://localhost/phpinfo.php">http://localhost/phpinfo.php</a> ，跳出以下信息就表示 <code>PHP</code> 环境配置成功。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164757.png" alt="phpinfo"></p>
 <hr>
 <blockquote>
-<p>方法就是这样，是不是非常简单，希望对大家有所帮助。</p>
+<p>这里配置的是 <code>Mac</code> 系统自带的 <code>PHP</code> 环境，想另外安装的就自己去搜一下吧。</p>
 </blockquote>
 <p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
 ]]></content>
       <categories>
-        <category>Mac 使用指南</category>
-      </categories>
-      <tags>
-        <tag>Mac</tag>
-        <tag>macOS</tag>
-        <tag>Mac 使用指南</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac 关闭系统完整性保护 SIP（System Integrity Protection）的方法</title>
-    <url>/2017/07/03/Mac/201707031450/</url>
-    <content><![CDATA[<blockquote>
-<p>在 <code>OS X El Capitan</code> 中有一个跟安全相关的模式叫 <code>SIP（System Integrity Protection ）</code> ，它禁止让软件以 <code>root</code> 身份来在 <code>mac</code> 上运行，并且对于目录 <code>/System 、/sbin、/usr（不包含/usr/local/）</code> 仅仅供系统使用，其它用户或者程序无法直接使用，下面记录一下禁用 <code>SIP</code> 的方法。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="禁用-SIP-保护机制的步骤"><a href="#禁用-SIP-保护机制的步骤" class="headerlink" title="禁用 SIP 保护机制的步骤"></a>禁用 SIP 保护机制的步骤</h2><ul>
-<li><p>重启系统，按住 <code>Command + R</code> 进入恢复模式。</p>
-</li>
-<li><p>点击顶部菜单栏 <code>实用工具</code> 中的 <code>终端</code> 。</p>
-</li>
-<li><p>输入以下命令来禁用 <code>SIP</code> 保护机制。</p>
-</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">csrutil <span class="built_in">disable</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>执行后输出以下信息表示禁用成功。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Successfully disabled System Integrity Protection. Please restart the machine for the changes to take effect.</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>然后再次重启系统即可。</p>
-</li>
-<li><p>重新打开 <code>SIP</code> 的方法同上，只是终端中输入的命令改为以下命令。</p>
-</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">csrutil <span class="built_in">enable</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Mac 使用指南</category>
-      </categories>
-      <tags>
-        <tag>macOS</tag>
-        <tag>Mac 使用指南</tag>
-        <tag>mac</tag>
-        <tag>SIP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac 删除自带 ABC 输入法的方法</title>
-    <url>/2017/08/25/Mac/201708251803/</url>
-    <content><![CDATA[<blockquote>
-<p>在使用 <code>mac</code> 时相信很多都习惯使用第三方输入法，而 <code>mac</code> 规定必须保留一个自带的 <code>ABC</code> 输入法，这样导致平时在打字的时候，老是莫名其妙的自己切换成了自带的 <code>ABC</code> 输入法，还要老是切换回第三方输入法（快捷键是 <code>control + 空格</code>），这个问题困扰我好久了，终于被我找到了删除自带的 <code>ABC</code> 输入法的方法，这里分享一下。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<ul>
-<li><p>首先需要关闭 <code>mac</code> 系统的 <code>SIP</code> ，不然删不掉，不会关的可以查看我的另一篇文章：<a href="http://www.jianshu.com/p/d7d73b2846d1">mac 关闭系统完整性保护 SIP（System Integrity Protection）的方法</a> 。</p>
-</li>
-<li><p>关闭 <code>SIP</code> 重启完成后，先将输入法切换为系统自带的 <code>ABC</code> 输入法，然后打开终端输入以下命令。</p>
-</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo open ~/Library/Preferences/com.apple.HIToolbox.plist</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>接着输入密码即可打开 <code>com.apple.HIToolbox.plist</code> 文件。（打开 <code>.plist</code> 文件需要安装有 <code>Xcode</code> 或者 <code>PlistEdit Pro</code> 也行）</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164334.png" alt="com.apple.HIToolbox.plist"></p>
-<ul>
-<li>依次点开 <code>Root</code> - <code>AppleEnabledInputSources</code> ，会看到一列 <code>item</code> ，找到其中 <code>KeyboardLayout Name</code> 为 <code>ABC</code> 的那一列，将整列 <code>item</code> 删掉，然后 <code>command + S</code> 保存。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164345.png" alt="com.apple.HIToolbox.plist"></p>
-<ul>
-<li>接着重启电脑，打开键盘设置，就可以看到系统自带的 <code>ABC</code> 输入法已经被删掉了。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164402.png" alt="键盘"></p>
-<ul>
-<li>如果又想用回自带输入法，只要在 <code>偏好设置</code> - <code>键盘</code> - <code>输入法</code> 里，按 <code>+</code> 号，把自带的输入法重新添加就可以了。</li>
-</ul>
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Mac 使用指南</category>
-      </categories>
-      <tags>
-        <tag>Mac 使用指南</tag>
-        <tag>mac</tag>
-        <tag>输入法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决 Alfred 每次开机都提示请求通讯录权限的问题</title>
-    <url>/2017/08/29/Mac/201708291128/</url>
-    <content><![CDATA[<blockquote>
-<p>安装完 <code>Alfred</code> 以后，每次开机都会提示请求通讯录权限，把设置里的通讯录关掉也没用，每次都提示又非常烦人，这里把解决方法记录一下。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<ul>
-<li>依次打开 <code>应用程序</code> - <code>Alfred 3.app</code> - <code>右键显示包内容</code> - <code>Contents</code> - <code>Frameworks</code> - <code>Alfred Framework.framework</code> - <code>Versions</code> - <code>A</code> 下找到一个叫 <code>Alfred Framework</code> 的文件。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163906.png" alt="Alfred Framework"></p>
-<ul>
-<li>接着打开终端，输入以下命令（最后的 <code>-</code> 后面有个空格）。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo codesign -f -d -s -</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后将刚才的 <code>Alfred Framework</code> 文件直接拖到终端，接着回车输入用户密码。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163917.png" alt="终端"></p>
-<ul>
-<li>最后提示 <code>replacing existing signature</code> 就表示成功了。</li>
-</ul>
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Mac 使用指南</category>
-      </categories>
-      <tags>
-        <tag>Mac 使用指南</tag>
-        <tag>mac</tag>
-        <tag>Alfred</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac 删除 Windows 或 EFI Boot 启动盘的方法</title>
-    <url>/2017/11/21/Mac/201711211402/</url>
-    <content><![CDATA[<blockquote>
-<p>由于我的 <code>mac</code> 之前装了 <code>Windows</code> 双系统，然后 <code>mac</code> 系统升级后，我想把 <code>Windows</code> 系统给删掉，但是发现升级 <code>mac</code> 系统以后不能用 <code>Boot Camp</code> 删除 <code>Windows</code> 了，然后我就用 <code>磁盘工具</code> 把 <code>Windows</code> 分区给删除合并到 <code>mac</code> 分区了，但是发现系统虽然删除了，但是开机按住 <code>option</code> 键还是会出现 <code>Windows</code> 启动盘，虽然没什么影响但是强迫症当然不能忍 ，下面就记录一下解决方法。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163832.jpg" alt="启动界面"></p>
-<ul>
-<li>因为以下命令需要 <code>root</code> 用户执行，所以打开终端执行以下命令切换到 <code>root</code> 用户，输入密码后回车即可。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>接着在终端执行以下命令，作用是在 <code>Macintosh HD</code> 根目录新建一个目录 <code>mnt</code> 。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mkdir /mnt</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>接着在终端执行以下命令，作用是将该 <code>windows</code> 盘挂在到 <code>/mnt</code> 目录下。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo mount -t msdos /dev/disk0s1 /mnt</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>打开 <code>Finder</code> ，在 <code>Macintosh HD</code> 根目录会看到一个叫 <code>EFI</code> 的磁盘（桌面应该也会显示这个磁盘，和 <code>Finder</code> 置有关）。</p>
-</li>
-<li><p>打开 <code>EFI</code> 磁盘，这里要说一下，如果你只想删除 <code>Windows</code> 启动盘，可以找到有个 <code>Microsoft</code> 文件夹删除即可，但是如果只删除这个的话，开机还是会显示一个叫 <code>EFI Boot</code> 的启动盘，个人建议将 <code>EFI</code> 磁盘里面的东西全部删除，这样 <code>Windows</code> 和 <code>EFI Boot</code> 启动盘就都没了，亲测有效无副作用。</p>
-</li>
-<li><p>删除以后清空废纸篓然后把 <code>EFI</code> 磁盘推出，然后重启按住 <code>option</code> 键检验是否删除。</p>
-</li>
-</ul>
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Mac 使用指南</category>
-      </categories>
-      <tags>
-        <tag>Mac 使用指南</tag>
-        <tag>mac</tag>
-        <tag>EFI Boot</tag>
-        <tag>Windows</tag>
-        <tag>启动盘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac 终端使用自动补全时忽略大小写的方法</title>
-    <url>/2017/12/06/Mac/201712061436/</url>
-    <content><![CDATA[<blockquote>
-<p><code>mac</code> 终端在使用 <code>tab</code> 补全路径时是默认大小写敏感的，以下方法可以忽略大小写，方法同样适用于 <code>iTerm2</code> 。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<ul>
-<li>打开终端输入以下命令。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">nano .inputrc</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>接着将以下命令复制进去。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> completion-ignore-case on</span><br><span class="line"><span class="built_in">set</span> show-all-if-ambiguous on</span><br><span class="line">TAB: menu-complete</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163847.png" alt="终端"></p>
-<ul>
-<li><p>然后按下 <code>control + O</code> 之后回车保存，重启终端即可（注意是 <code>control</code> 不是 <code>command</code>）。</p>
-</li>
-<li><p>终端重启后，就会发现已经忽略大小写了。</p>
-</li>
-</ul>
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Mac 使用指南</category>
-      </categories>
-      <tags>
-        <tag>macOS</tag>
-        <tag>终端</tag>
-        <tag>iTerm2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Magic Mouse 苹果鼠标移动速度改快的方法</title>
-    <url>/2018/01/20/Mac/201801201111/</url>
-    <content><![CDATA[<blockquote>
-<p>买了一个 <code>Magic Mouse</code> 之后发现移动速度比之前鼠标要慢好多，设置里已经设置到最快了还是很慢，非常不习惯，最后查到可以在终端里输入命令调整 <code>Magic Mouse</code> 的移动速度，下面记录一下方法。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<ul>
-<li>打开终端输入以下命令可以查看当前鼠标的速度，一般设置里调到最快的话，就是 <code>3</code> 的速度。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">defaults <span class="built_in">read</span> -g com.apple.mouse.scaling</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后输入以下命令可以设置鼠标的速度，建议设置到 <code>6~8</code> 左右，不然移动速度太快了，可以根据自己需求来调，我自己设置速度为 <code>7</code> 。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">defaults write -g com.apple.mouse.scaling 7</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后重启电脑，必须要重启电脑以后设置才会生效，而且生效以后就不要再去设置里面调鼠标速度了，不然会还原覆盖掉之前改的速度。</li>
-</ul>
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Mac 使用指南</category>
-      </categories>
-      <tags>
-        <tag>Mac 使用指南</tag>
-        <tag>Magic Mouse</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac 使用 BootCamp 安装双系统时出现磁盘分区错误的解决方法.md</title>
-    <url>/2018/02/11/Mac/201802111604/</url>
-    <content><![CDATA[<blockquote>
-<p>最近在使用 <code>BootCamp</code> 安装 <code>Windows</code> 双系统时，突然出现 <code>您的磁盘未能分区</code> 的错误，以前一直好好的，突然就报错了，我的系统版本是 <code>macOS High Sierra 10.13.3</code> ，经过一番搜索终于解决了，下面记录一下解决方法。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h4 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h4><ul>
-<li>如果开启了磁盘加密，请到 <code>设置</code> - <code>安全性与隐私</code> - <code>文件保险箱</code> 关闭加密（时间较长，耐心等待）</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172022.jpg"></p>
-<ul>
-<li>若没有加密，重启电脑，开机时按住 <code>command + R</code> 进入恢复模式，选择磁盘工具，找到你的 <code>macOS</code> 所在硬盘分区，点击急救，运行完成之后重启，多试几次。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172033.jpg"></p>
-<ul>
-<li>若上述两种方法都不能解决问题，那就是 <code>Time Machine（时间机器）</code> 的本地快照造成的问题，将 <code>Time Machine</code> 的自动备份关闭，然后打开终端输入以下命令，就能够删除存储在本地磁盘上本地快照，一般本地快照会占用本地磁盘好几十个G的容量，也能够解决磁盘容量被无故占用的问题。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">tmutil thinlocalsnapshots / 9999999999999999</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>打开终端输入以下命令能够开启和关闭本地快照功能。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">// 关闭本地快照</span><br><span class="line">sudo tmutil disablelocal</span><br><span class="line"></span><br><span class="line">// 开启本地快照</span><br><span class="line">sudo tmutil enablelocal</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果上述方法都没有效果的话，那就重装 <code>mac</code> 系统把（节哀）。</li>
-</ul>
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Mac 使用指南</category>
+        <category>PHP 开发</category>
       </categories>
       <tags>
         <tag>mac</tag>
-        <tag>Windows</tag>
-        <tag>BootCamp</tag>
-        <tag>双系统</tag>
-        <tag>分区错误</tag>
+        <tag>PHP 开发</tag>
       </tags>
   </entry>
   <entry>
-    <title>mac 更改所有文件夹显示选项的方法</title>
-    <url>/2018/04/12/Mac/201804121027/</url>
+    <title>【PHP 开发】mac 在 PHP 环境安装 mcrypt 扩展的方法</title>
+    <url>/2017/06/12/PHP/201706121613/</url>
     <content><![CDATA[<blockquote>
-<p><code>mac</code> 的 <code>Finder</code> 中文件夹的显示选项只在当前目录生效，每次新目录都得重新选择显示选项，强迫症表示非常不爽，下面是如何一次性更改所有文件夹显示选项的方法。</p>
+<p>最近在试着将 <code>showdoc</code> 配置到自己服务器上，所以需要 <code>PHP</code> 环境，然后要安装 <code>mcrypt</code> 扩展，不得不说这真是一个大坑，由于自己对 <code>PHP</code> 了解不多，网上的教程很多大坑都没有提到，装了不知道多少次才走出大坑，所以就写下来记录一下。</p>
 </blockquote>
 <a id="more"></a>
 
 <hr>
-<ul>
-<li><p>打开 <code>Finder</code>，使劲点击 <code>⌘ + ↑</code> 数次，直到没反应可查看到磁盘的图标为止。</p>
-</li>
-<li><p>进入磁盘，右键空白处打开 <code>查看显示选项</code> ，在显示选项内调整好自己想要的效果后点击下方 <code>用作默认</code> 。</p>
-</li>
-<li><p>打开终端界面输入以下命令，回车后根据提示输入你的账户密码再回车等待即可。</p>
-</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo find / -name .DS_Store -<span class="built_in">exec</span> rm &#123;&#125; +</span><br></pre></td></tr></table></figure>
+<p>首先 <code>PHP</code> 环境这个就不说了，没配置的可以看我的另一篇文章：<a href="http://www.jianshu.com/p/6ba5b716feaf">【PHP 开发】mac 下配置 PHP 环境的方法</a> 。</p>
+<h2 id="安装-mcrypt"><a href="#安装-mcrypt" class="headerlink" title="安装 mcrypt"></a>安装 mcrypt</h2><p>安装 <code>mcrypt</code> 有两种方法，可以使用 <code>Homebrew </code> 来自动安装 <code>mcrypt</code> 所需依赖包，也可以自行下载所需依赖包来安装，我都写在下面。</p>
+<h3 id="1-使用-Homebrew-安装-mcrypt"><a href="#1-使用-Homebrew-安装-mcrypt" class="headerlink" title="1. 使用 Homebrew 安装 mcrypt"></a>1. 使用 Homebrew 安装 mcrypt</h3><p><code>Homebrew</code> 是一个软件包管理器，想要了解更多可以点击 <a href="https://brew.sh/index_zh-cn.html">这里</a> ，安装方法打开终端，输入以下命令进行安装，中间会让你输入密码，然后等待安装完成即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;usr&#x2F;bin&#x2F;ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>完成后，点击菜单栏左上角的小苹果图标选择 <code>强制退出</code> ，在菜单内选择 <code>Finder</code> 后点击 <code>重新开启</code> 完成。</li>
+<li>如果 <code>Homebrew </code> 已经安装完成，就可以打开终端，输入以下命令查看是否有 <code>mcrypt</code> 依赖包。</li>
 </ul>
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Mac 使用指南</category>
-      </categories>
-      <tags>
-        <tag>mac</tag>
-        <tag>文件夹显示选项</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一条命令轻松解决 Mac 上「应用程序 “xxx” 不能打开」的问题</title>
-    <url>/2019/02/18/Mac/201902181519/</url>
-    <content><![CDATA[<blockquote>
-<p>除了在 <code>Mac App Store</code> 下载应用之外，有时候我也会直接在一些网站上下载应用，而这就会出现一些稀奇古怪的问题，比如我下载的应用是经过压缩的打包文件，解压缩之后会发现软件打不开，会显示 <code>应用程序 “xxx” 不能打开</code>，下面即可以通过一条命令轻松解决这个问题。</p>
-</blockquote>
-<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">brew search mcrypt</span><br></pre></td></tr></table></figure>
 
-<hr>
-<p>显示的弹窗信息如下：</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172457.jpg"></p>
-<p>其实这个错误主要是解压缩软件在解压文件时，破坏了应用里面可执行文件的权限造成的，当然修复起来也不复杂。</p>
 <ul>
-<li><p>首先在应用上点击右键，选择「显示包内容」：</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172507.jpg"></p>
-</li>
+<li>有的话，就输入以下命令会安装 <code>mcrypt</code> 所需依赖包。</li>
 </ul>
-<ul>
-<li><p>之后依次展开<code>Contents</code> - <code>MacOS</code>，找到对应文件夹下的文件，比如说截图中显示的 <code>StarCraft-II-Setup</code>。如果权限正确的话，该文件应该是一个 <code>Unix</code> 可执行的文件，而不是现在这种类型不明的文件。</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172518.jpg"></p>
-</li>
-</ul>
-<ul>
-<li><p>接下来打开终端，直接输入以下代码（注意 <code>+x</code> 前后都有空格）：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod +x</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">brew install mcrypt</span><br></pre></td></tr></table></figure>
 
+<h3 id="2-自己下载依赖包安装"><a href="#2-自己下载依赖包安装" class="headerlink" title="2. 自己下载依赖包安装"></a>2. 自己下载依赖包安装</h3><ul>
+<li><p>分别下载这三个 <code>mcrypt</code> 所需的依赖包：<a href="https://sourceforge.net/projects/mcrypt/files/Libmcrypt/2.5.8/">libmcrypt</a>、<a href="https://sourceforge.net/projects/mhash/files/mhash/0.9.9.9/">mhash</a>、<a href="https://sourceforge.net/projects/mcrypt/files/MCrypt/2.6.8/">mcrypt</a> ，下载完成后全部解压出来。</p>
+</li>
+<li><p>先安装 <code>libmcrypt</code> ，打开终端 <code>cd</code> 到 <code>libmcrypt</code> 目录下，分别输入以下命令进行安装。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;configure</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>在安装 <code>mhash</code> ， <code>cd</code> 到 <code>mhash</code> 目录下，分别输入以下命令进行安装。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;configure</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
 <ul>
-<li><p>之后再将文件 <code>StarCraft-II-Setup</code> 拖入终端（为了输入完整的执行路径），完整的命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod +x &#x2F;Users&#x2F;liuxiaofeng&#x2F;Downloads&#x2F;StarCraft-II-Setup-CN.app&#x2F;Contents&#x2F;MacOS&#x2F;StarCraft-II-Setup</span><br></pre></td></tr></table></figure>
+<li>最后安装 <code>mcrypt</code> ，由于在安装 <code>mcrypt</code> 时，会找不到 <code>libmcrypt</code> 的链接库，导致无法编译，所以在安装 <code>mcrypt</code> 时要加入 <code>LD_LIBRARY_PATH=/usr/local</code> 导入链接库，<code>cd</code> 到 <code>mcrypt</code> 目录下，分别输入以下命令进行安装。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LD_LIBRARY_PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;lib&#x2F; .&#x2F;configure -with-libmcrypt-prefix&#x3D;&#x2F;usr&#x2F;local</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172530.jpg"></p>
-</li>
+<p><strong>注意：</strong> 如果安装 <code>mcrypt</code> 时，如果输入 <code>make</code> 报 <code>rfc2440.c:26:10: fatal error: &#39;malloc.h&#39; file not found</code> 错误，只需要找到 <code>mcrypt</code> 文件夹下的 <code>rfc2440.c</code> 这个文件，将 <code>#include &lt;malloc.h&gt;</code> 头文件改为 <code>#include &lt;sys/malloc.h&gt;</code> ，然后重新安装即可。</p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164819.png" alt="报错"></p>
+<h2 id="安装-PHP-扩展"><a href="#安装-PHP-扩展" class="headerlink" title="安装 PHP 扩展"></a>安装 PHP 扩展</h2><h3 id="1-生成-mcrypt-so-文件"><a href="#1-生成-mcrypt-so-文件" class="headerlink" title="1. 生成 mcrypt.so 文件"></a>1. 生成 mcrypt.so 文件</h3><ul>
+<li>首先进入官网下载源码包：<a href="http://php.net/downloads.php">http://php.net/downloads.php</a> ，然后下载与自己电脑上 <code>PHP</code> 版本一致的源码包，打开终端输入以下命令即可查看 <code>PHP</code> 版本。</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">php -v</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><p>最后点击回车，这时候在访达中原本不明类型的文件现在变成了 Unix 可执行文件，图标也变成正常的了。</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172545.jpg"></p>
-</li>
+<li>下载完成后解压出来，然后打开终端 <code>cd</code> 到 <code>PHP</code> 源码包下的 <code>/ext/mcrypt</code> 文件夹下，分别输入以下命令。</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">phpize</span><br><span class="line"></span><br><span class="line">.&#x2F;configure</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">sudo cp modules&#x2F;mcrypt.so &#x2F;usr&#x2F;lib&#x2F;php&#x2F;extensions&#x2F;no-debug-non-zts-20090626&#x2F;</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><p>重新打开下载的软件，你会发现下载的程序可以正常使用并执行了！</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172611.jpg"></p>
-</li>
+<li>全部执行成功后，可以前往上面写的 <code>/usr/lib/php/extensions/no-debug-non-zts-20090626</code> 这个路径下，看一下里面是否有 <code>mcrypt.so</code> 这个文件，有的话就是生成成功了。</li>
 </ul>
+<p><strong>注意：</strong> 这边有三个大坑，坑以及解决方法我都罗列在下面。</p>
+<p><strong>第一个坑：</strong> 输入 <code>./configure</code> 不能执行。</p>
+<ul>
+<li>解决方法是点击 <a href="http://ftp.gnu.org/gnu/autoconf/">这里</a> 拉到最下面下载 <code>autoconf-latest.tar.gz</code> ，然后解压出来，打开终端 <code>cd</code> 到 <code>autoconf </code> 目录下，分别输入以下命令进行安装。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;configure</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装完成后 <code>./configure</code> 就可以执行了。</li>
+</ul>
+<p><strong>第二个坑：</strong> 在执行 <code>sudo cp modules/mcrypt.so /usr/lib/php/extensions/no-debug-non-zts-20090626/</code> 时报下面这个错误，错误显示是文件夹不存在。</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cp: directory &#x2F;usr&#x2F;lib&#x2F;php&#x2F;extensions&#x2F;no-debug-non-zts-20090626 does not exist</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>解决方法是打开 <code>Finder</code> ，按下 <code>shift + command + G</code> ，前往以下地址。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;usr&#x2F;lib&#x2F;php&#x2F;extensions</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后可以看到有几个存在文件夹，将上面路径中的 <code>20090626</code> 这个日期改成你电脑中有的那个日期，日期取最新的。</li>
+</ul>
+<p><strong>第三个坑：</strong> 改完路径后继续执行 <code>sudo cp modules/mcrypt.so /usr/lib/php/extensions/no-debug-non-zts-20131226/</code> 这一步，结果又报如下错误，错误显示是操作不允许，没有权限。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cp: &#x2F;usr&#x2F;lib&#x2F;php&#x2F;extensions&#x2F;no-debug-non-zts-20131226&#x2F;#INST@17000#: Operation not permitted</span><br></pre></td></tr></table></figure>
+
+<p>最后查了半天终于知道问题所在，当你进入 <code>/usr/lib/php/extensions</code> 目录时你会发现目录根本无法进行任何操作，原来是 <code>mac</code> 的系统新添加了一个新的安全机制叫 <code>系统完整性保护System Integrity Protection (SIP)</code> ，所以对于目录 <code>/System</code> 、<code>/sbin</code>、<code>/usr（不包含/usr/local/）</code> 仅仅供系统使用，其它用户或者程序无法直接使用，而我们的 <code>/usr/lib/php/extensions</code> 刚好在受保护范围内。</p>
+<ul>
+<li>解决方法是禁用 <code>SIP</code> 保护机制，步骤如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- 重启系统</span><br><span class="line">- 按住 Command + R 进入恢复模式</span><br><span class="line">- 点击 “实用工具” 菜单中的 “终端”</span><br><span class="line">- 输入：csrutil disable</span><br><span class="line">- 执行后会输出：Successfully disabled System Integrity Protection. Please restart the machine for the changes to take effect.</span><br><span class="line">- 再次重启系统</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>禁用掉 <code>SIP</code> 后，就可以顺利的执行了，当然最后装完了以后你可以重新打开 <code>SIP</code> ，方法同上，只是终端中输入的命令改为 <code>csrutil enable</code> 。</li>
+</ul>
+<h3 id="2-修改-php-ini-文件"><a href="#2-修改-php-ini-文件" class="headerlink" title="2. 修改 php.ini 文件"></a>2. 修改 php.ini 文件</h3><ul>
+<li>打开 <code>Finder</code> ，按下 <code>shift + command + G</code> ，前往以下地址。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;etc&#x2F;php.ini</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开 <code>php.ini</code> 文件，在最下面添加以下代码。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">extension&#x3D;mcrypt.so</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164838.png" alt="修改 php.ini 文件"></p>
+<ul>
+<li>然后输入以下命令重启 <code>Apache</code> 服务。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apachectl restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试是否安装成功"><a href="#测试是否安装成功" class="headerlink" title="测试是否安装成功"></a>测试是否安装成功</h2><ul>
+<li>打开 <code>Finder</code> ，然后按下 <code>shift + command + G</code> 前往以下地址，这个地址是 <code>Apache</code> 的默认网站服务器根目录。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;Library&#x2F;WebServer&#x2F;Documents</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>新建一个名为 <code>phpinfo.php</code> 的文件，在里面输入以下代码后，<code>command + s</code> 保存。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">phpinfo();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开浏览器在地址栏输入 <a href="http://localhost/phpinfo.php">http://localhost/phpinfo.php</a> ，按下 <code>command + F</code> 查找 <code>mcrypt</code> ，查找到以下信息就表示 <code>mcrypt</code> 安装成功。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164855.png" alt="mcrypt"></p>
 <hr>
 <blockquote>
-<p>本文参考自：<a href="https://sspai.com/post/52828">一条命令轻松解决 Mac 上「应用程序 “xxx” 不能打开」的问题 | 一日一技</a></p>
+<p>安装结束，希望能帮助需要的人少走我走过的那些坑，需要的人可以收藏一下。</p>
 </blockquote>
 <p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
 ]]></content>
       <categories>
-        <category>Mac 使用指南</category>
+        <category>PHP 开发</category>
       </categories>
       <tags>
-        <tag>mac</tag>
-        <tag>应用程序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac 上配置 aria2 加快下载速度的方法</title>
-    <url>/2018/09/18/Mac/201809181727/</url>
-    <content><![CDATA[<blockquote>
-<p><code>mac</code> 用户肯定都受够了各种下载限速，浏览器自带的下载器极为蛋疼，花点时间来配置 <code>aria2</code>，结合 <code>Chrome</code> 插件，一次配置终身受益。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="aria2-是什么？"><a href="#aria2-是什么？" class="headerlink" title="aria2 是什么？"></a>aria2 是什么？</h2><p><code>aria2</code> 是一款支持多种协议的轻量级命令行下载工具。有以下特性：</p>
-<ul>
-<li><p>多线程连线：<code>aria2</code> 会自动从多个线程下载文件，并充分利用你的带宽。</p>
-</li>
-<li><p>轻量：运行时不会占用过多资源，根据官方介绍，内存占用通常在 <code>4MB~9MB</code> ，使用 <code>BitTorrent</code> 协议，下行速度 <code>2.8MB/s</code> 时 <code>CPU</code> 占用率约 <code>6%</code> 。</p>
-</li>
-<li><p>全功能 <code>BitTorrent</code> 客户端。</p>
-</li>
-<li><p>支持 <code>RPC</code> 界面远程控制。</p>
-</li>
-</ul>
-<h2 id="1-安装-Homebrew"><a href="#1-安装-Homebrew" class="headerlink" title="1. 安装 Homebrew"></a>1. 安装 Homebrew</h2><p>由于是使用 <code>Homebrew</code> 方式安装，所以需要先安装 <code>Homebrew</code> ，已经装过了可以跳过这一步，终端输入以下命令安装。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ruby -e <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-安装-aria2"><a href="#2-安装-aria2" class="headerlink" title="2. 安装 aria2"></a>2. 安装 aria2</h2><p>在终端输入以下命令安装。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">brew install aria2</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-设置配置文件"><a href="#3-设置配置文件" class="headerlink" title="3. 设置配置文件"></a>3. 设置配置文件</h2><p><code>aria2</code> 提供两种方式使用，一种是直接命令行模式下载，不推荐使用这种方法，推荐使用另外一种 <code>RPC</code> 模式，这种方式 <code>aria2</code> 启动之后只会安静的等待下载请求，下载完成后也只会安静的驻留后台不会自动退出。而使用 <code>RPC</code> 模式推荐做一个配置文件方便使用。</p>
-<p>我们把配置文件放在 <code>~/.aria2</code> 下，终端依次输入以下命令：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mkdir .aria2</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> .aria2</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">touch aria2.conf</span><br></pre></td></tr></table></figure>
-
-<p>接着打开 <code>Finder</code>，利用 <code>shift + command + G</code> 进入路径：<code>~/.aria2/aria2.conf</code>，用文本编辑器打开 <code>aria2.conf</code>，将 <a href="https://blog.icehoney.me/about">雪月秋水君</a> 提供的以下配置直接拷贝进去：</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment">#用户名</span></span><br><span class="line"><span class="comment">#rpc-user=user</span></span><br><span class="line"><span class="comment">#密码</span></span><br><span class="line"><span class="comment">#rpc-passwd=passwd</span></span><br><span class="line"><span class="comment">#上面的认证方式不建议使用,建议使用下面的token方式</span></span><br><span class="line"><span class="comment">#设置加密的密钥</span></span><br><span class="line"><span class="comment">#rpc-secret=token</span></span><br><span class="line"><span class="comment">#允许rpc</span></span><br><span class="line"><span class="meta">enable-rpc</span>=<span class="string">true</span></span><br><span class="line"><span class="comment">#允许所有来源, web界面跨域权限需要</span></span><br><span class="line"><span class="meta">rpc-allow-origin-all</span>=<span class="string">true</span></span><br><span class="line"><span class="comment">#允许外部访问，false的话只监听本地端口</span></span><br><span class="line"><span class="meta">rpc-listen-all</span>=<span class="string">true</span></span><br><span class="line"><span class="comment">#RPC端口, 仅当默认端口被占用时修改</span></span><br><span class="line"><span class="comment">#rpc-listen-port=6800</span></span><br><span class="line"><span class="comment">#最大同时下载数(任务数), 路由建议值: 3</span></span><br><span class="line"><span class="meta">max-concurrent-downloads</span>=<span class="string">5</span></span><br><span class="line"><span class="comment">#断点续传</span></span><br><span class="line"><span class="attr">continue</span>=<span class="string">true</span></span><br><span class="line"><span class="comment">#同服务器连接数</span></span><br><span class="line"><span class="meta">max-connection-per-server</span>=<span class="string">5</span></span><br><span class="line"><span class="comment">#最小文件分片大小, 下载线程数上限取决于能分出多少片, 对于小文件重要</span></span><br><span class="line"><span class="meta">min-split-size</span>=<span class="string">10M</span></span><br><span class="line"><span class="comment">#单文件最大线程数, 路由建议值: 5</span></span><br><span class="line"><span class="attr">split</span>=<span class="string">10</span></span><br><span class="line"><span class="comment">#下载速度限制</span></span><br><span class="line"><span class="meta">max-overall-download-limit</span>=<span class="string">0</span></span><br><span class="line"><span class="comment">#单文件速度限制</span></span><br><span class="line"><span class="meta">max-download-limit</span>=<span class="string">0</span></span><br><span class="line"><span class="comment">#上传速度限制</span></span><br><span class="line"><span class="meta">max-overall-upload-limit</span>=<span class="string">0</span></span><br><span class="line"><span class="comment">#单文件速度限制</span></span><br><span class="line"><span class="meta">max-upload-limit</span>=<span class="string">0</span></span><br><span class="line"><span class="comment">#断开速度过慢的连接</span></span><br><span class="line"><span class="comment">#lowest-speed-limit=0</span></span><br><span class="line"><span class="comment">#验证用，需要1.16.1之后的release版本</span></span><br><span class="line"><span class="comment">#referer=*</span></span><br><span class="line"><span class="comment">#文件保存路径, 默认为当前启动位置</span></span><br><span class="line"><span class="attr">dir</span>=<span class="string">/Users/xxx/Downloads</span></span><br><span class="line"><span class="comment">#文件缓存, 使用内置的文件缓存, 如果你不相信Linux内核文件缓存和磁盘内置缓存时使用, 需要1.16及以上版本</span></span><br><span class="line"><span class="comment">#disk-cache=0</span></span><br><span class="line"><span class="comment">#另一种Linux文件缓存方式, 使用前确保您使用的内核支持此选项, 需要1.15及以上版本(?)</span></span><br><span class="line"><span class="comment">#enable-mmap=true</span></span><br><span class="line"><span class="comment">#文件预分配, 能有效降低文件碎片, 提高磁盘性能. 缺点是预分配时间较长</span></span><br><span class="line"><span class="comment">#所需时间 none &lt; falloc ? trunc « prealloc, falloc和trunc需要文件系统和内核支持</span></span><br><span class="line"><span class="meta">file-allocation</span>=<span class="string">prealloc</span></span><br></pre></td></tr></table></figure>
-
-<p>默认下载路径的 <code>/Users/xxx/Downloads</code> 可以改为任何你想要的绝对路径。此处写为 <code>Downloads</code> 目录，<code>xxx</code> 请自行替换成你的 <code>mac</code> 用户名，然后保存，退出编辑器。</p>
-<h2 id="4-启动-RPC-模式"><a href="#4-启动-RPC-模式" class="headerlink" title="4. 启动 RPC 模式"></a>4. 启动 RPC 模式</h2><p>在终端输入以下命令启动 <code>RPC</code> 模式，将 <code>xxx</code> 替换成你的 <code>mac</code> 用户名。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">aria2c --conf-path=<span class="string">&quot;/Users/xxx/.aria2/aria2.conf&quot;</span> -D</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-开始使用"><a href="#5-开始使用" class="headerlink" title="5. 开始使用"></a>5. 开始使用</h2><p>下载 <code>chrome</code> 浏览器下载插件：<a href="https://github.com/jae-jae/Camtd">Camtd - Aria2下载管理器</a>, 下载完成后右键下载链接点击 <code>Send to Aria2</code> 即可下载，也支持拦截下载。</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172051.jpg"></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172102.jpg"></p>
-<p>这个插件不满意的话，也可以搜索其他类似插件，但必须启动 <code>RPC</code> 模式才能够使用此类插件。</p>
-<hr>
-<blockquote>
-<p>本文部分内容参考自 <a href="https://sspai.com/post/32167">Mac 上使用百度网盘很烦躁？花点时间配置 aria2 吧</a> 。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Mac 使用指南</category>
-      </categories>
-      <tags>
-        <tag>mac</tag>
-        <tag>aria2</tag>
-        <tag>下载</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows 版 SourceTree 免登录跳过初始设置的方法</title>
-    <url>/2017/04/28/Tool/201704281000/</url>
-    <content><![CDATA[<blockquote>
-<p><code>SourceTree</code> 安装之后需要使用账号登陆授权以后才可以使用，以前是可以不登陆的，但是现在是强制登陆。虽然是免费授权，但是不知道是什么原因，登陆经常会失败，翻墙也不行，这里就分享一下跳过这个初始化的步骤。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="SourceTree-免登录跳过初始设置的方法"><a href="#SourceTree-免登录跳过初始设置的方法" class="headerlink" title="SourceTree 免登录跳过初始设置的方法"></a>SourceTree 免登录跳过初始设置的方法</h2><ul>
-<li><p>首先，安装完 <code>SourceTree</code> 以后先运行一次，弹出初始化登录页面后退出。</p>
-</li>
-<li><p>打开 <code>我的电脑</code>，在最上方的地址栏直接输入以下地址：</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">%LocalAppData%\Atlassian\SourceTree\</span><br></pre></td></tr></table></figure>
-
-<p><strong>如图：</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164919.png" alt="地址跳转"></p>
-<ul>
-<li><p>在这个目录下新建一个名为 <code>accounts.json</code> 的文件。</p>
-</li>
-<li><p>使用 <code>文本文档</code> 打开这个文件，将以下内容复制到其中后保存。</p>
-</li>
-</ul>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">[</span></span><br><span class="line">  <span class="attr">&#123;</span></span><br><span class="line">    <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;1&quot;,</span></span><br><span class="line">    <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,</span></span><br><span class="line">    <span class="meta">&quot;Authenticate&quot;</span>: <span class="string">true,</span></span><br><span class="line">    <span class="meta">&quot;HostInstance&quot;</span>: <span class="string">&#123;</span></span><br><span class="line">      <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;2&quot;,</span></span><br><span class="line">      <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,</span></span><br><span class="line">      <span class="meta">&quot;Host&quot;</span>: <span class="string">&#123;</span></span><br><span class="line">        <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;3&quot;,</span></span><br><span class="line">        <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,</span></span><br><span class="line">        <span class="meta">&quot;Id&quot;</span>: <span class="string">&quot;atlassian account&quot;</span></span><br><span class="line">      <span class="attr">&#125;,</span></span><br><span class="line">      <span class="meta">&quot;BaseUrl&quot;</span>: <span class="string">&quot;https://id.atlassian.com/&quot;</span></span><br><span class="line">    <span class="attr">&#125;,</span></span><br><span class="line">    <span class="meta">&quot;Credentials&quot;</span>: <span class="string">&#123;</span></span><br><span class="line">      <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;4&quot;,</span></span><br><span class="line">      <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,</span></span><br><span class="line">      <span class="meta">&quot;Username&quot;</span>: <span class="string">&quot;&quot;,</span></span><br><span class="line">      <span class="meta">&quot;Email&quot;</span>: <span class="string">null</span></span><br><span class="line">    <span class="attr">&#125;,</span></span><br><span class="line">    <span class="meta">&quot;IsDefault&quot;</span>: <span class="string">false</span></span><br><span class="line">  <span class="attr">&#125;</span></span><br><span class="line"><span class="attr">]</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>再次打开 <code>SourceTree</code> 就可以直接跳过登录进入软件页面了。</li>
-</ul>
-<p><strong>注意：</strong> <code>Windows</code> 系统文件后缀是默认隐藏的，需要先显示文件的后缀名，然后随便新建一个 <code>文本文档</code> ，将文件全名改为 <code>accounts.json</code> 即可。</p>
-<p><strong>显示文件后缀名的方法：</strong></p>
-<ul>
-<li>打开 <code>我的电脑</code> ，点击 <code>查看</code> 菜单中的 <code>选项</code> 。</li>
-</ul>
-<p><strong>如图：</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164933.png" alt="我的电脑"></p>
-<ul>
-<li>弹出 <code>文件夹选项</code> ，将 <code>隐藏已知文件类型的扩展名</code> 选项取消选中后点击 <code>确定</code> 即可。</li>
-</ul>
-<p><strong>如图：</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164947.png" alt="文件夹选项"></p>
-<hr>
-<blockquote>
-<p>方法就是这样，<code>Mac</code> 版的 <code>SourceTree</code> 暂时还不知道怎么跳过，还是老老实实翻墙注册登录吧，附上本文 <a href="http://www.cnblogs.com/xiofee/p/sourcetree_pass_initialization_setup.html">参考地址</a>。</p>
-</blockquote>
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-        <tag>开发工具</tag>
-        <tag>SourceTree</tag>
+        <tag>PHP 开发</tag>
+        <tag>mcrypt</tag>
+        <tag>PHP 扩展</tag>
       </tags>
   </entry>
   <entry>
@@ -2132,6 +2281,64 @@
       <tags>
         <tag>开发工具</tag>
         <tag>Atom</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows 版 SourceTree 免登录跳过初始设置的方法</title>
+    <url>/2017/04/28/Tool/201704281000/</url>
+    <content><![CDATA[<blockquote>
+<p><code>SourceTree</code> 安装之后需要使用账号登陆授权以后才可以使用，以前是可以不登陆的，但是现在是强制登陆。虽然是免费授权，但是不知道是什么原因，登陆经常会失败，翻墙也不行，这里就分享一下跳过这个初始化的步骤。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="SourceTree-免登录跳过初始设置的方法"><a href="#SourceTree-免登录跳过初始设置的方法" class="headerlink" title="SourceTree 免登录跳过初始设置的方法"></a>SourceTree 免登录跳过初始设置的方法</h2><ul>
+<li><p>首先，安装完 <code>SourceTree</code> 以后先运行一次，弹出初始化登录页面后退出。</p>
+</li>
+<li><p>打开 <code>我的电脑</code>，在最上方的地址栏直接输入以下地址：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">%LocalAppData%\Atlassian\SourceTree\</span><br></pre></td></tr></table></figure>
+
+<p><strong>如图：</strong></p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164919.png" alt="地址跳转"></p>
+<ul>
+<li><p>在这个目录下新建一个名为 <code>accounts.json</code> 的文件。</p>
+</li>
+<li><p>使用 <code>文本文档</code> 打开这个文件，将以下内容复制到其中后保存。</p>
+</li>
+</ul>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">[</span></span><br><span class="line">  <span class="attr">&#123;</span></span><br><span class="line">    <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;1&quot;,</span></span><br><span class="line">    <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,</span></span><br><span class="line">    <span class="meta">&quot;Authenticate&quot;</span>: <span class="string">true,</span></span><br><span class="line">    <span class="meta">&quot;HostInstance&quot;</span>: <span class="string">&#123;</span></span><br><span class="line">      <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;2&quot;,</span></span><br><span class="line">      <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,</span></span><br><span class="line">      <span class="meta">&quot;Host&quot;</span>: <span class="string">&#123;</span></span><br><span class="line">        <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;3&quot;,</span></span><br><span class="line">        <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,</span></span><br><span class="line">        <span class="meta">&quot;Id&quot;</span>: <span class="string">&quot;atlassian account&quot;</span></span><br><span class="line">      <span class="attr">&#125;,</span></span><br><span class="line">      <span class="meta">&quot;BaseUrl&quot;</span>: <span class="string">&quot;https://id.atlassian.com/&quot;</span></span><br><span class="line">    <span class="attr">&#125;,</span></span><br><span class="line">    <span class="meta">&quot;Credentials&quot;</span>: <span class="string">&#123;</span></span><br><span class="line">      <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;4&quot;,</span></span><br><span class="line">      <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,</span></span><br><span class="line">      <span class="meta">&quot;Username&quot;</span>: <span class="string">&quot;&quot;,</span></span><br><span class="line">      <span class="meta">&quot;Email&quot;</span>: <span class="string">null</span></span><br><span class="line">    <span class="attr">&#125;,</span></span><br><span class="line">    <span class="meta">&quot;IsDefault&quot;</span>: <span class="string">false</span></span><br><span class="line">  <span class="attr">&#125;</span></span><br><span class="line"><span class="attr">]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>再次打开 <code>SourceTree</code> 就可以直接跳过登录进入软件页面了。</li>
+</ul>
+<p><strong>注意：</strong> <code>Windows</code> 系统文件后缀是默认隐藏的，需要先显示文件的后缀名，然后随便新建一个 <code>文本文档</code> ，将文件全名改为 <code>accounts.json</code> 即可。</p>
+<p><strong>显示文件后缀名的方法：</strong></p>
+<ul>
+<li>打开 <code>我的电脑</code> ，点击 <code>查看</code> 菜单中的 <code>选项</code> 。</li>
+</ul>
+<p><strong>如图：</strong></p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164933.png" alt="我的电脑"></p>
+<ul>
+<li>弹出 <code>文件夹选项</code> ，将 <code>隐藏已知文件类型的扩展名</code> 选项取消选中后点击 <code>确定</code> 即可。</li>
+</ul>
+<p><strong>如图：</strong></p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164947.png" alt="文件夹选项"></p>
+<hr>
+<blockquote>
+<p>方法就是这样，<code>Mac</code> 版的 <code>SourceTree</code> 暂时还不知道怎么跳过，还是老老实实翻墙注册登录吧，附上本文 <a href="http://www.cnblogs.com/xiofee/p/sourcetree_pass_initialization_setup.html">参考地址</a>。</p>
+</blockquote>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>开发工具</tag>
+        <tag>SourceTree</tag>
       </tags>
   </entry>
   <entry>
@@ -3539,6 +3746,66 @@
       </tags>
   </entry>
   <entry>
+    <title>【iOS 开发】解决 Xcode 输出台打印 NSArray 数组和 NSDictionary 字典中文乱码的问题</title>
+    <url>/2017/07/05/iOS/201707051210/</url>
+    <content><![CDATA[<blockquote>
+<p>最近在调试的时候发现 <code>Xcode</code> 直接打印 <code>NSArray</code> 数组和 <code>NSDictionary</code> 字典的时候，如果其中有中文，打印出来就变成乱码了，调试起来很不舒服，下面就分享一下解决办法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>其实很简单，只要为 <code>NSArray</code> 数组和 <code>NSDictionary</code> 字典各创建一个分类即可，并且只需要创建，无需引用或者调用。</p>
+<h3 id="1-NSArray-数组"><a href="#1-NSArray-数组" class="headerlink" title="1. NSArray 数组"></a>1. NSArray 数组</h3><h4 id="数组打印结果对比"><a href="#数组打印结果对比" class="headerlink" title="数组打印结果对比"></a>数组打印结果对比</h4><ul>
+<li>打印以下数组内容：</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *array = @[<span class="string">@&quot;张三&quot;</span>, <span class="string">@&quot;李四&quot;</span>, <span class="string">@&quot;王五&quot;</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;%@&quot;</span>, array);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>未创建分类之前的数组打印结果：</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="number">2017</span><span class="number">-07</span><span class="number">-05</span> <span class="number">11</span>:<span class="number">38</span>:<span class="number">30.058</span> Test[<span class="number">8402</span>:<span class="number">224709</span>] (</span><br><span class="line">    <span class="string">&quot;\U5f20\U4e09&quot;</span>,</span><br><span class="line">    <span class="string">&quot;\U674e\U56db&quot;</span>,</span><br><span class="line">    <span class="string">&quot;\U738b\U4e94&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建分类后的数组打印结果：</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="number">2017</span><span class="number">-07</span><span class="number">-05</span> <span class="number">11</span>:<span class="number">44</span>:<span class="number">23.009</span> test[<span class="number">8528</span>:<span class="number">231831</span>] (</span><br><span class="line">	张三,</span><br><span class="line">	李四,</span><br><span class="line">	王五</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h4 id="数组分类创建内容"><a href="#数组分类创建内容" class="headerlink" title="数组分类创建内容"></a>数组分类创建内容</h4><h5 id="NSArray-Log-h"><a href="#NSArray-Log-h" class="headerlink" title="NSArray+Log.h"></a>NSArray+Log.h</h5><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NSArray</span> (<span class="title">Log</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="NSArray-Log-m"><a href="#NSArray-Log-m" class="headerlink" title="NSArray+Log.m"></a>NSArray+Log.m</h5><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;NSArray+Log.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NSArray</span> (<span class="title">Log</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 解决数组输出中文乱码的问题</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @return 输出结果</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">NSString</span> *)descriptionWithLocale:(<span class="keyword">id</span>)locale &#123;</span><br><span class="line">    <span class="built_in">NSMutableString</span> *string = [<span class="built_in">NSMutableString</span> stringWithString:<span class="string">@&quot;(\n&quot;</span>];</span><br><span class="line">    [<span class="keyword">self</span> enumerateObjectsUsingBlock:^(<span class="keyword">id</span> obj, <span class="built_in">NSUInteger</span> idx, <span class="built_in">BOOL</span> *stop) &#123;</span><br><span class="line">        [string appendFormat:<span class="string">@&quot;\t%@,\n&quot;</span>, obj];</span><br><span class="line">    &#125;];</span><br><span class="line">    <span class="keyword">if</span> ([string hasSuffix:<span class="string">@&quot;,\n&quot;</span>]) &#123;</span><br><span class="line">        [string deleteCharactersInRange:<span class="built_in">NSMakeRange</span>(string.length - <span class="number">2</span>, <span class="number">1</span>)]; <span class="comment">// 删除最后一个逗号</span></span><br><span class="line">    &#125;</span><br><span class="line">    [string appendString:<span class="string">@&quot;)\n&quot;</span>];</span><br><span class="line">    <span class="keyword">return</span> string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-NSDictionary-字典"><a href="#2-NSDictionary-字典" class="headerlink" title="2. NSDictionary 字典"></a>2. NSDictionary 字典</h3><h4 id="字典打印结果对比"><a href="#字典打印结果对比" class="headerlink" title="字典打印结果对比"></a>字典打印结果对比</h4><ul>
+<li>打印以下字典内容：</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">NSDictionary</span> *dictionary = @&#123;<span class="string">@&quot;姓名1&quot;</span> : <span class="string">@&quot;张三&quot;</span>,</span><br><span class="line">                             <span class="string">@&quot;姓名2&quot;</span> : <span class="string">@&quot;李四&quot;</span>,</span><br><span class="line">                             <span class="string">@&quot;姓名3&quot;</span> : <span class="string">@&quot;王五&quot;</span>&#125;;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;%@&quot;</span>, dictionary);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>未创建分类之前的字典打印结果：</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="number">2017</span><span class="number">-07</span><span class="number">-05</span> <span class="number">11</span>:<span class="number">38</span>:<span class="number">30.059</span> test[<span class="number">8402</span>:<span class="number">224709</span>] &#123;</span><br><span class="line">    <span class="string">&quot;\U59d3\U540d1&quot;</span> = <span class="string">&quot;\U5f20\U4e09&quot;</span>;</span><br><span class="line">    <span class="string">&quot;\U59d3\U540d2&quot;</span> = <span class="string">&quot;\U674e\U56db&quot;</span>;</span><br><span class="line">    <span class="string">&quot;\U59d3\U540d3&quot;</span> = <span class="string">&quot;\U738b\U4e94&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建分类后的字典打印结果：</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="number">2017</span><span class="number">-07</span><span class="number">-05</span> <span class="number">11</span>:<span class="number">44</span>:<span class="number">23.009</span> test[<span class="number">8528</span>:<span class="number">231831</span>] &#123;</span><br><span class="line">	姓名<span class="number">1</span> = 张三;</span><br><span class="line">	姓名<span class="number">2</span> = 李四;</span><br><span class="line">	姓名<span class="number">3</span> = 王五;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="字典分类创建内容"><a href="#字典分类创建内容" class="headerlink" title="字典分类创建内容"></a>字典分类创建内容</h4><h5 id="NSDictionary-Log-h"><a href="#NSDictionary-Log-h" class="headerlink" title="NSDictionary+Log.h"></a>NSDictionary+Log.h</h5><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NSDictionary</span> (<span class="title">Log</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="NSDictionary-Log-m"><a href="#NSDictionary-Log-m" class="headerlink" title="NSDictionary+Log.m"></a>NSDictionary+Log.m</h5><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;NSDictionary+Log.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NSDictionary</span> (<span class="title">Log</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 解决字典输出中文乱码的问题</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @return 输出结果</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">NSString</span> *)descriptionWithLocale:(<span class="keyword">id</span>)locale &#123;</span><br><span class="line">    <span class="built_in">NSMutableString</span> *string = [<span class="built_in">NSMutableString</span> stringWithString:<span class="string">@&quot;&#123;\n&quot;</span>];</span><br><span class="line">    [<span class="keyword">self</span> enumerateKeysAndObjectsUsingBlock:^(<span class="keyword">id</span> key, <span class="keyword">id</span> obj, <span class="built_in">BOOL</span> *stop) &#123;</span><br><span class="line">        [string appendFormat:<span class="string">@&quot;\t%@ = %@;\n&quot;</span>, key, obj];</span><br><span class="line">    &#125;];</span><br><span class="line">    [string appendString:<span class="string">@&quot;&#125;\n&quot;</span>];</span><br><span class="line">    <span class="keyword">return</span> string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>iOS 开发</category>
+      </categories>
+      <tags>
+        <tag>iOS 开发</tag>
+        <tag>iOS 开发问题</tag>
+        <tag>Xcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【iOS 开发】Swift 把 Struct 作为数据模型的注意事项</title>
     <url>/2017/07/17/iOS/201707171542/</url>
     <content><![CDATA[<blockquote>
@@ -3603,66 +3870,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【iOS 开发】解决 Xcode 输出台打印 NSArray 数组和 NSDictionary 字典中文乱码的问题</title>
-    <url>/2017/07/05/iOS/201707051210/</url>
-    <content><![CDATA[<blockquote>
-<p>最近在调试的时候发现 <code>Xcode</code> 直接打印 <code>NSArray</code> 数组和 <code>NSDictionary</code> 字典的时候，如果其中有中文，打印出来就变成乱码了，调试起来很不舒服，下面就分享一下解决办法。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>其实很简单，只要为 <code>NSArray</code> 数组和 <code>NSDictionary</code> 字典各创建一个分类即可，并且只需要创建，无需引用或者调用。</p>
-<h3 id="1-NSArray-数组"><a href="#1-NSArray-数组" class="headerlink" title="1. NSArray 数组"></a>1. NSArray 数组</h3><h4 id="数组打印结果对比"><a href="#数组打印结果对比" class="headerlink" title="数组打印结果对比"></a>数组打印结果对比</h4><ul>
-<li>打印以下数组内容：</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *array = @[<span class="string">@&quot;张三&quot;</span>, <span class="string">@&quot;李四&quot;</span>, <span class="string">@&quot;王五&quot;</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;%@&quot;</span>, array);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>未创建分类之前的数组打印结果：</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="number">2017</span><span class="number">-07</span><span class="number">-05</span> <span class="number">11</span>:<span class="number">38</span>:<span class="number">30.058</span> Test[<span class="number">8402</span>:<span class="number">224709</span>] (</span><br><span class="line">    <span class="string">&quot;\U5f20\U4e09&quot;</span>,</span><br><span class="line">    <span class="string">&quot;\U674e\U56db&quot;</span>,</span><br><span class="line">    <span class="string">&quot;\U738b\U4e94&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>创建分类后的数组打印结果：</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="number">2017</span><span class="number">-07</span><span class="number">-05</span> <span class="number">11</span>:<span class="number">44</span>:<span class="number">23.009</span> test[<span class="number">8528</span>:<span class="number">231831</span>] (</span><br><span class="line">	张三,</span><br><span class="line">	李四,</span><br><span class="line">	王五</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h4 id="数组分类创建内容"><a href="#数组分类创建内容" class="headerlink" title="数组分类创建内容"></a>数组分类创建内容</h4><h5 id="NSArray-Log-h"><a href="#NSArray-Log-h" class="headerlink" title="NSArray+Log.h"></a>NSArray+Log.h</h5><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NSArray</span> (<span class="title">Log</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="NSArray-Log-m"><a href="#NSArray-Log-m" class="headerlink" title="NSArray+Log.m"></a>NSArray+Log.m</h5><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;NSArray+Log.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NSArray</span> (<span class="title">Log</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 解决数组输出中文乱码的问题</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @return 输出结果</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">NSString</span> *)descriptionWithLocale:(<span class="keyword">id</span>)locale &#123;</span><br><span class="line">    <span class="built_in">NSMutableString</span> *string = [<span class="built_in">NSMutableString</span> stringWithString:<span class="string">@&quot;(\n&quot;</span>];</span><br><span class="line">    [<span class="keyword">self</span> enumerateObjectsUsingBlock:^(<span class="keyword">id</span> obj, <span class="built_in">NSUInteger</span> idx, <span class="built_in">BOOL</span> *stop) &#123;</span><br><span class="line">        [string appendFormat:<span class="string">@&quot;\t%@,\n&quot;</span>, obj];</span><br><span class="line">    &#125;];</span><br><span class="line">    <span class="keyword">if</span> ([string hasSuffix:<span class="string">@&quot;,\n&quot;</span>]) &#123;</span><br><span class="line">        [string deleteCharactersInRange:<span class="built_in">NSMakeRange</span>(string.length - <span class="number">2</span>, <span class="number">1</span>)]; <span class="comment">// 删除最后一个逗号</span></span><br><span class="line">    &#125;</span><br><span class="line">    [string appendString:<span class="string">@&quot;)\n&quot;</span>];</span><br><span class="line">    <span class="keyword">return</span> string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-NSDictionary-字典"><a href="#2-NSDictionary-字典" class="headerlink" title="2. NSDictionary 字典"></a>2. NSDictionary 字典</h3><h4 id="字典打印结果对比"><a href="#字典打印结果对比" class="headerlink" title="字典打印结果对比"></a>字典打印结果对比</h4><ul>
-<li>打印以下字典内容：</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">NSDictionary</span> *dictionary = @&#123;<span class="string">@&quot;姓名1&quot;</span> : <span class="string">@&quot;张三&quot;</span>,</span><br><span class="line">                             <span class="string">@&quot;姓名2&quot;</span> : <span class="string">@&quot;李四&quot;</span>,</span><br><span class="line">                             <span class="string">@&quot;姓名3&quot;</span> : <span class="string">@&quot;王五&quot;</span>&#125;;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;%@&quot;</span>, dictionary);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>未创建分类之前的字典打印结果：</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="number">2017</span><span class="number">-07</span><span class="number">-05</span> <span class="number">11</span>:<span class="number">38</span>:<span class="number">30.059</span> test[<span class="number">8402</span>:<span class="number">224709</span>] &#123;</span><br><span class="line">    <span class="string">&quot;\U59d3\U540d1&quot;</span> = <span class="string">&quot;\U5f20\U4e09&quot;</span>;</span><br><span class="line">    <span class="string">&quot;\U59d3\U540d2&quot;</span> = <span class="string">&quot;\U674e\U56db&quot;</span>;</span><br><span class="line">    <span class="string">&quot;\U59d3\U540d3&quot;</span> = <span class="string">&quot;\U738b\U4e94&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>创建分类后的字典打印结果：</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="number">2017</span><span class="number">-07</span><span class="number">-05</span> <span class="number">11</span>:<span class="number">44</span>:<span class="number">23.009</span> test[<span class="number">8528</span>:<span class="number">231831</span>] &#123;</span><br><span class="line">	姓名<span class="number">1</span> = 张三;</span><br><span class="line">	姓名<span class="number">2</span> = 李四;</span><br><span class="line">	姓名<span class="number">3</span> = 王五;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="字典分类创建内容"><a href="#字典分类创建内容" class="headerlink" title="字典分类创建内容"></a>字典分类创建内容</h4><h5 id="NSDictionary-Log-h"><a href="#NSDictionary-Log-h" class="headerlink" title="NSDictionary+Log.h"></a>NSDictionary+Log.h</h5><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NSDictionary</span> (<span class="title">Log</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="NSDictionary-Log-m"><a href="#NSDictionary-Log-m" class="headerlink" title="NSDictionary+Log.m"></a>NSDictionary+Log.m</h5><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;NSDictionary+Log.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NSDictionary</span> (<span class="title">Log</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 解决字典输出中文乱码的问题</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @return 输出结果</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">NSString</span> *)descriptionWithLocale:(<span class="keyword">id</span>)locale &#123;</span><br><span class="line">    <span class="built_in">NSMutableString</span> *string = [<span class="built_in">NSMutableString</span> stringWithString:<span class="string">@&quot;&#123;\n&quot;</span>];</span><br><span class="line">    [<span class="keyword">self</span> enumerateKeysAndObjectsUsingBlock:^(<span class="keyword">id</span> key, <span class="keyword">id</span> obj, <span class="built_in">BOOL</span> *stop) &#123;</span><br><span class="line">        [string appendFormat:<span class="string">@&quot;\t%@ = %@;\n&quot;</span>, key, obj];</span><br><span class="line">    &#125;];</span><br><span class="line">    [string appendString:<span class="string">@&quot;&#125;\n&quot;</span>];</span><br><span class="line">    <span class="keyword">return</span> string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>iOS 开发</category>
-      </categories>
-      <tags>
-        <tag>iOS 开发</tag>
-        <tag>iOS 开发问题</tag>
-        <tag>Xcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【iOS 开发】Objective-C 中 Charts 的 CombinedChart 使用汇总</title>
     <url>/2017/08/10/iOS/201708101503/</url>
     <content><![CDATA[<blockquote>
@@ -3721,51 +3928,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【iOS 开发】Git 中无法忽略 .xcuserstate 的解决方法</title>
-    <url>/2017/08/15/iOS/201708151124/</url>
-    <content><![CDATA[<blockquote>
-<p>在平时的 <code>iOS</code> 开发中使用 <code>Git</code> 时会遇到这样的问题，明明在 <code>.gitignore</code> 文件中添加了 <code>.xcuserstate</code> 忽略，之后每次 <code>push</code> 时文件改动中还是会出现 <code>UserInterfaceState.xcuserstate</code> 文件，下面是解决方法。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<ul>
-<li>打开终端，<code>cd</code> 到你的项目文件夹下，然后输入以下命令。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后会显示 <code>UserInterfaceState.xcuserstate</code> 文件有改动，这时候复制 <code>modified:</code> 后面的地址。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163409.png" alt="git status"></p>
-<ul>
-<li>接着输入 <code>git rm --cached 刚才复制的地址</code> ，如下。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git rm --cached client_swift_fm_a/client_swift_fm_a.xcworkspace/xcuserdata/Jonzzs.xcuserdatad/UserInterfaceState.xcuserstate</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>接着将代码提交推送到服务器。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;删除xcuserstate文件&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>之后再提交时就不会出现 <code>UserInterfaceState.xcuserstate</code> 文件了，要注意路径不能弄错，否则会报错。</li>
-</ul>
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>iOS 开发</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-        <tag>iOS 开发</tag>
-        <tag>iOS 开发问题</tag>
-        <tag>gitignore</tag>
-        <tag>xcuserstate</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【iOS 开发】Swift 中文转换拼音以及中文数组排序</title>
     <url>/2017/09/15/iOS/201709151218/</url>
     <content><![CDATA[<blockquote>
@@ -3812,6 +3974,51 @@
         <tag>Swift</tag>
         <tag>拼音</tag>
         <tag>排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【iOS 开发】Git 中无法忽略 .xcuserstate 的解决方法</title>
+    <url>/2017/08/15/iOS/201708151124/</url>
+    <content><![CDATA[<blockquote>
+<p>在平时的 <code>iOS</code> 开发中使用 <code>Git</code> 时会遇到这样的问题，明明在 <code>.gitignore</code> 文件中添加了 <code>.xcuserstate</code> 忽略，之后每次 <code>push</code> 时文件改动中还是会出现 <code>UserInterfaceState.xcuserstate</code> 文件，下面是解决方法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<ul>
+<li>打开终端，<code>cd</code> 到你的项目文件夹下，然后输入以下命令。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后会显示 <code>UserInterfaceState.xcuserstate</code> 文件有改动，这时候复制 <code>modified:</code> 后面的地址。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163409.png" alt="git status"></p>
+<ul>
+<li>接着输入 <code>git rm --cached 刚才复制的地址</code> ，如下。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git rm --cached client_swift_fm_a/client_swift_fm_a.xcworkspace/xcuserdata/Jonzzs.xcuserdatad/UserInterfaceState.xcuserstate</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接着将代码提交推送到服务器。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;删除xcuserstate文件&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>之后再提交时就不会出现 <code>UserInterfaceState.xcuserstate</code> 文件了，要注意路径不能弄错，否则会报错。</li>
+</ul>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>iOS 开发</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>iOS 开发</tag>
+        <tag>iOS 开发问题</tag>
+        <tag>gitignore</tag>
+        <tag>xcuserstate</tag>
       </tags>
   </entry>
   <entry>
@@ -4429,213 +4636,6 @@
       <tags>
         <tag>iOS</tag>
         <tag>Cocoapods</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【PHP 开发】mac 下配置 PHP 环境的方法</title>
-    <url>/2017/06/12/PHP/201706121218/</url>
-    <content><![CDATA[<blockquote>
-<p>最近在试着将 <code>showdoc</code> 配置到自己服务器上，需要 <code>PHP</code> 环境，所以自己配置了一下，这里将方法记录一下。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="1-开启-Apache-服务"><a href="#1-开启-Apache-服务" class="headerlink" title="1. 开启 Apache 服务"></a>1. 开启 Apache 服务</h2><p><code>Mac</code> 系统下是自带 <code>Apache</code> 服务的，只需要开启即可，下面是几个 <code>Apache</code> 服务的常用命令。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/* 启动 Apache 服务 */</span><br><span class="line">sudo apachectl start</span><br><span class="line"></span><br><span class="line">/* 重启 Apache 服务 */</span><br><span class="line">sudo apachectl restart</span><br><span class="line"></span><br><span class="line">/* 停止 Apache 服务 */</span><br><span class="line">sudo apachectl stop</span><br><span class="line"></span><br><span class="line">/* 查看 Apache 版本 */</span><br><span class="line">httpd -v</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>打开终端输入以下命令开启 <code>Apache </code> 服务。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apachectl start</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>打开浏览器在地址栏输入 <a href="http://localhost/">http://localhost</a> ，如果出现 <code>It Works</code> 就表示 <code>Apache </code> 服务开启成功。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164721.png" alt="启动 Apache 服务"></p>
-<ul>
-<li><code>Apache</code> 的网站服务器默认根目录在下面这个路径下。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;Library&#x2F;WebServer&#x2F;Documents</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：</strong> 你的 <code>Mac</code> 下如果装有 <code>Server</code> 这个软件要卸载掉（图标是蓝色地球的那个），否则输入 <a href="http://localhost/">http://localhost</a> 会显示 <code>Server</code> 的信息会冲突，具体原因我没去管，有兴趣的可以了解一下。</p>
-<h2 id="2-配置-PHP-环境"><a href="#2-配置-PHP-环境" class="headerlink" title="2. 配置 PHP 环境"></a>2. 配置 PHP 环境</h2><p><code>Mac</code> 系统下也是自带 <code>PHP</code> 环境的，只要将其打开即可，如果想另外自行安装的话，就自己去搜一下吧。</p>
-<ul>
-<li>打开 <code>Finder</code> ，然后按下 <code>shift + command + G</code> 打开前往文件夹，前往以下地址：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;etc&#x2F;apache2&#x2F;httpd.conf</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>打开 <code>httpd.conf</code> 这个文件，找到下面这一行，然后将前面的 <code>#</code> 注释符去掉，然后 <code>command + s</code> 保存。</li>
-</ul>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">LoadModule</span> <span class="string">php5_module libexec/apache2/libphp5.so</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164740.png" alt="开启PHP环境"></p>
-<ul>
-<li>输入以下命令重启 <code>Apache </code> 服务。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apachectl restart</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>打开 <code>Finder</code> ，然后按下 <code>shift + command + G</code> 打开前往文件夹，前往以下地址，这个地址是 <code>Apache</code> 的默认网站服务器根目录。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;Library&#x2F;WebServer&#x2F;Documents</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>新建一个名为 <code>phpinfo.php</code> 的文件，在里面输入以下代码后，<code>command + s</code> 保存。</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">phpinfo();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>打开浏览器在地址栏输入 <a href="http://localhost/phpinfo.php">http://localhost/phpinfo.php</a> ，跳出以下信息就表示 <code>PHP</code> 环境配置成功。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164757.png" alt="phpinfo"></p>
-<hr>
-<blockquote>
-<p>这里配置的是 <code>Mac</code> 系统自带的 <code>PHP</code> 环境，想另外安装的就自己去搜一下吧。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>PHP 开发</category>
-      </categories>
-      <tags>
-        <tag>mac</tag>
-        <tag>PHP 开发</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【PHP 开发】mac 在 PHP 环境安装 mcrypt 扩展的方法</title>
-    <url>/2017/06/12/PHP/201706121613/</url>
-    <content><![CDATA[<blockquote>
-<p>最近在试着将 <code>showdoc</code> 配置到自己服务器上，所以需要 <code>PHP</code> 环境，然后要安装 <code>mcrypt</code> 扩展，不得不说这真是一个大坑，由于自己对 <code>PHP</code> 了解不多，网上的教程很多大坑都没有提到，装了不知道多少次才走出大坑，所以就写下来记录一下。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<p>首先 <code>PHP</code> 环境这个就不说了，没配置的可以看我的另一篇文章：<a href="http://www.jianshu.com/p/6ba5b716feaf">【PHP 开发】mac 下配置 PHP 环境的方法</a> 。</p>
-<h2 id="安装-mcrypt"><a href="#安装-mcrypt" class="headerlink" title="安装 mcrypt"></a>安装 mcrypt</h2><p>安装 <code>mcrypt</code> 有两种方法，可以使用 <code>Homebrew </code> 来自动安装 <code>mcrypt</code> 所需依赖包，也可以自行下载所需依赖包来安装，我都写在下面。</p>
-<h3 id="1-使用-Homebrew-安装-mcrypt"><a href="#1-使用-Homebrew-安装-mcrypt" class="headerlink" title="1. 使用 Homebrew 安装 mcrypt"></a>1. 使用 Homebrew 安装 mcrypt</h3><p><code>Homebrew</code> 是一个软件包管理器，想要了解更多可以点击 <a href="https://brew.sh/index_zh-cn.html">这里</a> ，安装方法打开终端，输入以下命令进行安装，中间会让你输入密码，然后等待安装完成即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;usr&#x2F;bin&#x2F;ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果 <code>Homebrew </code> 已经安装完成，就可以打开终端，输入以下命令查看是否有 <code>mcrypt</code> 依赖包。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">brew search mcrypt</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>有的话，就输入以下命令会安装 <code>mcrypt</code> 所需依赖包。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">brew install mcrypt</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-自己下载依赖包安装"><a href="#2-自己下载依赖包安装" class="headerlink" title="2. 自己下载依赖包安装"></a>2. 自己下载依赖包安装</h3><ul>
-<li><p>分别下载这三个 <code>mcrypt</code> 所需的依赖包：<a href="https://sourceforge.net/projects/mcrypt/files/Libmcrypt/2.5.8/">libmcrypt</a>、<a href="https://sourceforge.net/projects/mhash/files/mhash/0.9.9.9/">mhash</a>、<a href="https://sourceforge.net/projects/mcrypt/files/MCrypt/2.6.8/">mcrypt</a> ，下载完成后全部解压出来。</p>
-</li>
-<li><p>先安装 <code>libmcrypt</code> ，打开终端 <code>cd</code> 到 <code>libmcrypt</code> 目录下，分别输入以下命令进行安装。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;configure</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>在安装 <code>mhash</code> ， <code>cd</code> 到 <code>mhash</code> 目录下，分别输入以下命令进行安装。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;configure</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>最后安装 <code>mcrypt</code> ，由于在安装 <code>mcrypt</code> 时，会找不到 <code>libmcrypt</code> 的链接库，导致无法编译，所以在安装 <code>mcrypt</code> 时要加入 <code>LD_LIBRARY_PATH=/usr/local</code> 导入链接库，<code>cd</code> 到 <code>mcrypt</code> 目录下，分别输入以下命令进行安装。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LD_LIBRARY_PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;lib&#x2F; .&#x2F;configure -with-libmcrypt-prefix&#x3D;&#x2F;usr&#x2F;local</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：</strong> 如果安装 <code>mcrypt</code> 时，如果输入 <code>make</code> 报 <code>rfc2440.c:26:10: fatal error: &#39;malloc.h&#39; file not found</code> 错误，只需要找到 <code>mcrypt</code> 文件夹下的 <code>rfc2440.c</code> 这个文件，将 <code>#include &lt;malloc.h&gt;</code> 头文件改为 <code>#include &lt;sys/malloc.h&gt;</code> ，然后重新安装即可。</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164819.png" alt="报错"></p>
-<h2 id="安装-PHP-扩展"><a href="#安装-PHP-扩展" class="headerlink" title="安装 PHP 扩展"></a>安装 PHP 扩展</h2><h3 id="1-生成-mcrypt-so-文件"><a href="#1-生成-mcrypt-so-文件" class="headerlink" title="1. 生成 mcrypt.so 文件"></a>1. 生成 mcrypt.so 文件</h3><ul>
-<li>首先进入官网下载源码包：<a href="http://php.net/downloads.php">http://php.net/downloads.php</a> ，然后下载与自己电脑上 <code>PHP</code> 版本一致的源码包，打开终端输入以下命令即可查看 <code>PHP</code> 版本。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">php -v</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>下载完成后解压出来，然后打开终端 <code>cd</code> 到 <code>PHP</code> 源码包下的 <code>/ext/mcrypt</code> 文件夹下，分别输入以下命令。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">phpize</span><br><span class="line"></span><br><span class="line">.&#x2F;configure</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">sudo cp modules&#x2F;mcrypt.so &#x2F;usr&#x2F;lib&#x2F;php&#x2F;extensions&#x2F;no-debug-non-zts-20090626&#x2F;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>全部执行成功后，可以前往上面写的 <code>/usr/lib/php/extensions/no-debug-non-zts-20090626</code> 这个路径下，看一下里面是否有 <code>mcrypt.so</code> 这个文件，有的话就是生成成功了。</li>
-</ul>
-<p><strong>注意：</strong> 这边有三个大坑，坑以及解决方法我都罗列在下面。</p>
-<p><strong>第一个坑：</strong> 输入 <code>./configure</code> 不能执行。</p>
-<ul>
-<li>解决方法是点击 <a href="http://ftp.gnu.org/gnu/autoconf/">这里</a> 拉到最下面下载 <code>autoconf-latest.tar.gz</code> ，然后解压出来，打开终端 <code>cd</code> 到 <code>autoconf </code> 目录下，分别输入以下命令进行安装。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;configure</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>安装完成后 <code>./configure</code> 就可以执行了。</li>
-</ul>
-<p><strong>第二个坑：</strong> 在执行 <code>sudo cp modules/mcrypt.so /usr/lib/php/extensions/no-debug-non-zts-20090626/</code> 时报下面这个错误，错误显示是文件夹不存在。</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cp: directory &#x2F;usr&#x2F;lib&#x2F;php&#x2F;extensions&#x2F;no-debug-non-zts-20090626 does not exist</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>解决方法是打开 <code>Finder</code> ，按下 <code>shift + command + G</code> ，前往以下地址。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;usr&#x2F;lib&#x2F;php&#x2F;extensions</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后可以看到有几个存在文件夹，将上面路径中的 <code>20090626</code> 这个日期改成你电脑中有的那个日期，日期取最新的。</li>
-</ul>
-<p><strong>第三个坑：</strong> 改完路径后继续执行 <code>sudo cp modules/mcrypt.so /usr/lib/php/extensions/no-debug-non-zts-20131226/</code> 这一步，结果又报如下错误，错误显示是操作不允许，没有权限。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cp: &#x2F;usr&#x2F;lib&#x2F;php&#x2F;extensions&#x2F;no-debug-non-zts-20131226&#x2F;#INST@17000#: Operation not permitted</span><br></pre></td></tr></table></figure>
-
-<p>最后查了半天终于知道问题所在，当你进入 <code>/usr/lib/php/extensions</code> 目录时你会发现目录根本无法进行任何操作，原来是 <code>mac</code> 的系统新添加了一个新的安全机制叫 <code>系统完整性保护System Integrity Protection (SIP)</code> ，所以对于目录 <code>/System</code> 、<code>/sbin</code>、<code>/usr（不包含/usr/local/）</code> 仅仅供系统使用，其它用户或者程序无法直接使用，而我们的 <code>/usr/lib/php/extensions</code> 刚好在受保护范围内。</p>
-<ul>
-<li>解决方法是禁用 <code>SIP</code> 保护机制，步骤如下：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- 重启系统</span><br><span class="line">- 按住 Command + R 进入恢复模式</span><br><span class="line">- 点击 “实用工具” 菜单中的 “终端”</span><br><span class="line">- 输入：csrutil disable</span><br><span class="line">- 执行后会输出：Successfully disabled System Integrity Protection. Please restart the machine for the changes to take effect.</span><br><span class="line">- 再次重启系统</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>禁用掉 <code>SIP</code> 后，就可以顺利的执行了，当然最后装完了以后你可以重新打开 <code>SIP</code> ，方法同上，只是终端中输入的命令改为 <code>csrutil enable</code> 。</li>
-</ul>
-<h3 id="2-修改-php-ini-文件"><a href="#2-修改-php-ini-文件" class="headerlink" title="2. 修改 php.ini 文件"></a>2. 修改 php.ini 文件</h3><ul>
-<li>打开 <code>Finder</code> ，按下 <code>shift + command + G</code> ，前往以下地址。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;etc&#x2F;php.ini</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>打开 <code>php.ini</code> 文件，在最下面添加以下代码。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">extension&#x3D;mcrypt.so</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164838.png" alt="修改 php.ini 文件"></p>
-<ul>
-<li>然后输入以下命令重启 <code>Apache</code> 服务。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apachectl restart</span><br></pre></td></tr></table></figure>
-
-<h2 id="测试是否安装成功"><a href="#测试是否安装成功" class="headerlink" title="测试是否安装成功"></a>测试是否安装成功</h2><ul>
-<li>打开 <code>Finder</code> ，然后按下 <code>shift + command + G</code> 前往以下地址，这个地址是 <code>Apache</code> 的默认网站服务器根目录。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;Library&#x2F;WebServer&#x2F;Documents</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>新建一个名为 <code>phpinfo.php</code> 的文件，在里面输入以下代码后，<code>command + s</code> 保存。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">phpinfo();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>打开浏览器在地址栏输入 <a href="http://localhost/phpinfo.php">http://localhost/phpinfo.php</a> ，按下 <code>command + F</code> 查找 <code>mcrypt</code> ，查找到以下信息就表示 <code>mcrypt</code> 安装成功。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164855.png" alt="mcrypt"></p>
-<hr>
-<blockquote>
-<p>安装结束，希望能帮助需要的人少走我走过的那些坑，需要的人可以收藏一下。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>PHP 开发</category>
-      </categories>
-      <tags>
-        <tag>PHP 开发</tag>
-        <tag>mcrypt</tag>
-        <tag>PHP 扩展</tag>
       </tags>
   </entry>
   <entry>
