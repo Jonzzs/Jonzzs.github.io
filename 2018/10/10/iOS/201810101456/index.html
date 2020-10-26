@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="先说一下这里讲的是本地库，并不是私有库，如果想了解 Cocoapods 公共库或者私有库的支持方法可以看我的另一篇文章：【iOS 开发】创建 podspec 文件，给自己写的框架添加 CocoaPos 支持 。 最近公司项目需要以组件化的架构来重构项目，就是各个模块需要解耦拆分开来，利用 Cocoapods 的管理，主工程只需要将各个模块 pod install 引入即可，开始想要以私有库的方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS 开发】Cocoapods 中多个本地库相互依赖的方法">
+<meta property="og:url" content="http://jonzzs.cn/2018/10/10/iOS/201810101456/index.html">
+<meta property="og:site_name" content="爱吃鸭梨的猫">
+<meta property="og:description" content="先说一下这里讲的是本地库，并不是私有库，如果想了解 Cocoapods 公共库或者私有库的支持方法可以看我的另一篇文章：【iOS 开发】创建 podspec 文件，给自己写的框架添加 CocoaPos 支持 。 最近公司项目需要以组件化的架构来重构项目，就是各个模块需要解耦拆分开来，利用 Cocoapods 的管理，主工程只需要将各个模块 pod install 引入即可，开始想要以私有库的方式">
+<meta property="og:locale">
+<meta property="og:image" content="https://user-images.githubusercontent.com/16834649/57368060-d4d48a80-71bc-11e9-8d6d-377fd329e9c9.jpg">
+<meta property="article:published_time" content="2018-10-10T06:56:00.000Z">
+<meta property="article:modified_time" content="2020-04-13T07:44:26.910Z">
+<meta property="article:author" content="Jonzzs">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="Cocoapods">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/16834649/57368060-d4d48a80-71bc-11e9-8d6d-377fd329e9c9.jpg">
+
+<link rel="canonical" href="http://jonzzs.cn/2018/10/10/iOS/201810101456/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>【iOS 开发】Cocoapods 中多个本地库相互依赖的方法 | 爱吃鸭梨的猫</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">爱吃鸭梨的猫</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://jonzzs.cn/2018/10/10/iOS/201810101456/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jonzzs">
+      <meta itemprop="description" content="将来的你 一定会感激现在拼命的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱吃鸭梨的猫">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【iOS 开发】Cocoapods 中多个本地库相互依赖的方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-10-10 14:56:00" itemprop="dateCreated datePublished" datetime="2018-10-10T14:56:00+08:00">2018-10-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-13 15:44:26" itemprop="dateModified" datetime="2020-04-13T15:44:26+08:00">2020-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS-%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">iOS 开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <img src="https://user-images.githubusercontent.com/16834649/57368060-d4d48a80-71bc-11e9-8d6d-377fd329e9c9.jpg" itemprop="contentUrl">
+        </div>
+        <blockquote>
+<p>先说一下这里讲的是本地库，并不是私有库，如果想了解 <code>Cocoapods</code> 公共库或者私有库的支持方法可以看我的另一篇文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4d73369b8cf9">【iOS 开发】创建 podspec 文件，给自己写的框架添加 CocoaPos 支持</a> 。</p>
+<p>最近公司项目需要以组件化的架构来重构项目，就是各个模块需要解耦拆分开来，利用 <code>Cocoapods</code> 的管理，主工程只需要将各个模块 <code>pod install</code> 引入即可，开始想要以私有库的方式集成，但是公司项目涉及到多个客户定制开发，定制分支比较多，如果用私有库方式必定要创建多个 <code>Git</code> 仓库分开管理，这样分支管理以及维护成本都大大提高，所以考虑采用本地库的方式将各个模块集成，好处是各个模块的库不需要打 <code>tag</code> 上传至私有库，可以在主工程直接管理各个模块的代码，下面就记录一下遇到的问题。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<p>至于如何给自己的模块代码添加 <code>Cocoapods</code> 支持我这边就不说了，不会的看上面贴出来的另一篇文章即可。</p>
+<h2 id="假设"><a href="#假设" class="headerlink" title="假设"></a>假设</h2><p>我的项目工程一共分为以下几个组件：</p>
+<ul>
+<li>测试主工程 (<code>TestProject</code>)</li>
+<li>测试组件1 (<code>TestModule1</code>)</li>
+<li>测试组件2 (<code>TestModule2</code>)</li>
+</ul>
+<p>然后 <code>测试主工程</code> 需要依赖 <code>测试组件1</code> ，而 <code>测试组件1</code> 又需要依赖 <code>测试组件2</code> ，两个组件都是以本地库方式依赖，所以这里就涉及到 <code>Cocoapods</code> 本地库依赖本地库，因为是本地库并没有上传，所以在 <code>podspec</code> 中依赖时会出现找不到库的情况，下面就来说一下解决方法。</p>
+<h2 id="相互依赖的方法"><a href="#相互依赖的方法" class="headerlink" title="相互依赖的方法"></a>相互依赖的方法</h2><h3 id="测试组件2"><a href="#测试组件2" class="headerlink" title="测试组件2"></a>测试组件2</h3><p>由于 <code>测试组件2</code> 并不需要任何依赖，所以 <code>podspec</code> 如下：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">Pod</span>:<span class="string">:Spec.new do |s|</span></span><br><span class="line">    <span class="meta">s.name</span>                      = <span class="string">&#x27;TestModule2&#x27;</span></span><br><span class="line">    <span class="meta">s.version</span>                   = <span class="string">&#x27;1.0.0&#x27;</span></span><br><span class="line">    <span class="meta">s.summary</span>                   = <span class="string">&#x27;测试组件2&#x27;</span></span><br><span class="line">    <span class="meta">s.homepage</span>                  = <span class="string">&#x27;xxx&#x27;</span></span><br><span class="line">    <span class="meta">s.license</span>                   = <span class="string">&#123; :type =&gt; &#x27;MIT&#x27;, :file =&gt; &#x27;LICENSE&#x27; &#125;</span></span><br><span class="line">    <span class="meta">s.author</span>                    = <span class="string">&#123; &#x27;Jonzzs&#x27; =&gt; &#x27;xxx&#x27; &#125;</span></span><br><span class="line">    <span class="meta">s.source</span>                    = <span class="string">&#123; :git =&gt; &#x27;&#x27;, :tag =&gt; s.version &#125;</span></span><br><span class="line">    <span class="meta">s.platform</span>                  = <span class="string">:ios</span></span><br><span class="line">    <span class="meta">s.ios.deployment_target</span>     = <span class="string">&#x27;9.0&#x27;</span></span><br><span class="line">    <span class="meta">s.swift_version</span>         	= <span class="string">&#x27;4.2&#x27;</span></span><br><span class="line">    <span class="meta">s.source_files</span>              = <span class="string">&#x27;TestModule2/*.swift&#x27;</span></span><br><span class="line"><span class="attr">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="测试组件1"><a href="#测试组件1" class="headerlink" title="测试组件1"></a>测试组件1</h3><p>由于 <code>测试组件1</code> 需要依赖 <code>测试组件2</code> ，所以需要添加 <code>s.dependency</code> 依赖， <code>podspec</code> 如下：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">Pod</span>:<span class="string">:Spec.new do |s|</span></span><br><span class="line">    <span class="meta">s.name</span>                      = <span class="string">&#x27;TestModule1&#x27;</span></span><br><span class="line">    <span class="meta">s.version</span>                   = <span class="string">&#x27;1.0.0&#x27;</span></span><br><span class="line">    <span class="meta">s.summary</span>                   = <span class="string">&#x27;测试组件1&#x27;</span></span><br><span class="line">    <span class="meta">s.homepage</span>                  = <span class="string">&#x27;xxx&#x27;</span></span><br><span class="line">    <span class="meta">s.license</span>                   = <span class="string">&#123; :type =&gt; &#x27;MIT&#x27;, :file =&gt; &#x27;LICENSE&#x27; &#125;</span></span><br><span class="line">    <span class="meta">s.author</span>                    = <span class="string">&#123; &#x27;Jonzzs&#x27; =&gt; &#x27;xxx&#x27; &#125;</span></span><br><span class="line">    <span class="meta">s.source</span>                    = <span class="string">&#123; :git =&gt; &#x27;&#x27;, :tag =&gt; s.version &#125;</span></span><br><span class="line">    <span class="meta">s.platform</span>                  = <span class="string">:ios</span></span><br><span class="line">    <span class="meta">s.ios.deployment_target</span>     = <span class="string">&#x27;9.0&#x27;</span></span><br><span class="line">    <span class="meta">s.swift_version</span>         	= <span class="string">&#x27;4.2&#x27;</span></span><br><span class="line">    <span class="meta">s.source_files</span>              = <span class="string">&#x27;TestModule1/*.swift&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">s.dependency</span> <span class="string">&#x27;TestModule2&#x27;  # 这里需要依赖测试组件2</span></span><br><span class="line"><span class="attr">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="测试主工程"><a href="#测试主工程" class="headerlink" title="测试主工程"></a>测试主工程</h3><p>当测试主工程在 <code>podfile</code> 集成 <code>测试组件1</code> 和 <code>测试组件2</code> 时，一般来说，因为 <code>TestModule1</code> 已经在 <code>podspec</code> 中 <code>s.dependency</code> 依赖了 <code>TestModule2</code> ，所以直接 <code>pod &#39;TestModule1&#39;</code> 应该就会自动把 <code>TestModule2</code> 也 <code>pod</code> 下来，但是因为两个组件都是本地库，所以 <code>cocoapods</code> 会找不到 <code>TestModule2</code> 这个本地库，这时候只要在 <code>podfile</code> 中将 <code>TestModule2</code> 也指明本地地址即可，<code>podfile</code> 如下：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">platform</span> :<span class="string">ios, &#x27;9.0&#x27;</span></span><br><span class="line"><span class="attr">target</span> <span class="string">&#x27;TestProject&#x27; do</span></span><br><span class="line">  <span class="attr">use_frameworks!</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">pod</span> <span class="string">&#x27;TestModule1&#x27;,   :path =&gt;&#x27;../TestModule1/&#x27;</span></span><br><span class="line">  <span class="attr">pod</span> <span class="string">&#x27;TestModule2&#x27;,   :path =&gt;&#x27;../TestModule2/&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">end</span></span><br></pre></td></tr></table></figure>
+
+<p>这里将 <code>TestModule2</code> 的地址也指明，<code>pod &#39;TestModule1&#39;</code> 时就不会出现找不到依赖的情况。</p>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a target="_blank" rel="noopener" href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a target="_blank" rel="noopener" href="https://weibo.com/Jonzzs">微博</a> 、<a target="_blank" rel="noopener" href="https://github.com/Jonzzs">GitHub</a> 。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/tags/Cocoapods/" rel="tag"># Cocoapods</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/09/29/iOS/201809291052/" rel="prev" title="【iOS 开发】利用 Carthage 将项目打包 Framework 并依赖 CocoaPods 第三方库的方法">
+      <i class="fa fa-chevron-left"></i> 【iOS 开发】利用 Carthage 将项目打包 Framework 并依赖 CocoaPods 第三方库的方法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/02/18/Mac/201902181519/" rel="next" title="一条命令轻松解决 Mac 上「应用程序 “xxx” 不能打开」的问题">
+      一条命令轻松解决 Mac 上「应用程序 “xxx” 不能打开」的问题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%87%E8%AE%BE"><span class="nav-number">1.</span> <span class="nav-text">假设</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E4%BA%92%E4%BE%9D%E8%B5%96%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">相互依赖的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%BB%84%E4%BB%B62"><span class="nav-number">2.1.</span> <span class="nav-text">测试组件2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%BB%84%E4%BB%B61"><span class="nav-number">2.2.</span> <span class="nav-text">测试组件1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E4%B8%BB%E5%B7%A5%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">测试主工程</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonzzs</p>
+  <div class="site-description" itemprop="description">将来的你 一定会感激现在拼命的自己</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonzzs</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

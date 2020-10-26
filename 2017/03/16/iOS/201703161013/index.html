@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="下面列举了三种实现毛玻璃效果的方法，大家可以按需求选择相应的方法，给大家一个参考，前面两个是官方的，使用起来比较高效，第三个使用的是第三方 LBBlurredImage 这个库，大家还是看需求使用吧，苹果推荐使用 UIBlurEffect 。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS 开发】实现毛玻璃（高斯模糊）效果">
+<meta property="og:url" content="http://jonzzs.cn/2017/03/16/iOS/201703161013/index.html">
+<meta property="og:site_name" content="爱吃鸭梨的猫">
+<meta property="og:description" content="下面列举了三种实现毛玻璃效果的方法，大家可以按需求选择相应的方法，给大家一个参考，前面两个是官方的，使用起来比较高效，第三个使用的是第三方 LBBlurredImage 这个库，大家还是看需求使用吧，苹果推荐使用 UIBlurEffect 。">
+<meta property="og:locale">
+<meta property="og:image" content="https://user-images.githubusercontent.com/16834649/57364776-6987ba00-71b6-11e9-9aac-ece5a01f5e99.png">
+<meta property="article:published_time" content="2017-03-16T02:13:00.000Z">
+<meta property="article:modified_time" content="2020-04-13T07:44:26.902Z">
+<meta property="article:author" content="Jonzzs">
+<meta property="article:tag" content="iOS 开发">
+<meta property="article:tag" content="毛玻璃">
+<meta property="article:tag" content="blur">
+<meta property="article:tag" content="高斯模糊">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/16834649/57364776-6987ba00-71b6-11e9-9aac-ece5a01f5e99.png">
+
+<link rel="canonical" href="http://jonzzs.cn/2017/03/16/iOS/201703161013/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>【iOS 开发】实现毛玻璃（高斯模糊）效果 | 爱吃鸭梨的猫</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">爱吃鸭梨的猫</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://jonzzs.cn/2017/03/16/iOS/201703161013/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jonzzs">
+      <meta itemprop="description" content="将来的你 一定会感激现在拼命的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱吃鸭梨的猫">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【iOS 开发】实现毛玻璃（高斯模糊）效果
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-03-16 10:13:00" itemprop="dateCreated datePublished" datetime="2017-03-16T10:13:00+08:00">2017-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-13 15:44:26" itemprop="dateModified" datetime="2020-04-13T15:44:26+08:00">2020-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS-%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">iOS 开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <img src="https://user-images.githubusercontent.com/16834649/57364776-6987ba00-71b6-11e9-9aac-ece5a01f5e99.png" itemprop="contentUrl">
+        </div>
+        <blockquote>
+<p>下面列举了三种实现毛玻璃效果的方法，大家可以按需求选择相应的方法，给大家一个参考，前面两个是官方的，使用起来比较高效，第三个使用的是第三方 <code>LBBlurredImage</code> 这个库，大家还是看需求使用吧，苹果推荐使用 <code>UIBlurEffect</code> 。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="1-UIToolbar-方式实现"><a href="#1-UIToolbar-方式实现" class="headerlink" title="1. UIToolbar 方式实现"></a>1. UIToolbar 方式实现</h2><p>苹果在 <code>iOS7.0</code> 之后，很多系统界面都使用了毛玻璃效果，增加了界面的美观性，比如下图的通知中心界面：</p>
+<p><img src="https://user-images.githubusercontent.com/16834649/57365975-ac4a9180-71b8-11e9-8b6e-33c2c84afc3b.jpg" alt="通知中心"></p>
+<p>但是其 <code>iOS7.0</code> 的 <code>SDK</code> 并没有提供给开发者实现毛玻璃效果的 <code>API</code> ，所以很多人都是通过一些别人封装的框架来实现，后面我也会讲到一个。</p>
+<p>其实在 <code>iOS7.0</code> 之前还是有系统的类可以实现毛玻璃效果的，就是 <code>UIToolbar</code> 这个类，并且使用相当简单，几行代码就可以搞定。</p>
+<p>** 下面是代码实现：**</p>
+<p>创建一个 <code>UIToolbar</code> 实例，设置它的 <code>frame</code> 或者也可以通过添加约束，然后 <code>UIToolbar</code> 有一个属性：<code>barStyle</code>，设置对应的枚举值来呈现毛玻璃的样式，最后再添加到需要进行毛玻璃效果的 <code>view</code> 上即可。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 毛玻璃的样式(枚举)</span></span><br><span class="line"><span class="comment"> UIBarStyleDefault          = 0,</span></span><br><span class="line"><span class="comment"> UIBarStyleBlack            = 1,</span></span><br><span class="line"><span class="comment"> UIBarStyleBlackOpaque      = 1, // Deprecated. Use UIBarStyleBlack</span></span><br><span class="line"><span class="comment"> UIBarStyleBlackTranslucent = 2, // Deprecated. Use UIBarStyleBlack and set the translucent property to YES</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">UIImageView</span> *bgImgView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="keyword">self</span>.view.bounds];</span><br><span class="line">bgImgView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@&quot;huoying.jpg&quot;</span>];</span><br><span class="line">[<span class="keyword">self</span>.view addSubview:bgImgView];</span><br><span class="line"></span><br><span class="line"><span class="built_in">UIToolbar</span> *toolbar = [[<span class="built_in">UIToolbar</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, bgImgView.frame.size.width * <span class="number">0.5</span>, bgImgView.frame.size.height)];</span><br><span class="line">toolbar.barStyle = <span class="built_in">UIBarStyleBlackTranslucent</span>;</span><br><span class="line">[bgImgView addSubview:toolbar];</span><br></pre></td></tr></table></figure>
+
+<p>** 效果图：**</p>
+<p><img src="https://github.com/Kejiasir/EffectViewDemo/raw/master/IMAGE/img_001.png" alt="效果图"></p>
+<h2 id="2-UIBlurEffect-方式实现"><a href="#2-UIBlurEffect-方式实现" class="headerlink" title="2. UIBlurEffect 方式实现"></a>2. UIBlurEffect 方式实现</h2><p>在 <code>iOS8.0</code> 之后，苹果新增了一个类 <code>UIVisualEffectView</code>，通过这个类来实现毛玻璃效果与上面的 <code>UIToolbar</code>  一样，而且效率也非常之高，使用也是非常简单，几行代码搞定。</p>
+<p><code>UIVisualEffectView</code> 是一个抽象类，不能直接使用，需通过它下面的三个子类来实现<code>（UIBlurEffect，UIVisualEffevt，UIVisualEffectView）</code>。</p>
+<p><strong>特别注意：</strong> 这个类是 <code>iOS8.0</code> 之后才适用， 所以如果项目要兼容 <code>iOS7.0</code> 的话，还是要考虑其它的两种方法了。</p>
+<p>** 下面是代码实现：**</p>
+<p>同样是先快速的实例化 <code>UIBlurEffect</code> 并设置毛玻璃的样式，然后再通过 <code>UIVisualEffectView</code> 的构造方法将 <code>UIBlurEffect</code> 的实例添加上去，最后设置 <code>frame</code> 或者是通过添加约束，将 <code>effectView</code> 添加到要实现了毛玻璃的效果的 <code>view</code> 控件上。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 毛玻璃的样式(枚举)</span></span><br><span class="line"><span class="comment"> UIBlurEffectStyleExtraLight,</span></span><br><span class="line"><span class="comment"> UIBlurEffectStyleLight,</span></span><br><span class="line"><span class="comment"> UIBlurEffectStyleDark</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">UIImageView</span> *bgImgView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="keyword">self</span>.view.bounds];</span><br><span class="line">bgImgView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@&quot;huoying.jpg&quot;</span>];</span><br><span class="line">[<span class="keyword">self</span>.view addSubview:bgImgView];</span><br><span class="line"></span><br><span class="line"><span class="built_in">UIBlurEffect</span> *effect = [<span class="built_in">UIBlurEffect</span> effectWithStyle:<span class="built_in">UIBlurEffectStyleDark</span>];</span><br><span class="line"><span class="built_in">UIVisualEffectView</span> *effectView = [[<span class="built_in">UIVisualEffectView</span> alloc] initWithEffect:effect];</span><br><span class="line">effectView.frame = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, bgImgView.frame.size.width * <span class="number">0.5</span>, bgImgView.frame.size.height);</span><br><span class="line">[bgImgView addSubview:effectView];</span><br></pre></td></tr></table></figure>
+
+<p>** 效果图：**</p>
+<p><img src="https://github.com/Kejiasir/EffectViewDemo/raw/master/IMAGE/img_002.png" alt="效果图"></p>
+<h2 id="3-LBBlurredImage-方式实现"><a href="#3-LBBlurredImage-方式实现" class="headerlink" title="3. LBBlurredImage 方式实现"></a>3. LBBlurredImage 方式实现</h2><p>最后再来给大家介绍一个国外大神封装的 <code>UIImageView</code> 的分类，里面不管是怎么实现的，反正使用非常简单，只要一句代码就搞定。</p>
+<p>** 下面是代码实现：**</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 对背景图片进行毛玻璃效果处理 参数blurRadius默认是20,可指定,最后一个参数block回调可以为nil</span></span><br><span class="line"><span class="built_in">UIImageView</span> *bgImgView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="keyword">self</span>.view.bounds];</span><br><span class="line">[bgImgView setImageToBlur: [<span class="built_in">UIImage</span> imageNamed:<span class="string">@&quot;huoying.jpg&quot;</span>] blurRadius:<span class="number">20</span> completionBlock:<span class="literal">nil</span>];</span><br><span class="line">[<span class="keyword">self</span>.view addSubview:bgImgView];</span><br></pre></td></tr></table></figure>
+
+<p>** 效果图：**</p>
+<p><img src="https://github.com/Kejiasir/EffectViewDemo/raw/master/IMAGE/img_003.png" alt="效果图"></p>
+<hr>
+<blockquote>
+<p>好啦，反正 <code>iOS</code> 中要进行毛玻璃效果处理就这几种方式，看大家的需求，喜欢用哪种就用哪种吧，最后附上本文参考的 <a target="_blank" rel="noopener" href="http://www.cnblogs.com/arvin-sir/p/5131358.html?utm_source=tuicool&utm_medium=referral">原文地址</a> 和他的 <a target="_blank" rel="noopener" href="https://github.com/Kejiasir/EffectViewDemo"> GitHub Demo 地址</a> 。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a target="_blank" rel="noopener" href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a target="_blank" rel="noopener" href="https://weibo.com/Jonzzs">微博</a> 、<a target="_blank" rel="noopener" href="https://github.com/Jonzzs">GitHub</a> 。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS-%E5%BC%80%E5%8F%91/" rel="tag"># iOS 开发</a>
+              <a href="/tags/%E6%AF%9B%E7%8E%BB%E7%92%83/" rel="tag"># 毛玻璃</a>
+              <a href="/tags/blur/" rel="tag"># blur</a>
+              <a href="/tags/%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A/" rel="tag"># 高斯模糊</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/03/15/Other/201703151637/" rel="prev" title="常用 Markdown 语法汇总">
+      <i class="fa fa-chevron-left"></i> 常用 Markdown 语法汇总
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/03/16/iOS/201703161202/" rel="next" title="【iOS 开发】Attribute 富文本属性汇总">
+      【iOS 开发】Attribute 富文本属性汇总 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-UIToolbar-%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">1. UIToolbar 方式实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-UIBlurEffect-%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">2. UIBlurEffect 方式实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-LBBlurredImage-%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">3. LBBlurredImage 方式实现</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonzzs</p>
+  <div class="site-description" itemprop="description">将来的你 一定会感激现在拼命的自己</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonzzs</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

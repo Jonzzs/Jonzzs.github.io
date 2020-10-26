@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Fastlane 是一个完全开源的项目，是一款为 iOS 和 Android 开发者提供的自动化构建工具，它可以帮助开发者将 App 打包、签名、测试、发布、信息整理、提交 App Store 等工作完整的连接起来，实现完全自动化的工作流，如果使用得当，可以显著的提高开发者的开发效率，这是 GitHub 地址 和 官方文档 。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS 开发】使用 Fastlane 自动化打包并发布 iOS 项目">
+<meta property="og:url" content="http://jonzzs.cn/2017/11/09/iOS/201711091509/index.html">
+<meta property="og:site_name" content="爱吃鸭梨的猫">
+<meta property="og:description" content="Fastlane 是一个完全开源的项目，是一款为 iOS 和 Android 开发者提供的自动化构建工具，它可以帮助开发者将 App 打包、签名、测试、发布、信息整理、提交 App Store 等工作完整的连接起来，实现完全自动化的工作流，如果使用得当，可以显著的提高开发者的开发效率，这是 GitHub 地址 和 官方文档 。">
+<meta property="og:locale">
+<meta property="og:image" content="https://user-images.githubusercontent.com/16834649/57366965-ae155480-71ba-11e9-8337-489650e76ceb.png">
+<meta property="article:published_time" content="2017-11-09T07:09:54.000Z">
+<meta property="article:modified_time" content="2020-04-13T07:44:26.909Z">
+<meta property="article:author" content="Jonzzs">
+<meta property="article:tag" content="iOS 开发">
+<meta property="article:tag" content="Fastlane">
+<meta property="article:tag" content="自动打包">
+<meta property="article:tag" content="持续集成">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/16834649/57366965-ae155480-71ba-11e9-8337-489650e76ceb.png">
+
+<link rel="canonical" href="http://jonzzs.cn/2017/11/09/iOS/201711091509/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>【iOS 开发】使用 Fastlane 自动化打包并发布 iOS 项目 | 爱吃鸭梨的猫</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">爱吃鸭梨的猫</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://jonzzs.cn/2017/11/09/iOS/201711091509/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jonzzs">
+      <meta itemprop="description" content="将来的你 一定会感激现在拼命的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱吃鸭梨的猫">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【iOS 开发】使用 Fastlane 自动化打包并发布 iOS 项目
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-11-09 15:09:54" itemprop="dateCreated datePublished" datetime="2017-11-09T15:09:54+08:00">2017-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-13 15:44:26" itemprop="dateModified" datetime="2020-04-13T15:44:26+08:00">2020-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS-%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">iOS 开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <img src="https://user-images.githubusercontent.com/16834649/57366965-ae155480-71ba-11e9-8337-489650e76ceb.png" itemprop="contentUrl">
+        </div>
+        <blockquote>
+<p><code>Fastlane</code> 是一个完全开源的项目，是一款为 <code>iOS</code> 和 <code>Android</code> 开发者提供的自动化构建工具，它可以帮助开发者将 <code>App</code> 打包、签名、测试、发布、信息整理、提交 <code>App Store</code> 等工作完整的连接起来，实现完全自动化的工作流，如果使用得当，可以显著的提高开发者的开发效率，这是 <a target="_blank" rel="noopener" href="https://github.com/fastlane/fastlane">GitHub 地址</a> 和 <a target="_blank" rel="noopener" href="https://docs.fastlane.tools/">官方文档</a> 。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<p><strong>本文最终目的：</strong></p>
+<ul>
+<li><p>终端输入 <code>fastlane beta</code> 自动打包 <code>ad-hoc</code> 版本的 <code>ipa</code> 包并自动上传到 <code>蒲公英</code> 。</p>
+</li>
+<li><p>终端输入 <code>fastlane release</code> 自动打包 <code>app-store</code> 版本的 <code>ipa</code> 包并自动上传到 <code>iTunes Connect</code> 。</p>
+</li>
+</ul>
+<h2 id="1-安装-Fastlane"><a href="#1-安装-Fastlane" class="headerlink" title="1. 安装 Fastlane"></a>1. 安装 Fastlane</h2><ul>
+<li>检查 <code>Ruby</code> 版本，需要 <code>2.0</code> 及以上版本，并且需要将 <code>gem</code> 的 <code>source</code> 改为 <code>https://gems.ruby-china.org/</code> ，在终端输入以下命令。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">// 查看 Ruby 版本</span><br><span class="line">ruby -v</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">// 查看 gem 的<span class="built_in">source</span></span><br><span class="line">gem sources</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>检查 <code>Xcode</code> 命令行工具是否安装，在终端输入以下命令，如果安装过会有提示，如果没装过就会自动开始安装。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>开始安装 <code>Fastlane</code> ，在终端输入以下命令。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo gem install fastlane --verbose</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果安装时出现错误无法安装，就使用以下命令安装。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo gem install -n /usr/<span class="built_in">local</span>/bin fastlane</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装完成后可以输入以下命令查看版本来验证是否安装成功。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">fastlane --version</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-安装蒲公英的-Fastlane-插件"><a href="#2-安装蒲公英的-Fastlane-插件" class="headerlink" title="2. 安装蒲公英的 Fastlane 插件"></a>2. 安装蒲公英的 Fastlane 插件</h2><ul>
+<li><code>fastlane </code> 安装完成以后，在终端输入以下命令安装 <code>蒲公英</code> 插件。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">fastlane add_plugin pgyer</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>最后出现 <code>Successfully installed plugins</code> 表示安装完成。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163520.png" alt="插件安装"></p>
+<ul>
+<li>安装完成以后，会在系统根目录生成 <code>Gemfile</code> 和 <code>Gemfile.lock</code> 这两个文件，这两个文件不要删掉，不然插件就得重装了。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163535.png" alt="Gemfile"></p>
+<h2 id="3-修改项目配置"><a href="#3-修改项目配置" class="headerlink" title="3. 修改项目配置"></a>3. 修改项目配置</h2><ul>
+<li>用 <code>Xcode</code> 打开你的项目，然后打开 <code>Manage Schemes...</code> 。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163546.png" alt="Xcode"></p>
+<ul>
+<li>然后将工程的 <code>Scheme</code> 后面的 <code>Shared</code> 给勾上。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163556.png" alt="Xcode"></p>
+<ul>
+<li>需要将这个改动上传到 <code>git</code> 仓库，不要忽略掉这个文件，提交的文件路径信息如下，如果你改完没有提示有需要改动的提交，那就看一下 <code>.gitignore</code> 里面是不是忽略掉了。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163608.png" alt="commit"></p>
+<ul>
+<li>做这个改动的原因是，后面可能会用到 <code>Jenkins</code> + <code>Fastlane</code> 做持续集成，如果没有这个文件，<code>Jenkins</code> 使用 <code>fastlane</code> 编译项目时会提示 <code>No schemes found in Xcode project or workspace</code> ，所以最好先加上。</li>
+</ul>
+<h2 id="4-初始化-Fastlane-配置"><a href="#4-初始化-Fastlane-配置" class="headerlink" title="4. 初始化 Fastlane 配置"></a>4. 初始化 Fastlane 配置</h2><ul>
+<li>打开终端，<code>cd</code> 到你项目工程的根目录（<code>xcodeproj</code> 的同级目录），输入以下命令：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">fastlane init</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>初始化过程中会让你输入苹果开发者账号的账号和密码，这个信息会存储在钥匙串中，后续使用无需再输入密码。</p>
+</li>
+<li><p>初始化过程中还会检测当前项目的 <code>App Identifier</code> 是否已经在 <code>Apple Developer</code> 中，还会检测当前 <code>App</code> 是否已经在 <code>iTunes Connect</code> 中，如果都满足的话，过程应该是比较顺利的。</p>
+</li>
+<li><p>初始化完成之后会在你项目工程的目录下生成一个 <code>fastlane</code> 文件夹，里面是 <code>Fastlane</code> 的一些配置文件。其中 <code>Appfile</code> 里面存放了 <code>App</code> 的基本信息包括 <code>App_Identifier</code> 、<code>AppID</code> 、<code>Team_ID</code> 等。<code>Fastfile</code> 是最重要的一个文件，在这个文件里面可以编写和定制我们打包脚本的一个文件，所有自定义的功能都写在这里。</p>
+</li>
+</ul>
+<h2 id="5-编辑-Fastlane-脚本文件"><a href="#5-编辑-Fastlane-脚本文件" class="headerlink" title="5. 编辑 Fastlane 脚本文件"></a>5. 编辑 Fastlane 脚本文件</h2><ul>
+<li><p>首先找到工程目录下 <code>fastlane</code> 文件夹下的 <code>Fastlane</code> 文件，如果想要了解其中内容的含义可以自己去官方文档查一下，这里就不解释了。</p>
+</li>
+<li><p>使用编辑器打开 <code>Fastlane</code> 文件，将所有内容删除替换为以下内容。</p>
+</li>
+</ul>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">fastlane_version</span> <span class="string">&quot;xxx&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">default_platform</span> :<span class="string">ios</span></span><br><span class="line"></span><br><span class="line"><span class="attr">platform</span> :<span class="string">ios do</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">desc</span> <span class="string">&quot;以 ad-hoc 方式打包并上传到蒲公英&quot;</span></span><br><span class="line">  <span class="attr">lane</span> :<span class="string">beta do</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">puts</span> <span class="string">&quot;自动生成 Provisioning Profiles 文件&quot;</span></span><br><span class="line">    <span class="attr">sigh(</span></span><br><span class="line"><span class="comment">      # 指定输出的文件夹地址</span></span><br><span class="line">      <span class="attr">output_path</span>: <span class="string">&quot;./archive/sign&quot;,</span></span><br><span class="line"><span class="comment">      # 是否为 AdHoc 证书（设为 false 或不写默认为 AppStore 证书）</span></span><br><span class="line">      <span class="attr">adhoc</span>: <span class="string">true</span></span><br><span class="line">    <span class="attr">)</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">puts</span> <span class="string">&quot;以 ad-hoc 方式打包&quot;</span></span><br><span class="line">    <span class="attr">gym(</span></span><br><span class="line"><span class="comment">      # 指定打包所使用的输出方式 (可选: app-store, package, ad-hoc, enterprise, development)</span></span><br><span class="line">      <span class="attr">export_method</span>: <span class="string">&quot;ad-hoc&quot;,</span></span><br><span class="line"><span class="comment">      # 指定项目的 scheme 名称</span></span><br><span class="line">      <span class="attr">scheme</span>: <span class="string">&quot;xxx&quot;,</span></span><br><span class="line"><span class="comment">      # 指定输出的文件夹地址</span></span><br><span class="line">      <span class="attr">output_directory</span>: <span class="string">&quot;./archive/beta/&quot; + Time.new.strftime(&quot;%Y-%m-%d-%H:%M:%S&quot;),</span></span><br><span class="line"><span class="comment">      # 指定打包方式 (可选: Release, Debug)</span></span><br><span class="line">      <span class="attr">configuration</span>: <span class="string">&quot;Release&quot;</span></span><br><span class="line">    <span class="attr">)</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">puts</span> <span class="string">&quot;上传 ipa 包到蒲公英&quot;</span></span><br><span class="line">    <span class="attr">pgyer(</span></span><br><span class="line"><span class="comment">      # 蒲公英 API KEY</span></span><br><span class="line">      <span class="attr">api_key</span>: <span class="string">&quot;xxx&quot;,</span></span><br><span class="line"><span class="comment">      # 蒲公英 USER KEY</span></span><br><span class="line">      <span class="attr">user_key</span>: <span class="string">&quot;xxx&quot;</span></span><br><span class="line">    <span class="attr">)</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">end</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">desc</span> <span class="string">&quot;以 app-store 方式打包并上传到 iTunes Connect&quot;</span></span><br><span class="line">  <span class="attr">lane</span> :<span class="string">release do</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">puts</span> <span class="string">&quot;自动生成 Provisioning Profiles 文件&quot;</span></span><br><span class="line">    <span class="attr">sigh(</span></span><br><span class="line"><span class="comment">      # 指定输出的文件夹地址</span></span><br><span class="line">      <span class="attr">output_path</span>: <span class="string">&quot;./archive/sign&quot;</span></span><br><span class="line">    <span class="attr">)</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">puts</span> <span class="string">&quot;以 app-store 方式打包&quot;</span></span><br><span class="line">    <span class="attr">gym(</span></span><br><span class="line"><span class="comment">      # 指定打包所使用的输出方式 (可选: app-store, package, ad-hoc, enterprise, development)</span></span><br><span class="line">      <span class="attr">export_method</span>: <span class="string">&quot;app-store&quot;,</span></span><br><span class="line"><span class="comment">      # 指定项目的 scheme 名称</span></span><br><span class="line">      <span class="attr">scheme</span>: <span class="string">&quot;xxx&quot;,</span></span><br><span class="line"><span class="comment">      # 指定输出的文件夹地址</span></span><br><span class="line">      <span class="attr">output_directory</span>: <span class="string">&quot;./archive/release/&quot; + Time.new.strftime(&quot;%Y-%m-%d-%H:%M:%S&quot;),</span></span><br><span class="line"><span class="comment">      # 指定打包方式 (可选: Release, Debug)</span></span><br><span class="line">      <span class="attr">configuration</span>: <span class="string">&quot;Release&quot;</span></span><br><span class="line">    <span class="attr">)</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">puts</span> <span class="string">&quot;上传 ipa 包到 iTunes Connect&quot;</span></span><br><span class="line">    <span class="attr">deliver(</span></span><br><span class="line"><span class="comment">      # 跳过截图上传</span></span><br><span class="line">      <span class="attr">skip_screenshots</span>: <span class="string">true,</span></span><br><span class="line"><span class="comment">      # 跳过元数据上传</span></span><br><span class="line">      <span class="attr">skip_metadata</span>: <span class="string">true,</span></span><br><span class="line"><span class="comment">      # 跳过审核直接上传</span></span><br><span class="line">      <span class="attr">force</span>: <span class="string">true</span></span><br><span class="line">    <span class="attr">)</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">end</span></span><br><span class="line"></span><br><span class="line"><span class="attr">end</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>需要更改的地方我已经用 <code>xxx</code> 标注出来了，按照说明更改即可，更改完成后保存文件。</li>
+</ul>
+<h2 id="6-开始自动打包并发布"><a href="#6-开始自动打包并发布" class="headerlink" title="6. 开始自动打包并发布"></a>6. 开始自动打包并发布</h2><ul>
+<li><p>打开终端，<code>cd</code> 到你项目工程的根目录（<code>xcodeproj</code> 的同级目录）。</p>
+</li>
+<li><p>输入以下命令，即可开始自动打包并上传到 <code>蒲公英</code> 。</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">fastlane beta</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>输入以下命令，即可开始自动打包并上传到 <code>iTunes Connect</code> 。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">fastlane release</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>打包的 <code>.ipa</code> 包和 <code>dSYM</code> 文件，以及生成的 <code>Provisioning Profiles</code> 都在工程目录下的 <code>archive</code> 文件夹内，看上面的输出地址就知道了。</p>
+</li>
+<li><p>最后出现一个 <code>successfully 🎉</code> 就表示成功了，有错误终端也会有提示，按照提示继续修改配置就行了。</p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p><code>Fastlane</code> 还能实现很多自动化的功能，感兴趣的自己去了解一下吧，这里有篇文章写的很全面可以看一下： <a target="_blank" rel="noopener" href="https://whlsxl.github.io/fastlane1/">小团队的自动化发布－Fastlane带来的全自动化发布</a> 。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a target="_blank" rel="noopener" href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a target="_blank" rel="noopener" href="https://weibo.com/Jonzzs">微博</a> 、<a target="_blank" rel="noopener" href="https://github.com/Jonzzs">GitHub</a> 。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS-%E5%BC%80%E5%8F%91/" rel="tag"># iOS 开发</a>
+              <a href="/tags/Fastlane/" rel="tag"># Fastlane</a>
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85/" rel="tag"># 自动打包</a>
+              <a href="/tags/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/" rel="tag"># 持续集成</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/11/02/Android/201711021624/" rel="prev" title="【Android 开发】mac 版 Android Studio 连接夜神模拟器的方法">
+      <i class="fa fa-chevron-left"></i> 【Android 开发】mac 版 Android Studio 连接夜神模拟器的方法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/11/13/iOS/201711131450/" rel="next" title="【iOS 开发】使用 Jenkins + Fastlane 持续集成 iOS 项目">
+      【iOS 开发】使用 Jenkins + Fastlane 持续集成 iOS 项目 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85-Fastlane"><span class="nav-number">1.</span> <span class="nav-text">1. 安装 Fastlane</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85%E8%92%B2%E5%85%AC%E8%8B%B1%E7%9A%84-Fastlane-%E6%8F%92%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">2. 安装蒲公英的 Fastlane 插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">3. 修改项目配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%88%9D%E5%A7%8B%E5%8C%96-Fastlane-%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">4. 初始化 Fastlane 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E7%BC%96%E8%BE%91-Fastlane-%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">5. 编辑 Fastlane 脚本文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%BC%80%E5%A7%8B%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%B9%B6%E5%8F%91%E5%B8%83"><span class="nav-number">6.</span> <span class="nav-text">6. 开始自动打包并发布</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonzzs</p>
+  <div class="site-description" itemprop="description">将来的你 一定会感激现在拼命的自己</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonzzs</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

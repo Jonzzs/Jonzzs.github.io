@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="先说明一下不是解锁密码，是 设置 - 通用 - 访问限制 的密码，本人亲测已经成功找回，并且不需要恢复或升级 iPhone 系统、不需要恢复备份、不需要越狱，所以数据不会丢失一个字节，此方法适用于：iOS 11&#x2F;10&#x2F;9&#x2F;8&#x2F;7&#x2F;6&#x2F;5 (iPhone, iPod &amp; iPad) 。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 忘记访问限制的密码后找回的方法">
+<meta property="og:url" content="http://jonzzs.cn/2018/01/29/Other/201801291605/index.html">
+<meta property="og:site_name" content="爱吃鸭梨的猫">
+<meta property="og:description" content="先说明一下不是解锁密码，是 设置 - 通用 - 访问限制 的密码，本人亲测已经成功找回，并且不需要恢复或升级 iPhone 系统、不需要恢复备份、不需要越狱，所以数据不会丢失一个字节，此方法适用于：iOS 11&#x2F;10&#x2F;9&#x2F;8&#x2F;7&#x2F;6&#x2F;5 (iPhone, iPod &amp; iPad) 。">
+<meta property="og:locale">
+<meta property="og:image" content="https://user-images.githubusercontent.com/16834649/57367715-19abf180-71bc-11e9-8b24-5ec3262ab968.jpg">
+<meta property="article:published_time" content="2018-01-29T08:05:34.000Z">
+<meta property="article:modified_time" content="2020-04-13T07:44:26.901Z">
+<meta property="article:author" content="Jonzzs">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="iPhone">
+<meta property="article:tag" content="访问限制">
+<meta property="article:tag" content="忘记密码">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/16834649/57367715-19abf180-71bc-11e9-8b24-5ec3262ab968.jpg">
+
+<link rel="canonical" href="http://jonzzs.cn/2018/01/29/Other/201801291605/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>iOS 忘记访问限制的密码后找回的方法 | 爱吃鸭梨的猫</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">爱吃鸭梨的猫</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://jonzzs.cn/2018/01/29/Other/201801291605/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jonzzs">
+      <meta itemprop="description" content="将来的你 一定会感激现在拼命的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱吃鸭梨的猫">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          iOS 忘记访问限制的密码后找回的方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-01-29 16:05:34" itemprop="dateCreated datePublished" datetime="2018-01-29T16:05:34+08:00">2018-01-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-13 15:44:26" itemprop="dateModified" datetime="2020-04-13T15:44:26+08:00">2020-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index"><span itemprop="name">其他相关</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <img src="https://user-images.githubusercontent.com/16834649/57367715-19abf180-71bc-11e9-8b24-5ec3262ab968.jpg" itemprop="contentUrl">
+        </div>
+        <blockquote>
+<p>先说明一下不是解锁密码，是 <code>设置 - 通用 - 访问限制</code> 的密码，本人亲测已经成功找回，并且不需要恢复或升级 <code>iPhone</code> 系统、不需要恢复备份、不需要越狱，所以数据不会丢失一个字节，此方法适用于：<code>iOS 11/10/9/8/7/6/5 (iPhone, iPod &amp; iPad)</code> 。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="苹果官网的方法"><a href="#苹果官网的方法" class="headerlink" title="苹果官网的方法"></a>苹果官网的方法</h2><p>由于 <code>访问限制</code> 的密码只会在设置的时候进行验证，而且没有提示，如果自己不记录或者随意设置密码的话，时间一长，就很容易忘记。</p>
+<p>根据官网的方法需要恢复 <code>iPhone</code> ，并且重置为新 <code>iPhone</code> ，才能清除 <code>访问限制密码</code> ，所以 <code>iPhone</code> 中的所有数据都会丢失，如果通过恢复 <code>iPhone</code> 的 <code>iTunes</code> 备份，<code>访问限制密码</code> 仍然与备份前一样，而且输入密码的错误次数仍然也记录着。</p>
+<p>不过，可以通过无数次的尝试来猜密码，猜得次数达到 <code>6</code> 次左右，就需要等待一个小时才能再猜，这时只能恢复 <code>iTunes</code> 备份才可以将猜错的次数清空，但是密码依旧在。</p>
+<h2 id="密码找回的方法"><a href="#密码找回的方法" class="headerlink" title="密码找回的方法"></a>密码找回的方法</h2><ul>
+<li><p>首先需要将当前的手机系统备份一下，可以用 <a target="_blank" rel="noopener" href="https://www.apple.com/cn/itunes/download/">iTunes</a> 或者其他的手机管理工具来备份，备份的时候不要选择 <code>备份加密</code> 选项，下面是不同系统下 <code>iTunes</code> 默认备份的目录。</p>
+</li>
+<li><p><strong>Windows 系统：</strong> 打开计算机，在路径中输入 <code>%appdata%</code>（英文，建议复制），然后回车，然后依次打开文件夹 <code>Apple Computer\MobileSync\Backup\</code> 。</p>
+</li>
+<li><p><strong>macOS 系统：</strong> 打开 <code>Finder</code> ，按下 <code>shift + command + G</code> 打开前往文件夹，然后输入 <code>~/Library/Application Support/MobileSync/Backup/</code> 前往即可。</p>
+</li>
+<li><p>备份完以后到自己系统相应路径下，找到刚才自己的备份目录，然后找到一个名为 <code>39</code> 的文件夹。</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172353.jpg"></p>
+<ul>
+<li>然后在 <code>39</code> 文件夹下找到一个名为 <code>398bc9c2aeeab4cb0c12ada0f52eea12cf14f40b</code> 的文件。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172404.jpg"></p>
+<ul>
+<li><code>Windows</code> 系统可以用记事本打开，<code>Mac</code> 直接双击打开即可，打开后找到如下的两串字符。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172416.jpg"></p>
+<ul>
+<li>然后打开 <a target="_blank" rel="noopener" href="http://ios7hash.derson.us/">密码解析网站</a> ，将较长的一串复制到 <code>RestrictionsPasswordKey</code> 中，较短的一串复制到 <code>RestrictionsPasswordSalt</code> 中，然后点击 <code>Search for Code</code> 。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172428.jpg"></p>
+<ul>
+<li>然后程序会从 <code>0000</code> 开始逐一递增进行密码匹配，一直到找到密码为止，设置的密码数字越大，匹配的时间越长，匹配成功后会跳出提示。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172440.jpg"></p>
+<ul>
+<li>此方法是通过 <code>JavaScript</code> 脚本进行计算破解的，所以运行的速度与本地电脑的配置有关，也可以同时打开多个页面，设置不同的 <code>Starting Passcode</code> 和 <code>Last Search Code</code> ，分段进行搜索，从而提高搜索的速度。</li>
+</ul>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a target="_blank" rel="noopener" href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a target="_blank" rel="noopener" href="https://weibo.com/Jonzzs">微博</a> 、<a target="_blank" rel="noopener" href="https://github.com/Jonzzs">GitHub</a> 。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/tags/iPhone/" rel="tag"># iPhone</a>
+              <a href="/tags/%E8%AE%BF%E9%97%AE%E9%99%90%E5%88%B6/" rel="tag"># 访问限制</a>
+              <a href="/tags/%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/" rel="tag"># 忘记密码</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/01/20/Mac/201801201111/" rel="prev" title="Magic Mouse 苹果鼠标移动速度改快的方法">
+      <i class="fa fa-chevron-left"></i> Magic Mouse 苹果鼠标移动速度改快的方法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/02/11/Mac/201802111604/" rel="next" title="mac 使用 BootCamp 安装双系统时出现磁盘分区错误的解决方法.md">
+      mac 使用 BootCamp 安装双系统时出现磁盘分区错误的解决方法.md <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8B%B9%E6%9E%9C%E5%AE%98%E7%BD%91%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">苹果官网的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E7%A0%81%E6%89%BE%E5%9B%9E%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">密码找回的方法</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonzzs</p>
+  <div class="site-description" itemprop="description">将来的你 一定会感激现在拼命的自己</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonzzs</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

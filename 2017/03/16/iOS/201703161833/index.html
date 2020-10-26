@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="下面罗列了二进制、十进制、十六进制之间相互转换的方法，有时候可能会用的到，需要的朋友可以收藏一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS 开发】二进制、十进制、十六进制相互转换的方法">
+<meta property="og:url" content="http://jonzzs.cn/2017/03/16/iOS/201703161833/index.html">
+<meta property="og:site_name" content="爱吃鸭梨的猫">
+<meta property="og:description" content="下面罗列了二进制、十进制、十六进制之间相互转换的方法，有时候可能会用的到，需要的朋友可以收藏一下。">
+<meta property="og:locale">
+<meta property="og:image" content="https://user-images.githubusercontent.com/16834649/57366114-f6337780-71b8-11e9-8b06-75969fdabb7d.png">
+<meta property="article:published_time" content="2017-03-16T10:33:00.000Z">
+<meta property="article:modified_time" content="2020-04-13T07:44:26.902Z">
+<meta property="article:author" content="Jonzzs">
+<meta property="article:tag" content="iOS 开发">
+<meta property="article:tag" content="进制转换">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/16834649/57366114-f6337780-71b8-11e9-8b06-75969fdabb7d.png">
+
+<link rel="canonical" href="http://jonzzs.cn/2017/03/16/iOS/201703161833/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>【iOS 开发】二进制、十进制、十六进制相互转换的方法 | 爱吃鸭梨的猫</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">爱吃鸭梨的猫</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://jonzzs.cn/2017/03/16/iOS/201703161833/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jonzzs">
+      <meta itemprop="description" content="将来的你 一定会感激现在拼命的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱吃鸭梨的猫">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【iOS 开发】二进制、十进制、十六进制相互转换的方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-03-16 18:33:00" itemprop="dateCreated datePublished" datetime="2017-03-16T18:33:00+08:00">2017-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-13 15:44:26" itemprop="dateModified" datetime="2020-04-13T15:44:26+08:00">2020-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS-%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">iOS 开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <img src="https://user-images.githubusercontent.com/16834649/57366114-f6337780-71b8-11e9-8b06-75969fdabb7d.png" itemprop="contentUrl">
+        </div>
+        <blockquote>
+<p>下面罗列了二进制、十进制、十六进制之间相互转换的方法，有时候可能会用的到，需要的朋友可以收藏一下。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="1-十进制转换为二进制"><a href="#1-十进制转换为二进制" class="headerlink" title="1. 十进制转换为二进制"></a>1. 十进制转换为二进制</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 十进制转换为二进制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param decimal 十进制数</span></span><br><span class="line"><span class="comment"> @return 二进制数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)getBinaryByDecimal:(<span class="built_in">NSInteger</span>)decimal &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *binary = <span class="string">@&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">while</span> (decimal) &#123;</span><br><span class="line">        binary = [[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@&quot;%ld&quot;</span>, decimal % <span class="number">2</span>] stringByAppendingString:binary];</span><br><span class="line">        <span class="keyword">if</span> (decimal / <span class="number">2</span> &lt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        decimal = decimal / <span class="number">2</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (binary.length % <span class="number">4</span> != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">NSMutableString</span> *mStr = [[<span class="built_in">NSMutableString</span> alloc]init];;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span> - binary.length % <span class="number">4</span>; i++) &#123;</span><br><span class="line">            [mStr appendString:<span class="string">@&quot;0&quot;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        binary = [mStr stringByAppendingString:binary];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> binary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-十进制转换为十六进制"><a href="#2-十进制转换为十六进制" class="headerlink" title="2. 十进制转换为十六进制"></a>2. 十进制转换为十六进制</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 十进制转换十六进制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param decimal 十进制数</span></span><br><span class="line"><span class="comment"> @return 十六进制数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)getHexByDecimal:(<span class="built_in">NSInteger</span>)decimal &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *hex =<span class="string">@&quot;&quot;</span>;</span><br><span class="line">    <span class="built_in">NSString</span> *letter;</span><br><span class="line">    <span class="built_in">NSInteger</span> number;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="number">9</span>; i++) &#123;</span><br><span class="line">        number = decimal % <span class="number">16</span>;</span><br><span class="line">        decimal = decimal / <span class="number">16</span>;</span><br><span class="line">        <span class="keyword">switch</span> (number) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">10</span>:</span><br><span class="line">                letter =<span class="string">@&quot;A&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">11</span>:</span><br><span class="line">                letter =<span class="string">@&quot;B&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">12</span>:</span><br><span class="line">                letter =<span class="string">@&quot;C&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">13</span>:</span><br><span class="line">                letter =<span class="string">@&quot;D&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">14</span>:</span><br><span class="line">                letter =<span class="string">@&quot;E&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">15</span>:</span><br><span class="line">                letter =<span class="string">@&quot;F&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                letter = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@&quot;%ld&quot;</span>, number];</span><br><span class="line">        &#125;</span><br><span class="line">        hex = [letter stringByAppendingString:hex];</span><br><span class="line">        <span class="keyword">if</span> (decimal == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-二进制转换为十六进制"><a href="#3-二进制转换为十六进制" class="headerlink" title="3. 二进制转换为十六进制"></a>3. 二进制转换为十六进制</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 二进制转换成十六进制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param binary 二进制数</span></span><br><span class="line"><span class="comment"> @return 十六进制数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)getHexByBinary:(<span class="built_in">NSString</span> *)binary &#123;</span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *binaryDic = [[<span class="built_in">NSMutableDictionary</span> alloc] initWithCapacity:<span class="number">16</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;0&quot;</span> forKey:<span class="string">@&quot;0000&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;1&quot;</span> forKey:<span class="string">@&quot;0001&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;2&quot;</span> forKey:<span class="string">@&quot;0010&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;3&quot;</span> forKey:<span class="string">@&quot;0011&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;4&quot;</span> forKey:<span class="string">@&quot;0100&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;5&quot;</span> forKey:<span class="string">@&quot;0101&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;6&quot;</span> forKey:<span class="string">@&quot;0110&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;7&quot;</span> forKey:<span class="string">@&quot;0111&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;8&quot;</span> forKey:<span class="string">@&quot;1000&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;9&quot;</span> forKey:<span class="string">@&quot;1001&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;A&quot;</span> forKey:<span class="string">@&quot;1010&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;B&quot;</span> forKey:<span class="string">@&quot;1011&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;C&quot;</span> forKey:<span class="string">@&quot;1100&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;D&quot;</span> forKey:<span class="string">@&quot;1101&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;E&quot;</span> forKey:<span class="string">@&quot;1110&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;F&quot;</span> forKey:<span class="string">@&quot;1111&quot;</span>];</span><br><span class="line">    <span class="keyword">if</span> (binary.length % <span class="number">4</span> != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">NSMutableString</span> *mStr = [[<span class="built_in">NSMutableString</span> alloc]init];;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span> - binary.length % <span class="number">4</span>; i++) &#123;</span><br><span class="line">            [mStr appendString:<span class="string">@&quot;0&quot;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        binary = [mStr stringByAppendingString:binary];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSString</span> *hex = <span class="string">@&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;binary.length; i+=<span class="number">4</span>) &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *key = [binary substringWithRange:<span class="built_in">NSMakeRange</span>(i, <span class="number">4</span>)];</span><br><span class="line">        <span class="built_in">NSString</span> *value = [binaryDic objectForKey:key];</span><br><span class="line">        <span class="keyword">if</span> (value) &#123;</span><br><span class="line">            hex = [hex stringByAppendingString:value];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-十六进制转换为二进制"><a href="#4-十六进制转换为二进制" class="headerlink" title="4. 十六进制转换为二进制"></a>4. 十六进制转换为二进制</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 十六进制转换为二进制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param hex 十六进制数</span></span><br><span class="line"><span class="comment"> @return 二进制数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)getBinaryByHex:(<span class="built_in">NSString</span> *)hex &#123;</span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *hexDic = [[<span class="built_in">NSMutableDictionary</span> alloc] initWithCapacity:<span class="number">16</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0000&quot;</span> forKey:<span class="string">@&quot;0&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0001&quot;</span> forKey:<span class="string">@&quot;1&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0010&quot;</span> forKey:<span class="string">@&quot;2&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0011&quot;</span> forKey:<span class="string">@&quot;3&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0100&quot;</span> forKey:<span class="string">@&quot;4&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0101&quot;</span> forKey:<span class="string">@&quot;5&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0110&quot;</span> forKey:<span class="string">@&quot;6&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0111&quot;</span> forKey:<span class="string">@&quot;7&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1000&quot;</span> forKey:<span class="string">@&quot;8&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1001&quot;</span> forKey:<span class="string">@&quot;9&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1010&quot;</span> forKey:<span class="string">@&quot;A&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1011&quot;</span> forKey:<span class="string">@&quot;B&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1100&quot;</span> forKey:<span class="string">@&quot;C&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1101&quot;</span> forKey:<span class="string">@&quot;D&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1110&quot;</span> forKey:<span class="string">@&quot;E&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1111&quot;</span> forKey:<span class="string">@&quot;F&quot;</span>];</span><br><span class="line">    <span class="built_in">NSString</span> *binary = <span class="string">@&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;[hex length]; i++) &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *key = [hex substringWithRange:<span class="built_in">NSMakeRange</span>(i, <span class="number">1</span>)];</span><br><span class="line">        <span class="built_in">NSString</span> *value = [hexDic objectForKey:key.uppercaseString];</span><br><span class="line">        <span class="keyword">if</span> (value) &#123;</span><br><span class="line">            binary = [binary stringByAppendingString:value];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> binary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-二进制转换为十进制"><a href="#5-二进制转换为十进制" class="headerlink" title="5. 二进制转换为十进制"></a>5. 二进制转换为十进制</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 二进制转换为十进制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param binary 二进制数</span></span><br><span class="line"><span class="comment"> @return 十进制数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSInteger</span>)getDecimalByBinary:(<span class="built_in">NSString</span> *)binary &#123;</span><br><span class="line">    <span class="built_in">NSInteger</span> decimal = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;binary.length; i++) &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *number = [binary substringWithRange:<span class="built_in">NSMakeRange</span>(binary.length - i - <span class="number">1</span>, <span class="number">1</span>)];</span><br><span class="line">        <span class="keyword">if</span> ([number isEqualToString:<span class="string">@&quot;1&quot;</span>]) &#123;</span><br><span class="line">            decimal += pow(<span class="number">2</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> decimal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>大概就这么多了，有其他需求可以补充，需要十六进制转换为十进制的话，就按上面方法将十六进制转换为二进制后再转换为十进制就行了，有需要的朋友就收藏一下吧！</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a target="_blank" rel="noopener" href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a target="_blank" rel="noopener" href="https://weibo.com/Jonzzs">微博</a> 、<a target="_blank" rel="noopener" href="https://github.com/Jonzzs">GitHub</a> 。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS-%E5%BC%80%E5%8F%91/" rel="tag"># iOS 开发</a>
+              <a href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" rel="tag"># 进制转换</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/03/16/Java/201703161547/" rel="prev" title="【Java 开发】mac 设置 MySQL 数据库默认编码（字符集）为 UTF-8">
+      <i class="fa fa-chevron-left"></i> 【Java 开发】mac 设置 MySQL 数据库默认编码（字符集）为 UTF-8
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/03/17/iOS/201703171551/" rel="next" title="【iOS 开发】Status Bar 状态栏设置汇总">
+      【iOS 开发】Status Bar 状态栏设置汇总 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E4%BA%8C%E8%BF%9B%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">1. 十进制转换为二进制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6"><span class="nav-number">2.</span> <span class="nav-text">2. 十进制转换为十六进制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">3. 二进制转换为十六进制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E4%BA%8C%E8%BF%9B%E5%88%B6"><span class="nav-number">4.</span> <span class="nav-text">4. 十六进制转换为二进制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%81%E8%BF%9B%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">5. 二进制转换为十进制</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonzzs</p>
+  <div class="site-description" itemprop="description">将来的你 一定会感激现在拼命的自己</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonzzs</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

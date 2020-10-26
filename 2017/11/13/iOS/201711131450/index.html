@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="持续集成（Continuous Integration 简称 CI）。Jenkins 是一个开源项目，提供了一种易于使用的持续集成系统，使开发者从繁杂的集成中解脱出来，专注于更为重要的业务逻辑实现上。具体就不多说了，想要更多的了解可以去查一下，下面是集成方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS 开发】使用 Jenkins + Fastlane 持续集成 iOS 项目">
+<meta property="og:url" content="http://jonzzs.cn/2017/11/13/iOS/201711131450/index.html">
+<meta property="og:site_name" content="爱吃鸭梨的猫">
+<meta property="og:description" content="持续集成（Continuous Integration 简称 CI）。Jenkins 是一个开源项目，提供了一种易于使用的持续集成系统，使开发者从繁杂的集成中解脱出来，专注于更为重要的业务逻辑实现上。具体就不多说了，想要更多的了解可以去查一下，下面是集成方法。">
+<meta property="og:locale">
+<meta property="og:image" content="https://user-images.githubusercontent.com/16834649/57366983-b8375300-71ba-11e9-8463-3428444f2544.png">
+<meta property="article:published_time" content="2017-11-13T06:50:53.000Z">
+<meta property="article:modified_time" content="2020-10-26T07:34:15.959Z">
+<meta property="article:author" content="Jonzzs">
+<meta property="article:tag" content="iOS 开发">
+<meta property="article:tag" content="Fastlane">
+<meta property="article:tag" content="持续集成">
+<meta property="article:tag" content="Jenkins">
+<meta property="article:tag" content="自动化打包">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/16834649/57366983-b8375300-71ba-11e9-8463-3428444f2544.png">
+
+<link rel="canonical" href="http://jonzzs.cn/2017/11/13/iOS/201711131450/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>【iOS 开发】使用 Jenkins + Fastlane 持续集成 iOS 项目 | 爱吃鸭梨的猫</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">爱吃鸭梨的猫</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://jonzzs.cn/2017/11/13/iOS/201711131450/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jonzzs">
+      <meta itemprop="description" content="将来的你 一定会感激现在拼命的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱吃鸭梨的猫">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【iOS 开发】使用 Jenkins + Fastlane 持续集成 iOS 项目
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-11-13 14:50:53" itemprop="dateCreated datePublished" datetime="2017-11-13T14:50:53+08:00">2017-11-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-26 15:34:15" itemprop="dateModified" datetime="2020-10-26T15:34:15+08:00">2020-10-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS-%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">iOS 开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <img src="https://user-images.githubusercontent.com/16834649/57366983-b8375300-71ba-11e9-8463-3428444f2544.png" itemprop="contentUrl">
+        </div>
+        <blockquote>
+<p>持续集成（<a target="_blank" rel="noopener" href="http://martinfowler.com/articles/continuousIntegration.html">Continuous Integration</a> 简称 <code>CI</code>）。<a target="_blank" rel="noopener" href="https://jenkins.io/">Jenkins</a> 是一个开源项目，提供了一种易于使用的持续集成系统，使开发者从繁杂的集成中解脱出来，专注于更为重要的业务逻辑实现上。具体就不多说了，想要更多的了解可以去查一下，下面是集成方法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<p><strong>本文最终目的：</strong></p>
+<ul>
+<li>测试人员可登录 <code>Jenkins</code> 网页自行选择 <code>开发分支</code> 和 <code>打包类型</code> ，然后自动打包完成并自动上传至 <code>蒲公英</code> 或 <code>iTunes Connect</code> ，不再需要开发人员手动安装或上传。</li>
+</ul>
+<h2 id="1-配置-Fastlane"><a href="#1-配置-Fastlane" class="headerlink" title="1. 配置 Fastlane"></a>1. 配置 Fastlane</h2><p>由于项目的编译打包以及上传全部要依赖 <code>Fastlane</code> 来进行，所以在配置 <code>Jenkins</code> 之前要保证项目已经配置好了 <code>Fastlane</code> ，这里看我的另一篇文章：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/662677cb1b47">【iOS 开发】使用 Fastlane 自动化打包并发布 iOS 项目</a> 。</p>
+<h2 id="2-安装-Jenkins"><a href="#2-安装-Jenkins" class="headerlink" title="2. 安装 Jenkins"></a>2. 安装 Jenkins</h2><ul>
+<li><p><code>Jenkins</code> 依赖于 <code>Java</code> 运行环境，因此需要先保证电脑已经安装了 <code>Java JDK</code> ，如果没有的话前往 <a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">这里</a> 下载安装即可。</p>
+</li>
+<li><p>我这里是使用 <a target="_blank" rel="noopener" href="https://brew.sh/">homebrew</a> 安装 <code>Jenkins</code> ，没有安装 <code>homebrew </code> 的输入以下命令安装一下。</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>千万不要去 <code>Jenkins</code> 官网下载 <code>pkg</code> 安装包安装，因为用安装包安装会自动生成一个共享用户 <code>jenkins</code>，而这个用户的权限和系统登录用户的权限不同，会造成大量的权限问题，我已经被坑惨了，用 <code>homebrew </code> 装是不会生成共享用户的。</p>
+</li>
+<li><p><code>homebrew</code> 安装完成后输入以下命令安装 <code>Jenkins</code> 。</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">brew install jenkins</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165227.png" alt="安装"></p>
+<ul>
+<li>如果想要卸载直接执行以下命令即可卸载 <code>Jenkins</code> 。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">brew uninstall jenkins</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装完成后输入以下命令链接 <code>launchd</code> 配置文件。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ln -sfv /usr/<span class="built_in">local</span>/opt/jenkins/*.plist ~/Library/LaunchAgents</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后执行以下命令启动 <code>Jenkins</code> 。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">launchctl load ~/Library/LaunchAgents/homebrew.mxcl.jenkins.plist</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Jenkins</code> 默认是开机自动启动的，如果想关闭就执行以下命令即可关闭。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.jenkins.plist</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接着打开浏览器，输入 <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a> ，就可以看到 <code>Jenkins</code> 已经启动。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165242.png" alt="Jenkins"></p>
+<ul>
+<li><code>Jenkins</code> 默认端口号是 <code>8080</code> ，如果想要更改端口号的话可以用 <code>Xcode</code> 打开以下文件，将 <code>httpPort</code> 后面的 <code>8080</code> 改成你想要的端口号即可。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/opt/jenkins/homebrew.mxcl.jenkins.plist</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165253.png" alt="修改端口"></p>
+<h2 id="3-配置-Jenkins"><a href="#3-配置-Jenkins" class="headerlink" title="3. 配置 Jenkins"></a>3. 配置 Jenkins</h2><ul>
+<li>等待启动完成后 ，会出现以下界面让你输入密码解锁。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165307.png" alt="Jenkins"></p>
+<ul>
+<li>密码就在上面提示的 <code>/Users/Jonzzs/.jenkins/secrets/initialAdminPassword</code> 文件中，打开 <code>initialAdminPassword</code> 文件将密码复制到浏览器解锁即可，然后点击第一个 <code>Install suggested plugins</code>。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165322.png" alt="Jenkins"></p>
+<ul>
+<li>然后等待插件全部安装完成。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165344.png" alt="Jenkins"></p>
+<ul>
+<li>安装完成后会跳出创建用户界面，按照提示创建用户即可。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165359.png" alt="Jenkins"></p>
+<ul>
+<li>最后到这个页面就算是安装完成了。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165414.png" alt="Jenkins"></p>
+<h2 id="4-安装插件"><a href="#4-安装插件" class="headerlink" title="4. 安装插件"></a>4. 安装插件</h2><ul>
+<li>在建任务之前需要先安装几个插件，前往 <code>系统管理</code> - <code>管理插件</code> ，在 <code>可选插件</code> 中搜索 <code>GitLab Plugin</code> 、<code>Gitlab Hook Plugin</code> 、<code>Xcode integration</code> 这三个插件，然后安装。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165429.png" alt="Jenkins"></p>
+<h2 id="5-配置环境变量"><a href="#5-配置环境变量" class="headerlink" title="5. 配置环境变量"></a>5. 配置环境变量</h2><ul>
+<li>前往 <code>系统管理</code> - <code>系统设置</code> 找到 <code>全局属性</code> ，然后添加以下三个环境变量。</li>
+</ul>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">LANG</span></span><br><span class="line"><span class="attr">en_US.UTF-8</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">LANGUAGE</span></span><br><span class="line"><span class="attr">en_US.UTF-8</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">LC_ALL</span></span><br><span class="line"><span class="attr">en_US.UTF-8</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165443.png" alt="环境变量"></p>
+<ul>
+<li>这三个环境变量是用来修改编码格式的，如果不加下面脚本执行 <code>fastlane</code> 命令时会报错。</li>
+</ul>
+<h2 id="6-创建任务"><a href="#6-创建任务" class="headerlink" title="6. 创建任务"></a>6. 创建任务</h2><ul>
+<li>插件安装完成以后就可以开始创建项目了，点击新建任务，输入你的项目名称。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165455.png" alt="Jenkins"></p>
+<ul>
+<li>勾选 <code>参数化构建过程</code> ，添加一个 <code>String Parameter</code> 和一个 <code>Choice Parameter</code> ，第一个 <code>ARCHIVE_BRANCH</code> 主要是输入要打包的项目分支，第二个 <code>ARCHIVE_TYPE</code> 是选择打包的类型，我这边 <code>beta</code> 是打包发布到 <code>蒲公英</code> ，<code>release</code> 是打包发布到 <code>iTunes Connect</code> ，如果你不需要这些参数可以跳过。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165507.png" alt="Jenkins"></p>
+<ul>
+<li>在 <code>源码管理</code> 输入你的仓库地址，地址为 <code>SSH</code> 方式，然后需要在点击 <code>Add</code> 添加 <code>SSH Key</code> 。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165518.png" alt="Jenkins"></p>
+<ul>
+<li><p>选择 <code>SSH Username with private key</code> 类型，<code>Username</code> 随便填，然后选择 <code>Enter directly</code> ，将自己 <code>SSH Key</code> 的私钥复制进去即可，注意是私钥不是公钥，<code>/Users/Jonzzs/.ssh/id_rsa</code> 在这个文件里。</p>
+</li>
+<li><p>如果自己电脑没有生成过 <code>SSH Key</code> ，就自己去查一下吧，这里就不重复了。</p>
+</li>
+<li><p>最后在 <code>构建</code> 中增加一个 <code>Execute Shell</code> ，主要用来填写脚本内容。</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165542.png" alt="Jenkins"></p>
+<ul>
+<li>填写以下脚本命令，<code>xxx</code> 处填写自己项目相应文件夹名，因为在执行 <code>fastlane</code> 指令之前需要进入 <code>fastlane</code> 文件夹所在目录，如果你的 <code>git</code> 根目录就是在项目目录的话，可以不用这句，然后点击 <code>保存</code> 即可。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git checkout <span class="variable">$&#123;ARCHIVE_BRANCH&#125;</span></span><br><span class="line">git pull</span><br><span class="line"><span class="built_in">cd</span> ./xxx</span><br><span class="line">fastlane <span class="variable">$&#123;ARCHIVE_TYPE&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="7-开始打包"><a href="#7-开始打包" class="headerlink" title="7. 开始打包"></a>7. 开始打包</h2><ul>
+<li>进入你创建的任务，点击 <code>Build with Parameters</code> ，然后输入要打包的项目分支以及类型，然后点击 <code>开始构建</code> 即可开始打包。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165554.png" alt="Jenkins"></p>
+<ul>
+<li>如果构建失败，也可以在 <code>Build History</code> 中点击 <code>Console Output</code> 查看控制台输出记录，找到错误原因。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165605.png" alt="Jenkins"></p>
+<hr>
+<blockquote>
+<p>配置方法到这里就完成了，有不明白的地方可以留言。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a target="_blank" rel="noopener" href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a target="_blank" rel="noopener" href="https://weibo.com/Jonzzs">微博</a> 、<a target="_blank" rel="noopener" href="https://github.com/Jonzzs">GitHub</a> 。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS-%E5%BC%80%E5%8F%91/" rel="tag"># iOS 开发</a>
+              <a href="/tags/Fastlane/" rel="tag"># Fastlane</a>
+              <a href="/tags/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/" rel="tag"># 持续集成</a>
+              <a href="/tags/Jenkins/" rel="tag"># Jenkins</a>
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85/" rel="tag"># 自动化打包</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/11/09/iOS/201711091509/" rel="prev" title="【iOS 开发】使用 Fastlane 自动化打包并发布 iOS 项目">
+      <i class="fa fa-chevron-left"></i> 【iOS 开发】使用 Fastlane 自动化打包并发布 iOS 项目
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/11/21/Mac/201711211402/" rel="next" title="mac 删除 Windows 或 EFI Boot 启动盘的方法">
+      mac 删除 Windows 或 EFI Boot 启动盘的方法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%85%8D%E7%BD%AE-Fastlane"><span class="nav-number">1.</span> <span class="nav-text">1. 配置 Fastlane</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85-Jenkins"><span class="nav-number">2.</span> <span class="nav-text">2. 安装 Jenkins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%85%8D%E7%BD%AE-Jenkins"><span class="nav-number">3.</span> <span class="nav-text">3. 配置 Jenkins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">4. 安装插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">5.</span> <span class="nav-text">5. 配置环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%88%9B%E5%BB%BA%E4%BB%BB%E5%8A%A1"><span class="nav-number">6.</span> <span class="nav-text">6. 创建任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%BC%80%E5%A7%8B%E6%89%93%E5%8C%85"><span class="nav-number">7.</span> <span class="nav-text">7. 开始打包</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonzzs</p>
+  <div class="site-description" itemprop="description">将来的你 一定会感激现在拼命的自己</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonzzs</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

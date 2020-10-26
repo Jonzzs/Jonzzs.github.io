@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="平常的开发过程中，当我们要改变视图的位置或者大小的时候，我们的第一反应一定是用 frame 这个属性去实现，但其实还有个更加简单的方法就是使用 transform  这个属性，一句代码就能完成。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS 开发】利用 transform 使视图平移、缩放、旋转">
+<meta property="og:url" content="http://jonzzs.cn/2017/03/20/iOS/201703201432/index.html">
+<meta property="og:site_name" content="爱吃鸭梨的猫">
+<meta property="og:description" content="平常的开发过程中，当我们要改变视图的位置或者大小的时候，我们的第一反应一定是用 frame 这个属性去实现，但其实还有个更加简单的方法就是使用 transform  这个属性，一句代码就能完成。">
+<meta property="og:locale">
+<meta property="og:image" content="https://user-images.githubusercontent.com/16834649/57366216-1e22db00-71b9-11e9-964c-9bd974bf9c1f.png">
+<meta property="article:published_time" content="2017-03-20T06:32:00.000Z">
+<meta property="article:modified_time" content="2020-04-13T07:44:26.903Z">
+<meta property="article:author" content="Jonzzs">
+<meta property="article:tag" content="iOS 开发">
+<meta property="article:tag" content="transform">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/16834649/57366216-1e22db00-71b9-11e9-964c-9bd974bf9c1f.png">
+
+<link rel="canonical" href="http://jonzzs.cn/2017/03/20/iOS/201703201432/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>【iOS 开发】利用 transform 使视图平移、缩放、旋转 | 爱吃鸭梨的猫</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">爱吃鸭梨的猫</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://jonzzs.cn/2017/03/20/iOS/201703201432/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jonzzs">
+      <meta itemprop="description" content="将来的你 一定会感激现在拼命的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱吃鸭梨的猫">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【iOS 开发】利用 transform 使视图平移、缩放、旋转
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-03-20 14:32:00" itemprop="dateCreated datePublished" datetime="2017-03-20T14:32:00+08:00">2017-03-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-13 15:44:26" itemprop="dateModified" datetime="2020-04-13T15:44:26+08:00">2020-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS-%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">iOS 开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <img src="https://user-images.githubusercontent.com/16834649/57366216-1e22db00-71b9-11e9-964c-9bd974bf9c1f.png" itemprop="contentUrl">
+        </div>
+        <blockquote>
+<p>平常的开发过程中，当我们要改变视图的位置或者大小的时候，我们的第一反应一定是用 <code>frame</code> 这个属性去实现，但其实还有个更加简单的方法就是使用 <code>transform </code> 这个属性，一句代码就能完成。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="1-平移"><a href="#1-平移" class="headerlink" title="1. 平移"></a>1. 平移</h2><p>括号中填写 <code>x</code> 和 <code>y</code> 移动数值。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 在原来的基础上移动（只移动一次） */</span></span><br><span class="line"><span class="keyword">self</span>.image.transform = <span class="built_in">CGAffineTransformMakeTranslation</span>(<span class="number">10</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 在移动后的基础上移动（可以一直移动） */</span></span><br><span class="line"><span class="keyword">self</span>.image.transform = <span class="built_in">CGAffineTransformTranslate</span>(<span class="keyword">self</span>.image.transform, <span class="number">20</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-缩放"><a href="#2-缩放" class="headerlink" title="2. 缩放"></a>2. 缩放</h2><p>括号中填写 <code>x</code> 和 <code>y</code> 缩放倍数。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 在原来的基础上缩放（只缩放一次） */</span></span><br><span class="line"><span class="keyword">self</span>.image.transform = <span class="built_in">CGAffineTransformMakeScale</span>(<span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 在缩放后的基础上缩放（可以一直缩放） */</span></span><br><span class="line"><span class="keyword">self</span>.image.transform = <span class="built_in">CGAffineTransformScale</span>(<span class="keyword">self</span>.image.transform, <span class="number">2</span>, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-旋转"><a href="#3-旋转" class="headerlink" title="3. 旋转"></a>3. 旋转</h2><p>括号中填写弧度 <code>M_PI_4</code> = <code>45°</code>（绕中心旋转）。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 在原来的基础上旋转（只旋转一次） */</span></span><br><span class="line"><span class="keyword">self</span>.image.transform = <span class="built_in">CGAffineTransformMakeRotation</span>(M_PI_4);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 在旋转后的基础上旋转（可以一直旋转） */</span></span><br><span class="line"><span class="keyword">self</span>.image.transform = <span class="built_in">CGAffineTransformRotate</span>(<span class="keyword">self</span>.image.transform, M_PI_4);</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-AnchorPoint-设定"><a href="#4-AnchorPoint-设定" class="headerlink" title="4. AnchorPoint 设定"></a>4. AnchorPoint 设定</h2><p>因为缩放或旋转默认都是围绕视图的中心点来进行的，通过 <code>AnchorPoint</code> 的设定，可以改变缩放或旋转围绕的点，下面是修改方法。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置缩放或旋转围绕的点</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param anchorPoint 围绕的点</span></span><br><span class="line"><span class="comment"> @param view 设置的视图</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)setAnchorPoint:(<span class="built_in">CGPoint</span>)anchorPoint forView:(<span class="built_in">UIView</span> *)view &#123;</span><br><span class="line">    <span class="built_in">CGPoint</span> oldOrigin = view.frame.origin;</span><br><span class="line">    view.layer.anchorPoint = anchorPoint;</span><br><span class="line">    <span class="built_in">CGPoint</span> newOrigin = view.frame.origin;</span><br><span class="line">    <span class="built_in">CGPoint</span> transition;</span><br><span class="line">    transition.x = newOrigin.x - oldOrigin.x;</span><br><span class="line">    transition.y = newOrigin.y - oldOrigin.y;</span><br><span class="line">    view.center = <span class="built_in">CGPointMake</span> (view.center.x - transition.x, view.center.y - transition.y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 将缩放或旋转围绕的点还原为默认</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param view 设置的视图</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)setDefaultAnchorPointforView:(<span class="built_in">UIView</span> *)view &#123;</span><br><span class="line">    [<span class="keyword">self</span> setAnchorPoint:<span class="built_in">CGPointMake</span>(<span class="number">0.5</span>f, <span class="number">0.5</span>f) forView:view];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>好了，大致就这几种，其中上下两种方法的区别就是，当多次调用那一句代码时，一个会一直从原点开始变化，而另一个会从当前位置继续开始变化。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a target="_blank" rel="noopener" href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a target="_blank" rel="noopener" href="https://weibo.com/Jonzzs">微博</a> 、<a target="_blank" rel="noopener" href="https://github.com/Jonzzs">GitHub</a> 。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS-%E5%BC%80%E5%8F%91/" rel="tag"># iOS 开发</a>
+              <a href="/tags/transform/" rel="tag"># transform</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/03/17/iOS/201703171551/" rel="prev" title="【iOS 开发】Status Bar 状态栏设置汇总">
+      <i class="fa fa-chevron-left"></i> 【iOS 开发】Status Bar 状态栏设置汇总
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/04/05/Mac/201704051635/" rel="next" title="macOS Sierra 10.12+ 软件提示已损坏，移除到废纸篓的解决方法">
+      macOS Sierra 10.12+ 软件提示已损坏，移除到废纸篓的解决方法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%B9%B3%E7%A7%BB"><span class="nav-number">1.</span> <span class="nav-text">1. 平移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%BC%A9%E6%94%BE"><span class="nav-number">2.</span> <span class="nav-text">2. 缩放</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%97%8B%E8%BD%AC"><span class="nav-number">3.</span> <span class="nav-text">3. 旋转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-AnchorPoint-%E8%AE%BE%E5%AE%9A"><span class="nav-number">4.</span> <span class="nav-text">4. AnchorPoint 设定</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonzzs</p>
+  <div class="site-description" itemprop="description">将来的你 一定会感激现在拼命的自己</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonzzs</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

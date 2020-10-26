@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="最近在试着将 showdoc 配置到自己服务器上，所以需要 PHP 环境，然后要安装 mcrypt 扩展，不得不说这真是一个大坑，由于自己对 PHP 了解不多，网上的教程很多大坑都没有提到，装了不知道多少次才走出大坑，所以就写下来记录一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【PHP 开发】mac 在 PHP 环境安装 mcrypt 扩展的方法">
+<meta property="og:url" content="http://jonzzs.cn/2017/06/12/PHP/201706121613/index.html">
+<meta property="og:site_name" content="爱吃鸭梨的猫">
+<meta property="og:description" content="最近在试着将 showdoc 配置到自己服务器上，所以需要 PHP 环境，然后要安装 mcrypt 扩展，不得不说这真是一个大坑，由于自己对 PHP 了解不多，网上的教程很多大坑都没有提到，装了不知道多少次才走出大坑，所以就写下来记录一下。">
+<meta property="og:locale">
+<meta property="og:image" content="https://user-images.githubusercontent.com/16834649/57367530-be79ff00-71bb-11e9-8053-ae163041482b.png">
+<meta property="article:published_time" content="2017-06-12T08:13:00.000Z">
+<meta property="article:modified_time" content="2020-04-13T07:44:26.901Z">
+<meta property="article:author" content="Jonzzs">
+<meta property="article:tag" content="PHP 开发">
+<meta property="article:tag" content="mcrypt">
+<meta property="article:tag" content="PHP 扩展">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/16834649/57367530-be79ff00-71bb-11e9-8053-ae163041482b.png">
+
+<link rel="canonical" href="http://jonzzs.cn/2017/06/12/PHP/201706121613/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>【PHP 开发】mac 在 PHP 环境安装 mcrypt 扩展的方法 | 爱吃鸭梨的猫</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">爱吃鸭梨的猫</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://jonzzs.cn/2017/06/12/PHP/201706121613/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jonzzs">
+      <meta itemprop="description" content="将来的你 一定会感激现在拼命的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱吃鸭梨的猫">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【PHP 开发】mac 在 PHP 环境安装 mcrypt 扩展的方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-06-12 16:13:00" itemprop="dateCreated datePublished" datetime="2017-06-12T16:13:00+08:00">2017-06-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-13 15:44:26" itemprop="dateModified" datetime="2020-04-13T15:44:26+08:00">2020-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP-%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">PHP 开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <img src="https://user-images.githubusercontent.com/16834649/57367530-be79ff00-71bb-11e9-8053-ae163041482b.png" itemprop="contentUrl">
+        </div>
+        <blockquote>
+<p>最近在试着将 <code>showdoc</code> 配置到自己服务器上，所以需要 <code>PHP</code> 环境，然后要安装 <code>mcrypt</code> 扩展，不得不说这真是一个大坑，由于自己对 <code>PHP</code> 了解不多，网上的教程很多大坑都没有提到，装了不知道多少次才走出大坑，所以就写下来记录一下。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<p>首先 <code>PHP</code> 环境这个就不说了，没配置的可以看我的另一篇文章：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/6ba5b716feaf">【PHP 开发】mac 下配置 PHP 环境的方法</a> 。</p>
+<h2 id="安装-mcrypt"><a href="#安装-mcrypt" class="headerlink" title="安装 mcrypt"></a>安装 mcrypt</h2><p>安装 <code>mcrypt</code> 有两种方法，可以使用 <code>Homebrew </code> 来自动安装 <code>mcrypt</code> 所需依赖包，也可以自行下载所需依赖包来安装，我都写在下面。</p>
+<h3 id="1-使用-Homebrew-安装-mcrypt"><a href="#1-使用-Homebrew-安装-mcrypt" class="headerlink" title="1. 使用 Homebrew 安装 mcrypt"></a>1. 使用 Homebrew 安装 mcrypt</h3><p><code>Homebrew</code> 是一个软件包管理器，想要了解更多可以点击 <a target="_blank" rel="noopener" href="https://brew.sh/index_zh-cn.html">这里</a> ，安装方法打开终端，输入以下命令进行安装，中间会让你输入密码，然后等待安装完成即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;usr&#x2F;bin&#x2F;ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果 <code>Homebrew </code> 已经安装完成，就可以打开终端，输入以下命令查看是否有 <code>mcrypt</code> 依赖包。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">brew search mcrypt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>有的话，就输入以下命令会安装 <code>mcrypt</code> 所需依赖包。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">brew install mcrypt</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-自己下载依赖包安装"><a href="#2-自己下载依赖包安装" class="headerlink" title="2. 自己下载依赖包安装"></a>2. 自己下载依赖包安装</h3><ul>
+<li><p>分别下载这三个 <code>mcrypt</code> 所需的依赖包：<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/mcrypt/files/Libmcrypt/2.5.8/">libmcrypt</a>、<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/mhash/files/mhash/0.9.9.9/">mhash</a>、<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/mcrypt/files/MCrypt/2.6.8/">mcrypt</a> ，下载完成后全部解压出来。</p>
+</li>
+<li><p>先安装 <code>libmcrypt</code> ，打开终端 <code>cd</code> 到 <code>libmcrypt</code> 目录下，分别输入以下命令进行安装。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;configure</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在安装 <code>mhash</code> ， <code>cd</code> 到 <code>mhash</code> 目录下，分别输入以下命令进行安装。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;configure</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>最后安装 <code>mcrypt</code> ，由于在安装 <code>mcrypt</code> 时，会找不到 <code>libmcrypt</code> 的链接库，导致无法编译，所以在安装 <code>mcrypt</code> 时要加入 <code>LD_LIBRARY_PATH=/usr/local</code> 导入链接库，<code>cd</code> 到 <code>mcrypt</code> 目录下，分别输入以下命令进行安装。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LD_LIBRARY_PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;lib&#x2F; .&#x2F;configure -with-libmcrypt-prefix&#x3D;&#x2F;usr&#x2F;local</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 如果安装 <code>mcrypt</code> 时，如果输入 <code>make</code> 报 <code>rfc2440.c:26:10: fatal error: &#39;malloc.h&#39; file not found</code> 错误，只需要找到 <code>mcrypt</code> 文件夹下的 <code>rfc2440.c</code> 这个文件，将 <code>#include &lt;malloc.h&gt;</code> 头文件改为 <code>#include &lt;sys/malloc.h&gt;</code> ，然后重新安装即可。</p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164819.png" alt="报错"></p>
+<h2 id="安装-PHP-扩展"><a href="#安装-PHP-扩展" class="headerlink" title="安装 PHP 扩展"></a>安装 PHP 扩展</h2><h3 id="1-生成-mcrypt-so-文件"><a href="#1-生成-mcrypt-so-文件" class="headerlink" title="1. 生成 mcrypt.so 文件"></a>1. 生成 mcrypt.so 文件</h3><ul>
+<li>首先进入官网下载源码包：<a target="_blank" rel="noopener" href="http://php.net/downloads.php">http://php.net/downloads.php</a> ，然后下载与自己电脑上 <code>PHP</code> 版本一致的源码包，打开终端输入以下命令即可查看 <code>PHP</code> 版本。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">php -v</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>下载完成后解压出来，然后打开终端 <code>cd</code> 到 <code>PHP</code> 源码包下的 <code>/ext/mcrypt</code> 文件夹下，分别输入以下命令。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">phpize</span><br><span class="line"></span><br><span class="line">.&#x2F;configure</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">sudo cp modules&#x2F;mcrypt.so &#x2F;usr&#x2F;lib&#x2F;php&#x2F;extensions&#x2F;no-debug-non-zts-20090626&#x2F;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>全部执行成功后，可以前往上面写的 <code>/usr/lib/php/extensions/no-debug-non-zts-20090626</code> 这个路径下，看一下里面是否有 <code>mcrypt.so</code> 这个文件，有的话就是生成成功了。</li>
+</ul>
+<p><strong>注意：</strong> 这边有三个大坑，坑以及解决方法我都罗列在下面。</p>
+<p><strong>第一个坑：</strong> 输入 <code>./configure</code> 不能执行。</p>
+<ul>
+<li>解决方法是点击 <a target="_blank" rel="noopener" href="http://ftp.gnu.org/gnu/autoconf/">这里</a> 拉到最下面下载 <code>autoconf-latest.tar.gz</code> ，然后解压出来，打开终端 <code>cd</code> 到 <code>autoconf </code> 目录下，分别输入以下命令进行安装。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;configure</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装完成后 <code>./configure</code> 就可以执行了。</li>
+</ul>
+<p><strong>第二个坑：</strong> 在执行 <code>sudo cp modules/mcrypt.so /usr/lib/php/extensions/no-debug-non-zts-20090626/</code> 时报下面这个错误，错误显示是文件夹不存在。</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cp: directory &#x2F;usr&#x2F;lib&#x2F;php&#x2F;extensions&#x2F;no-debug-non-zts-20090626 does not exist</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>解决方法是打开 <code>Finder</code> ，按下 <code>shift + command + G</code> ，前往以下地址。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;usr&#x2F;lib&#x2F;php&#x2F;extensions</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后可以看到有几个存在文件夹，将上面路径中的 <code>20090626</code> 这个日期改成你电脑中有的那个日期，日期取最新的。</li>
+</ul>
+<p><strong>第三个坑：</strong> 改完路径后继续执行 <code>sudo cp modules/mcrypt.so /usr/lib/php/extensions/no-debug-non-zts-20131226/</code> 这一步，结果又报如下错误，错误显示是操作不允许，没有权限。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cp: &#x2F;usr&#x2F;lib&#x2F;php&#x2F;extensions&#x2F;no-debug-non-zts-20131226&#x2F;#INST@17000#: Operation not permitted</span><br></pre></td></tr></table></figure>
+
+<p>最后查了半天终于知道问题所在，当你进入 <code>/usr/lib/php/extensions</code> 目录时你会发现目录根本无法进行任何操作，原来是 <code>mac</code> 的系统新添加了一个新的安全机制叫 <code>系统完整性保护System Integrity Protection (SIP)</code> ，所以对于目录 <code>/System</code> 、<code>/sbin</code>、<code>/usr（不包含/usr/local/）</code> 仅仅供系统使用，其它用户或者程序无法直接使用，而我们的 <code>/usr/lib/php/extensions</code> 刚好在受保护范围内。</p>
+<ul>
+<li>解决方法是禁用 <code>SIP</code> 保护机制，步骤如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- 重启系统</span><br><span class="line">- 按住 Command + R 进入恢复模式</span><br><span class="line">- 点击 “实用工具” 菜单中的 “终端”</span><br><span class="line">- 输入：csrutil disable</span><br><span class="line">- 执行后会输出：Successfully disabled System Integrity Protection. Please restart the machine for the changes to take effect.</span><br><span class="line">- 再次重启系统</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>禁用掉 <code>SIP</code> 后，就可以顺利的执行了，当然最后装完了以后你可以重新打开 <code>SIP</code> ，方法同上，只是终端中输入的命令改为 <code>csrutil enable</code> 。</li>
+</ul>
+<h3 id="2-修改-php-ini-文件"><a href="#2-修改-php-ini-文件" class="headerlink" title="2. 修改 php.ini 文件"></a>2. 修改 php.ini 文件</h3><ul>
+<li>打开 <code>Finder</code> ，按下 <code>shift + command + G</code> ，前往以下地址。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;etc&#x2F;php.ini</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开 <code>php.ini</code> 文件，在最下面添加以下代码。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">extension&#x3D;mcrypt.so</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164838.png" alt="修改 php.ini 文件"></p>
+<ul>
+<li>然后输入以下命令重启 <code>Apache</code> 服务。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apachectl restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试是否安装成功"><a href="#测试是否安装成功" class="headerlink" title="测试是否安装成功"></a>测试是否安装成功</h2><ul>
+<li>打开 <code>Finder</code> ，然后按下 <code>shift + command + G</code> 前往以下地址，这个地址是 <code>Apache</code> 的默认网站服务器根目录。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;Library&#x2F;WebServer&#x2F;Documents</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>新建一个名为 <code>phpinfo.php</code> 的文件，在里面输入以下代码后，<code>command + s</code> 保存。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">phpinfo();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开浏览器在地址栏输入 <a target="_blank" rel="noopener" href="http://localhost/phpinfo.php">http://localhost/phpinfo.php</a> ，按下 <code>command + F</code> 查找 <code>mcrypt</code> ，查找到以下信息就表示 <code>mcrypt</code> 安装成功。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164855.png" alt="mcrypt"></p>
+<hr>
+<blockquote>
+<p>安装结束，希望能帮助需要的人少走我走过的那些坑，需要的人可以收藏一下。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a target="_blank" rel="noopener" href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a target="_blank" rel="noopener" href="https://weibo.com/Jonzzs">微博</a> 、<a target="_blank" rel="noopener" href="https://github.com/Jonzzs">GitHub</a> 。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PHP-%E5%BC%80%E5%8F%91/" rel="tag"># PHP 开发</a>
+              <a href="/tags/mcrypt/" rel="tag"># mcrypt</a>
+              <a href="/tags/PHP-%E6%89%A9%E5%B1%95/" rel="tag"># PHP 扩展</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/06/12/PHP/201706121218/" rel="prev" title="【PHP 开发】mac 下配置 PHP 环境的方法">
+      <i class="fa fa-chevron-left"></i> 【PHP 开发】mac 下配置 PHP 环境的方法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/06/16/iOS/201706161157/" rel="next" title="【iOS 开发】ReactiveObjC（RAC）的使用汇总">
+      【iOS 开发】ReactiveObjC（RAC）的使用汇总 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-mcrypt"><span class="nav-number">1.</span> <span class="nav-text">安装 mcrypt</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8-Homebrew-%E5%AE%89%E8%A3%85-mcrypt"><span class="nav-number">1.1.</span> <span class="nav-text">1. 使用 Homebrew 安装 mcrypt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%87%AA%E5%B7%B1%E4%B8%8B%E8%BD%BD%E4%BE%9D%E8%B5%96%E5%8C%85%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.</span> <span class="nav-text">2. 自己下载依赖包安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-PHP-%E6%89%A9%E5%B1%95"><span class="nav-number">2.</span> <span class="nav-text">安装 PHP 扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%94%9F%E6%88%90-mcrypt-so-%E6%96%87%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">1. 生成 mcrypt.so 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BF%AE%E6%94%B9-php-ini-%E6%96%87%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">2. 修改 php.ini 文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="nav-number">3.</span> <span class="nav-text">测试是否安装成功</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonzzs</p>
+  <div class="site-description" itemprop="description">将来的你 一定会感激现在拼命的自己</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonzzs</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
