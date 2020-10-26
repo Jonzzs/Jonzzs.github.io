@@ -76,6 +76,263 @@
       </tags>
   </entry>
   <entry>
+    <title>【Java 开发】mac 设置 MySQL 数据库默认编码（字符集）为 UTF-8</title>
+    <url>/2017/03/16/Java/201703161547/</url>
+    <content><![CDATA[<blockquote>
+<p>鉴于有些刚接触 MySQL 数据库的人，经常会碰到数据库中文显示的问题，MySQL 数据库刚安装时默认编码是 latin1，所以如果在数据库建表的时候没有设置 <code>DEFAULT CHARSET=utf8</code> 的话，就会导致数据库无法设置或显示中文的问题，下面给出在 Mac 下将 MySQL 的默认编码改为 UTF-8。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="查看自己的-MySQL-的编码方式"><a href="#查看自己的-MySQL-的编码方式" class="headerlink" title="查看自己的 MySQL 的编码方式"></a>查看自己的 MySQL 的编码方式</h2><ul>
+<li>先连接 MySQL 数据库 ，在终端输入以下命令，回车后输入 MySQL 的密码。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后输入以下命令查看自己的 MySQL 的编码方式。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">show variables like <span class="string">&#x27;%char%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164120.jpg" alt="上图是我设置支持 UTF-8 后显示的结果"></p>
+<h2 id="修改-MySQL-的默认编码"><a href="#修改-MySQL-的默认编码" class="headerlink" title="修改 MySQL 的默认编码"></a>修改 MySQL 的默认编码</h2><ul>
+<li>进入到 <code>/usr/local/mysql/support-files</code> 目录，找到 <code>my-default.cnf</code>文件，将其复制到桌面上，重命名为 <code>my.cnf</code> 。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164132.jpg" alt="前往文件夹"></p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164142.jpg" alt="前往文件夹"></p>
+<ul>
+<li>右键桌面上的 <code>my.cnf</code> 文件，打开方式选择 <code>文本编辑</code> ，然后将全部内容替换为下面代码。</li>
+</ul>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Example MySQL config file for small systems.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This is for a system with little memory (&lt;= 64M) where MySQL is only used</span></span><br><span class="line"><span class="comment"># from time to time and it&#x27;s important that the mysqld daemon</span></span><br><span class="line"><span class="comment"># doesn&#x27;t use much resources.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># MySQL programs look for option files in a set of</span></span><br><span class="line"><span class="comment"># locations which depend on the deployment platform.</span></span><br><span class="line"><span class="comment"># You can copy this option file to one of those</span></span><br><span class="line"><span class="comment"># locations. For information about these locations, see:</span></span><br><span class="line"><span class="comment"># http://dev.mysql.com/doc/mysql/en/option-files.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># In this file, you can use all long options that a program supports.</span></span><br><span class="line"><span class="comment"># If you want to know which options a program supports, run the program</span></span><br><span class="line"><span class="comment"># with the &quot;--help&quot; option.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The following options will be passed to all MySQL clients</span></span><br><span class="line"><span class="attr">[client]</span></span><br><span class="line"><span class="meta">default-character-set</span>=<span class="string">utf8</span></span><br><span class="line"><span class="comment">#password   = your_password</span></span><br><span class="line"><span class="attr">port</span>        = <span class="string">3306</span></span><br><span class="line"><span class="attr">socket</span>      = <span class="string">/tmp/mysql.sock</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Here follows entries for some specific programs</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The MySQL server</span></span><br><span class="line"><span class="attr">[mysqld]</span></span><br><span class="line"><span class="meta">default-storage-engine</span>=<span class="string">INNODB</span></span><br><span class="line"><span class="meta">character-set-server</span>=<span class="string">utf8</span></span><br><span class="line"><span class="meta">collation-server</span>=<span class="string">utf8_general_ci</span></span><br><span class="line"><span class="attr">port</span>        = <span class="string">3306</span></span><br><span class="line"><span class="attr">socket</span>      = <span class="string">/tmp/mysql.sock</span></span><br><span class="line"><span class="attr">skip-external-locking</span></span><br><span class="line"><span class="attr">key_buffer_size</span> = <span class="string">16K</span></span><br><span class="line"><span class="attr">max_allowed_packet</span> = <span class="string">1M</span></span><br><span class="line"><span class="attr">table_open_cache</span> = <span class="string">4</span></span><br><span class="line"><span class="attr">sort_buffer_size</span> = <span class="string">64K</span></span><br><span class="line"><span class="attr">read_buffer_size</span> = <span class="string">256K</span></span><br><span class="line"><span class="attr">read_rnd_buffer_size</span> = <span class="string">256K</span></span><br><span class="line"><span class="attr">net_buffer_length</span> = <span class="string">2K</span></span><br><span class="line"><span class="attr">thread_stack</span> = <span class="string">128K</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Don&#x27;t listen on a TCP/IP port at all. This can be a security enhancement,</span></span><br><span class="line"><span class="comment"># if all processes that need to connect to mysqld run on the same host.</span></span><br><span class="line"><span class="comment"># All interaction with mysqld must be made via Unix sockets or named pipes.</span></span><br><span class="line"><span class="comment"># Note that using this option without enabling named pipes on Windows</span></span><br><span class="line"><span class="comment"># (using the &quot;enable-named-pipe&quot; option) will render mysqld useless!</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#skip-networking</span></span><br><span class="line"><span class="meta">server-id</span>   = <span class="string">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following if you want to log updates</span></span><br><span class="line"><span class="comment">#log-bin=mysql-bin</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># binary logging format - mixed recommended</span></span><br><span class="line"><span class="comment">#binlog_format=mixed</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Causes updates to non-transactional engines using statement format to be</span></span><br><span class="line"><span class="comment"># written directly to binary log. Before using this option make sure that</span></span><br><span class="line"><span class="comment"># there are no dependencies between transactional and non-transactional</span></span><br><span class="line"><span class="comment"># tables such as in the statement INSERT INTO t_myisam SELECT * FROM</span></span><br><span class="line"><span class="comment"># t_innodb; otherwise, slaves may diverge from the master.</span></span><br><span class="line"><span class="comment">#binlog_direct_non_transactional_updates=TRUE</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following if you are using InnoDB tables</span></span><br><span class="line"><span class="comment">#innodb_data_home_dir = /usr/local/mysql/data</span></span><br><span class="line"><span class="comment">#innodb_data_file_path = ibdata1:10M:autoextend</span></span><br><span class="line"><span class="comment">#innodb_log_group_home_dir = /usr/local/mysql/data</span></span><br><span class="line"><span class="comment"># You can set .._buffer_pool_size up to 50 - 80 %</span></span><br><span class="line"><span class="comment"># of RAM but beware of setting memory usage too high</span></span><br><span class="line"><span class="comment">#innodb_buffer_pool_size = 16M</span></span><br><span class="line"><span class="comment">#innodb_additional_mem_pool_size = 2M</span></span><br><span class="line"><span class="comment"># Set .._log_file_size to 25 % of buffer pool size</span></span><br><span class="line"><span class="comment">#innodb_log_file_size = 5M</span></span><br><span class="line"><span class="comment">#innodb_log_buffer_size = 8M</span></span><br><span class="line"><span class="comment">#innodb_flush_log_at_trx_commit = 1</span></span><br><span class="line"><span class="comment">#innodb_lock_wait_timeout = 50</span></span><br><span class="line"></span><br><span class="line"><span class="attr">[mysqldump]</span></span><br><span class="line"><span class="attr">quick</span></span><br><span class="line"><span class="attr">max_allowed_packet</span> = <span class="string">16M</span></span><br><span class="line"></span><br><span class="line"><span class="attr">[mysql]</span></span><br><span class="line"><span class="attr">no-auto-rehash</span></span><br><span class="line"><span class="comment"># Remove the next comment character if you are not familiar with SQL</span></span><br><span class="line"><span class="comment">#safe-updates</span></span><br><span class="line"></span><br><span class="line"><span class="attr">[myisamchk]</span></span><br><span class="line"><span class="attr">key_buffer_size</span> = <span class="string">8M</span></span><br><span class="line"><span class="attr">sort_buffer_size</span> = <span class="string">8M</span></span><br><span class="line"></span><br><span class="line"><span class="attr">[mysqlhotcopy]</span></span><br><span class="line"><span class="attr">interactive-timeout</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将修改后的文件 <code>my.cnf</code> 复制到 <code>/etc</code> 目录下。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164154.jpg" alt="前往文件夹"></p>
+<ul>
+<li>重启 MySQL 数据库就 ok 了。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164205.jpg" alt="重启数据库"></p>
+<hr>
+<blockquote>
+<p>大概步骤就是这样了，重启完数据库后可以再按照一开始的方法，看一下自己 MySQL 的数据库编码有没有变成 UTF-8 ，最后附上本文的 <a href="http://www.cnblogs.com/zhengbin/p/4740784.html?utm_source=tuicool&utm_medium=referral">参考地址</a> 。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Java 开发</category>
+      </categories>
+      <tags>
+        <tag>Java 开发</tag>
+        <tag>MqSQL</tag>
+        <tag>Mac</tag>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Java 开发】mac 安装多版本 Java JDK 和随时切换 JDK 版本的方法</title>
+    <url>/2017/04/17/Java/201704171814/</url>
+    <content><![CDATA[<blockquote>
+<p>首先说明一下，以前 <code>mac</code> 系统上是自带 <code>Java</code> 的，只支持到 <code>Java JDK 1.6</code> 版本 ，然后从 <code>OS X 10.7</code> 开始系统不再自带 <code>Java</code> ，需要自己来安装 <code>Java JDK</code> ，在平时的开发工作中，有时可能会遇到需要安装多个 <code>Java JDK</code> 版本，并且需要经常切换本地 <code>JDK</code> 版本，下面就给大家分享一个比较简单的方法，需要的可以收藏一下。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<p>终端输入以下命令可查看当前 <code>Java JDK</code> 版本，如果还没安装过，就按照下面方法开始安装。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-安装多版本-Java-JDK"><a href="#1-安装多版本-Java-JDK" class="headerlink" title="1.  安装多版本 Java JDK"></a>1.  安装多版本 Java JDK</h2><ul>
+<li><p><code>Java JDK 1.6</code> 由 <code>Apple</code> 提供，这是下载地址：<a href="http://support.apple.com/kb/DL1572">Java JDK 1.6 传送门</a></p>
+</li>
+<li><p><code>Java JDK 1.7 和 1.8</code> 则由 <code>Oracle</code> 官方提供，这是下载地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java JDK 1.7 和 1.8 传送门</a></p>
+</li>
+<li><p><code>Java JDK</code> 安装完后都在 <code>/Library/Java/JavaVirtualMachines/</code> 这个文件夹下。</p>
+</li>
+</ul>
+<p><strong>注意：</strong>全部是下载 <code>mac</code> 下的 <code>dmg</code> 安装包，需要哪个版本，直接安装就行了，可以同时存在多个版本。<code>Java JDK 1.6</code> 如果安装完成后，在上面那个文件夹中找不到的话，就到 <code>/System/Library/Java/JavaVirtualMachines/</code> 这个文件夹看一下，理论上都在上面那个文件夹下。</p>
+<h2 id="2-安装和配置-jenv"><a href="#2-安装和配置-jenv" class="headerlink" title="2. 安装和配置 jenv"></a>2. 安装和配置 jenv</h2><ul>
+<li>打开终端，执行以下命令安装 <code>jenv</code> ：（<a href="https://github.com/linux-china/jenv/wiki/Chinese-Introduction"> jenv 参考资料</a>）</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl -s get.jenv.io | bash</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后进入 <code>jenv</code> 目录，创建相关目录：（下面每输完一行就回车一下）</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.jenv/candidates/</span><br><span class="line"></span><br><span class="line">mkdir java</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> java</span><br><span class="line"></span><br><span class="line">mkdir 1.6</span><br><span class="line"></span><br><span class="line">mkdir 1.7</span><br><span class="line"></span><br><span class="line">mkdir 1.8</span><br></pre></td></tr></table></figure>
+
+<p>我上面把三个版本的 <code>Java JDK</code> 目录默认都创建了，你可以根据实际情况，安装了哪些版本就创建哪些版本的目录。</p>
+<ul>
+<li>执行以下命令设置 <code>Java JDK</code> 路径：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ln -s xxx xxx</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>这里非常重要，前面的 <code>xxx</code> 处填写 <code>Java JDK</code> 的 <code>bin</code> 文件夹的路径地址，后面的 <code>xxx</code> 处填写刚才上面创建 <code>jenv</code> 的对应版本文件夹的路径地址，怕写错的话就到 <code>/Library/Java/JavaVirtualMachines/</code> 这里找到对应版本 <code>Java JDK</code> 的 <code>bin</code> 目录直接拖到终端，就会显示路径地址了。</p>
+<p><strong>例如：</strong></p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ln -s /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bin ~/.jenv/candidates/java/1.6</span><br><span class="line"></span><br><span class="line">ln -s /Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/bin ~/.jenv/candidates/java/1.7</span><br><span class="line"></span><br><span class="line">ln -s /Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/bin ~/.jenv/candidates/java/1.8</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-切换-Java-JDK-版本"><a href="#3-切换-Java-JDK-版本" class="headerlink" title="3. 切换 Java JDK 版本"></a>3. 切换 Java JDK 版本</h2><p>按上面步骤配置完成后就可以开始切换 <code>Java JDK</code> 版本了，下面是切换方法：</p>
+<ul>
+<li>输入以下命令查看当前 <code>Java JDK</code> 版本：（我这边是 <code> 1.6</code> 版本）</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>输入以下命令切换 <code>Java JDK</code> 版本：（切换哪个版本就写哪个版本号，下面是切换到 <code>1.8</code> 版本）</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">jenv use java 1.8</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>再输入上面的命令查看 <code>Java JDK</code> 版本，会发现已经变成  <code>1.8</code> 版本了，如图：</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163742.png" alt="切换 `Java JDK` 版本"></p>
+<hr>
+<blockquote>
+<p>大功告成，配置完之后，以后切换版本就十分方便了，一句命令就能随时切换版本，是不是很方便呢，需要的就收藏一下吧，想参考更多方法请 <a href="http://www.cnblogs.com/luodengxiong/p/5736806.html">点击这里</a>。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Java 开发</category>
+      </categories>
+      <tags>
+        <tag>Java 开发</tag>
+        <tag>Mac</tag>
+        <tag>macOS</tag>
+        <tag>Java JDK</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Java 开发】mac 忘记 MySQL 数据库密码后重置密码的方法</title>
+    <url>/2017/05/19/Java/201705190959/</url>
+    <content><![CDATA[<blockquote>
+<p>由于有个同事的 <code>mac mini</code> 刚装了 <code>MySQL</code> ，然后忘记一开始设的密码是什么了，但是最近又要用到本地的 <code>MySQL</code> 数据库，网上找了一大堆方法全都没用，但又不想删了重装，最后终于被我找到了一个正确的方法，这里分享一下解决办法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="1-重启-MySQL-服务器"><a href="#1-重启-MySQL-服务器" class="headerlink" title="1. 重启 MySQL 服务器"></a>1. 重启 MySQL 服务器</h2><ul>
+<li>打开 <code>系统偏好设置</code> - <code>MySQL</code> ，然后点击 <code>Stop MySQL Server</code> 关闭 <code>MySQL</code> 服务器。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163759.png" alt="关闭 MySQL 服务器"></p>
+<ul>
+<li>关闭 <code>MySQL</code> 服务器后打开终端，输入以下命令进入 <code>MySQL</code> 目录。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/mysql/bin</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>再输入以下命令获取权限。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后输入以下命令重启 <code>MySQL</code> 服务器。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">./mysqld_safe --skip-grant-tables &amp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-修改-MySQL-密码"><a href="#2-修改-MySQL-密码" class="headerlink" title="2. 修改 MySQL 密码"></a>2. 修改 MySQL 密码</h2><ul>
+<li>刚才的终端不要关掉，按下 <code>command + N</code> 另开一个终端窗口，输入以下命令配置短命令。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> mysql=/usr/<span class="built_in">local</span>/mysql/bin/mysql</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接着输入以下命令进入 <code>MySQL</code> 命令模式。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mysql</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>再输入以下命令进入 <code>MySQL</code> 数据库。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">use mysql</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后输入以下命令获取权限。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>现在可以输入以下命令修改你的 <code>MySQL</code> 密码了，<code>xxx</code> 处填写你的新密码。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> password <span class="keyword">for</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>=password(<span class="string">&#x27;xxx&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-验证-MySQL-新密码"><a href="#3-验证-MySQL-新密码" class="headerlink" title="3. 验证 MySQL 新密码"></a>3. 验证 MySQL 新密码</h2><ul>
+<li>打开终端输入以下命令登录 <code>MySQL</code> 数据库。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接着输入你的新密码，如果 <code>MySQL</code> 数据库连接上就表示密码修改成功了。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163813.png" alt="登录 `MySQL` 数据库"></p>
+<hr>
+<blockquote>
+<p>最后附上本文的 <a href="http://www.cnblogs.com/lihuanqing/p/5623872.html">参考地址</a> ，给这个博主点赞，找了这么多方法，就这个是靠谱的，所以分享出来让更多的人看到，希望能帮助大家少走一些坑。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Java 开发</category>
+      </categories>
+      <tags>
+        <tag>Java 开发</tag>
+        <tag>Mac</tag>
+        <tag>macOS</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Java 开发】MySQL 开启远程连接的方法</title>
+    <url>/2017/06/09/Java/201706092354/</url>
+    <content><![CDATA[<blockquote>
+<p>在平时的工作中，经常会遇到 <code>MySQL</code> 数据库存储于某个人的电脑上，而其他人需要通过 <code>IP</code> 地址来连接到那个人电脑上的 <code>MySQL</code> ，但是大家要想连接到那个人电脑上的 <code>MySQL</code> ，那个人电脑上的 <code>MySQL</code> 就必须开启远程连接，下面分享一下 <code>MySQL</code> 如何开启远程连接。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="MySQL-开启远程连接"><a href="#MySQL-开启远程连接" class="headerlink" title="MySQL 开启远程连接"></a>MySQL 开启远程连接</h2><ul>
+<li>首先确保本机的 <code>MySQL</code> 是启动状态，然后打开终端，输入以下命令连接到 <code>MySQL</code> ，需要输入一下本机 <code>MySQL</code> 的连接密码 。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164218.png" alt="连接 MySQL"></p>
+<ul>
+<li>输入以下命令选择要使用的数据库，修改远程连接的基本信息，保存在 <code>mysql</code> 数据库中，因此使用 <code>mysql</code> 数据库。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">use mysql</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164234.png" alt="选择数据库"></p>
+<ul>
+<li>输入以下命令来更改远程连接的设置，前面的 <code>root</code> 表示别人访问本机 <code>MySQL</code> 的用户名，后面的 <code>root</code> 表示别人访问本机 <code>MySQL</code> 的密码。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;root&#39; WITH GRANT OPTION;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164251.png" alt="更改远程连接设置"></p>
+<ul>
+<li>输入以下命令来刷新刚才修改的权限，使其生效。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164302.png" alt="刷新权限"></p>
+<ul>
+<li>输入以下命令来查看修改是否成功，如果出现一行 <code>host = %</code> ，<code>user = root</code> 就表示修改成功。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select host,user from user;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164316.png" alt="查看是否成功"></p>
+<hr>
+<blockquote>
+<p>到此就修改成功了，<code>MySQL</code> 远程连接已经开启，其他人就可以通过 <code>IP</code> 地址来连接本机的 <code>MySQL</code> 数据库了。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Java 开发</category>
+      </categories>
+      <tags>
+        <tag>Java 开发</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用 Hexo 免费搭建属于自己的个人博客</title>
     <url>/2017/05/03/Hexo/201705031747/</url>
     <content><![CDATA[<blockquote>
@@ -174,62 +431,6 @@
       </tags>
   </entry>
   <entry>
-    <title>使用 git.oschina 码云 来托管 Hexo 搭建的博客</title>
-    <url>/2017/05/08/Hexo/201705081542/</url>
-    <content><![CDATA[<blockquote>
-<p>首先还没有搭建博客的先转到我的另一篇文章：<a href="http://www.jianshu.com/p/8f1e1b17417b">使用 Hexo 免费搭建属于自己的个人博客</a> ，一般我们都是使用 <code>GitHub + Hexo</code> 来搭建我们的 <code>博客</code> ，下面分享一下如何用国内的 <code>码云</code> 来托管我们的 <code>博客</code> 。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<ul>
-<li>首先进入 <a href="http://git.oschina.net/">码云</a> 创建一个仓库，<code>仓库名称</code> 和 <code>仓库路径</code> 都必须和你的 <code>用户名</code> 也就是上面的 <code>归属</code> 一样。</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/16834649/57365229-44477b80-71b7-11e9-8216-7b08377dad5d.png" alt="创建仓库"></p>
-<ul>
-<li>打开本地 <code>博客</code> 下的 <code>_config.yml</code> 文件，将刚才创建的仓库 <code>Git</code> 地址配置进去。</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/16834649/57365270-532e2e00-71b7-11e9-826b-79f4927bc6a4.png" alt="仓库 Git 地址"></p>
-<ul>
-<li>如果想使用 <code>GitHub</code> 和 <code>码云</code> 同时托管 <code>博客</code> ，就这样配置：</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span></span><br><span class="line">    <span class="attr">github:</span> <span class="string">https://github.com/Jonzzs/Jonzzs.github.io.git</span></span><br><span class="line">    <span class="attr">oschina:</span> <span class="string">https://git.oschina.net/Jonzzs/Jonzzs.git</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果只想使用 <code>码云</code> 托管 <code>博客</code> ，就这样配置：</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://git.oschina.net/Jonzzs/Jonzzs.git</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>保存文件后打开终端 <code>cd</code> 到 <code>博客</code> 目录下，使用以下命令重新部署一下博客。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>再次打开刚才 <code>码云</code> 上创建的仓库刷新一下，<code>博客</code> 的 <code>HTML</code> 页面应该已经传到仓库中了，打开 <code>服务</code> 中的 <code>Pages</code>，点击 <code>启动服务</code> 。</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/16834649/57365311-62ad7700-71b7-11e9-8bf5-4ae7823a65cd.png" alt="Pages"></p>
-<ul>
-<li>此时你就可以使用 <code>用户名.oschina.io</code> 来访问你的 <code>博客</code> 了。</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/16834649/57365346-735ded00-71b7-11e9-93d5-91e0cc89a385.png" alt="jonzzs.oschina.io"></p>
-<hr>
-<blockquote>
-<p>大功告成，使用 <code>码云</code> 托管 <code>博客</code> 后访问速度会快很多，大家块试试看吧。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Hexo 博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo 博客</tag>
-        <tag>码云</tag>
-        <tag>git.oschina</tag>
-        <tag>码云 Pages</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>给 Hexo 搭建的博客增加 百度 和 谷歌 的搜索引擎验证</title>
     <url>/2017/05/05/Hexo/201705051311/</url>
     <content><![CDATA[<blockquote>
@@ -301,6 +502,62 @@
         <tag>Hexo 博客</tag>
         <tag>百度</tag>
         <tag>谷歌</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 git.oschina 码云 来托管 Hexo 搭建的博客</title>
+    <url>/2017/05/08/Hexo/201705081542/</url>
+    <content><![CDATA[<blockquote>
+<p>首先还没有搭建博客的先转到我的另一篇文章：<a href="http://www.jianshu.com/p/8f1e1b17417b">使用 Hexo 免费搭建属于自己的个人博客</a> ，一般我们都是使用 <code>GitHub + Hexo</code> 来搭建我们的 <code>博客</code> ，下面分享一下如何用国内的 <code>码云</code> 来托管我们的 <code>博客</code> 。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<ul>
+<li>首先进入 <a href="http://git.oschina.net/">码云</a> 创建一个仓库，<code>仓库名称</code> 和 <code>仓库路径</code> 都必须和你的 <code>用户名</code> 也就是上面的 <code>归属</code> 一样。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/16834649/57365229-44477b80-71b7-11e9-8216-7b08377dad5d.png" alt="创建仓库"></p>
+<ul>
+<li>打开本地 <code>博客</code> 下的 <code>_config.yml</code> 文件，将刚才创建的仓库 <code>Git</code> 地址配置进去。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/16834649/57365270-532e2e00-71b7-11e9-826b-79f4927bc6a4.png" alt="仓库 Git 地址"></p>
+<ul>
+<li>如果想使用 <code>GitHub</code> 和 <code>码云</code> 同时托管 <code>博客</code> ，就这样配置：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span></span><br><span class="line">    <span class="attr">github:</span> <span class="string">https://github.com/Jonzzs/Jonzzs.github.io.git</span></span><br><span class="line">    <span class="attr">oschina:</span> <span class="string">https://git.oschina.net/Jonzzs/Jonzzs.git</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果只想使用 <code>码云</code> 托管 <code>博客</code> ，就这样配置：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://git.oschina.net/Jonzzs/Jonzzs.git</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>保存文件后打开终端 <code>cd</code> 到 <code>博客</code> 目录下，使用以下命令重新部署一下博客。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>再次打开刚才 <code>码云</code> 上创建的仓库刷新一下，<code>博客</code> 的 <code>HTML</code> 页面应该已经传到仓库中了，打开 <code>服务</code> 中的 <code>Pages</code>，点击 <code>启动服务</code> 。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/16834649/57365311-62ad7700-71b7-11e9-8bf5-4ae7823a65cd.png" alt="Pages"></p>
+<ul>
+<li>此时你就可以使用 <code>用户名.oschina.io</code> 来访问你的 <code>博客</code> 了。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/16834649/57365346-735ded00-71b7-11e9-93d5-91e0cc89a385.png" alt="jonzzs.oschina.io"></p>
+<hr>
+<blockquote>
+<p>大功告成，使用 <code>码云</code> 托管 <code>博客</code> 后访问速度会快很多，大家块试试看吧。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Hexo 博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo 博客</tag>
+        <tag>码云</tag>
+        <tag>git.oschina</tag>
+        <tag>码云 Pages</tag>
       </tags>
   </entry>
   <entry>
@@ -556,263 +813,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Java 开发】mac 设置 MySQL 数据库默认编码（字符集）为 UTF-8</title>
-    <url>/2017/03/16/Java/201703161547/</url>
-    <content><![CDATA[<blockquote>
-<p>鉴于有些刚接触 MySQL 数据库的人，经常会碰到数据库中文显示的问题，MySQL 数据库刚安装时默认编码是 latin1，所以如果在数据库建表的时候没有设置 <code>DEFAULT CHARSET=utf8</code> 的话，就会导致数据库无法设置或显示中文的问题，下面给出在 Mac 下将 MySQL 的默认编码改为 UTF-8。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="查看自己的-MySQL-的编码方式"><a href="#查看自己的-MySQL-的编码方式" class="headerlink" title="查看自己的 MySQL 的编码方式"></a>查看自己的 MySQL 的编码方式</h2><ul>
-<li>先连接 MySQL 数据库 ，在终端输入以下命令，回车后输入 MySQL 的密码。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后输入以下命令查看自己的 MySQL 的编码方式。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">show variables like <span class="string">&#x27;%char%&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164120.jpg" alt="上图是我设置支持 UTF-8 后显示的结果"></p>
-<h2 id="修改-MySQL-的默认编码"><a href="#修改-MySQL-的默认编码" class="headerlink" title="修改 MySQL 的默认编码"></a>修改 MySQL 的默认编码</h2><ul>
-<li>进入到 <code>/usr/local/mysql/support-files</code> 目录，找到 <code>my-default.cnf</code>文件，将其复制到桌面上，重命名为 <code>my.cnf</code> 。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164132.jpg" alt="前往文件夹"></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164142.jpg" alt="前往文件夹"></p>
-<ul>
-<li>右键桌面上的 <code>my.cnf</code> 文件，打开方式选择 <code>文本编辑</code> ，然后将全部内容替换为下面代码。</li>
-</ul>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Example MySQL config file for small systems.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This is for a system with little memory (&lt;= 64M) where MySQL is only used</span></span><br><span class="line"><span class="comment"># from time to time and it&#x27;s important that the mysqld daemon</span></span><br><span class="line"><span class="comment"># doesn&#x27;t use much resources.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># MySQL programs look for option files in a set of</span></span><br><span class="line"><span class="comment"># locations which depend on the deployment platform.</span></span><br><span class="line"><span class="comment"># You can copy this option file to one of those</span></span><br><span class="line"><span class="comment"># locations. For information about these locations, see:</span></span><br><span class="line"><span class="comment"># http://dev.mysql.com/doc/mysql/en/option-files.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># In this file, you can use all long options that a program supports.</span></span><br><span class="line"><span class="comment"># If you want to know which options a program supports, run the program</span></span><br><span class="line"><span class="comment"># with the &quot;--help&quot; option.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The following options will be passed to all MySQL clients</span></span><br><span class="line"><span class="attr">[client]</span></span><br><span class="line"><span class="meta">default-character-set</span>=<span class="string">utf8</span></span><br><span class="line"><span class="comment">#password   = your_password</span></span><br><span class="line"><span class="attr">port</span>        = <span class="string">3306</span></span><br><span class="line"><span class="attr">socket</span>      = <span class="string">/tmp/mysql.sock</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Here follows entries for some specific programs</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The MySQL server</span></span><br><span class="line"><span class="attr">[mysqld]</span></span><br><span class="line"><span class="meta">default-storage-engine</span>=<span class="string">INNODB</span></span><br><span class="line"><span class="meta">character-set-server</span>=<span class="string">utf8</span></span><br><span class="line"><span class="meta">collation-server</span>=<span class="string">utf8_general_ci</span></span><br><span class="line"><span class="attr">port</span>        = <span class="string">3306</span></span><br><span class="line"><span class="attr">socket</span>      = <span class="string">/tmp/mysql.sock</span></span><br><span class="line"><span class="attr">skip-external-locking</span></span><br><span class="line"><span class="attr">key_buffer_size</span> = <span class="string">16K</span></span><br><span class="line"><span class="attr">max_allowed_packet</span> = <span class="string">1M</span></span><br><span class="line"><span class="attr">table_open_cache</span> = <span class="string">4</span></span><br><span class="line"><span class="attr">sort_buffer_size</span> = <span class="string">64K</span></span><br><span class="line"><span class="attr">read_buffer_size</span> = <span class="string">256K</span></span><br><span class="line"><span class="attr">read_rnd_buffer_size</span> = <span class="string">256K</span></span><br><span class="line"><span class="attr">net_buffer_length</span> = <span class="string">2K</span></span><br><span class="line"><span class="attr">thread_stack</span> = <span class="string">128K</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Don&#x27;t listen on a TCP/IP port at all. This can be a security enhancement,</span></span><br><span class="line"><span class="comment"># if all processes that need to connect to mysqld run on the same host.</span></span><br><span class="line"><span class="comment"># All interaction with mysqld must be made via Unix sockets or named pipes.</span></span><br><span class="line"><span class="comment"># Note that using this option without enabling named pipes on Windows</span></span><br><span class="line"><span class="comment"># (using the &quot;enable-named-pipe&quot; option) will render mysqld useless!</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#skip-networking</span></span><br><span class="line"><span class="meta">server-id</span>   = <span class="string">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following if you want to log updates</span></span><br><span class="line"><span class="comment">#log-bin=mysql-bin</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># binary logging format - mixed recommended</span></span><br><span class="line"><span class="comment">#binlog_format=mixed</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Causes updates to non-transactional engines using statement format to be</span></span><br><span class="line"><span class="comment"># written directly to binary log. Before using this option make sure that</span></span><br><span class="line"><span class="comment"># there are no dependencies between transactional and non-transactional</span></span><br><span class="line"><span class="comment"># tables such as in the statement INSERT INTO t_myisam SELECT * FROM</span></span><br><span class="line"><span class="comment"># t_innodb; otherwise, slaves may diverge from the master.</span></span><br><span class="line"><span class="comment">#binlog_direct_non_transactional_updates=TRUE</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following if you are using InnoDB tables</span></span><br><span class="line"><span class="comment">#innodb_data_home_dir = /usr/local/mysql/data</span></span><br><span class="line"><span class="comment">#innodb_data_file_path = ibdata1:10M:autoextend</span></span><br><span class="line"><span class="comment">#innodb_log_group_home_dir = /usr/local/mysql/data</span></span><br><span class="line"><span class="comment"># You can set .._buffer_pool_size up to 50 - 80 %</span></span><br><span class="line"><span class="comment"># of RAM but beware of setting memory usage too high</span></span><br><span class="line"><span class="comment">#innodb_buffer_pool_size = 16M</span></span><br><span class="line"><span class="comment">#innodb_additional_mem_pool_size = 2M</span></span><br><span class="line"><span class="comment"># Set .._log_file_size to 25 % of buffer pool size</span></span><br><span class="line"><span class="comment">#innodb_log_file_size = 5M</span></span><br><span class="line"><span class="comment">#innodb_log_buffer_size = 8M</span></span><br><span class="line"><span class="comment">#innodb_flush_log_at_trx_commit = 1</span></span><br><span class="line"><span class="comment">#innodb_lock_wait_timeout = 50</span></span><br><span class="line"></span><br><span class="line"><span class="attr">[mysqldump]</span></span><br><span class="line"><span class="attr">quick</span></span><br><span class="line"><span class="attr">max_allowed_packet</span> = <span class="string">16M</span></span><br><span class="line"></span><br><span class="line"><span class="attr">[mysql]</span></span><br><span class="line"><span class="attr">no-auto-rehash</span></span><br><span class="line"><span class="comment"># Remove the next comment character if you are not familiar with SQL</span></span><br><span class="line"><span class="comment">#safe-updates</span></span><br><span class="line"></span><br><span class="line"><span class="attr">[myisamchk]</span></span><br><span class="line"><span class="attr">key_buffer_size</span> = <span class="string">8M</span></span><br><span class="line"><span class="attr">sort_buffer_size</span> = <span class="string">8M</span></span><br><span class="line"></span><br><span class="line"><span class="attr">[mysqlhotcopy]</span></span><br><span class="line"><span class="attr">interactive-timeout</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>将修改后的文件 <code>my.cnf</code> 复制到 <code>/etc</code> 目录下。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164154.jpg" alt="前往文件夹"></p>
-<ul>
-<li>重启 MySQL 数据库就 ok 了。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164205.jpg" alt="重启数据库"></p>
-<hr>
-<blockquote>
-<p>大概步骤就是这样了，重启完数据库后可以再按照一开始的方法，看一下自己 MySQL 的数据库编码有没有变成 UTF-8 ，最后附上本文的 <a href="http://www.cnblogs.com/zhengbin/p/4740784.html?utm_source=tuicool&utm_medium=referral">参考地址</a> 。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Java 开发</category>
-      </categories>
-      <tags>
-        <tag>Java 开发</tag>
-        <tag>MqSQL</tag>
-        <tag>Mac</tag>
-        <tag>macOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Java 开发】mac 安装多版本 Java JDK 和随时切换 JDK 版本的方法</title>
-    <url>/2017/04/17/Java/201704171814/</url>
-    <content><![CDATA[<blockquote>
-<p>首先说明一下，以前 <code>mac</code> 系统上是自带 <code>Java</code> 的，只支持到 <code>Java JDK 1.6</code> 版本 ，然后从 <code>OS X 10.7</code> 开始系统不再自带 <code>Java</code> ，需要自己来安装 <code>Java JDK</code> ，在平时的开发工作中，有时可能会遇到需要安装多个 <code>Java JDK</code> 版本，并且需要经常切换本地 <code>JDK</code> 版本，下面就给大家分享一个比较简单的方法，需要的可以收藏一下。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<p>终端输入以下命令可查看当前 <code>Java JDK</code> 版本，如果还没安装过，就按照下面方法开始安装。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
-
-<h2 id="1-安装多版本-Java-JDK"><a href="#1-安装多版本-Java-JDK" class="headerlink" title="1.  安装多版本 Java JDK"></a>1.  安装多版本 Java JDK</h2><ul>
-<li><p><code>Java JDK 1.6</code> 由 <code>Apple</code> 提供，这是下载地址：<a href="http://support.apple.com/kb/DL1572">Java JDK 1.6 传送门</a></p>
-</li>
-<li><p><code>Java JDK 1.7 和 1.8</code> 则由 <code>Oracle</code> 官方提供，这是下载地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java JDK 1.7 和 1.8 传送门</a></p>
-</li>
-<li><p><code>Java JDK</code> 安装完后都在 <code>/Library/Java/JavaVirtualMachines/</code> 这个文件夹下。</p>
-</li>
-</ul>
-<p><strong>注意：</strong>全部是下载 <code>mac</code> 下的 <code>dmg</code> 安装包，需要哪个版本，直接安装就行了，可以同时存在多个版本。<code>Java JDK 1.6</code> 如果安装完成后，在上面那个文件夹中找不到的话，就到 <code>/System/Library/Java/JavaVirtualMachines/</code> 这个文件夹看一下，理论上都在上面那个文件夹下。</p>
-<h2 id="2-安装和配置-jenv"><a href="#2-安装和配置-jenv" class="headerlink" title="2. 安装和配置 jenv"></a>2. 安装和配置 jenv</h2><ul>
-<li>打开终端，执行以下命令安装 <code>jenv</code> ：（<a href="https://github.com/linux-china/jenv/wiki/Chinese-Introduction"> jenv 参考资料</a>）</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl -s get.jenv.io | bash</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后进入 <code>jenv</code> 目录，创建相关目录：（下面每输完一行就回车一下）</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.jenv/candidates/</span><br><span class="line"></span><br><span class="line">mkdir java</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> java</span><br><span class="line"></span><br><span class="line">mkdir 1.6</span><br><span class="line"></span><br><span class="line">mkdir 1.7</span><br><span class="line"></span><br><span class="line">mkdir 1.8</span><br></pre></td></tr></table></figure>
-
-<p>我上面把三个版本的 <code>Java JDK</code> 目录默认都创建了，你可以根据实际情况，安装了哪些版本就创建哪些版本的目录。</p>
-<ul>
-<li>执行以下命令设置 <code>Java JDK</code> 路径：</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ln -s xxx xxx</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：</strong>这里非常重要，前面的 <code>xxx</code> 处填写 <code>Java JDK</code> 的 <code>bin</code> 文件夹的路径地址，后面的 <code>xxx</code> 处填写刚才上面创建 <code>jenv</code> 的对应版本文件夹的路径地址，怕写错的话就到 <code>/Library/Java/JavaVirtualMachines/</code> 这里找到对应版本 <code>Java JDK</code> 的 <code>bin</code> 目录直接拖到终端，就会显示路径地址了。</p>
-<p><strong>例如：</strong></p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ln -s /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bin ~/.jenv/candidates/java/1.6</span><br><span class="line"></span><br><span class="line">ln -s /Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/bin ~/.jenv/candidates/java/1.7</span><br><span class="line"></span><br><span class="line">ln -s /Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/bin ~/.jenv/candidates/java/1.8</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-切换-Java-JDK-版本"><a href="#3-切换-Java-JDK-版本" class="headerlink" title="3. 切换 Java JDK 版本"></a>3. 切换 Java JDK 版本</h2><p>按上面步骤配置完成后就可以开始切换 <code>Java JDK</code> 版本了，下面是切换方法：</p>
-<ul>
-<li>输入以下命令查看当前 <code>Java JDK</code> 版本：（我这边是 <code> 1.6</code> 版本）</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>输入以下命令切换 <code>Java JDK</code> 版本：（切换哪个版本就写哪个版本号，下面是切换到 <code>1.8</code> 版本）</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">jenv use java 1.8</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>再输入上面的命令查看 <code>Java JDK</code> 版本，会发现已经变成  <code>1.8</code> 版本了，如图：</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163742.png" alt="切换 `Java JDK` 版本"></p>
-<hr>
-<blockquote>
-<p>大功告成，配置完之后，以后切换版本就十分方便了，一句命令就能随时切换版本，是不是很方便呢，需要的就收藏一下吧，想参考更多方法请 <a href="http://www.cnblogs.com/luodengxiong/p/5736806.html">点击这里</a>。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Java 开发</category>
-      </categories>
-      <tags>
-        <tag>Java 开发</tag>
-        <tag>Mac</tag>
-        <tag>macOS</tag>
-        <tag>Java JDK</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Java 开发】MySQL 开启远程连接的方法</title>
-    <url>/2017/06/09/Java/201706092354/</url>
-    <content><![CDATA[<blockquote>
-<p>在平时的工作中，经常会遇到 <code>MySQL</code> 数据库存储于某个人的电脑上，而其他人需要通过 <code>IP</code> 地址来连接到那个人电脑上的 <code>MySQL</code> ，但是大家要想连接到那个人电脑上的 <code>MySQL</code> ，那个人电脑上的 <code>MySQL</code> 就必须开启远程连接，下面分享一下 <code>MySQL</code> 如何开启远程连接。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="MySQL-开启远程连接"><a href="#MySQL-开启远程连接" class="headerlink" title="MySQL 开启远程连接"></a>MySQL 开启远程连接</h2><ul>
-<li>首先确保本机的 <code>MySQL</code> 是启动状态，然后打开终端，输入以下命令连接到 <code>MySQL</code> ，需要输入一下本机 <code>MySQL</code> 的连接密码 。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164218.png" alt="连接 MySQL"></p>
-<ul>
-<li>输入以下命令选择要使用的数据库，修改远程连接的基本信息，保存在 <code>mysql</code> 数据库中，因此使用 <code>mysql</code> 数据库。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">use mysql</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164234.png" alt="选择数据库"></p>
-<ul>
-<li>输入以下命令来更改远程连接的设置，前面的 <code>root</code> 表示别人访问本机 <code>MySQL</code> 的用户名，后面的 <code>root</code> 表示别人访问本机 <code>MySQL</code> 的密码。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;root&#39; WITH GRANT OPTION;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164251.png" alt="更改远程连接设置"></p>
-<ul>
-<li>输入以下命令来刷新刚才修改的权限，使其生效。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164302.png" alt="刷新权限"></p>
-<ul>
-<li>输入以下命令来查看修改是否成功，如果出现一行 <code>host = %</code> ，<code>user = root</code> 就表示修改成功。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select host,user from user;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164316.png" alt="查看是否成功"></p>
-<hr>
-<blockquote>
-<p>到此就修改成功了，<code>MySQL</code> 远程连接已经开启，其他人就可以通过 <code>IP</code> 地址来连接本机的 <code>MySQL</code> 数据库了。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Java 开发</category>
-      </categories>
-      <tags>
-        <tag>Java 开发</tag>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Java 开发】mac 忘记 MySQL 数据库密码后重置密码的方法</title>
-    <url>/2017/05/19/Java/201705190959/</url>
-    <content><![CDATA[<blockquote>
-<p>由于有个同事的 <code>mac mini</code> 刚装了 <code>MySQL</code> ，然后忘记一开始设的密码是什么了，但是最近又要用到本地的 <code>MySQL</code> 数据库，网上找了一大堆方法全都没用，但又不想删了重装，最后终于被我找到了一个正确的方法，这里分享一下解决办法。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="1-重启-MySQL-服务器"><a href="#1-重启-MySQL-服务器" class="headerlink" title="1. 重启 MySQL 服务器"></a>1. 重启 MySQL 服务器</h2><ul>
-<li>打开 <code>系统偏好设置</code> - <code>MySQL</code> ，然后点击 <code>Stop MySQL Server</code> 关闭 <code>MySQL</code> 服务器。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163759.png" alt="关闭 MySQL 服务器"></p>
-<ul>
-<li>关闭 <code>MySQL</code> 服务器后打开终端，输入以下命令进入 <code>MySQL</code> 目录。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/mysql/bin</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>再输入以下命令获取权限。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后输入以下命令重启 <code>MySQL</code> 服务器。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">./mysqld_safe --skip-grant-tables &amp;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-修改-MySQL-密码"><a href="#2-修改-MySQL-密码" class="headerlink" title="2. 修改 MySQL 密码"></a>2. 修改 MySQL 密码</h2><ul>
-<li>刚才的终端不要关掉，按下 <code>command + N</code> 另开一个终端窗口，输入以下命令配置短命令。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> mysql=/usr/<span class="built_in">local</span>/mysql/bin/mysql</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>接着输入以下命令进入 <code>MySQL</code> 命令模式。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mysql</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>再输入以下命令进入 <code>MySQL</code> 数据库。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">use mysql</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后输入以下命令获取权限。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>现在可以输入以下命令修改你的 <code>MySQL</code> 密码了，<code>xxx</code> 处填写你的新密码。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> password <span class="keyword">for</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>=password(<span class="string">&#x27;xxx&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-验证-MySQL-新密码"><a href="#3-验证-MySQL-新密码" class="headerlink" title="3. 验证 MySQL 新密码"></a>3. 验证 MySQL 新密码</h2><ul>
-<li>打开终端输入以下命令登录 <code>MySQL</code> 数据库。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>接着输入你的新密码，如果 <code>MySQL</code> 数据库连接上就表示密码修改成功了。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163813.png" alt="登录 `MySQL` 数据库"></p>
-<hr>
-<blockquote>
-<p>最后附上本文的 <a href="http://www.cnblogs.com/lihuanqing/p/5623872.html">参考地址</a> ，给这个博主点赞，找了这么多方法，就这个是靠谱的，所以分享出来让更多的人看到，希望能帮助大家少走一些坑。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Java 开发</category>
-      </categories>
-      <tags>
-        <tag>Java 开发</tag>
-        <tag>Mac</tag>
-        <tag>macOS</tag>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>macOS Sierra 10.12+ 软件提示已损坏，移除到废纸篓的解决方法</title>
     <url>/2017/04/05/Mac/201704051635/</url>
     <content><![CDATA[<blockquote>
@@ -842,6 +842,50 @@
 <li>最后选中 <code>任何来源</code> 选项，然后那些个人开发者软件就可以正常打开了。</li>
 </ul>
 <hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用指南</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+        <tag>macOS</tag>
+        <tag>Mac 使用指南</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 macOS 版 iTunes 在 AppStore 无法更新的问题</title>
+    <url>/2017/04/14/Mac/201704141640/</url>
+    <content><![CDATA[<blockquote>
+<p>相信用 <code>mac</code> 系统的都遇到过，每次 <code>iTunes</code> 更新版本，<code>mac AppStore</code> 提示更新了，但是点击更新，却怎么也更新不了，很无奈，接下来告诉大家如何解决这个问题。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<p>很多人选择的办法是将自带的 <code>iTunes</code> 删掉，然后去网上直接下载 <code>iTunes</code> 的 <code>dmg</code> 安装包来直接安装，这也是一个办法，然后接下来告诉大家如何在 <code>mac AppStore</code> 直接更新 <code>iTunes</code> 。</p>
+<ul>
+<li>打开 <code>系统偏好设置</code> - <code>网络</code> - <code>高级</code>。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164019.png" alt="如图"></p>
+<ul>
+<li>选择 <code>DNS</code> ，点击左下角的 <code>+</code> 号。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164030.png" alt="如图"></p>
+<ul>
+<li>输入 <code>8.8.8.8</code> 。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164042.png" alt="如图"></p>
+<ul>
+<li><p>点击 <code>好</code>，接着别忘了要 <code>应用</code> 一下。</p>
+</li>
+<li><p>打开 <code>mac AppStore</code> ，开始更新吧，就是这么神奇。</p>
+</li>
+</ul>
+<p><strong>注意：</strong>更新完以后，一定要把刚才添加的 <code>8.8.8.8</code> 给删除掉，否则上网会变的非常之慢，切记！！</p>
+<hr>
+<blockquote>
+<p>方法就是这样，是不是非常简单，希望对大家有所帮助。</p>
+</blockquote>
 <p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
 ]]></content>
       <categories>
@@ -899,87 +943,6 @@
       </tags>
   </entry>
   <entry>
-    <title>解决 macOS 版 iTunes 在 AppStore 无法更新的问题</title>
-    <url>/2017/04/14/Mac/201704141640/</url>
-    <content><![CDATA[<blockquote>
-<p>相信用 <code>mac</code> 系统的都遇到过，每次 <code>iTunes</code> 更新版本，<code>mac AppStore</code> 提示更新了，但是点击更新，却怎么也更新不了，很无奈，接下来告诉大家如何解决这个问题。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<p>很多人选择的办法是将自带的 <code>iTunes</code> 删掉，然后去网上直接下载 <code>iTunes</code> 的 <code>dmg</code> 安装包来直接安装，这也是一个办法，然后接下来告诉大家如何在 <code>mac AppStore</code> 直接更新 <code>iTunes</code> 。</p>
-<ul>
-<li>打开 <code>系统偏好设置</code> - <code>网络</code> - <code>高级</code>。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164019.png" alt="如图"></p>
-<ul>
-<li>选择 <code>DNS</code> ，点击左下角的 <code>+</code> 号。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164030.png" alt="如图"></p>
-<ul>
-<li>输入 <code>8.8.8.8</code> 。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164042.png" alt="如图"></p>
-<ul>
-<li><p>点击 <code>好</code>，接着别忘了要 <code>应用</code> 一下。</p>
-</li>
-<li><p>打开 <code>mac AppStore</code> ，开始更新吧，就是这么神奇。</p>
-</li>
-</ul>
-<p><strong>注意：</strong>更新完以后，一定要把刚才添加的 <code>8.8.8.8</code> 给删除掉，否则上网会变的非常之慢，切记！！</p>
-<hr>
-<blockquote>
-<p>方法就是这样，是不是非常简单，希望对大家有所帮助。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Mac 使用指南</category>
-      </categories>
-      <tags>
-        <tag>Mac</tag>
-        <tag>macOS</tag>
-        <tag>Mac 使用指南</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决 Alfred 每次开机都提示请求通讯录权限的问题</title>
-    <url>/2017/08/29/Mac/201708291128/</url>
-    <content><![CDATA[<blockquote>
-<p>安装完 <code>Alfred</code> 以后，每次开机都会提示请求通讯录权限，把设置里的通讯录关掉也没用，每次都提示又非常烦人，这里把解决方法记录一下。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<ul>
-<li>依次打开 <code>应用程序</code> - <code>Alfred 3.app</code> - <code>右键显示包内容</code> - <code>Contents</code> - <code>Frameworks</code> - <code>Alfred Framework.framework</code> - <code>Versions</code> - <code>A</code> 下找到一个叫 <code>Alfred Framework</code> 的文件。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163906.png" alt="Alfred Framework"></p>
-<ul>
-<li>接着打开终端，输入以下命令（最后的 <code>-</code> 后面有个空格）。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo codesign -f -d -s -</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后将刚才的 <code>Alfred Framework</code> 文件直接拖到终端，接着回车输入用户密码。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163917.png" alt="终端"></p>
-<ul>
-<li>最后提示 <code>replacing existing signature</code> 就表示成功了。</li>
-</ul>
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Mac 使用指南</category>
-      </categories>
-      <tags>
-        <tag>Mac 使用指南</tag>
-        <tag>mac</tag>
-        <tag>Alfred</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac 删除自带 ABC 输入法的方法</title>
     <url>/2017/08/25/Mac/201708251803/</url>
     <content><![CDATA[<blockquote>
@@ -1021,6 +984,43 @@
         <tag>Mac 使用指南</tag>
         <tag>mac</tag>
         <tag>输入法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 Alfred 每次开机都提示请求通讯录权限的问题</title>
+    <url>/2017/08/29/Mac/201708291128/</url>
+    <content><![CDATA[<blockquote>
+<p>安装完 <code>Alfred</code> 以后，每次开机都会提示请求通讯录权限，把设置里的通讯录关掉也没用，每次都提示又非常烦人，这里把解决方法记录一下。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<ul>
+<li>依次打开 <code>应用程序</code> - <code>Alfred 3.app</code> - <code>右键显示包内容</code> - <code>Contents</code> - <code>Frameworks</code> - <code>Alfred Framework.framework</code> - <code>Versions</code> - <code>A</code> 下找到一个叫 <code>Alfred Framework</code> 的文件。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163906.png" alt="Alfred Framework"></p>
+<ul>
+<li>接着打开终端，输入以下命令（最后的 <code>-</code> 后面有个空格）。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo codesign -f -d -s -</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后将刚才的 <code>Alfred Framework</code> 文件直接拖到终端，接着回车输入用户密码。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163917.png" alt="终端"></p>
+<ul>
+<li>最后提示 <code>replacing existing signature</code> 就表示成功了。</li>
+</ul>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用指南</category>
+      </categories>
+      <tags>
+        <tag>Mac 使用指南</tag>
+        <tag>mac</tag>
+        <tag>Alfred</tag>
       </tags>
   </entry>
   <entry>
@@ -2205,6 +2205,64 @@
       </tags>
   </entry>
   <entry>
+    <title>Windows 版 SourceTree 免登录跳过初始设置的方法</title>
+    <url>/2017/04/28/Tool/201704281000/</url>
+    <content><![CDATA[<blockquote>
+<p><code>SourceTree</code> 安装之后需要使用账号登陆授权以后才可以使用，以前是可以不登陆的，但是现在是强制登陆。虽然是免费授权，但是不知道是什么原因，登陆经常会失败，翻墙也不行，这里就分享一下跳过这个初始化的步骤。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="SourceTree-免登录跳过初始设置的方法"><a href="#SourceTree-免登录跳过初始设置的方法" class="headerlink" title="SourceTree 免登录跳过初始设置的方法"></a>SourceTree 免登录跳过初始设置的方法</h2><ul>
+<li><p>首先，安装完 <code>SourceTree</code> 以后先运行一次，弹出初始化登录页面后退出。</p>
+</li>
+<li><p>打开 <code>我的电脑</code>，在最上方的地址栏直接输入以下地址：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">%LocalAppData%\Atlassian\SourceTree\</span><br></pre></td></tr></table></figure>
+
+<p><strong>如图：</strong></p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164919.png" alt="地址跳转"></p>
+<ul>
+<li><p>在这个目录下新建一个名为 <code>accounts.json</code> 的文件。</p>
+</li>
+<li><p>使用 <code>文本文档</code> 打开这个文件，将以下内容复制到其中后保存。</p>
+</li>
+</ul>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">[</span></span><br><span class="line">  <span class="attr">&#123;</span></span><br><span class="line">    <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;1&quot;,</span></span><br><span class="line">    <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,</span></span><br><span class="line">    <span class="meta">&quot;Authenticate&quot;</span>: <span class="string">true,</span></span><br><span class="line">    <span class="meta">&quot;HostInstance&quot;</span>: <span class="string">&#123;</span></span><br><span class="line">      <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;2&quot;,</span></span><br><span class="line">      <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,</span></span><br><span class="line">      <span class="meta">&quot;Host&quot;</span>: <span class="string">&#123;</span></span><br><span class="line">        <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;3&quot;,</span></span><br><span class="line">        <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,</span></span><br><span class="line">        <span class="meta">&quot;Id&quot;</span>: <span class="string">&quot;atlassian account&quot;</span></span><br><span class="line">      <span class="attr">&#125;,</span></span><br><span class="line">      <span class="meta">&quot;BaseUrl&quot;</span>: <span class="string">&quot;https://id.atlassian.com/&quot;</span></span><br><span class="line">    <span class="attr">&#125;,</span></span><br><span class="line">    <span class="meta">&quot;Credentials&quot;</span>: <span class="string">&#123;</span></span><br><span class="line">      <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;4&quot;,</span></span><br><span class="line">      <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,</span></span><br><span class="line">      <span class="meta">&quot;Username&quot;</span>: <span class="string">&quot;&quot;,</span></span><br><span class="line">      <span class="meta">&quot;Email&quot;</span>: <span class="string">null</span></span><br><span class="line">    <span class="attr">&#125;,</span></span><br><span class="line">    <span class="meta">&quot;IsDefault&quot;</span>: <span class="string">false</span></span><br><span class="line">  <span class="attr">&#125;</span></span><br><span class="line"><span class="attr">]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>再次打开 <code>SourceTree</code> 就可以直接跳过登录进入软件页面了。</li>
+</ul>
+<p><strong>注意：</strong> <code>Windows</code> 系统文件后缀是默认隐藏的，需要先显示文件的后缀名，然后随便新建一个 <code>文本文档</code> ，将文件全名改为 <code>accounts.json</code> 即可。</p>
+<p><strong>显示文件后缀名的方法：</strong></p>
+<ul>
+<li>打开 <code>我的电脑</code> ，点击 <code>查看</code> 菜单中的 <code>选项</code> 。</li>
+</ul>
+<p><strong>如图：</strong></p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164933.png" alt="我的电脑"></p>
+<ul>
+<li>弹出 <code>文件夹选项</code> ，将 <code>隐藏已知文件类型的扩展名</code> 选项取消选中后点击 <code>确定</code> 即可。</li>
+</ul>
+<p><strong>如图：</strong></p>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164947.png" alt="文件夹选项"></p>
+<hr>
+<blockquote>
+<p>方法就是这样，<code>Mac</code> 版的 <code>SourceTree</code> 暂时还不知道怎么跳过，还是老老实实翻墙注册登录吧，附上本文 <a href="http://www.cnblogs.com/xiofee/p/sourcetree_pass_initialization_setup.html">参考地址</a>。</p>
+</blockquote>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>开发工具</tag>
+        <tag>SourceTree</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Atom 配置和插件的备份同步以及恢复的方法</title>
     <url>/2017/07/04/Tool/201707041209/</url>
     <content><![CDATA[<blockquote>
@@ -2281,64 +2339,6 @@
       <tags>
         <tag>开发工具</tag>
         <tag>Atom</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows 版 SourceTree 免登录跳过初始设置的方法</title>
-    <url>/2017/04/28/Tool/201704281000/</url>
-    <content><![CDATA[<blockquote>
-<p><code>SourceTree</code> 安装之后需要使用账号登陆授权以后才可以使用，以前是可以不登陆的，但是现在是强制登陆。虽然是免费授权，但是不知道是什么原因，登陆经常会失败，翻墙也不行，这里就分享一下跳过这个初始化的步骤。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="SourceTree-免登录跳过初始设置的方法"><a href="#SourceTree-免登录跳过初始设置的方法" class="headerlink" title="SourceTree 免登录跳过初始设置的方法"></a>SourceTree 免登录跳过初始设置的方法</h2><ul>
-<li><p>首先，安装完 <code>SourceTree</code> 以后先运行一次，弹出初始化登录页面后退出。</p>
-</li>
-<li><p>打开 <code>我的电脑</code>，在最上方的地址栏直接输入以下地址：</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">%LocalAppData%\Atlassian\SourceTree\</span><br></pre></td></tr></table></figure>
-
-<p><strong>如图：</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164919.png" alt="地址跳转"></p>
-<ul>
-<li><p>在这个目录下新建一个名为 <code>accounts.json</code> 的文件。</p>
-</li>
-<li><p>使用 <code>文本文档</code> 打开这个文件，将以下内容复制到其中后保存。</p>
-</li>
-</ul>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">[</span></span><br><span class="line">  <span class="attr">&#123;</span></span><br><span class="line">    <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;1&quot;,</span></span><br><span class="line">    <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,</span></span><br><span class="line">    <span class="meta">&quot;Authenticate&quot;</span>: <span class="string">true,</span></span><br><span class="line">    <span class="meta">&quot;HostInstance&quot;</span>: <span class="string">&#123;</span></span><br><span class="line">      <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;2&quot;,</span></span><br><span class="line">      <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,</span></span><br><span class="line">      <span class="meta">&quot;Host&quot;</span>: <span class="string">&#123;</span></span><br><span class="line">        <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;3&quot;,</span></span><br><span class="line">        <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,</span></span><br><span class="line">        <span class="meta">&quot;Id&quot;</span>: <span class="string">&quot;atlassian account&quot;</span></span><br><span class="line">      <span class="attr">&#125;,</span></span><br><span class="line">      <span class="meta">&quot;BaseUrl&quot;</span>: <span class="string">&quot;https://id.atlassian.com/&quot;</span></span><br><span class="line">    <span class="attr">&#125;,</span></span><br><span class="line">    <span class="meta">&quot;Credentials&quot;</span>: <span class="string">&#123;</span></span><br><span class="line">      <span class="meta">&quot;$id&quot;</span>: <span class="string">&quot;4&quot;,</span></span><br><span class="line">      <span class="meta">&quot;$type&quot;</span>: <span class="string">&quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,</span></span><br><span class="line">      <span class="meta">&quot;Username&quot;</span>: <span class="string">&quot;&quot;,</span></span><br><span class="line">      <span class="meta">&quot;Email&quot;</span>: <span class="string">null</span></span><br><span class="line">    <span class="attr">&#125;,</span></span><br><span class="line">    <span class="meta">&quot;IsDefault&quot;</span>: <span class="string">false</span></span><br><span class="line">  <span class="attr">&#125;</span></span><br><span class="line"><span class="attr">]</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>再次打开 <code>SourceTree</code> 就可以直接跳过登录进入软件页面了。</li>
-</ul>
-<p><strong>注意：</strong> <code>Windows</code> 系统文件后缀是默认隐藏的，需要先显示文件的后缀名，然后随便新建一个 <code>文本文档</code> ，将文件全名改为 <code>accounts.json</code> 即可。</p>
-<p><strong>显示文件后缀名的方法：</strong></p>
-<ul>
-<li>打开 <code>我的电脑</code> ，点击 <code>查看</code> 菜单中的 <code>选项</code> 。</li>
-</ul>
-<p><strong>如图：</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164933.png" alt="我的电脑"></p>
-<ul>
-<li>弹出 <code>文件夹选项</code> ，将 <code>隐藏已知文件类型的扩展名</code> 选项取消选中后点击 <code>确定</code> 即可。</li>
-</ul>
-<p><strong>如图：</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509164947.png" alt="文件夹选项"></p>
-<hr>
-<blockquote>
-<p>方法就是这样，<code>Mac</code> 版的 <code>SourceTree</code> 暂时还不知道怎么跳过，还是老老实实翻墙注册登录吧，附上本文 <a href="http://www.cnblogs.com/xiofee/p/sourcetree_pass_initialization_setup.html">参考地址</a>。</p>
-</blockquote>
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-        <tag>开发工具</tag>
-        <tag>SourceTree</tag>
       </tags>
   </entry>
   <entry>
@@ -3625,6 +3625,55 @@
       </tags>
   </entry>
   <entry>
+    <title>【iOS 开发】UICollectionView 集合视图使用汇总</title>
+    <url>/2017/06/30/iOS/201706301801/</url>
+    <content><![CDATA[<blockquote>
+<p><code>UICollectionView</code> 和 <code>UITableView</code> 的用法非常的相似，但它要更加强大，下面就对于 <code>UICollectionView</code> 的基本用法进行一个汇总，以便之后方便查看。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="UICollectionView-的创建"><a href="#UICollectionView-的创建" class="headerlink" title="UICollectionView 的创建"></a>UICollectionView 的创建</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 设置单元格布局 */</span></span><br><span class="line"><span class="built_in">UICollectionViewFlowLayout</span> *flow = [[<span class="built_in">UICollectionViewFlowLayout</span> alloc] init];</span><br><span class="line">flow.itemSize = <span class="built_in">CGSizeMake</span>(<span class="number">150</span>, <span class="number">120</span>); <span class="comment">// 单元格的尺寸</span></span><br><span class="line">flow.minimumLineSpacing = <span class="number">10.0</span>; <span class="comment">// 行之间间距</span></span><br><span class="line">flow.minimumInteritemSpacing = <span class="number">10.0</span>; <span class="comment">// 列之间的间距</span></span><br><span class="line">flow.headerReferenceSize = <span class="built_in">CGSizeMake</span>(<span class="number">100</span>, <span class="number">75</span>); <span class="comment">// 段头尺寸</span></span><br><span class="line">flow.footerReferenceSize = <span class="built_in">CGSizeMake</span>(<span class="number">100</span>, <span class="number">75</span>); <span class="comment">// 段尾尺寸</span></span><br><span class="line">flow.scrollDirection = <span class="built_in">UICollectionViewScrollDirectionVertical</span>; <span class="comment">// 滑动方向</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建集合视图 */</span></span><br><span class="line"><span class="built_in">UICollectionView</span> *collectionView = [[<span class="built_in">UICollectionView</span> alloc] initWithFrame:<span class="keyword">self</span>.view.bounds collectionViewLayout:flow];</span><br><span class="line">collectionView.delegate = <span class="keyword">self</span>; <span class="comment">// 代理</span></span><br><span class="line">collectionView.dataSource = <span class="keyword">self</span>; <span class="comment">// 数据源</span></span><br><span class="line">collectionView.backgroundColor = [<span class="built_in">UIColor</span> whiteColor]; <span class="comment">// 背景色</span></span><br><span class="line">collectionView.delaysContentTouches = <span class="literal">NO</span>; <span class="comment">// 默认为 YES ，设为 NO 可以解决点击单元格后高亮效果显示延迟的问题</span></span><br><span class="line">[<span class="keyword">self</span>.view addSubview:collectionView];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 注册自定义单元格 */</span></span><br><span class="line">[collectionView registerClass:[CollectionViewCell <span class="keyword">class</span>] forCellWithReuseIdentifier:<span class="string">@&quot;Cell&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 注册自定义段头 */</span></span><br><span class="line">[collectionView registerClass:[SectionHeader <span class="keyword">class</span>] forSupplementaryViewOfKind:<span class="built_in">UICollectionElementKindSectionHeader</span> withReuseIdentifier:<span class="string">@&quot;Header&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 注册自定义段尾 */</span></span><br><span class="line">[collectionView registerClass:[SectionFooter <span class="keyword">class</span>] forSupplementaryViewOfKind:<span class="built_in">UICollectionElementKindSectionFooter</span> withReuseIdentifier:<span class="string">@&quot;Footer&quot;</span>];</span><br></pre></td></tr></table></figure>
+
+<p>使用纯代码自定义 <code>UICollectionViewCell</code> 单元格或者 <code>UICollectionReusableView</code> 段头段尾视图时，只需要重写 <code>- (instancetype)initWithFrame:(CGRect)frame</code> 方法即可。</p>
+<h2 id="UICollectionViewDataSource-数据源"><a href="#UICollectionViewDataSource-数据源" class="headerlink" title="UICollectionViewDataSource 数据源"></a>UICollectionViewDataSource 数据源</h2><h3 id="1-设置集合视图的段数"><a href="#1-设置集合视图的段数" class="headerlink" title="1. 设置集合视图的段数"></a>1. 设置集合视图的段数</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置集合视图的段数</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @return 段数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">NSInteger</span>)numberOfSectionsInCollectionView:(<span class="built_in">UICollectionView</span> *)collectionView &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-设置集合视图单元格数量"><a href="#2-设置集合视图单元格数量" class="headerlink" title="2. 设置集合视图单元格数量"></a>2. 设置集合视图单元格数量</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置集合视图单元格数量</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param section 哪一段</span></span><br><span class="line"><span class="comment"> @return 单元格数量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">NSInteger</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView numberOfItemsInSection:(<span class="built_in">NSInteger</span>)section &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">12</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-设置集合视图内容"><a href="#3-设置集合视图内容" class="headerlink" title="3. 设置集合视图内容"></a>3. 设置集合视图内容</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置集合视图内容</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 单元格对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">UICollectionViewCell</span> *)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView cellForItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:<span class="string">@&quot;Cell&quot;</span> forIndexPath:indexPath]; <span class="comment">// 查找可复用的单元格，自定义需要注册</span></span><br><span class="line">    <span class="keyword">return</span> cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-设置段头-段尾内容"><a href="#4-设置段头-段尾内容" class="headerlink" title="4. 设置段头/段尾内容"></a>4. 设置段头/段尾内容</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置段头/段尾内容</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param kind 类型</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 段头/段尾视图</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">UICollectionReusableView</span> *)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView viewForSupplementaryElementOfKind:(<span class="built_in">NSString</span> *)kind atIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">if</span>([kind isEqualToString:<span class="built_in">UICollectionElementKindSectionHeader</span>]) &#123;</span><br><span class="line">        SectionHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:<span class="string">@&quot;Header&quot;</span> forIndexPath:indexPath]; <span class="comment">// 查找可复用的段头视图，自定义需要注册</span></span><br><span class="line">        <span class="keyword">return</span> header;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ([kind isEqualToString:<span class="built_in">UICollectionElementKindSectionFooter</span>]) &#123;</span><br><span class="line">        SectionFooter *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:<span class="string">@&quot;Footer&quot;</span> forIndexPath:indexPath]; <span class="comment">// 查找可复用的段尾视图，自定义需要注册</span></span><br><span class="line">        <span class="keyword">return</span> footer;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="UICollectionViewDelegate-代理方法"><a href="#UICollectionViewDelegate-代理方法" class="headerlink" title="UICollectionViewDelegate 代理方法"></a>UICollectionViewDelegate 代理方法</h2><h3 id="1-设置单元格是否允许高亮"><a href="#1-设置单元格是否允许高亮" class="headerlink" title="1. 设置单元格是否允许高亮"></a>1. 设置单元格是否允许高亮</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置单元格是否允许高亮</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 是否允许</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView shouldHighlightItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-单元格处于高亮状态时触发"><a href="#2-单元格处于高亮状态时触发" class="headerlink" title="2. 单元格处于高亮状态时触发"></a>2. 单元格处于高亮状态时触发</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 单元格处于高亮状态时触发</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView didHighlightItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    CollectionViewCell *cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]; <span class="comment">// 得到当前选中单元格对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-单元格取消高亮状态时触发"><a href="#3-单元格取消高亮状态时触发" class="headerlink" title="3. 单元格取消高亮状态时触发"></a>3. 单元格取消高亮状态时触发</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 单元格取消高亮状态时触发</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView didUnhighlightItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    CollectionViewCell *cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]; <span class="comment">// 得到当前选中单元格对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-设置单元格是否允许点击"><a href="#4-设置单元格是否允许点击" class="headerlink" title="4. 设置单元格是否允许点击"></a>4. 设置单元格是否允许点击</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置单元格是否允许点击</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 是否允许</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView shouldSelectItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-设置单元格是否允许取消点击"><a href="#5-设置单元格是否允许取消点击" class="headerlink" title="5. 设置单元格是否允许取消点击"></a>5. 设置单元格是否允许取消点击</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置单元格是否允许取消点击</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 是否允许</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView shouldDeselectItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-点击单元格触发"><a href="#6-点击单元格触发" class="headerlink" title="6. 点击单元格触发"></a>6. 点击单元格触发</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 点击单元格触发</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView didSelectItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    [collectionView deselectItemAtIndexPath:indexPath animated:<span class="literal">YES</span>]; <span class="comment">// 取消单元格当前选中状态</span></span><br><span class="line">    CollectionViewCell *cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]; <span class="comment">// 得到当前选中单元格对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-设置上下左右间隔"><a href="#7-设置上下左右间隔" class="headerlink" title="7. 设置上下左右间隔"></a>7. 设置上下左右间隔</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置上下左右间隔</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param collectionViewLayout 单元格布局</span></span><br><span class="line"><span class="comment"> @param section 哪一段</span></span><br><span class="line"><span class="comment"> @return 间隔</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">UIEdgeInsets</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView layout:(<span class="built_in">UICollectionViewLayout</span> *)collectionViewLayout insetForSectionAtIndex:(<span class="built_in">NSInteger</span>)section &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>); <span class="comment">// 分别为上、左、下、右</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>还有一些不常用的暂时先不写，等用到的时候再补上，哪里有问题的话可以在下面留言。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>iOS 开发</category>
+      </categories>
+      <tags>
+        <tag>iOS 开发</tag>
+        <tag>UICollectionView</tag>
+        <tag>集合视图</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【iOS 开发】ReactiveObjC（RAC）的使用汇总</title>
     <url>/2017/06/16/iOS/201706161157/</url>
     <content><![CDATA[<blockquote>
@@ -3694,55 +3743,6 @@
         <tag>RAC</tag>
         <tag>RactiveCocoa</tag>
         <tag>ReactiveObjC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【iOS 开发】UICollectionView 集合视图使用汇总</title>
-    <url>/2017/06/30/iOS/201706301801/</url>
-    <content><![CDATA[<blockquote>
-<p><code>UICollectionView</code> 和 <code>UITableView</code> 的用法非常的相似，但它要更加强大，下面就对于 <code>UICollectionView</code> 的基本用法进行一个汇总，以便之后方便查看。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="UICollectionView-的创建"><a href="#UICollectionView-的创建" class="headerlink" title="UICollectionView 的创建"></a>UICollectionView 的创建</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 设置单元格布局 */</span></span><br><span class="line"><span class="built_in">UICollectionViewFlowLayout</span> *flow = [[<span class="built_in">UICollectionViewFlowLayout</span> alloc] init];</span><br><span class="line">flow.itemSize = <span class="built_in">CGSizeMake</span>(<span class="number">150</span>, <span class="number">120</span>); <span class="comment">// 单元格的尺寸</span></span><br><span class="line">flow.minimumLineSpacing = <span class="number">10.0</span>; <span class="comment">// 行之间间距</span></span><br><span class="line">flow.minimumInteritemSpacing = <span class="number">10.0</span>; <span class="comment">// 列之间的间距</span></span><br><span class="line">flow.headerReferenceSize = <span class="built_in">CGSizeMake</span>(<span class="number">100</span>, <span class="number">75</span>); <span class="comment">// 段头尺寸</span></span><br><span class="line">flow.footerReferenceSize = <span class="built_in">CGSizeMake</span>(<span class="number">100</span>, <span class="number">75</span>); <span class="comment">// 段尾尺寸</span></span><br><span class="line">flow.scrollDirection = <span class="built_in">UICollectionViewScrollDirectionVertical</span>; <span class="comment">// 滑动方向</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建集合视图 */</span></span><br><span class="line"><span class="built_in">UICollectionView</span> *collectionView = [[<span class="built_in">UICollectionView</span> alloc] initWithFrame:<span class="keyword">self</span>.view.bounds collectionViewLayout:flow];</span><br><span class="line">collectionView.delegate = <span class="keyword">self</span>; <span class="comment">// 代理</span></span><br><span class="line">collectionView.dataSource = <span class="keyword">self</span>; <span class="comment">// 数据源</span></span><br><span class="line">collectionView.backgroundColor = [<span class="built_in">UIColor</span> whiteColor]; <span class="comment">// 背景色</span></span><br><span class="line">collectionView.delaysContentTouches = <span class="literal">NO</span>; <span class="comment">// 默认为 YES ，设为 NO 可以解决点击单元格后高亮效果显示延迟的问题</span></span><br><span class="line">[<span class="keyword">self</span>.view addSubview:collectionView];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 注册自定义单元格 */</span></span><br><span class="line">[collectionView registerClass:[CollectionViewCell <span class="keyword">class</span>] forCellWithReuseIdentifier:<span class="string">@&quot;Cell&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 注册自定义段头 */</span></span><br><span class="line">[collectionView registerClass:[SectionHeader <span class="keyword">class</span>] forSupplementaryViewOfKind:<span class="built_in">UICollectionElementKindSectionHeader</span> withReuseIdentifier:<span class="string">@&quot;Header&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 注册自定义段尾 */</span></span><br><span class="line">[collectionView registerClass:[SectionFooter <span class="keyword">class</span>] forSupplementaryViewOfKind:<span class="built_in">UICollectionElementKindSectionFooter</span> withReuseIdentifier:<span class="string">@&quot;Footer&quot;</span>];</span><br></pre></td></tr></table></figure>
-
-<p>使用纯代码自定义 <code>UICollectionViewCell</code> 单元格或者 <code>UICollectionReusableView</code> 段头段尾视图时，只需要重写 <code>- (instancetype)initWithFrame:(CGRect)frame</code> 方法即可。</p>
-<h2 id="UICollectionViewDataSource-数据源"><a href="#UICollectionViewDataSource-数据源" class="headerlink" title="UICollectionViewDataSource 数据源"></a>UICollectionViewDataSource 数据源</h2><h3 id="1-设置集合视图的段数"><a href="#1-设置集合视图的段数" class="headerlink" title="1. 设置集合视图的段数"></a>1. 设置集合视图的段数</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置集合视图的段数</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @return 段数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">NSInteger</span>)numberOfSectionsInCollectionView:(<span class="built_in">UICollectionView</span> *)collectionView &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-设置集合视图单元格数量"><a href="#2-设置集合视图单元格数量" class="headerlink" title="2. 设置集合视图单元格数量"></a>2. 设置集合视图单元格数量</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置集合视图单元格数量</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param section 哪一段</span></span><br><span class="line"><span class="comment"> @return 单元格数量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">NSInteger</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView numberOfItemsInSection:(<span class="built_in">NSInteger</span>)section &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">12</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-设置集合视图内容"><a href="#3-设置集合视图内容" class="headerlink" title="3. 设置集合视图内容"></a>3. 设置集合视图内容</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置集合视图内容</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 单元格对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">UICollectionViewCell</span> *)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView cellForItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:<span class="string">@&quot;Cell&quot;</span> forIndexPath:indexPath]; <span class="comment">// 查找可复用的单元格，自定义需要注册</span></span><br><span class="line">    <span class="keyword">return</span> cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-设置段头-段尾内容"><a href="#4-设置段头-段尾内容" class="headerlink" title="4. 设置段头/段尾内容"></a>4. 设置段头/段尾内容</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置段头/段尾内容</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param kind 类型</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 段头/段尾视图</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">UICollectionReusableView</span> *)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView viewForSupplementaryElementOfKind:(<span class="built_in">NSString</span> *)kind atIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">if</span>([kind isEqualToString:<span class="built_in">UICollectionElementKindSectionHeader</span>]) &#123;</span><br><span class="line">        SectionHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:<span class="string">@&quot;Header&quot;</span> forIndexPath:indexPath]; <span class="comment">// 查找可复用的段头视图，自定义需要注册</span></span><br><span class="line">        <span class="keyword">return</span> header;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ([kind isEqualToString:<span class="built_in">UICollectionElementKindSectionFooter</span>]) &#123;</span><br><span class="line">        SectionFooter *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:<span class="string">@&quot;Footer&quot;</span> forIndexPath:indexPath]; <span class="comment">// 查找可复用的段尾视图，自定义需要注册</span></span><br><span class="line">        <span class="keyword">return</span> footer;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="UICollectionViewDelegate-代理方法"><a href="#UICollectionViewDelegate-代理方法" class="headerlink" title="UICollectionViewDelegate 代理方法"></a>UICollectionViewDelegate 代理方法</h2><h3 id="1-设置单元格是否允许高亮"><a href="#1-设置单元格是否允许高亮" class="headerlink" title="1. 设置单元格是否允许高亮"></a>1. 设置单元格是否允许高亮</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置单元格是否允许高亮</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 是否允许</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView shouldHighlightItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-单元格处于高亮状态时触发"><a href="#2-单元格处于高亮状态时触发" class="headerlink" title="2. 单元格处于高亮状态时触发"></a>2. 单元格处于高亮状态时触发</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 单元格处于高亮状态时触发</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView didHighlightItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    CollectionViewCell *cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]; <span class="comment">// 得到当前选中单元格对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-单元格取消高亮状态时触发"><a href="#3-单元格取消高亮状态时触发" class="headerlink" title="3. 单元格取消高亮状态时触发"></a>3. 单元格取消高亮状态时触发</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 单元格取消高亮状态时触发</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView didUnhighlightItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    CollectionViewCell *cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]; <span class="comment">// 得到当前选中单元格对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-设置单元格是否允许点击"><a href="#4-设置单元格是否允许点击" class="headerlink" title="4. 设置单元格是否允许点击"></a>4. 设置单元格是否允许点击</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置单元格是否允许点击</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 是否允许</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView shouldSelectItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-设置单元格是否允许取消点击"><a href="#5-设置单元格是否允许取消点击" class="headerlink" title="5. 设置单元格是否允许取消点击"></a>5. 设置单元格是否允许取消点击</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置单元格是否允许取消点击</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 是否允许</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView shouldDeselectItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-点击单元格触发"><a href="#6-点击单元格触发" class="headerlink" title="6. 点击单元格触发"></a>6. 点击单元格触发</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 点击单元格触发</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView didSelectItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    [collectionView deselectItemAtIndexPath:indexPath animated:<span class="literal">YES</span>]; <span class="comment">// 取消单元格当前选中状态</span></span><br><span class="line">    CollectionViewCell *cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]; <span class="comment">// 得到当前选中单元格对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="7-设置上下左右间隔"><a href="#7-设置上下左右间隔" class="headerlink" title="7. 设置上下左右间隔"></a>7. 设置上下左右间隔</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置上下左右间隔</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param collectionViewLayout 单元格布局</span></span><br><span class="line"><span class="comment"> @param section 哪一段</span></span><br><span class="line"><span class="comment"> @return 间隔</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">UIEdgeInsets</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView layout:(<span class="built_in">UICollectionViewLayout</span> *)collectionViewLayout insetForSectionAtIndex:(<span class="built_in">NSInteger</span>)section &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>); <span class="comment">// 分别为上、左、下、右</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<blockquote>
-<p>还有一些不常用的暂时先不写，等用到的时候再补上，哪里有问题的话可以在下面留言。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>iOS 开发</category>
-      </categories>
-      <tags>
-        <tag>iOS 开发</tag>
-        <tag>UICollectionView</tag>
-        <tag>集合视图</tag>
       </tags>
   </entry>
   <entry>
@@ -3928,6 +3928,51 @@
       </tags>
   </entry>
   <entry>
+    <title>【iOS 开发】Git 中无法忽略 .xcuserstate 的解决方法</title>
+    <url>/2017/08/15/iOS/201708151124/</url>
+    <content><![CDATA[<blockquote>
+<p>在平时的 <code>iOS</code> 开发中使用 <code>Git</code> 时会遇到这样的问题，明明在 <code>.gitignore</code> 文件中添加了 <code>.xcuserstate</code> 忽略，之后每次 <code>push</code> 时文件改动中还是会出现 <code>UserInterfaceState.xcuserstate</code> 文件，下面是解决方法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<ul>
+<li>打开终端，<code>cd</code> 到你的项目文件夹下，然后输入以下命令。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后会显示 <code>UserInterfaceState.xcuserstate</code> 文件有改动，这时候复制 <code>modified:</code> 后面的地址。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163409.png" alt="git status"></p>
+<ul>
+<li>接着输入 <code>git rm --cached 刚才复制的地址</code> ，如下。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git rm --cached client_swift_fm_a/client_swift_fm_a.xcworkspace/xcuserdata/Jonzzs.xcuserdatad/UserInterfaceState.xcuserstate</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接着将代码提交推送到服务器。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;删除xcuserstate文件&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>之后再提交时就不会出现 <code>UserInterfaceState.xcuserstate</code> 文件了，要注意路径不能弄错，否则会报错。</li>
+</ul>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>iOS 开发</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>iOS 开发</tag>
+        <tag>iOS 开发问题</tag>
+        <tag>gitignore</tag>
+        <tag>xcuserstate</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【iOS 开发】Swift 中文转换拼音以及中文数组排序</title>
     <url>/2017/09/15/iOS/201709151218/</url>
     <content><![CDATA[<blockquote>
@@ -3974,51 +4019,6 @@
         <tag>Swift</tag>
         <tag>拼音</tag>
         <tag>排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【iOS 开发】Git 中无法忽略 .xcuserstate 的解决方法</title>
-    <url>/2017/08/15/iOS/201708151124/</url>
-    <content><![CDATA[<blockquote>
-<p>在平时的 <code>iOS</code> 开发中使用 <code>Git</code> 时会遇到这样的问题，明明在 <code>.gitignore</code> 文件中添加了 <code>.xcuserstate</code> 忽略，之后每次 <code>push</code> 时文件改动中还是会出现 <code>UserInterfaceState.xcuserstate</code> 文件，下面是解决方法。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<ul>
-<li>打开终端，<code>cd</code> 到你的项目文件夹下，然后输入以下命令。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后会显示 <code>UserInterfaceState.xcuserstate</code> 文件有改动，这时候复制 <code>modified:</code> 后面的地址。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163409.png" alt="git status"></p>
-<ul>
-<li>接着输入 <code>git rm --cached 刚才复制的地址</code> ，如下。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git rm --cached client_swift_fm_a/client_swift_fm_a.xcworkspace/xcuserdata/Jonzzs.xcuserdatad/UserInterfaceState.xcuserstate</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>接着将代码提交推送到服务器。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;删除xcuserstate文件&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>之后再提交时就不会出现 <code>UserInterfaceState.xcuserstate</code> 文件了，要注意路径不能弄错，否则会报错。</li>
-</ul>
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>iOS 开发</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-        <tag>iOS 开发</tag>
-        <tag>iOS 开发问题</tag>
-        <tag>gitignore</tag>
-        <tag>xcuserstate</tag>
       </tags>
   </entry>
   <entry>
