@@ -1813,11 +1813,6 @@ pre .javascript .function {
   grid-gap: 10px;
   margin-bottom: 50px;
 }
-@media (max-width: 767px) {
-  .post-gallery {
-    grid-template-columns: 1fr 1fr;
-  }
-}
 .post-gallery a {
   border: 0;
 }
