@@ -76,6 +76,486 @@
       </tags>
   </entry>
   <entry>
+    <title>给 Hexo 搭建的博客增加 百度 和 谷歌 的搜索引擎验证</title>
+    <url>/2017/05/05/Hexo/201705051311/</url>
+    <content><![CDATA[<blockquote>
+<p>如果你的 <code>博客</code> 是使用 <code>GitHub + Hexo</code> 搭建的，那么你的 <code>博客</code> 内容是无法被 <code>百度、谷歌</code> 等搜索引擎搜索到的，虽然我们将自己的 <code>博客</code> 托管在 <code>GitHub</code> ，但是 <code>GitHub</code> 是不会讲站点信息提交给搜索引擎的，所以我们可以手动将自己的 <code>博客</code> 站点提交给 <code>百度、谷歌</code> 的搜索引擎。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="1-验证站点"><a href="#1-验证站点" class="headerlink" title="1. 验证站点"></a>1. 验证站点</h2><p>搜索引擎验证的方法有好几种，下面我选择 <code>HTML标签验证</code> 验证方法，其他的方法有兴趣可以自己去试一下，这里就不介绍了。</p>
+<ul>
+<li><p>首先打开 <a href="http://www.baidu.com/search/url_submit.htm">百度搜索引擎验证</a> ，点击 <code>添加网站</code> ，输入自己的 <code>博客</code> 地址。</p>
+</li>
+<li><p>输完后选择 <code>HTML标签验证</code> ，然后将下方的 <code>meta</code> 代码复制下来，网页先不要关。</p>
+</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365123-1104ec80-71b7-11e9-9c3b-88f43444d7ae.png" alt="百度搜索引擎验证"></p>
+<ul>
+<li><p>重新开一个页面，打开 <a href="https://www.google.com/webmasters/tools/home?hl=zh-CN">谷歌搜索引擎验证</a> ，点击 <code>添加属性</code> ，一样输入自己的 <code>博客</code> 地址。（ <code>谷歌</code> 需要翻墙，如果不想翻墙的话，可以跳过 <code>谷歌</code> 验证的步骤，只看 <code>百度</code> 的验证）</p>
+</li>
+<li><p>输完后选择 <code>备用方法</code> 下的 <code>HTML 标记</code> ，然后将下方的 <code>meta</code> 代码复制下来，网页也不要关。</p>
+</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365150-1eba7200-71b7-11e9-9043-a58514df8ec1.png" alt="谷歌搜索引擎验证"></p>
+<ul>
+<li><p>打开本地博客主题下的 <code>layout / _partial</code> 文件夹，有一个名为 <code>head</code> 的文件，使用 <code>HTML</code> 编辑器打开，将刚才复制的两句 <code>meta</code> 代码粘贴进去。</p>
+</li>
+<li><p>保存文件后，输入以下命令将 <code>博客</code> 重新部署到 <code>GitHub</code> 服务器。</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后分别点击刚才 <code>百度、谷歌</code> 验证页面的 <code>验证</code> 按钮进行站点验证。</li>
+</ul>
+<h2 id="2-生成站点地图"><a href="#2-生成站点地图" class="headerlink" title="2. 生成站点地图"></a>2. 生成站点地图</h2><ul>
+<li>打开终端 <code>cd</code> 到本地博客目录下，输入以下命令安装 <code>sitmap</code> 插件。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开本地博客目录下的 <code>_config.yml</code> 文件，修改 <code>url</code> 参数为你博客的 <code>首页地址</code>，这样是为了保证能正确生成 <code>sitemap.xml</code> 文件中的地址。</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">url:</span> <span class="string">http://jonzzs.cn</span> <span class="comment"># 修改成你博客的首页地址</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>添加以下配置。</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 自动生成sitemap</span></span><br><span class="line"><span class="attr">sitemap:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">sitemap.xml</span></span><br><span class="line"><span class="attr">baidusitemap:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">baidusitemap.xml</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>输入以下命令重新部署博客。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-将站点地图提交谷歌"><a href="#3-将站点地图提交谷歌" class="headerlink" title="3. 将站点地图提交谷歌"></a>3. 将站点地图提交谷歌</h2><ul>
+<li>打开 <a href="https://www.google.com/webmasters/tools/home?hl=zh-CN">谷歌站点控制台</a> 进入站点控制台，先点击 <code>测试</code> 站点地图，测试通过后再点击 <code>提交</code> 站点地图。</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365192-32fe6f00-71b7-11e9-9693-44df117b8ac9.png" alt="添加站点地图"></p>
+<hr>
+<blockquote>
+<p>提交完成后，就可以等待搜索引擎 <code>自动抓取</code> 或者配置 <code>自动推送</code> 或者 <code>主动推送</code> 站点链接了。如果你的 <code>博客</code> 是使用 <code>GitHub + Hexo</code> 搭建的，由于 <code>Github</code> 貌似禁止百度爬虫访问 <code>博客</code>，导致 <code>博客</code> 可能无法被百度收录，所以可以主动推送站点链接，可以参考一下这篇文章：<a href="http://hui-wang.info/2016/10/23/Hexo%E6%8F%92%E4%BB%B6%E4%B9%8B%E7%99%BE%E5%BA%A6%E4%B8%BB%E5%8A%A8%E6%8F%90%E4%BA%A4%E9%93%BE%E6%8E%A5/">Hexo 插件之百度主动提交链接</a> 。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Hexo 博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo 博客</tag>
+        <tag>百度</tag>
+        <tag>谷歌</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Hexo 免费搭建属于自己的个人博客</title>
+    <url>/2017/05/03/Hexo/201705031747/</url>
+    <content><![CDATA[<blockquote>
+<p>有人可能会问有了 <code>简书</code> 为什么还需要 <code>博客</code> ？身为一个 <code>程序猿</code> 怎么能没有一个自己的 <code>博客</code> 呢！虽然有了 <code>简书</code>，但是 <code>博客</code> 不受任何第三方管理，并且还能自定义成自己喜欢的界面，下面就开始讲一下搭建的方法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<p>  <code>Hexo</code> 是一款基于 <code>Node.js</code> 的博客框架，应该是目前最流行的博客框架了，使用起来比较简单，以下是 <a href="http://jonzzs.cn/">我的博客</a> 页面：</p>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57364951-bc617180-71b6-11e9-936c-917c25407c8d.png" alt="我的博客"></p>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57364982-cdaa7e00-71b6-11e9-9d1f-b3d80e154c99.png" alt="我的博客"></p>
+<h2 id="安装搭建博客必须的环境"><a href="#安装搭建博客必须的环境" class="headerlink" title="安装搭建博客必须的环境"></a>安装搭建博客必须的环境</h2><h3 id="1-安装-Git"><a href="#1-安装-Git" class="headerlink" title="1. 安装 Git"></a>1. 安装 Git</h3><p>这里就不说怎么安装了，相信会看这篇文章的一般都已经装了。</p>
+<h3 id="2-申请-GitHub-账号"><a href="#2-申请-GitHub-账号" class="headerlink" title="2. 申请 GitHub 账号"></a>2. 申请 GitHub 账号</h3><p><code>博客</code> 的 <code>远程创库</code>、<code>域名</code>、<code>服务器</code> 等都和 <a href="https://github.com/">GitHub</a> 有关，这个必须要。</p>
+<h3 id="3-安装-Node-js"><a href="#3-安装-Node-js" class="headerlink" title="3. 安装 Node.js"></a>3. 安装 Node.js</h3><p>前往 <a href="https://nodejs.org/">Node.js 官网</a> 下载最新版本的安装包安装即可。</p>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365028-e2871180-71b6-11e9-9592-afe2459b2a0e.png" alt="安装 Node.js"></p>
+<h3 id="4-安装-Hexo"><a href="#4-安装-Hexo" class="headerlink" title="4. 安装 Hexo"></a>4. 安装 Hexo</h3><p>打开终端，输入以下命令安装 <code>Hexo</code> ，安装时间可能有点长，要多等一下。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<h2 id="开始搭建博客"><a href="#开始搭建博客" class="headerlink" title="开始搭建博客"></a>开始搭建博客</h2><p>以上环境必须全部安装完成后，才能开始搭建 <code>博客</code>。</p>
+<h3 id="1-创建-GitHub-仓库"><a href="#1-创建-GitHub-仓库" class="headerlink" title="1. 创建 GitHub 仓库"></a>1. 创建 GitHub 仓库</h3><p>打开 <a href="https://github.com/">GitHub</a> 创建一个仓库，<code>Repository name</code> 为 <code>xxx.github.io</code>，<code>xxx</code> 处就是你 <code>GitHub</code> 的用户名，也就是前面 <code>Owner</code> 处显示的名字，命名必须这样，不能更改，这个仓库的名字也会是 <code>博客</code> 搭建完成后的域名。</p>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365059-f2065a80-71b6-11e9-92f1-1f674f564e78.png" alt="创建 GitHub 仓库"></p>
+<h3 id="2-初始化-Hexo-博客"><a href="#2-初始化-Hexo-博客" class="headerlink" title="2. 初始化 Hexo 博客"></a>2. 初始化 Hexo 博客</h3><p>打开终端，执行以下命令初始化 <code>博客</code>，初始化完成后，你的系统根目录中会多一个名为 <code>Blog</code> 的文件夹，<code>Blog</code> 也可以更改成自己喜欢的名字，初始化时间也比较久，耐心等一下。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo init Blog</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-下载博客主题"><a href="#3-下载博客主题" class="headerlink" title="3. 下载博客主题"></a>3. 下载博客主题</h3><ul>
+<li><p><code>博客</code> 初始化完成以后，会有一个自带的 <code>博客主题</code> ，在 <code>Blog / themes </code> 文件夹下，但是比较丑，你可以下载一个自己喜欢的 <code>博客主题</code> 。</p>
+</li>
+<li><p>这里是 <code>博客主题</code> 的 <a href="https://hexo.io/themes/">下载地址</a> ，只需要到主题对应的 <code>GitHub</code> 仓库将主题 <code>clone</code> 下来即可，这是我使用的主题 <a href="https://github.com/monniya/hexo-theme-new-vno">下载地址</a> 。</p>
+</li>
+<li><p><code>clone</code> 完成后，将主题文件夹复制到 <code>Blog</code> 文件夹下的 <code>themes</code> 文件夹中。</p>
+</li>
+</ul>
+<h3 id="4-修改博客配置文件"><a href="#4-修改博客配置文件" class="headerlink" title="4. 修改博客配置文件"></a>4. 修改博客配置文件</h3><ul>
+<li><p>打开 <code>Blog</code> 文件夹下的 <code>_config.yml</code> 文件，修改其中的配置。</p>
+</li>
+<li><p>下面把几个必须修改的配置列出来按需求修改即可，配置的键值之间一定要有空格，否则会报错，想了解更多配置点击 <a href="https://hexo.io/zh-cn/docs/configuration.html">这里</a> 。</p>
+</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">Jonzzs</span>  <span class="string">//博客的标题</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">个人博客</span> <span class="string">//博客的副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">将来的你</span> <span class="string">一定会感激现在拼命的自己</span> <span class="string">//博客的描述</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">Jonzzs</span> <span class="string">//博客作者的名字</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-Hans</span> <span class="string">//语言中文</span></span><br><span class="line"></span><br><span class="line"><span class="attr">theme:</span> <span class="string">new-vno</span> <span class="string">//刚刚复制到</span> <span class="string">themes</span> <span class="string">文件夹下的主题名称</span></span><br><span class="line"></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span> <span class="string">//使用</span> <span class="string">Git</span> <span class="string">发布</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/Jonzzs/Jonzzs.github.io.git</span> <span class="string">//刚创建的</span> <span class="string">Github</span> <span class="string">仓库地址</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>关于主题的配置在各自主题文件夹下的 <code>_config.yml</code> 文件中修改。</li>
+</ul>
+<h3 id="5-写博客文章"><a href="#5-写博客文章" class="headerlink" title="5. 写博客文章"></a>5. 写博客文章</h3><ul>
+<li>接下来可以开始写你的第一篇 <code>博客</code> 文章了，博客文章保存在 <code>Blog / source / _posts</code> 文件夹下，格式为 <code>MarkDown</code> 格式，也就是 <code>.md</code> 后缀的文件，编码格式为 <code>UTF-8</code> ，否则会显示乱码。</li>
+</ul>
+<p><strong>例如：</strong> 创建一个名为 <code>测试文章.md</code> 的文件，内容为：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 测试文章 //文章的标题</span><br><span class="line">date: 2017-05-03 17:47 //文章的发布时间</span><br><span class="line">categories: 测试分类 //分类名称</span><br><span class="line">tags: 测试标签 //标签名称</span><br><span class="line">photos: http://jonzzs.cn/images/Jonzzs.jpg //需要展示的图片地址</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"> &gt; 这是一篇测试文章。</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 每一篇文章中，开头都必须有 <code>---</code> 之间的那些参数，参数 <code>:</code> 后面必须有空格，文章的 <code>标题</code> 是必填的，否则文章不会显示在博客中，其他参数看自己的需求填写，<code>categories 、tags 、photos </code> 这三个参数可填写多个，填写多个时用 <code>[ xx, xx ]</code> 格式区分，例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 测试文章 &#x2F;&#x2F;文章的标题</span><br><span class="line">date: 2017-05-03 17:47 &#x2F;&#x2F;文章的发布时间</span><br><span class="line">categories: [测试分类1, 测试分类2, 测试分类3] &#x2F;&#x2F;分类名称</span><br><span class="line">tags: [测试标签1, 测试标签2, 测试标签3] &#x2F;&#x2F;标签名称</span><br><span class="line">photos: [http:&#x2F;&#x2F;jonzzs.cn&#x2F;images&#x2F;Jonzzs.jpg, http:&#x2F;&#x2F;jonzzs.cn&#x2F;images&#x2F;Jonzzs.jpg, http:&#x2F;&#x2F;jonzzs.cn&#x2F;images&#x2F;Jonzzs.jpg] &#x2F;&#x2F;需要展示的图片地址</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果要在博客的首页显示每篇文章的 <code>摘要</code> ，只要在文章中加入以下 <code>分隔符</code> 即可，该 <code>分隔符</code> 之前的所有内容都会被自动截取为文章的 <code>摘要</code> 。</li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- more --&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-本地测试博客"><a href="#6-本地测试博客" class="headerlink" title="6. 本地测试博客"></a>6. 本地测试博客</h3><ul>
+<li>打开终端 <code>cd</code> 到 <code>Blog</code> 目录下，输入以下命令：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接着浏览器中输入 <a href="http://localhost:4000/">http://localhost:4000/</a> 就能够看到 <code>博客</code> 的搭建效果。</li>
+</ul>
+<h2 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h2><p>本地显示没问题以后，就可以将 <code>博客</code> 发布到 <code>GitHub</code> 服务器上了。</p>
+<h3 id="1-安装自动部署发布插件"><a href="#1-安装自动部署发布插件" class="headerlink" title="1. 安装自动部署发布插件"></a>1. 安装自动部署发布插件</h3><p>第一次配置时需要安装 <code>hexo-deployer-git</code> 自动部署发布工具，打开终端 <code>cd</code> 到 <code>Blog</code> 目录下，执行以下命令安装。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-发布博客到服务器"><a href="#2-发布博客到服务器" class="headerlink" title="2. 发布博客到服务器"></a>2. 发布博客到服务器</h3><ul>
+<li>打开终端 <code>cd</code> 到 <code>Blog</code> 目录下，输入以下命令：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>如果这是你的第一次，终端可能会让你输入 <code>Github</code> 的邮箱和密码，输入完成后，就会把你的 <code>博客</code> 自动上传至 <code>Github</code> 了。</p>
+</li>
+<li><p>以后在每一次添加新的 <code>博客</code> 文章或者改变配置时，执行一下这个命令就可以直接发布了。</p>
+</li>
+<li><p>发布完成后，浏览器中输入之前创建的 <code>Github</code> 仓库名，就能访问到你搭建的 <code>博客</code> 了，我的是 <a href="https://jonzzs.github.io/">Jonzzs.github.io</a> 。</p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>简单的 <code>博客</code> 搭建流程就是这样了，还有很多不错的 <a href="https://hexo.io/plugins/">插件</a> ，比如 <code>评论</code>、<code>标签</code>、<code>统计</code> 等等，这些自己去研究并慢慢完善自己的博客吧。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Hexo 博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo 博客</tag>
+        <tag>GitHub</tag>
+        <tag>GitHub Pages</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 git.oschina 码云 来托管 Hexo 搭建的博客</title>
+    <url>/2017/05/08/Hexo/201705081542/</url>
+    <content><![CDATA[<blockquote>
+<p>首先还没有搭建博客的先转到我的另一篇文章：<a href="http://www.jianshu.com/p/8f1e1b17417b">使用 Hexo 免费搭建属于自己的个人博客</a> ，一般我们都是使用 <code>GitHub + Hexo</code> 来搭建我们的 <code>博客</code> ，下面分享一下如何用国内的 <code>码云</code> 来托管我们的 <code>博客</code> 。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<ul>
+<li>首先进入 <a href="http://git.oschina.net/">码云</a> 创建一个仓库，<code>仓库名称</code> 和 <code>仓库路径</code> 都必须和你的 <code>用户名</code> 也就是上面的 <code>归属</code> 一样。</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365229-44477b80-71b7-11e9-8216-7b08377dad5d.png" alt="创建仓库"></p>
+<ul>
+<li>打开本地 <code>博客</code> 下的 <code>_config.yml</code> 文件，将刚才创建的仓库 <code>Git</code> 地址配置进去。</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365270-532e2e00-71b7-11e9-826b-79f4927bc6a4.png" alt="仓库 Git 地址"></p>
+<ul>
+<li>如果想使用 <code>GitHub</code> 和 <code>码云</code> 同时托管 <code>博客</code> ，就这样配置：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span></span><br><span class="line">    <span class="attr">github:</span> <span class="string">https://github.com/Jonzzs/Jonzzs.github.io.git</span></span><br><span class="line">    <span class="attr">oschina:</span> <span class="string">https://git.oschina.net/Jonzzs/Jonzzs.git</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果只想使用 <code>码云</code> 托管 <code>博客</code> ，就这样配置：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://git.oschina.net/Jonzzs/Jonzzs.git</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>保存文件后打开终端 <code>cd</code> 到 <code>博客</code> 目录下，使用以下命令重新部署一下博客。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>再次打开刚才 <code>码云</code> 上创建的仓库刷新一下，<code>博客</code> 的 <code>HTML</code> 页面应该已经传到仓库中了，打开 <code>服务</code> 中的 <code>Pages</code>，点击 <code>启动服务</code> 。</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365311-62ad7700-71b7-11e9-8bf5-4ae7823a65cd.png" alt="Pages"></p>
+<ul>
+<li>此时你就可以使用 <code>用户名.oschina.io</code> 来访问你的 <code>博客</code> 了。</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365346-735ded00-71b7-11e9-93d5-91e0cc89a385.png" alt="jonzzs.oschina.io"></p>
+<hr>
+<blockquote>
+<p>大功告成，使用 <code>码云</code> 托管 <code>博客</code> 后访问速度会快很多，大家块试试看吧。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Hexo 博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo 博客</tag>
+        <tag>码云</tag>
+        <tag>git.oschina</tag>
+        <tag>码云 Pages</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>为 Hexo 搭建的博客添加 RSS 输出功能</title>
+    <url>/2017/05/08/Hexo/201705081800/</url>
+    <content><![CDATA[<blockquote>
+<p>对于 <code>RSS</code> 输出这个功能，<code>Hexo</code> 已经有一个现成的插件可以用，那就是 <a href="https://github.com/hexojs/hexo-generator-feed">hexo-generator-feed</a> ，下面就来分享一下使用方法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<ul>
+<li>首先打开终端 <code>cd</code> 到本地的 <code>博客</code> 目录下，输入以下命令安装 <code>RSS</code> 插件。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开 <code>博客</code> 根目录下的 <code>_config.yml</code> 文件，加入以下配置：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">feed:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">atom</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">atom.xml</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">20</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开 <code>博客</code> 主题目录下的 <code>_config.yml</code> 文件，设置 <code>RSS</code> 地址：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">rss:</span> <span class="string">/atom.xml</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>最后打开终端 <code>cd</code> 到本地的 <code>博客</code> 目录下，输入以下命令重新部署一下 <code>博客</code> 。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>方法就是这样，重新打开你的 <code>博客</code> 就能够使用 <code>RSS</code> 输出功能了。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Hexo 博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo 博客</tag>
+        <tag>RSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Swiftype 给 Hexo 搭建的博客添加站内搜索功能</title>
+    <url>/2017/05/09/Hexo/201705091200/</url>
+    <content><![CDATA[<blockquote>
+<p>当我们的 <code>博客</code> 文章变的越来越多的时候，就非常需要使用 <code>站内搜索</code> 功能，否则寻找某一篇文章就会变的麻烦，<code>Swiftype</code> 是一个非常好的站内搜索平台，并且是 <code>免费</code> 的，可以到 <a href="http://jonzzs.oschina.io/">我的博客</a> 去预览一下搜索效果，下面就分享一下集成的方法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="1-注册-Swiftype-账号"><a href="#1-注册-Swiftype-账号" class="headerlink" title="1. 注册 Swiftype 账号"></a>1. 注册 Swiftype 账号</h2><ul>
+<li>首先进入 <a href="https://app.swiftype.com/">Swiftype 官网</a> 注册一个账号，注册的账号邮箱貌似必须使用 <code>企业邮箱</code> ，注册信息要全部填完，这里要注意一下，这里建议最好翻墙，否则浏览速度会比较慢。</li>
+</ul>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160539.png" alt="注册"></p>
+<ul>
+<li>注册完成后会提示进入邮箱点击链接激活一下账号，激活完以后登录账号会显示 <code>免费试用 xx 天</code> ，这个无视就行了，试用期结束后还是可以用的。</li>
+</ul>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160611.png" alt="免费试用"></p>
+<h2 id="2-创建-search-engine"><a href="#2-创建-search-engine" class="headerlink" title="2. 创建 search engine"></a>2. 创建 search engine</h2><ul>
+<li>点击 <a href="https://app.swiftype.com/precrawls/new">Create a search engine</a> ，输入自己 <code>博客</code> 的完整地址，等待验证完成后，随便输入一个名字就行。</li>
+</ul>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160631.png" alt="Create a search engine"></p>
+<ul>
+<li>创建完成后会开始抓取你 <code>博客</code> 的数据来用作 <code>搜索索引</code> ，你可以在 <code>Content</code> 中看到抓取的 <code>搜索索引</code> 数据。</li>
+</ul>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160647.png" alt="Content"></p>
+<ul>
+<li>当你的 <code>博客</code> 内容有更新的时候，可以在 <code>Domains</code> 中点击 <code>Recrawl</code> 来重新抓取一下 <code>搜索索引</code> 数据。</li>
+</ul>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160701.png" alt="Domains"></p>
+<h2 id="3-更改搜索设置"><a href="#3-更改搜索设置" class="headerlink" title="3. 更改搜索设置"></a>3. 更改搜索设置</h2><p>如果你不想设置那么麻烦，只想全部用默认设置，可以直接跳过这一步，直接进入 <code>开始集成 Swiftype 搜索</code> 这一步。</p>
+<ul>
+<li>进入 <code>Weights</code> 修改搜索条件，我这边设置的是只根据文章的 <code>title</code> 来搜索内容，你可以根据自己的需求更改，修改完可以在右边搜索预览一下。</li>
+</ul>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160716.png" alt="Weights"></p>
+<ul>
+<li>进入 <code>Install Search</code> 点击 <code>Change Configuration</code> 设置 <code>搜索框显示</code> 以及 <code>搜索结果显示</code> 。</li>
+</ul>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160733.png" alt="Install Search"></p>
+<ul>
+<li><code>搜索框显示</code> 有两种，第一种是自己在 <code>博客</code> 中合适的位置加一个 <code>input</code> 标签的搜索框，<code>class</code> 属性设置为 <code>st-default-search-input</code> 。</li>
+</ul>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160746.png" alt="自己加 input 搜索框"></p>
+<ul>
+<li>第二种不需要自己加 <code>input</code> 标签，<code>Swiftype</code> 会自动在你 <code>博客</code> 网页的右下角添加一个 <code>search this site</code> 的搜索按钮，点击即可搜索，效果可以看下面的预览图，想用哪一种可以看自己的需求。</li>
+</ul>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160803.png" alt="自带的搜索按钮"></p>
+<ul>
+<li>设置修改完保存以后需要点击网页最下面的 <code>Activate Swiftype</code> 按钮，设置才能生效，这个要注意一下。</li>
+</ul>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160819.png" alt="Activate Swiftype"></p>
+<h2 id="4-开始集成-Swiftype-搜索"><a href="#4-开始集成-Swiftype-搜索" class="headerlink" title="4. 开始集成 Swiftype 搜索"></a>4. 开始集成 Swiftype 搜索</h2><ul>
+<li>进入 <code>Install Search</code> ，将 <code>Swiftype</code> 安装代码复制下来。</li>
+</ul>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160832.png" alt="Install Search"></p>
+<ul>
+<li><p>打开本地 <code>博客</code> 主题目录下的 <code>layout / _partial</code> 文件夹，使用 <code>HTML</code> 编辑器打开 <code>footer.ejs</code> 文件，将刚才的代码粘贴在 <code>&lt;footer&gt;</code> 标签内。</p>
+</li>
+<li><p>打开本地 <code>博客</code> 主题目录下的 <code>_config.yml</code> 文件，添加以下配置。</p>
+</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">swift_search:</span></span><br><span class="line">      <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果刚才设置 <code>搜索框显示</code> 时选择的是第二种可以跳过这一步，如果选择的是第一种，就将以下代码放在 <code>博客</code> 中适合放搜索框的位置即可。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 搜索框就加上 class=&quot;st-default-search-input&quot; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">theme.swift_search.enable</span>)&#123; %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">class</span>=<span class="string">&quot;st-default-search-input&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入搜索内容...&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 搜索按钮就加上 class=&quot;st-search-show-outputs&quot; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">theme.swift_search.enable</span>)&#123; %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">title</span>=<span class="string">&quot;搜索博客&quot;</span> <span class="attr">class</span>=<span class="string">&quot;st-search-show-outputs&quot;</span>&gt;</span>搜索<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开终端 <code>cd</code> 到本地 <code>博客</code> 目录下，输入以下命令重新部署 <code>博客</code> 。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>集成步骤大概就是这样，搜索框样式可以根据需求自己写，另外如果你的 <code>Swiftype</code> 抓取不到 <code>搜索索引</code> ，可以在 <code>Domains</code> 中点击 <code>Recrawl</code> 来重新抓取一下 <code>搜索索引</code> 数据，祝你成功。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Hexo 博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo 博客</tag>
+        <tag>Swiftype 搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>为 Hexo 的 Next 主题添加 Gitalk 评论</title>
+    <url>/2019/05/31/Hexo/201905311540/</url>
+    <content><![CDATA[<blockquote>
+<p><a href="https://github.com/gitalk/gitalk">Gitalk</a> 是一个基于 <code>Github Issue</code> 的评论插件，使用 <code>Github</code> 帐号登录，界面干净整洁，最喜欢的一点是支持 <code>MarkDown</code> 语法，在个人博客里添加了之后就可以很简便的进行评论和回复了。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<p><strong>主要特性：</strong></p>
+<ul>
+<li>使用 <code>Github</code> 登录</li>
+<li>支持多语言 <code>[en, zh-CN, zh-TW, es-ES, fr]</code></li>
+<li>支持个人或组织</li>
+<li>无干扰模式（设置 <code>distractionFreeMode</code> 为 <code>true</code> 开启）</li>
+<li>快捷键提交评论 （<code>cmd</code> | <code>ctrl + enter</code>）</li>
+<li>支持 <code>MarkDown</code> 语法</li>
+</ul>
+<p><strong>界面效果：</strong></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190531155245.png"></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>我这边使用的 <a href="https://github.com/iissnan/hexo-theme-next">Next</a> 主题，版本是 <code>5.1.3</code>。</p>
+<h3 id="1-创建-Github-仓库"><a href="#1-创建-Github-仓库" class="headerlink" title="1. 创建 Github 仓库"></a>1. 创建 Github 仓库</h3><p>需要在自己的 <code>Github</code> 账号下创建一个仓库来存放评论，创建的仓库只要 <code>public</code> 就行，其余没要求。</p>
+<h3 id="2-创建-Github-Application"><a href="#2-创建-Github-Application" class="headerlink" title="2. 创建 Github Application"></a>2. 创建 Github Application</h3><p>需要创建一个 <code>Github Application</code> 用来授权登录，如果没有 <a href="https://github.com/settings/applications/new">点击这里申请</a>，<code>Authorization callback URL</code> 填写你主页地址，比如我的就是 <code>https://jonzzs.cn</code>，其他都随意填。</p>
+<h3 id="3-为-Next-主题添加-Gitalk-支持"><a href="#3-为-Next-主题添加-Gitalk-支持" class="headerlink" title="3. 为 Next 主题添加 Gitalk 支持"></a>3. 为 Next 主题添加 Gitalk 支持</h3><ul>
+<li><p>首先创建 <code>Gitalk</code> 的 <code>swig</code> 文件，放在 <code>themes/next/layout/_third-party/comments</code> 文件夹下，命名为 <code>gitalk.swig</code> ，内容如下。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% if page.comments &amp;&amp; theme.gitalk.enable %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://unpkg.com/gitalk/dist/gitalk.css&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/gitalk/dist/gitalk.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;gitalk-container&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> gitalk = <span class="keyword">new</span> Gitalk(&#123;</span></span><br><span class="line"><span class="handlebars"><span class="xml">      clientID: &#x27;</span><span class="template-variable">&#123;&#123; <span class="name">theme.gitalk.clientID</span> &#125;&#125;</span><span class="xml">&#x27;,</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">      clientSecret: &#x27;</span><span class="template-variable">&#123;&#123; <span class="name">theme.gitalk.clientSecret</span> &#125;&#125;</span><span class="xml">&#x27;,</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">      repo: &#x27;</span><span class="template-variable">&#123;&#123; <span class="name">theme.gitalk.repo</span> &#125;&#125;</span><span class="xml">&#x27;,</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">      owner: &#x27;</span><span class="template-variable">&#123;&#123; <span class="name">theme.gitalk.owner</span> &#125;&#125;</span><span class="xml">&#x27;,</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">      admin: [&#x27;</span><span class="template-variable">&#123;&#123; <span class="name">theme.gitalk.admin</span> &#125;&#125;</span><span class="xml">&#x27;],</span></span></span><br><span class="line">      id: location.pathname,</span><br><span class="line"><span class="handlebars"><span class="xml">      distractionFreeMode: &#x27;</span><span class="template-variable">&#123;&#123; <span class="name">theme.gitalk.distractionFreeMode</span> &#125;&#125;</span><span class="xml">&#x27;</span></span></span><br><span class="line">    &#125;)</span><br><span class="line"><span class="javascript">    gitalk.render(<span class="string">&#x27;gitalk-container&#x27;</span>)</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在主题文件 <code>themes/next/layout/_third-party/comments/index.swig</code> 中引入刚刚添加的文件。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% include &#x27;gitalk.swig&#x27; %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>themes/next/layout/_partials/comments.swig</code> 文件末找到最后的 <code>&#123;% endif %&#125;</code> 语句，替换为如下代码。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% elseif theme.gitalk.enable %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;gitalk-container&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>themes/next/_config.yml</code> 文件中添加 <code>Gitalk</code> 的配置。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">gitalk:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment"># 是否启用</span></span><br><span class="line">  <span class="attr">owner:</span> <span class="string">xxx</span> <span class="comment"># 用户名</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">xxx</span> <span class="comment"># 存放评论的仓库名</span></span><br><span class="line">  <span class="attr">clientID:</span> <span class="string">xxx</span> <span class="comment"># Github Application 的 clientID</span></span><br><span class="line">  <span class="attr">clientSecret:</span> <span class="string">xxx</span> <span class="comment"># Github Application 的 clientSecret</span></span><br><span class="line">  <span class="attr">admin:</span> <span class="string">xxx</span> <span class="comment"># 用户名</span></span><br><span class="line">  <span class="attr">distractionFreeMode:</span> <span class="literal">false</span> <span class="comment"># 评论时遮照效果的开关</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最后执行 <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code> 重新发布博客即可。</p>
+</li>
+</ul>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Hexo 博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo 博客</tag>
+        <tag>评论</tag>
+        <tag>Gitalk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>为 Hexo 搭建的博客添加属于自己的个性域名</title>
+    <url>/2017/05/21/Hexo/201705211838/</url>
+    <content><![CDATA[<blockquote>
+<p>一般用 <code>GitHub + Hexo</code> 搭建的博客访问域名都是 <code>xxx.github.io</code> ，如何让博客有一个属于自己又好记的域名呢，下面分享一下方法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="1-购买域名"><a href="#1-购买域名" class="headerlink" title="1. 购买域名"></a>1. 购买域名</h2><p>我的域名是在 <a href="https://www.qcloud.com/">腾讯云</a> 买的，因为  <a href="https://www.qcloud.com/">腾讯云</a> 的便宜一点，也可以到 <a href="https://www.aliyun.com/">阿里云</a> 的万网去买。</p>
+<ul>
+<li>首先前往 <a href="https://www.qcloud.com/">腾讯云</a> ，选择 <code>域名服务</code> ，选择一个想要的域名后缀，不同的后缀价格是不一样的。</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365379-85d82680-71b7-11e9-918f-82b2d4a3e2a3.png" alt="腾讯云"></p>
+<ul>
+<li>输入自己想要的个性域名，然后选择好合适的域名后缀后购买即可。</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365598-f2ebbc00-71b7-11e9-891d-475859fd94d5.png" alt="域名注册"></p>
+<h2 id="2-域名解析"><a href="#2-域名解析" class="headerlink" title="2. 域名解析"></a>2. 域名解析</h2><ul>
+<li>域名购买完成后，进入页面右上角的 <code>管理中心</code> ，选择 <code>域名管理</code> 。</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365685-24fd1e00-71b8-11e9-999a-57d85a2fccfb.png" alt="域名管理"></p>
+<ul>
+<li>然后在你购买的域名菜单栏中点击 <code>解析</code> 。</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365720-33e3d080-71b8-11e9-82d3-4a60a2df2f95.png" alt="解析"></p>
+<ul>
+<li>按照下图增加以下三条记录，前两条照我的填写就行，最后一条的记录值改成你自己博客的 <code>GitHub</code> 域名，一般都是 <code>xxx.github.io</code> ，别的照着我的填写就行。</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365787-52e26280-71b8-11e9-848c-c4622e177b86.png" alt="添加记录"></p>
+<ul>
+<li>记录添加完成后，选中添加的三条记录，选择上方的 <code>分配至项目</code> 按钮。</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365814-5f66bb00-71b8-11e9-869a-866e0589740d.png" alt="分配至项目"></p>
+<ul>
+<li>然后将其分配到 <code>默认项目</code> 即可。</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365831-6a215000-71b8-11e9-80e9-82dfe1e40453.png" alt="默认项目"></p>
+<ul>
+<li>然后点击 <code>协作子域名</code> ，也将其分配至 <code>默认项目</code> 。</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365860-77d6d580-71b8-11e9-8438-820e82f35f01.png" alt="协作子域名"></p>
+<h2 id="3-创建-CNAME-文件"><a href="#3-创建-CNAME-文件" class="headerlink" title="3. 创建 CNAME 文件"></a>3. 创建 CNAME 文件</h2><ul>
+<li>在本地博客根目录下的 <code>source</code> 文件夹中，新建一个名为 <code>CNAME</code> 的文件，注意这个文件不带 <code>任何后缀名</code>。</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365882-845b2e00-71b8-11e9-8526-0e9fbbc56f3f.png" alt="CNAME"></p>
+<ul>
+<li>打开 <code>CNAME</code> 文件，在里面加入你购买的域名，注意加入的域名不带 <code>http://</code> 也不带 <code>www</code> ，列如我的 <code>jonzzs.cn</code> ，只要加入这个就行了。</li>
+</ul>
+<p><img data-src="https://user-images.githubusercontent.com/16834649/57365921-976dfe00-71b8-11e9-916f-fdbbf5b0532d.png" alt="加入域名"></p>
+<ul>
+<li>保存文件后，打开终端 <code>cd</code> 到你的博客目录下，输入以下命令重新部署博客到服务器即可。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>方法到这里就结束了，部署完成后稍微等个十来分钟，然后就用你的新域名访问一下试试吧，访问不管是使用 <a href="jonzzs.cn">jonzzs.cn</a> 还是 <a href="www.jonzzs.cn">www.jonzzs.cn</a> 还是 <a href="jonzzs.github.io">jonzzs.github.io</a> ，最后都会自动指向 <a href="jonzzs.cn">jonzzs.cn</a> 这个主域名下，赶快试一试吧~</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>Hexo 博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo 博客</tag>
+        <tag>域名</tag>
+        <tag>腾讯云</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Java 开发】mac 设置 MySQL 数据库默认编码（字符集）为 UTF-8</title>
     <url>/2017/03/16/Java/201703161547/</url>
     <content><![CDATA[<blockquote>
@@ -330,486 +810,6 @@
       <tags>
         <tag>Java 开发</tag>
         <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 Hexo 免费搭建属于自己的个人博客</title>
-    <url>/2017/05/03/Hexo/201705031747/</url>
-    <content><![CDATA[<blockquote>
-<p>有人可能会问有了 <code>简书</code> 为什么还需要 <code>博客</code> ？身为一个 <code>程序猿</code> 怎么能没有一个自己的 <code>博客</code> 呢！虽然有了 <code>简书</code>，但是 <code>博客</code> 不受任何第三方管理，并且还能自定义成自己喜欢的界面，下面就开始讲一下搭建的方法。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<p>  <code>Hexo</code> 是一款基于 <code>Node.js</code> 的博客框架，应该是目前最流行的博客框架了，使用起来比较简单，以下是 <a href="http://jonzzs.cn/">我的博客</a> 页面：</p>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57364951-bc617180-71b6-11e9-936c-917c25407c8d.png" alt="我的博客"></p>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57364982-cdaa7e00-71b6-11e9-9d1f-b3d80e154c99.png" alt="我的博客"></p>
-<h2 id="安装搭建博客必须的环境"><a href="#安装搭建博客必须的环境" class="headerlink" title="安装搭建博客必须的环境"></a>安装搭建博客必须的环境</h2><h3 id="1-安装-Git"><a href="#1-安装-Git" class="headerlink" title="1. 安装 Git"></a>1. 安装 Git</h3><p>这里就不说怎么安装了，相信会看这篇文章的一般都已经装了。</p>
-<h3 id="2-申请-GitHub-账号"><a href="#2-申请-GitHub-账号" class="headerlink" title="2. 申请 GitHub 账号"></a>2. 申请 GitHub 账号</h3><p><code>博客</code> 的 <code>远程创库</code>、<code>域名</code>、<code>服务器</code> 等都和 <a href="https://github.com/">GitHub</a> 有关，这个必须要。</p>
-<h3 id="3-安装-Node-js"><a href="#3-安装-Node-js" class="headerlink" title="3. 安装 Node.js"></a>3. 安装 Node.js</h3><p>前往 <a href="https://nodejs.org/">Node.js 官网</a> 下载最新版本的安装包安装即可。</p>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365028-e2871180-71b6-11e9-9592-afe2459b2a0e.png" alt="安装 Node.js"></p>
-<h3 id="4-安装-Hexo"><a href="#4-安装-Hexo" class="headerlink" title="4. 安装 Hexo"></a>4. 安装 Hexo</h3><p>打开终端，输入以下命令安装 <code>Hexo</code> ，安装时间可能有点长，要多等一下。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-
-<h2 id="开始搭建博客"><a href="#开始搭建博客" class="headerlink" title="开始搭建博客"></a>开始搭建博客</h2><p>以上环境必须全部安装完成后，才能开始搭建 <code>博客</code>。</p>
-<h3 id="1-创建-GitHub-仓库"><a href="#1-创建-GitHub-仓库" class="headerlink" title="1. 创建 GitHub 仓库"></a>1. 创建 GitHub 仓库</h3><p>打开 <a href="https://github.com/">GitHub</a> 创建一个仓库，<code>Repository name</code> 为 <code>xxx.github.io</code>，<code>xxx</code> 处就是你 <code>GitHub</code> 的用户名，也就是前面 <code>Owner</code> 处显示的名字，命名必须这样，不能更改，这个仓库的名字也会是 <code>博客</code> 搭建完成后的域名。</p>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365059-f2065a80-71b6-11e9-92f1-1f674f564e78.png" alt="创建 GitHub 仓库"></p>
-<h3 id="2-初始化-Hexo-博客"><a href="#2-初始化-Hexo-博客" class="headerlink" title="2. 初始化 Hexo 博客"></a>2. 初始化 Hexo 博客</h3><p>打开终端，执行以下命令初始化 <code>博客</code>，初始化完成后，你的系统根目录中会多一个名为 <code>Blog</code> 的文件夹，<code>Blog</code> 也可以更改成自己喜欢的名字，初始化时间也比较久，耐心等一下。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo init Blog</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-下载博客主题"><a href="#3-下载博客主题" class="headerlink" title="3. 下载博客主题"></a>3. 下载博客主题</h3><ul>
-<li><p><code>博客</code> 初始化完成以后，会有一个自带的 <code>博客主题</code> ，在 <code>Blog / themes </code> 文件夹下，但是比较丑，你可以下载一个自己喜欢的 <code>博客主题</code> 。</p>
-</li>
-<li><p>这里是 <code>博客主题</code> 的 <a href="https://hexo.io/themes/">下载地址</a> ，只需要到主题对应的 <code>GitHub</code> 仓库将主题 <code>clone</code> 下来即可，这是我使用的主题 <a href="https://github.com/monniya/hexo-theme-new-vno">下载地址</a> 。</p>
-</li>
-<li><p><code>clone</code> 完成后，将主题文件夹复制到 <code>Blog</code> 文件夹下的 <code>themes</code> 文件夹中。</p>
-</li>
-</ul>
-<h3 id="4-修改博客配置文件"><a href="#4-修改博客配置文件" class="headerlink" title="4. 修改博客配置文件"></a>4. 修改博客配置文件</h3><ul>
-<li><p>打开 <code>Blog</code> 文件夹下的 <code>_config.yml</code> 文件，修改其中的配置。</p>
-</li>
-<li><p>下面把几个必须修改的配置列出来按需求修改即可，配置的键值之间一定要有空格，否则会报错，想了解更多配置点击 <a href="https://hexo.io/zh-cn/docs/configuration.html">这里</a> 。</p>
-</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">Jonzzs</span>  <span class="string">//博客的标题</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">个人博客</span> <span class="string">//博客的副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">将来的你</span> <span class="string">一定会感激现在拼命的自己</span> <span class="string">//博客的描述</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">Jonzzs</span> <span class="string">//博客作者的名字</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-Hans</span> <span class="string">//语言中文</span></span><br><span class="line"></span><br><span class="line"><span class="attr">theme:</span> <span class="string">new-vno</span> <span class="string">//刚刚复制到</span> <span class="string">themes</span> <span class="string">文件夹下的主题名称</span></span><br><span class="line"></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span> <span class="string">//使用</span> <span class="string">Git</span> <span class="string">发布</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/Jonzzs/Jonzzs.github.io.git</span> <span class="string">//刚创建的</span> <span class="string">Github</span> <span class="string">仓库地址</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>关于主题的配置在各自主题文件夹下的 <code>_config.yml</code> 文件中修改。</li>
-</ul>
-<h3 id="5-写博客文章"><a href="#5-写博客文章" class="headerlink" title="5. 写博客文章"></a>5. 写博客文章</h3><ul>
-<li>接下来可以开始写你的第一篇 <code>博客</code> 文章了，博客文章保存在 <code>Blog / source / _posts</code> 文件夹下，格式为 <code>MarkDown</code> 格式，也就是 <code>.md</code> 后缀的文件，编码格式为 <code>UTF-8</code> ，否则会显示乱码。</li>
-</ul>
-<p><strong>例如：</strong> 创建一个名为 <code>测试文章.md</code> 的文件，内容为：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 测试文章 //文章的标题</span><br><span class="line">date: 2017-05-03 17:47 //文章的发布时间</span><br><span class="line">categories: 测试分类 //分类名称</span><br><span class="line">tags: 测试标签 //标签名称</span><br><span class="line">photos: http://jonzzs.cn/images/Jonzzs.jpg //需要展示的图片地址</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"> &gt; 这是一篇测试文章。</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：</strong> 每一篇文章中，开头都必须有 <code>---</code> 之间的那些参数，参数 <code>:</code> 后面必须有空格，文章的 <code>标题</code> 是必填的，否则文章不会显示在博客中，其他参数看自己的需求填写，<code>categories 、tags 、photos </code> 这三个参数可填写多个，填写多个时用 <code>[ xx, xx ]</code> 格式区分，例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 测试文章 &#x2F;&#x2F;文章的标题</span><br><span class="line">date: 2017-05-03 17:47 &#x2F;&#x2F;文章的发布时间</span><br><span class="line">categories: [测试分类1, 测试分类2, 测试分类3] &#x2F;&#x2F;分类名称</span><br><span class="line">tags: [测试标签1, 测试标签2, 测试标签3] &#x2F;&#x2F;标签名称</span><br><span class="line">photos: [http:&#x2F;&#x2F;jonzzs.cn&#x2F;images&#x2F;Jonzzs.jpg, http:&#x2F;&#x2F;jonzzs.cn&#x2F;images&#x2F;Jonzzs.jpg, http:&#x2F;&#x2F;jonzzs.cn&#x2F;images&#x2F;Jonzzs.jpg] &#x2F;&#x2F;需要展示的图片地址</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果要在博客的首页显示每篇文章的 <code>摘要</code> ，只要在文章中加入以下 <code>分隔符</code> 即可，该 <code>分隔符</code> 之前的所有内容都会被自动截取为文章的 <code>摘要</code> 。</li>
-</ul>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- more --&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="6-本地测试博客"><a href="#6-本地测试博客" class="headerlink" title="6. 本地测试博客"></a>6. 本地测试博客</h3><ul>
-<li>打开终端 <code>cd</code> 到 <code>Blog</code> 目录下，输入以下命令：</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>接着浏览器中输入 <a href="http://localhost:4000/">http://localhost:4000/</a> 就能够看到 <code>博客</code> 的搭建效果。</li>
-</ul>
-<h2 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h2><p>本地显示没问题以后，就可以将 <code>博客</code> 发布到 <code>GitHub</code> 服务器上了。</p>
-<h3 id="1-安装自动部署发布插件"><a href="#1-安装自动部署发布插件" class="headerlink" title="1. 安装自动部署发布插件"></a>1. 安装自动部署发布插件</h3><p>第一次配置时需要安装 <code>hexo-deployer-git</code> 自动部署发布工具，打开终端 <code>cd</code> 到 <code>Blog</code> 目录下，执行以下命令安装。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-发布博客到服务器"><a href="#2-发布博客到服务器" class="headerlink" title="2. 发布博客到服务器"></a>2. 发布博客到服务器</h3><ul>
-<li>打开终端 <code>cd</code> 到 <code>Blog</code> 目录下，输入以下命令：</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>如果这是你的第一次，终端可能会让你输入 <code>Github</code> 的邮箱和密码，输入完成后，就会把你的 <code>博客</code> 自动上传至 <code>Github</code> 了。</p>
-</li>
-<li><p>以后在每一次添加新的 <code>博客</code> 文章或者改变配置时，执行一下这个命令就可以直接发布了。</p>
-</li>
-<li><p>发布完成后，浏览器中输入之前创建的 <code>Github</code> 仓库名，就能访问到你搭建的 <code>博客</code> 了，我的是 <a href="https://jonzzs.github.io/">Jonzzs.github.io</a> 。</p>
-</li>
-</ul>
-<hr>
-<blockquote>
-<p>简单的 <code>博客</code> 搭建流程就是这样了，还有很多不错的 <a href="https://hexo.io/plugins/">插件</a> ，比如 <code>评论</code>、<code>标签</code>、<code>统计</code> 等等，这些自己去研究并慢慢完善自己的博客吧。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Hexo 博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo 博客</tag>
-        <tag>GitHub</tag>
-        <tag>GitHub Pages</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>给 Hexo 搭建的博客增加 百度 和 谷歌 的搜索引擎验证</title>
-    <url>/2017/05/05/Hexo/201705051311/</url>
-    <content><![CDATA[<blockquote>
-<p>如果你的 <code>博客</code> 是使用 <code>GitHub + Hexo</code> 搭建的，那么你的 <code>博客</code> 内容是无法被 <code>百度、谷歌</code> 等搜索引擎搜索到的，虽然我们将自己的 <code>博客</code> 托管在 <code>GitHub</code> ，但是 <code>GitHub</code> 是不会讲站点信息提交给搜索引擎的，所以我们可以手动将自己的 <code>博客</code> 站点提交给 <code>百度、谷歌</code> 的搜索引擎。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="1-验证站点"><a href="#1-验证站点" class="headerlink" title="1. 验证站点"></a>1. 验证站点</h2><p>搜索引擎验证的方法有好几种，下面我选择 <code>HTML标签验证</code> 验证方法，其他的方法有兴趣可以自己去试一下，这里就不介绍了。</p>
-<ul>
-<li><p>首先打开 <a href="http://www.baidu.com/search/url_submit.htm">百度搜索引擎验证</a> ，点击 <code>添加网站</code> ，输入自己的 <code>博客</code> 地址。</p>
-</li>
-<li><p>输完后选择 <code>HTML标签验证</code> ，然后将下方的 <code>meta</code> 代码复制下来，网页先不要关。</p>
-</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365123-1104ec80-71b7-11e9-9c3b-88f43444d7ae.png" alt="百度搜索引擎验证"></p>
-<ul>
-<li><p>重新开一个页面，打开 <a href="https://www.google.com/webmasters/tools/home?hl=zh-CN">谷歌搜索引擎验证</a> ，点击 <code>添加属性</code> ，一样输入自己的 <code>博客</code> 地址。（ <code>谷歌</code> 需要翻墙，如果不想翻墙的话，可以跳过 <code>谷歌</code> 验证的步骤，只看 <code>百度</code> 的验证）</p>
-</li>
-<li><p>输完后选择 <code>备用方法</code> 下的 <code>HTML 标记</code> ，然后将下方的 <code>meta</code> 代码复制下来，网页也不要关。</p>
-</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365150-1eba7200-71b7-11e9-9043-a58514df8ec1.png" alt="谷歌搜索引擎验证"></p>
-<ul>
-<li><p>打开本地博客主题下的 <code>layout / _partial</code> 文件夹，有一个名为 <code>head</code> 的文件，使用 <code>HTML</code> 编辑器打开，将刚才复制的两句 <code>meta</code> 代码粘贴进去。</p>
-</li>
-<li><p>保存文件后，输入以下命令将 <code>博客</code> 重新部署到 <code>GitHub</code> 服务器。</p>
-</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后分别点击刚才 <code>百度、谷歌</code> 验证页面的 <code>验证</code> 按钮进行站点验证。</li>
-</ul>
-<h2 id="2-生成站点地图"><a href="#2-生成站点地图" class="headerlink" title="2. 生成站点地图"></a>2. 生成站点地图</h2><ul>
-<li>打开终端 <code>cd</code> 到本地博客目录下，输入以下命令安装 <code>sitmap</code> 插件。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>打开本地博客目录下的 <code>_config.yml</code> 文件，修改 <code>url</code> 参数为你博客的 <code>首页地址</code>，这样是为了保证能正确生成 <code>sitemap.xml</code> 文件中的地址。</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">url:</span> <span class="string">http://jonzzs.cn</span> <span class="comment"># 修改成你博客的首页地址</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>添加以下配置。</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 自动生成sitemap</span></span><br><span class="line"><span class="attr">sitemap:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">sitemap.xml</span></span><br><span class="line"><span class="attr">baidusitemap:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">baidusitemap.xml</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>输入以下命令重新部署博客。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-将站点地图提交谷歌"><a href="#3-将站点地图提交谷歌" class="headerlink" title="3. 将站点地图提交谷歌"></a>3. 将站点地图提交谷歌</h2><ul>
-<li>打开 <a href="https://www.google.com/webmasters/tools/home?hl=zh-CN">谷歌站点控制台</a> 进入站点控制台，先点击 <code>测试</code> 站点地图，测试通过后再点击 <code>提交</code> 站点地图。</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365192-32fe6f00-71b7-11e9-9693-44df117b8ac9.png" alt="添加站点地图"></p>
-<hr>
-<blockquote>
-<p>提交完成后，就可以等待搜索引擎 <code>自动抓取</code> 或者配置 <code>自动推送</code> 或者 <code>主动推送</code> 站点链接了。如果你的 <code>博客</code> 是使用 <code>GitHub + Hexo</code> 搭建的，由于 <code>Github</code> 貌似禁止百度爬虫访问 <code>博客</code>，导致 <code>博客</code> 可能无法被百度收录，所以可以主动推送站点链接，可以参考一下这篇文章：<a href="http://hui-wang.info/2016/10/23/Hexo%E6%8F%92%E4%BB%B6%E4%B9%8B%E7%99%BE%E5%BA%A6%E4%B8%BB%E5%8A%A8%E6%8F%90%E4%BA%A4%E9%93%BE%E6%8E%A5/">Hexo 插件之百度主动提交链接</a> 。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Hexo 博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo 博客</tag>
-        <tag>百度</tag>
-        <tag>谷歌</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 git.oschina 码云 来托管 Hexo 搭建的博客</title>
-    <url>/2017/05/08/Hexo/201705081542/</url>
-    <content><![CDATA[<blockquote>
-<p>首先还没有搭建博客的先转到我的另一篇文章：<a href="http://www.jianshu.com/p/8f1e1b17417b">使用 Hexo 免费搭建属于自己的个人博客</a> ，一般我们都是使用 <code>GitHub + Hexo</code> 来搭建我们的 <code>博客</code> ，下面分享一下如何用国内的 <code>码云</code> 来托管我们的 <code>博客</code> 。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<ul>
-<li>首先进入 <a href="http://git.oschina.net/">码云</a> 创建一个仓库，<code>仓库名称</code> 和 <code>仓库路径</code> 都必须和你的 <code>用户名</code> 也就是上面的 <code>归属</code> 一样。</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365229-44477b80-71b7-11e9-8216-7b08377dad5d.png" alt="创建仓库"></p>
-<ul>
-<li>打开本地 <code>博客</code> 下的 <code>_config.yml</code> 文件，将刚才创建的仓库 <code>Git</code> 地址配置进去。</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365270-532e2e00-71b7-11e9-826b-79f4927bc6a4.png" alt="仓库 Git 地址"></p>
-<ul>
-<li>如果想使用 <code>GitHub</code> 和 <code>码云</code> 同时托管 <code>博客</code> ，就这样配置：</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span></span><br><span class="line">    <span class="attr">github:</span> <span class="string">https://github.com/Jonzzs/Jonzzs.github.io.git</span></span><br><span class="line">    <span class="attr">oschina:</span> <span class="string">https://git.oschina.net/Jonzzs/Jonzzs.git</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果只想使用 <code>码云</code> 托管 <code>博客</code> ，就这样配置：</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://git.oschina.net/Jonzzs/Jonzzs.git</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>保存文件后打开终端 <code>cd</code> 到 <code>博客</code> 目录下，使用以下命令重新部署一下博客。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>再次打开刚才 <code>码云</code> 上创建的仓库刷新一下，<code>博客</code> 的 <code>HTML</code> 页面应该已经传到仓库中了，打开 <code>服务</code> 中的 <code>Pages</code>，点击 <code>启动服务</code> 。</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365311-62ad7700-71b7-11e9-8bf5-4ae7823a65cd.png" alt="Pages"></p>
-<ul>
-<li>此时你就可以使用 <code>用户名.oschina.io</code> 来访问你的 <code>博客</code> 了。</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365346-735ded00-71b7-11e9-93d5-91e0cc89a385.png" alt="jonzzs.oschina.io"></p>
-<hr>
-<blockquote>
-<p>大功告成，使用 <code>码云</code> 托管 <code>博客</code> 后访问速度会快很多，大家块试试看吧。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Hexo 博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo 博客</tag>
-        <tag>码云</tag>
-        <tag>git.oschina</tag>
-        <tag>码云 Pages</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>为 Hexo 搭建的博客添加 RSS 输出功能</title>
-    <url>/2017/05/08/Hexo/201705081800/</url>
-    <content><![CDATA[<blockquote>
-<p>对于 <code>RSS</code> 输出这个功能，<code>Hexo</code> 已经有一个现成的插件可以用，那就是 <a href="https://github.com/hexojs/hexo-generator-feed">hexo-generator-feed</a> ，下面就来分享一下使用方法。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<ul>
-<li>首先打开终端 <code>cd</code> 到本地的 <code>博客</code> 目录下，输入以下命令安装 <code>RSS</code> 插件。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>打开 <code>博客</code> 根目录下的 <code>_config.yml</code> 文件，加入以下配置：</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">feed:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">atom</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">atom.xml</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">20</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>打开 <code>博客</code> 主题目录下的 <code>_config.yml</code> 文件，设置 <code>RSS</code> 地址：</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">rss:</span> <span class="string">/atom.xml</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>最后打开终端 <code>cd</code> 到本地的 <code>博客</code> 目录下，输入以下命令重新部署一下 <code>博客</code> 。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<hr>
-<blockquote>
-<p>方法就是这样，重新打开你的 <code>博客</code> 就能够使用 <code>RSS</code> 输出功能了。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Hexo 博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo 博客</tag>
-        <tag>RSS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 Swiftype 给 Hexo 搭建的博客添加站内搜索功能</title>
-    <url>/2017/05/09/Hexo/201705091200/</url>
-    <content><![CDATA[<blockquote>
-<p>当我们的 <code>博客</code> 文章变的越来越多的时候，就非常需要使用 <code>站内搜索</code> 功能，否则寻找某一篇文章就会变的麻烦，<code>Swiftype</code> 是一个非常好的站内搜索平台，并且是 <code>免费</code> 的，可以到 <a href="http://jonzzs.oschina.io/">我的博客</a> 去预览一下搜索效果，下面就分享一下集成的方法。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="1-注册-Swiftype-账号"><a href="#1-注册-Swiftype-账号" class="headerlink" title="1. 注册 Swiftype 账号"></a>1. 注册 Swiftype 账号</h2><ul>
-<li>首先进入 <a href="https://app.swiftype.com/">Swiftype 官网</a> 注册一个账号，注册的账号邮箱貌似必须使用 <code>企业邮箱</code> ，注册信息要全部填完，这里要注意一下，这里建议最好翻墙，否则浏览速度会比较慢。</li>
-</ul>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160539.png" alt="注册"></p>
-<ul>
-<li>注册完成后会提示进入邮箱点击链接激活一下账号，激活完以后登录账号会显示 <code>免费试用 xx 天</code> ，这个无视就行了，试用期结束后还是可以用的。</li>
-</ul>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160611.png" alt="免费试用"></p>
-<h2 id="2-创建-search-engine"><a href="#2-创建-search-engine" class="headerlink" title="2. 创建 search engine"></a>2. 创建 search engine</h2><ul>
-<li>点击 <a href="https://app.swiftype.com/precrawls/new">Create a search engine</a> ，输入自己 <code>博客</code> 的完整地址，等待验证完成后，随便输入一个名字就行。</li>
-</ul>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160631.png" alt="Create a search engine"></p>
-<ul>
-<li>创建完成后会开始抓取你 <code>博客</code> 的数据来用作 <code>搜索索引</code> ，你可以在 <code>Content</code> 中看到抓取的 <code>搜索索引</code> 数据。</li>
-</ul>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160647.png" alt="Content"></p>
-<ul>
-<li>当你的 <code>博客</code> 内容有更新的时候，可以在 <code>Domains</code> 中点击 <code>Recrawl</code> 来重新抓取一下 <code>搜索索引</code> 数据。</li>
-</ul>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160701.png" alt="Domains"></p>
-<h2 id="3-更改搜索设置"><a href="#3-更改搜索设置" class="headerlink" title="3. 更改搜索设置"></a>3. 更改搜索设置</h2><p>如果你不想设置那么麻烦，只想全部用默认设置，可以直接跳过这一步，直接进入 <code>开始集成 Swiftype 搜索</code> 这一步。</p>
-<ul>
-<li>进入 <code>Weights</code> 修改搜索条件，我这边设置的是只根据文章的 <code>title</code> 来搜索内容，你可以根据自己的需求更改，修改完可以在右边搜索预览一下。</li>
-</ul>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160716.png" alt="Weights"></p>
-<ul>
-<li>进入 <code>Install Search</code> 点击 <code>Change Configuration</code> 设置 <code>搜索框显示</code> 以及 <code>搜索结果显示</code> 。</li>
-</ul>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160733.png" alt="Install Search"></p>
-<ul>
-<li><code>搜索框显示</code> 有两种，第一种是自己在 <code>博客</code> 中合适的位置加一个 <code>input</code> 标签的搜索框，<code>class</code> 属性设置为 <code>st-default-search-input</code> 。</li>
-</ul>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160746.png" alt="自己加 input 搜索框"></p>
-<ul>
-<li>第二种不需要自己加 <code>input</code> 标签，<code>Swiftype</code> 会自动在你 <code>博客</code> 网页的右下角添加一个 <code>search this site</code> 的搜索按钮，点击即可搜索，效果可以看下面的预览图，想用哪一种可以看自己的需求。</li>
-</ul>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160803.png" alt="自带的搜索按钮"></p>
-<ul>
-<li>设置修改完保存以后需要点击网页最下面的 <code>Activate Swiftype</code> 按钮，设置才能生效，这个要注意一下。</li>
-</ul>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160819.png" alt="Activate Swiftype"></p>
-<h2 id="4-开始集成-Swiftype-搜索"><a href="#4-开始集成-Swiftype-搜索" class="headerlink" title="4. 开始集成 Swiftype 搜索"></a>4. 开始集成 Swiftype 搜索</h2><ul>
-<li>进入 <code>Install Search</code> ，将 <code>Swiftype</code> 安装代码复制下来。</li>
-</ul>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509160832.png" alt="Install Search"></p>
-<ul>
-<li><p>打开本地 <code>博客</code> 主题目录下的 <code>layout / _partial</code> 文件夹，使用 <code>HTML</code> 编辑器打开 <code>footer.ejs</code> 文件，将刚才的代码粘贴在 <code>&lt;footer&gt;</code> 标签内。</p>
-</li>
-<li><p>打开本地 <code>博客</code> 主题目录下的 <code>_config.yml</code> 文件，添加以下配置。</p>
-</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">swift_search:</span></span><br><span class="line">      <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果刚才设置 <code>搜索框显示</code> 时选择的是第二种可以跳过这一步，如果选择的是第一种，就将以下代码放在 <code>博客</code> 中适合放搜索框的位置即可。</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 搜索框就加上 class=&quot;st-default-search-input&quot; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">theme.swift_search.enable</span>)&#123; %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">class</span>=<span class="string">&quot;st-default-search-input&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入搜索内容...&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 搜索按钮就加上 class=&quot;st-search-show-outputs&quot; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">theme.swift_search.enable</span>)&#123; %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">title</span>=<span class="string">&quot;搜索博客&quot;</span> <span class="attr">class</span>=<span class="string">&quot;st-search-show-outputs&quot;</span>&gt;</span>搜索<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>打开终端 <code>cd</code> 到本地 <code>博客</code> 目录下，输入以下命令重新部署 <code>博客</code> 。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<hr>
-<blockquote>
-<p>集成步骤大概就是这样，搜索框样式可以根据需求自己写，另外如果你的 <code>Swiftype</code> 抓取不到 <code>搜索索引</code> ，可以在 <code>Domains</code> 中点击 <code>Recrawl</code> 来重新抓取一下 <code>搜索索引</code> 数据，祝你成功。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Hexo 博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo 博客</tag>
-        <tag>Swiftype 搜索</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>为 Hexo 搭建的博客添加属于自己的个性域名</title>
-    <url>/2017/05/21/Hexo/201705211838/</url>
-    <content><![CDATA[<blockquote>
-<p>一般用 <code>GitHub + Hexo</code> 搭建的博客访问域名都是 <code>xxx.github.io</code> ，如何让博客有一个属于自己又好记的域名呢，下面分享一下方法。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="1-购买域名"><a href="#1-购买域名" class="headerlink" title="1. 购买域名"></a>1. 购买域名</h2><p>我的域名是在 <a href="https://www.qcloud.com/">腾讯云</a> 买的，因为  <a href="https://www.qcloud.com/">腾讯云</a> 的便宜一点，也可以到 <a href="https://www.aliyun.com/">阿里云</a> 的万网去买。</p>
-<ul>
-<li>首先前往 <a href="https://www.qcloud.com/">腾讯云</a> ，选择 <code>域名服务</code> ，选择一个想要的域名后缀，不同的后缀价格是不一样的。</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365379-85d82680-71b7-11e9-918f-82b2d4a3e2a3.png" alt="腾讯云"></p>
-<ul>
-<li>输入自己想要的个性域名，然后选择好合适的域名后缀后购买即可。</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365598-f2ebbc00-71b7-11e9-891d-475859fd94d5.png" alt="域名注册"></p>
-<h2 id="2-域名解析"><a href="#2-域名解析" class="headerlink" title="2. 域名解析"></a>2. 域名解析</h2><ul>
-<li>域名购买完成后，进入页面右上角的 <code>管理中心</code> ，选择 <code>域名管理</code> 。</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365685-24fd1e00-71b8-11e9-999a-57d85a2fccfb.png" alt="域名管理"></p>
-<ul>
-<li>然后在你购买的域名菜单栏中点击 <code>解析</code> 。</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365720-33e3d080-71b8-11e9-82d3-4a60a2df2f95.png" alt="解析"></p>
-<ul>
-<li>按照下图增加以下三条记录，前两条照我的填写就行，最后一条的记录值改成你自己博客的 <code>GitHub</code> 域名，一般都是 <code>xxx.github.io</code> ，别的照着我的填写就行。</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365787-52e26280-71b8-11e9-848c-c4622e177b86.png" alt="添加记录"></p>
-<ul>
-<li>记录添加完成后，选中添加的三条记录，选择上方的 <code>分配至项目</code> 按钮。</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365814-5f66bb00-71b8-11e9-869a-866e0589740d.png" alt="分配至项目"></p>
-<ul>
-<li>然后将其分配到 <code>默认项目</code> 即可。</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365831-6a215000-71b8-11e9-80e9-82dfe1e40453.png" alt="默认项目"></p>
-<ul>
-<li>然后点击 <code>协作子域名</code> ，也将其分配至 <code>默认项目</code> 。</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365860-77d6d580-71b8-11e9-8438-820e82f35f01.png" alt="协作子域名"></p>
-<h2 id="3-创建-CNAME-文件"><a href="#3-创建-CNAME-文件" class="headerlink" title="3. 创建 CNAME 文件"></a>3. 创建 CNAME 文件</h2><ul>
-<li>在本地博客根目录下的 <code>source</code> 文件夹中，新建一个名为 <code>CNAME</code> 的文件，注意这个文件不带 <code>任何后缀名</code>。</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365882-845b2e00-71b8-11e9-8526-0e9fbbc56f3f.png" alt="CNAME"></p>
-<ul>
-<li>打开 <code>CNAME</code> 文件，在里面加入你购买的域名，注意加入的域名不带 <code>http://</code> 也不带 <code>www</code> ，列如我的 <code>jonzzs.cn</code> ，只要加入这个就行了。</li>
-</ul>
-<p><img data-src="https://user-images.githubusercontent.com/16834649/57365921-976dfe00-71b8-11e9-916f-fdbbf5b0532d.png" alt="加入域名"></p>
-<ul>
-<li>保存文件后，打开终端 <code>cd</code> 到你的博客目录下，输入以下命令重新部署博客到服务器即可。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<hr>
-<blockquote>
-<p>方法到这里就结束了，部署完成后稍微等个十来分钟，然后就用你的新域名访问一下试试吧，访问不管是使用 <a href="jonzzs.cn">jonzzs.cn</a> 还是 <a href="www.jonzzs.cn">www.jonzzs.cn</a> 还是 <a href="jonzzs.github.io">jonzzs.github.io</a> ，最后都会自动指向 <a href="jonzzs.cn">jonzzs.cn</a> 这个主域名下，赶快试一试吧~</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Hexo 博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo 博客</tag>
-        <tag>域名</tag>
-        <tag>腾讯云</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>为 Hexo 的 Next 主题添加 Gitalk 评论</title>
-    <url>/2019/05/31/Hexo/201905311540/</url>
-    <content><![CDATA[<blockquote>
-<p><a href="https://github.com/gitalk/gitalk">Gitalk</a> 是一个基于 <code>Github Issue</code> 的评论插件，使用 <code>Github</code> 帐号登录，界面干净整洁，最喜欢的一点是支持 <code>MarkDown</code> 语法，在个人博客里添加了之后就可以很简便的进行评论和回复了。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<p><strong>主要特性：</strong></p>
-<ul>
-<li>使用 <code>Github</code> 登录</li>
-<li>支持多语言 <code>[en, zh-CN, zh-TW, es-ES, fr]</code></li>
-<li>支持个人或组织</li>
-<li>无干扰模式（设置 <code>distractionFreeMode</code> 为 <code>true</code> 开启）</li>
-<li>快捷键提交评论 （<code>cmd</code> | <code>ctrl + enter</code>）</li>
-<li>支持 <code>MarkDown</code> 语法</li>
-</ul>
-<p><strong>界面效果：</strong></p>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190531155245.png"></p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>我这边使用的 <a href="https://github.com/iissnan/hexo-theme-next">Next</a> 主题，版本是 <code>5.1.3</code>。</p>
-<h3 id="1-创建-Github-仓库"><a href="#1-创建-Github-仓库" class="headerlink" title="1. 创建 Github 仓库"></a>1. 创建 Github 仓库</h3><p>需要在自己的 <code>Github</code> 账号下创建一个仓库来存放评论，创建的仓库只要 <code>public</code> 就行，其余没要求。</p>
-<h3 id="2-创建-Github-Application"><a href="#2-创建-Github-Application" class="headerlink" title="2. 创建 Github Application"></a>2. 创建 Github Application</h3><p>需要创建一个 <code>Github Application</code> 用来授权登录，如果没有 <a href="https://github.com/settings/applications/new">点击这里申请</a>，<code>Authorization callback URL</code> 填写你主页地址，比如我的就是 <code>https://jonzzs.cn</code>，其他都随意填。</p>
-<h3 id="3-为-Next-主题添加-Gitalk-支持"><a href="#3-为-Next-主题添加-Gitalk-支持" class="headerlink" title="3. 为 Next 主题添加 Gitalk 支持"></a>3. 为 Next 主题添加 Gitalk 支持</h3><ul>
-<li><p>首先创建 <code>Gitalk</code> 的 <code>swig</code> 文件，放在 <code>themes/next/layout/_third-party/comments</code> 文件夹下，命名为 <code>gitalk.swig</code> ，内容如下。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% if page.comments &amp;&amp; theme.gitalk.enable %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://unpkg.com/gitalk/dist/gitalk.css&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/gitalk/dist/gitalk.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;gitalk-container&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> gitalk = <span class="keyword">new</span> Gitalk(&#123;</span></span><br><span class="line"><span class="handlebars"><span class="xml">      clientID: &#x27;</span><span class="template-variable">&#123;&#123; <span class="name">theme.gitalk.clientID</span> &#125;&#125;</span><span class="xml">&#x27;,</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">      clientSecret: &#x27;</span><span class="template-variable">&#123;&#123; <span class="name">theme.gitalk.clientSecret</span> &#125;&#125;</span><span class="xml">&#x27;,</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">      repo: &#x27;</span><span class="template-variable">&#123;&#123; <span class="name">theme.gitalk.repo</span> &#125;&#125;</span><span class="xml">&#x27;,</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">      owner: &#x27;</span><span class="template-variable">&#123;&#123; <span class="name">theme.gitalk.owner</span> &#125;&#125;</span><span class="xml">&#x27;,</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">      admin: [&#x27;</span><span class="template-variable">&#123;&#123; <span class="name">theme.gitalk.admin</span> &#125;&#125;</span><span class="xml">&#x27;],</span></span></span><br><span class="line">      id: location.pathname,</span><br><span class="line"><span class="handlebars"><span class="xml">      distractionFreeMode: &#x27;</span><span class="template-variable">&#123;&#123; <span class="name">theme.gitalk.distractionFreeMode</span> &#125;&#125;</span><span class="xml">&#x27;</span></span></span><br><span class="line">    &#125;)</span><br><span class="line"><span class="javascript">    gitalk.render(<span class="string">&#x27;gitalk-container&#x27;</span>)</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在主题文件 <code>themes/next/layout/_third-party/comments/index.swig</code> 中引入刚刚添加的文件。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% include &#x27;gitalk.swig&#x27; %&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 <code>themes/next/layout/_partials/comments.swig</code> 文件末找到最后的 <code>&#123;% endif %&#125;</code> 语句，替换为如下代码。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% elseif theme.gitalk.enable %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;gitalk-container&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 <code>themes/next/_config.yml</code> 文件中添加 <code>Gitalk</code> 的配置。</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">gitalk:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment"># 是否启用</span></span><br><span class="line">  <span class="attr">owner:</span> <span class="string">xxx</span> <span class="comment"># 用户名</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">xxx</span> <span class="comment"># 存放评论的仓库名</span></span><br><span class="line">  <span class="attr">clientID:</span> <span class="string">xxx</span> <span class="comment"># Github Application 的 clientID</span></span><br><span class="line">  <span class="attr">clientSecret:</span> <span class="string">xxx</span> <span class="comment"># Github Application 的 clientSecret</span></span><br><span class="line">  <span class="attr">admin:</span> <span class="string">xxx</span> <span class="comment"># 用户名</span></span><br><span class="line">  <span class="attr">distractionFreeMode:</span> <span class="literal">false</span> <span class="comment"># 评论时遮照效果的开关</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>最后执行 <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code> 重新发布博客即可。</p>
-</li>
-</ul>
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>Hexo 博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo 博客</tag>
-        <tag>评论</tag>
-        <tag>Gitalk</tag>
       </tags>
   </entry>
   <entry>
@@ -2466,6 +2466,39 @@
       </tags>
   </entry>
   <entry>
+    <title>【iOS 开发】二进制、十进制、十六进制相互转换的方法</title>
+    <url>/2017/03/16/iOS/201703161833/</url>
+    <content><![CDATA[<blockquote>
+<p>下面罗列了二进制、十进制、十六进制之间相互转换的方法，有时候可能会用的到，需要的朋友可以收藏一下。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="1-十进制转换为二进制"><a href="#1-十进制转换为二进制" class="headerlink" title="1. 十进制转换为二进制"></a>1. 十进制转换为二进制</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 十进制转换为二进制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param decimal 十进制数</span></span><br><span class="line"><span class="comment"> @return 二进制数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)getBinaryByDecimal:(<span class="built_in">NSInteger</span>)decimal &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *binary = <span class="string">@&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">while</span> (decimal) &#123;</span><br><span class="line">        binary = [[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@&quot;%ld&quot;</span>, decimal % <span class="number">2</span>] stringByAppendingString:binary];</span><br><span class="line">        <span class="keyword">if</span> (decimal / <span class="number">2</span> &lt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        decimal = decimal / <span class="number">2</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (binary.length % <span class="number">4</span> != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">NSMutableString</span> *mStr = [[<span class="built_in">NSMutableString</span> alloc]init];;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span> - binary.length % <span class="number">4</span>; i++) &#123;</span><br><span class="line">            [mStr appendString:<span class="string">@&quot;0&quot;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        binary = [mStr stringByAppendingString:binary];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> binary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-十进制转换为十六进制"><a href="#2-十进制转换为十六进制" class="headerlink" title="2. 十进制转换为十六进制"></a>2. 十进制转换为十六进制</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 十进制转换十六进制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param decimal 十进制数</span></span><br><span class="line"><span class="comment"> @return 十六进制数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)getHexByDecimal:(<span class="built_in">NSInteger</span>)decimal &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *hex =<span class="string">@&quot;&quot;</span>;</span><br><span class="line">    <span class="built_in">NSString</span> *letter;</span><br><span class="line">    <span class="built_in">NSInteger</span> number;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="number">9</span>; i++) &#123;</span><br><span class="line">        number = decimal % <span class="number">16</span>;</span><br><span class="line">        decimal = decimal / <span class="number">16</span>;</span><br><span class="line">        <span class="keyword">switch</span> (number) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">10</span>:</span><br><span class="line">                letter =<span class="string">@&quot;A&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">11</span>:</span><br><span class="line">                letter =<span class="string">@&quot;B&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">12</span>:</span><br><span class="line">                letter =<span class="string">@&quot;C&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">13</span>:</span><br><span class="line">                letter =<span class="string">@&quot;D&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">14</span>:</span><br><span class="line">                letter =<span class="string">@&quot;E&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">15</span>:</span><br><span class="line">                letter =<span class="string">@&quot;F&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                letter = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@&quot;%ld&quot;</span>, number];</span><br><span class="line">        &#125;</span><br><span class="line">        hex = [letter stringByAppendingString:hex];</span><br><span class="line">        <span class="keyword">if</span> (decimal == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-二进制转换为十六进制"><a href="#3-二进制转换为十六进制" class="headerlink" title="3. 二进制转换为十六进制"></a>3. 二进制转换为十六进制</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 二进制转换成十六进制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param binary 二进制数</span></span><br><span class="line"><span class="comment"> @return 十六进制数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)getHexByBinary:(<span class="built_in">NSString</span> *)binary &#123;</span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *binaryDic = [[<span class="built_in">NSMutableDictionary</span> alloc] initWithCapacity:<span class="number">16</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;0&quot;</span> forKey:<span class="string">@&quot;0000&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;1&quot;</span> forKey:<span class="string">@&quot;0001&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;2&quot;</span> forKey:<span class="string">@&quot;0010&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;3&quot;</span> forKey:<span class="string">@&quot;0011&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;4&quot;</span> forKey:<span class="string">@&quot;0100&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;5&quot;</span> forKey:<span class="string">@&quot;0101&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;6&quot;</span> forKey:<span class="string">@&quot;0110&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;7&quot;</span> forKey:<span class="string">@&quot;0111&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;8&quot;</span> forKey:<span class="string">@&quot;1000&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;9&quot;</span> forKey:<span class="string">@&quot;1001&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;A&quot;</span> forKey:<span class="string">@&quot;1010&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;B&quot;</span> forKey:<span class="string">@&quot;1011&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;C&quot;</span> forKey:<span class="string">@&quot;1100&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;D&quot;</span> forKey:<span class="string">@&quot;1101&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;E&quot;</span> forKey:<span class="string">@&quot;1110&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;F&quot;</span> forKey:<span class="string">@&quot;1111&quot;</span>];</span><br><span class="line">    <span class="keyword">if</span> (binary.length % <span class="number">4</span> != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">NSMutableString</span> *mStr = [[<span class="built_in">NSMutableString</span> alloc]init];;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span> - binary.length % <span class="number">4</span>; i++) &#123;</span><br><span class="line">            [mStr appendString:<span class="string">@&quot;0&quot;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        binary = [mStr stringByAppendingString:binary];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSString</span> *hex = <span class="string">@&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;binary.length; i+=<span class="number">4</span>) &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *key = [binary substringWithRange:<span class="built_in">NSMakeRange</span>(i, <span class="number">4</span>)];</span><br><span class="line">        <span class="built_in">NSString</span> *value = [binaryDic objectForKey:key];</span><br><span class="line">        <span class="keyword">if</span> (value) &#123;</span><br><span class="line">            hex = [hex stringByAppendingString:value];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-十六进制转换为二进制"><a href="#4-十六进制转换为二进制" class="headerlink" title="4. 十六进制转换为二进制"></a>4. 十六进制转换为二进制</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 十六进制转换为二进制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param hex 十六进制数</span></span><br><span class="line"><span class="comment"> @return 二进制数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)getBinaryByHex:(<span class="built_in">NSString</span> *)hex &#123;</span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *hexDic = [[<span class="built_in">NSMutableDictionary</span> alloc] initWithCapacity:<span class="number">16</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0000&quot;</span> forKey:<span class="string">@&quot;0&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0001&quot;</span> forKey:<span class="string">@&quot;1&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0010&quot;</span> forKey:<span class="string">@&quot;2&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0011&quot;</span> forKey:<span class="string">@&quot;3&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0100&quot;</span> forKey:<span class="string">@&quot;4&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0101&quot;</span> forKey:<span class="string">@&quot;5&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0110&quot;</span> forKey:<span class="string">@&quot;6&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0111&quot;</span> forKey:<span class="string">@&quot;7&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1000&quot;</span> forKey:<span class="string">@&quot;8&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1001&quot;</span> forKey:<span class="string">@&quot;9&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1010&quot;</span> forKey:<span class="string">@&quot;A&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1011&quot;</span> forKey:<span class="string">@&quot;B&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1100&quot;</span> forKey:<span class="string">@&quot;C&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1101&quot;</span> forKey:<span class="string">@&quot;D&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1110&quot;</span> forKey:<span class="string">@&quot;E&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1111&quot;</span> forKey:<span class="string">@&quot;F&quot;</span>];</span><br><span class="line">    <span class="built_in">NSString</span> *binary = <span class="string">@&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;[hex length]; i++) &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *key = [hex substringWithRange:<span class="built_in">NSMakeRange</span>(i, <span class="number">1</span>)];</span><br><span class="line">        <span class="built_in">NSString</span> *value = [hexDic objectForKey:key.uppercaseString];</span><br><span class="line">        <span class="keyword">if</span> (value) &#123;</span><br><span class="line">            binary = [binary stringByAppendingString:value];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> binary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-二进制转换为十进制"><a href="#5-二进制转换为十进制" class="headerlink" title="5. 二进制转换为十进制"></a>5. 二进制转换为十进制</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 二进制转换为十进制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param binary 二进制数</span></span><br><span class="line"><span class="comment"> @return 十进制数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSInteger</span>)getDecimalByBinary:(<span class="built_in">NSString</span> *)binary &#123;</span><br><span class="line">    <span class="built_in">NSInteger</span> decimal = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;binary.length; i++) &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *number = [binary substringWithRange:<span class="built_in">NSMakeRange</span>(binary.length - i - <span class="number">1</span>, <span class="number">1</span>)];</span><br><span class="line">        <span class="keyword">if</span> ([number isEqualToString:<span class="string">@&quot;1&quot;</span>]) &#123;</span><br><span class="line">            decimal += pow(<span class="number">2</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> decimal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>大概就这么多了，有其他需求可以补充，需要十六进制转换为十进制的话，就按上面方法将十六进制转换为二进制后再转换为十进制就行了，有需要的朋友就收藏一下吧！</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>iOS 开发</category>
+      </categories>
+      <tags>
+        <tag>iOS 开发</tag>
+        <tag>进制转换</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【iOS 开发】Status Bar 状态栏设置汇总</title>
     <url>/2017/03/17/iOS/201703171551/</url>
     <content><![CDATA[<blockquote>
@@ -2562,39 +2595,6 @@
         <tag>iOS 开发</tag>
         <tag>状态栏</tag>
         <tag>Status Bar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【iOS 开发】二进制、十进制、十六进制相互转换的方法</title>
-    <url>/2017/03/16/iOS/201703161833/</url>
-    <content><![CDATA[<blockquote>
-<p>下面罗列了二进制、十进制、十六进制之间相互转换的方法，有时候可能会用的到，需要的朋友可以收藏一下。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="1-十进制转换为二进制"><a href="#1-十进制转换为二进制" class="headerlink" title="1. 十进制转换为二进制"></a>1. 十进制转换为二进制</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 十进制转换为二进制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param decimal 十进制数</span></span><br><span class="line"><span class="comment"> @return 二进制数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)getBinaryByDecimal:(<span class="built_in">NSInteger</span>)decimal &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *binary = <span class="string">@&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">while</span> (decimal) &#123;</span><br><span class="line">        binary = [[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@&quot;%ld&quot;</span>, decimal % <span class="number">2</span>] stringByAppendingString:binary];</span><br><span class="line">        <span class="keyword">if</span> (decimal / <span class="number">2</span> &lt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        decimal = decimal / <span class="number">2</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (binary.length % <span class="number">4</span> != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">NSMutableString</span> *mStr = [[<span class="built_in">NSMutableString</span> alloc]init];;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span> - binary.length % <span class="number">4</span>; i++) &#123;</span><br><span class="line">            [mStr appendString:<span class="string">@&quot;0&quot;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        binary = [mStr stringByAppendingString:binary];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> binary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-十进制转换为十六进制"><a href="#2-十进制转换为十六进制" class="headerlink" title="2. 十进制转换为十六进制"></a>2. 十进制转换为十六进制</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 十进制转换十六进制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param decimal 十进制数</span></span><br><span class="line"><span class="comment"> @return 十六进制数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)getHexByDecimal:(<span class="built_in">NSInteger</span>)decimal &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *hex =<span class="string">@&quot;&quot;</span>;</span><br><span class="line">    <span class="built_in">NSString</span> *letter;</span><br><span class="line">    <span class="built_in">NSInteger</span> number;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="number">9</span>; i++) &#123;</span><br><span class="line">        number = decimal % <span class="number">16</span>;</span><br><span class="line">        decimal = decimal / <span class="number">16</span>;</span><br><span class="line">        <span class="keyword">switch</span> (number) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">10</span>:</span><br><span class="line">                letter =<span class="string">@&quot;A&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">11</span>:</span><br><span class="line">                letter =<span class="string">@&quot;B&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">12</span>:</span><br><span class="line">                letter =<span class="string">@&quot;C&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">13</span>:</span><br><span class="line">                letter =<span class="string">@&quot;D&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">14</span>:</span><br><span class="line">                letter =<span class="string">@&quot;E&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">15</span>:</span><br><span class="line">                letter =<span class="string">@&quot;F&quot;</span>; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                letter = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@&quot;%ld&quot;</span>, number];</span><br><span class="line">        &#125;</span><br><span class="line">        hex = [letter stringByAppendingString:hex];</span><br><span class="line">        <span class="keyword">if</span> (decimal == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-二进制转换为十六进制"><a href="#3-二进制转换为十六进制" class="headerlink" title="3. 二进制转换为十六进制"></a>3. 二进制转换为十六进制</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 二进制转换成十六进制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param binary 二进制数</span></span><br><span class="line"><span class="comment"> @return 十六进制数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)getHexByBinary:(<span class="built_in">NSString</span> *)binary &#123;</span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *binaryDic = [[<span class="built_in">NSMutableDictionary</span> alloc] initWithCapacity:<span class="number">16</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;0&quot;</span> forKey:<span class="string">@&quot;0000&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;1&quot;</span> forKey:<span class="string">@&quot;0001&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;2&quot;</span> forKey:<span class="string">@&quot;0010&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;3&quot;</span> forKey:<span class="string">@&quot;0011&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;4&quot;</span> forKey:<span class="string">@&quot;0100&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;5&quot;</span> forKey:<span class="string">@&quot;0101&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;6&quot;</span> forKey:<span class="string">@&quot;0110&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;7&quot;</span> forKey:<span class="string">@&quot;0111&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;8&quot;</span> forKey:<span class="string">@&quot;1000&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;9&quot;</span> forKey:<span class="string">@&quot;1001&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;A&quot;</span> forKey:<span class="string">@&quot;1010&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;B&quot;</span> forKey:<span class="string">@&quot;1011&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;C&quot;</span> forKey:<span class="string">@&quot;1100&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;D&quot;</span> forKey:<span class="string">@&quot;1101&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;E&quot;</span> forKey:<span class="string">@&quot;1110&quot;</span>];</span><br><span class="line">    [binaryDic setObject:<span class="string">@&quot;F&quot;</span> forKey:<span class="string">@&quot;1111&quot;</span>];</span><br><span class="line">    <span class="keyword">if</span> (binary.length % <span class="number">4</span> != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">NSMutableString</span> *mStr = [[<span class="built_in">NSMutableString</span> alloc]init];;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span> - binary.length % <span class="number">4</span>; i++) &#123;</span><br><span class="line">            [mStr appendString:<span class="string">@&quot;0&quot;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        binary = [mStr stringByAppendingString:binary];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSString</span> *hex = <span class="string">@&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;binary.length; i+=<span class="number">4</span>) &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *key = [binary substringWithRange:<span class="built_in">NSMakeRange</span>(i, <span class="number">4</span>)];</span><br><span class="line">        <span class="built_in">NSString</span> *value = [binaryDic objectForKey:key];</span><br><span class="line">        <span class="keyword">if</span> (value) &#123;</span><br><span class="line">            hex = [hex stringByAppendingString:value];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-十六进制转换为二进制"><a href="#4-十六进制转换为二进制" class="headerlink" title="4. 十六进制转换为二进制"></a>4. 十六进制转换为二进制</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 十六进制转换为二进制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param hex 十六进制数</span></span><br><span class="line"><span class="comment"> @return 二进制数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)getBinaryByHex:(<span class="built_in">NSString</span> *)hex &#123;</span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *hexDic = [[<span class="built_in">NSMutableDictionary</span> alloc] initWithCapacity:<span class="number">16</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0000&quot;</span> forKey:<span class="string">@&quot;0&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0001&quot;</span> forKey:<span class="string">@&quot;1&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0010&quot;</span> forKey:<span class="string">@&quot;2&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0011&quot;</span> forKey:<span class="string">@&quot;3&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0100&quot;</span> forKey:<span class="string">@&quot;4&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0101&quot;</span> forKey:<span class="string">@&quot;5&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0110&quot;</span> forKey:<span class="string">@&quot;6&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;0111&quot;</span> forKey:<span class="string">@&quot;7&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1000&quot;</span> forKey:<span class="string">@&quot;8&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1001&quot;</span> forKey:<span class="string">@&quot;9&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1010&quot;</span> forKey:<span class="string">@&quot;A&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1011&quot;</span> forKey:<span class="string">@&quot;B&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1100&quot;</span> forKey:<span class="string">@&quot;C&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1101&quot;</span> forKey:<span class="string">@&quot;D&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1110&quot;</span> forKey:<span class="string">@&quot;E&quot;</span>];</span><br><span class="line">    [hexDic setObject:<span class="string">@&quot;1111&quot;</span> forKey:<span class="string">@&quot;F&quot;</span>];</span><br><span class="line">    <span class="built_in">NSString</span> *binary = <span class="string">@&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;[hex length]; i++) &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *key = [hex substringWithRange:<span class="built_in">NSMakeRange</span>(i, <span class="number">1</span>)];</span><br><span class="line">        <span class="built_in">NSString</span> *value = [hexDic objectForKey:key.uppercaseString];</span><br><span class="line">        <span class="keyword">if</span> (value) &#123;</span><br><span class="line">            binary = [binary stringByAppendingString:value];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> binary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-二进制转换为十进制"><a href="#5-二进制转换为十进制" class="headerlink" title="5. 二进制转换为十进制"></a>5. 二进制转换为十进制</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 二进制转换为十进制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param binary 二进制数</span></span><br><span class="line"><span class="comment"> @return 十进制数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (<span class="built_in">NSInteger</span>)getDecimalByBinary:(<span class="built_in">NSString</span> *)binary &#123;</span><br><span class="line">    <span class="built_in">NSInteger</span> decimal = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;binary.length; i++) &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *number = [binary substringWithRange:<span class="built_in">NSMakeRange</span>(binary.length - i - <span class="number">1</span>, <span class="number">1</span>)];</span><br><span class="line">        <span class="keyword">if</span> ([number isEqualToString:<span class="string">@&quot;1&quot;</span>]) &#123;</span><br><span class="line">            decimal += pow(<span class="number">2</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> decimal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<blockquote>
-<p>大概就这么多了，有其他需求可以补充，需要十六进制转换为十进制的话，就按上面方法将十六进制转换为二进制后再转换为十进制就行了，有需要的朋友就收藏一下吧！</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>iOS 开发</category>
-      </categories>
-      <tags>
-        <tag>iOS 开发</tag>
-        <tag>进制转换</tag>
       </tags>
   </entry>
   <entry>
@@ -3080,36 +3080,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【iOS 开发】解决 &#39;XCTest/XCTest.h&#39; file not found 报错</title>
-    <url>/2017/05/25/iOS/201705251556/</url>
-    <content><![CDATA[<blockquote>
-<p>今天在改项目的时候，突然遇到一个报错提示为 <code>&#39;XCTest/XCTest.h&#39; file not found</code> ，可能是我在该项目的时候误删了什么，这里记录一下错误的解决方法。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ul>
-<li>打开项目的 <code>Target</code> - <code>Build Settings</code> ，然后搜索 <code>Framework Search Paths</code> ，在该选项中加入以下设置：</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$(PLATFORM_DIR)/Developer/Library/Frameworks</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>command + B</code> 重新编译一下，问题解决。</li>
-</ul>
-<blockquote>
-<p>希望我的解决方法能帮助到也有同样问题的你。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>iOS 开发</category>
-      </categories>
-      <tags>
-        <tag>iOS 开发</tag>
-        <tag>iOS 开发问题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【iOS 开发】解决使用 CocoaPods 执行 pod install 时出现 - Use the `$（inherited）` flag ... 警告</title>
     <url>/2017/05/25/iOS/201705251536/</url>
     <content><![CDATA[<blockquote>
@@ -3151,6 +3121,36 @@
         <tag>CocoaPods</tag>
         <tag>iOS 开发问题</tag>
         <tag>CocoaPods 问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【iOS 开发】解决 &#39;XCTest/XCTest.h&#39; file not found 报错</title>
+    <url>/2017/05/25/iOS/201705251556/</url>
+    <content><![CDATA[<blockquote>
+<p>今天在改项目的时候，突然遇到一个报错提示为 <code>&#39;XCTest/XCTest.h&#39; file not found</code> ，可能是我在该项目的时候误删了什么，这里记录一下错误的解决方法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ul>
+<li>打开项目的 <code>Target</code> - <code>Build Settings</code> ，然后搜索 <code>Framework Search Paths</code> ，在该选项中加入以下设置：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$(PLATFORM_DIR)/Developer/Library/Frameworks</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>command + B</code> 重新编译一下，问题解决。</li>
+</ul>
+<blockquote>
+<p>希望我的解决方法能帮助到也有同样问题的你。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>iOS 开发</category>
+      </categories>
+      <tags>
+        <tag>iOS 开发</tag>
+        <tag>iOS 开发问题</tag>
       </tags>
   </entry>
   <entry>
@@ -3697,6 +3697,55 @@
       </tags>
   </entry>
   <entry>
+    <title>【iOS 开发】UICollectionView 集合视图使用汇总</title>
+    <url>/2017/06/30/iOS/201706301801/</url>
+    <content><![CDATA[<blockquote>
+<p><code>UICollectionView</code> 和 <code>UITableView</code> 的用法非常的相似，但它要更加强大，下面就对于 <code>UICollectionView</code> 的基本用法进行一个汇总，以便之后方便查看。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h2 id="UICollectionView-的创建"><a href="#UICollectionView-的创建" class="headerlink" title="UICollectionView 的创建"></a>UICollectionView 的创建</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 设置单元格布局 */</span></span><br><span class="line"><span class="built_in">UICollectionViewFlowLayout</span> *flow = [[<span class="built_in">UICollectionViewFlowLayout</span> alloc] init];</span><br><span class="line">flow.itemSize = <span class="built_in">CGSizeMake</span>(<span class="number">150</span>, <span class="number">120</span>); <span class="comment">// 单元格的尺寸</span></span><br><span class="line">flow.minimumLineSpacing = <span class="number">10.0</span>; <span class="comment">// 行之间间距</span></span><br><span class="line">flow.minimumInteritemSpacing = <span class="number">10.0</span>; <span class="comment">// 列之间的间距</span></span><br><span class="line">flow.headerReferenceSize = <span class="built_in">CGSizeMake</span>(<span class="number">100</span>, <span class="number">75</span>); <span class="comment">// 段头尺寸</span></span><br><span class="line">flow.footerReferenceSize = <span class="built_in">CGSizeMake</span>(<span class="number">100</span>, <span class="number">75</span>); <span class="comment">// 段尾尺寸</span></span><br><span class="line">flow.scrollDirection = <span class="built_in">UICollectionViewScrollDirectionVertical</span>; <span class="comment">// 滑动方向</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建集合视图 */</span></span><br><span class="line"><span class="built_in">UICollectionView</span> *collectionView = [[<span class="built_in">UICollectionView</span> alloc] initWithFrame:<span class="keyword">self</span>.view.bounds collectionViewLayout:flow];</span><br><span class="line">collectionView.delegate = <span class="keyword">self</span>; <span class="comment">// 代理</span></span><br><span class="line">collectionView.dataSource = <span class="keyword">self</span>; <span class="comment">// 数据源</span></span><br><span class="line">collectionView.backgroundColor = [<span class="built_in">UIColor</span> whiteColor]; <span class="comment">// 背景色</span></span><br><span class="line">collectionView.delaysContentTouches = <span class="literal">NO</span>; <span class="comment">// 默认为 YES ，设为 NO 可以解决点击单元格后高亮效果显示延迟的问题</span></span><br><span class="line">[<span class="keyword">self</span>.view addSubview:collectionView];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 注册自定义单元格 */</span></span><br><span class="line">[collectionView registerClass:[CollectionViewCell <span class="keyword">class</span>] forCellWithReuseIdentifier:<span class="string">@&quot;Cell&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 注册自定义段头 */</span></span><br><span class="line">[collectionView registerClass:[SectionHeader <span class="keyword">class</span>] forSupplementaryViewOfKind:<span class="built_in">UICollectionElementKindSectionHeader</span> withReuseIdentifier:<span class="string">@&quot;Header&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 注册自定义段尾 */</span></span><br><span class="line">[collectionView registerClass:[SectionFooter <span class="keyword">class</span>] forSupplementaryViewOfKind:<span class="built_in">UICollectionElementKindSectionFooter</span> withReuseIdentifier:<span class="string">@&quot;Footer&quot;</span>];</span><br></pre></td></tr></table></figure>
+
+<p>使用纯代码自定义 <code>UICollectionViewCell</code> 单元格或者 <code>UICollectionReusableView</code> 段头段尾视图时，只需要重写 <code>- (instancetype)initWithFrame:(CGRect)frame</code> 方法即可。</p>
+<h2 id="UICollectionViewDataSource-数据源"><a href="#UICollectionViewDataSource-数据源" class="headerlink" title="UICollectionViewDataSource 数据源"></a>UICollectionViewDataSource 数据源</h2><h3 id="1-设置集合视图的段数"><a href="#1-设置集合视图的段数" class="headerlink" title="1. 设置集合视图的段数"></a>1. 设置集合视图的段数</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置集合视图的段数</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @return 段数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">NSInteger</span>)numberOfSectionsInCollectionView:(<span class="built_in">UICollectionView</span> *)collectionView &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-设置集合视图单元格数量"><a href="#2-设置集合视图单元格数量" class="headerlink" title="2. 设置集合视图单元格数量"></a>2. 设置集合视图单元格数量</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置集合视图单元格数量</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param section 哪一段</span></span><br><span class="line"><span class="comment"> @return 单元格数量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">NSInteger</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView numberOfItemsInSection:(<span class="built_in">NSInteger</span>)section &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">12</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-设置集合视图内容"><a href="#3-设置集合视图内容" class="headerlink" title="3. 设置集合视图内容"></a>3. 设置集合视图内容</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置集合视图内容</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 单元格对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">UICollectionViewCell</span> *)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView cellForItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:<span class="string">@&quot;Cell&quot;</span> forIndexPath:indexPath]; <span class="comment">// 查找可复用的单元格，自定义需要注册</span></span><br><span class="line">    <span class="keyword">return</span> cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-设置段头-段尾内容"><a href="#4-设置段头-段尾内容" class="headerlink" title="4. 设置段头/段尾内容"></a>4. 设置段头/段尾内容</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置段头/段尾内容</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param kind 类型</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 段头/段尾视图</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">UICollectionReusableView</span> *)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView viewForSupplementaryElementOfKind:(<span class="built_in">NSString</span> *)kind atIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">if</span>([kind isEqualToString:<span class="built_in">UICollectionElementKindSectionHeader</span>]) &#123;</span><br><span class="line">        SectionHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:<span class="string">@&quot;Header&quot;</span> forIndexPath:indexPath]; <span class="comment">// 查找可复用的段头视图，自定义需要注册</span></span><br><span class="line">        <span class="keyword">return</span> header;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ([kind isEqualToString:<span class="built_in">UICollectionElementKindSectionFooter</span>]) &#123;</span><br><span class="line">        SectionFooter *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:<span class="string">@&quot;Footer&quot;</span> forIndexPath:indexPath]; <span class="comment">// 查找可复用的段尾视图，自定义需要注册</span></span><br><span class="line">        <span class="keyword">return</span> footer;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="UICollectionViewDelegate-代理方法"><a href="#UICollectionViewDelegate-代理方法" class="headerlink" title="UICollectionViewDelegate 代理方法"></a>UICollectionViewDelegate 代理方法</h2><h3 id="1-设置单元格是否允许高亮"><a href="#1-设置单元格是否允许高亮" class="headerlink" title="1. 设置单元格是否允许高亮"></a>1. 设置单元格是否允许高亮</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置单元格是否允许高亮</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 是否允许</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView shouldHighlightItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-单元格处于高亮状态时触发"><a href="#2-单元格处于高亮状态时触发" class="headerlink" title="2. 单元格处于高亮状态时触发"></a>2. 单元格处于高亮状态时触发</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 单元格处于高亮状态时触发</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView didHighlightItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    CollectionViewCell *cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]; <span class="comment">// 得到当前选中单元格对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-单元格取消高亮状态时触发"><a href="#3-单元格取消高亮状态时触发" class="headerlink" title="3. 单元格取消高亮状态时触发"></a>3. 单元格取消高亮状态时触发</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 单元格取消高亮状态时触发</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView didUnhighlightItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    CollectionViewCell *cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]; <span class="comment">// 得到当前选中单元格对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-设置单元格是否允许点击"><a href="#4-设置单元格是否允许点击" class="headerlink" title="4. 设置单元格是否允许点击"></a>4. 设置单元格是否允许点击</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置单元格是否允许点击</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 是否允许</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView shouldSelectItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-设置单元格是否允许取消点击"><a href="#5-设置单元格是否允许取消点击" class="headerlink" title="5. 设置单元格是否允许取消点击"></a>5. 设置单元格是否允许取消点击</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置单元格是否允许取消点击</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 是否允许</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView shouldDeselectItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-点击单元格触发"><a href="#6-点击单元格触发" class="headerlink" title="6. 点击单元格触发"></a>6. 点击单元格触发</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 点击单元格触发</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView didSelectItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    [collectionView deselectItemAtIndexPath:indexPath animated:<span class="literal">YES</span>]; <span class="comment">// 取消单元格当前选中状态</span></span><br><span class="line">    CollectionViewCell *cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]; <span class="comment">// 得到当前选中单元格对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-设置上下左右间隔"><a href="#7-设置上下左右间隔" class="headerlink" title="7. 设置上下左右间隔"></a>7. 设置上下左右间隔</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置上下左右间隔</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param collectionViewLayout 单元格布局</span></span><br><span class="line"><span class="comment"> @param section 哪一段</span></span><br><span class="line"><span class="comment"> @return 间隔</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">UIEdgeInsets</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView layout:(<span class="built_in">UICollectionViewLayout</span> *)collectionViewLayout insetForSectionAtIndex:(<span class="built_in">NSInteger</span>)section &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>); <span class="comment">// 分别为上、左、下、右</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>还有一些不常用的暂时先不写，等用到的时候再补上，哪里有问题的话可以在下面留言。</p>
+</blockquote>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>iOS 开发</category>
+      </categories>
+      <tags>
+        <tag>iOS 开发</tag>
+        <tag>UICollectionView</tag>
+        <tag>集合视图</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【iOS 开发】解决 Xcode 输出台打印 NSArray 数组和 NSDictionary 字典中文乱码的问题</title>
     <url>/2017/07/05/iOS/201707051210/</url>
     <content><![CDATA[<blockquote>
@@ -3754,55 +3803,6 @@
         <tag>iOS 开发</tag>
         <tag>iOS 开发问题</tag>
         <tag>Xcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【iOS 开发】UICollectionView 集合视图使用汇总</title>
-    <url>/2017/06/30/iOS/201706301801/</url>
-    <content><![CDATA[<blockquote>
-<p><code>UICollectionView</code> 和 <code>UITableView</code> 的用法非常的相似，但它要更加强大，下面就对于 <code>UICollectionView</code> 的基本用法进行一个汇总，以便之后方便查看。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<h2 id="UICollectionView-的创建"><a href="#UICollectionView-的创建" class="headerlink" title="UICollectionView 的创建"></a>UICollectionView 的创建</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 设置单元格布局 */</span></span><br><span class="line"><span class="built_in">UICollectionViewFlowLayout</span> *flow = [[<span class="built_in">UICollectionViewFlowLayout</span> alloc] init];</span><br><span class="line">flow.itemSize = <span class="built_in">CGSizeMake</span>(<span class="number">150</span>, <span class="number">120</span>); <span class="comment">// 单元格的尺寸</span></span><br><span class="line">flow.minimumLineSpacing = <span class="number">10.0</span>; <span class="comment">// 行之间间距</span></span><br><span class="line">flow.minimumInteritemSpacing = <span class="number">10.0</span>; <span class="comment">// 列之间的间距</span></span><br><span class="line">flow.headerReferenceSize = <span class="built_in">CGSizeMake</span>(<span class="number">100</span>, <span class="number">75</span>); <span class="comment">// 段头尺寸</span></span><br><span class="line">flow.footerReferenceSize = <span class="built_in">CGSizeMake</span>(<span class="number">100</span>, <span class="number">75</span>); <span class="comment">// 段尾尺寸</span></span><br><span class="line">flow.scrollDirection = <span class="built_in">UICollectionViewScrollDirectionVertical</span>; <span class="comment">// 滑动方向</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建集合视图 */</span></span><br><span class="line"><span class="built_in">UICollectionView</span> *collectionView = [[<span class="built_in">UICollectionView</span> alloc] initWithFrame:<span class="keyword">self</span>.view.bounds collectionViewLayout:flow];</span><br><span class="line">collectionView.delegate = <span class="keyword">self</span>; <span class="comment">// 代理</span></span><br><span class="line">collectionView.dataSource = <span class="keyword">self</span>; <span class="comment">// 数据源</span></span><br><span class="line">collectionView.backgroundColor = [<span class="built_in">UIColor</span> whiteColor]; <span class="comment">// 背景色</span></span><br><span class="line">collectionView.delaysContentTouches = <span class="literal">NO</span>; <span class="comment">// 默认为 YES ，设为 NO 可以解决点击单元格后高亮效果显示延迟的问题</span></span><br><span class="line">[<span class="keyword">self</span>.view addSubview:collectionView];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 注册自定义单元格 */</span></span><br><span class="line">[collectionView registerClass:[CollectionViewCell <span class="keyword">class</span>] forCellWithReuseIdentifier:<span class="string">@&quot;Cell&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 注册自定义段头 */</span></span><br><span class="line">[collectionView registerClass:[SectionHeader <span class="keyword">class</span>] forSupplementaryViewOfKind:<span class="built_in">UICollectionElementKindSectionHeader</span> withReuseIdentifier:<span class="string">@&quot;Header&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 注册自定义段尾 */</span></span><br><span class="line">[collectionView registerClass:[SectionFooter <span class="keyword">class</span>] forSupplementaryViewOfKind:<span class="built_in">UICollectionElementKindSectionFooter</span> withReuseIdentifier:<span class="string">@&quot;Footer&quot;</span>];</span><br></pre></td></tr></table></figure>
-
-<p>使用纯代码自定义 <code>UICollectionViewCell</code> 单元格或者 <code>UICollectionReusableView</code> 段头段尾视图时，只需要重写 <code>- (instancetype)initWithFrame:(CGRect)frame</code> 方法即可。</p>
-<h2 id="UICollectionViewDataSource-数据源"><a href="#UICollectionViewDataSource-数据源" class="headerlink" title="UICollectionViewDataSource 数据源"></a>UICollectionViewDataSource 数据源</h2><h3 id="1-设置集合视图的段数"><a href="#1-设置集合视图的段数" class="headerlink" title="1. 设置集合视图的段数"></a>1. 设置集合视图的段数</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置集合视图的段数</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @return 段数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">NSInteger</span>)numberOfSectionsInCollectionView:(<span class="built_in">UICollectionView</span> *)collectionView &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-设置集合视图单元格数量"><a href="#2-设置集合视图单元格数量" class="headerlink" title="2. 设置集合视图单元格数量"></a>2. 设置集合视图单元格数量</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置集合视图单元格数量</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param section 哪一段</span></span><br><span class="line"><span class="comment"> @return 单元格数量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">NSInteger</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView numberOfItemsInSection:(<span class="built_in">NSInteger</span>)section &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">12</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-设置集合视图内容"><a href="#3-设置集合视图内容" class="headerlink" title="3. 设置集合视图内容"></a>3. 设置集合视图内容</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置集合视图内容</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 单元格对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">UICollectionViewCell</span> *)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView cellForItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:<span class="string">@&quot;Cell&quot;</span> forIndexPath:indexPath]; <span class="comment">// 查找可复用的单元格，自定义需要注册</span></span><br><span class="line">    <span class="keyword">return</span> cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-设置段头-段尾内容"><a href="#4-设置段头-段尾内容" class="headerlink" title="4. 设置段头/段尾内容"></a>4. 设置段头/段尾内容</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置段头/段尾内容</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param kind 类型</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 段头/段尾视图</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">UICollectionReusableView</span> *)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView viewForSupplementaryElementOfKind:(<span class="built_in">NSString</span> *)kind atIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">if</span>([kind isEqualToString:<span class="built_in">UICollectionElementKindSectionHeader</span>]) &#123;</span><br><span class="line">        SectionHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:<span class="string">@&quot;Header&quot;</span> forIndexPath:indexPath]; <span class="comment">// 查找可复用的段头视图，自定义需要注册</span></span><br><span class="line">        <span class="keyword">return</span> header;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ([kind isEqualToString:<span class="built_in">UICollectionElementKindSectionFooter</span>]) &#123;</span><br><span class="line">        SectionFooter *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:<span class="string">@&quot;Footer&quot;</span> forIndexPath:indexPath]; <span class="comment">// 查找可复用的段尾视图，自定义需要注册</span></span><br><span class="line">        <span class="keyword">return</span> footer;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="UICollectionViewDelegate-代理方法"><a href="#UICollectionViewDelegate-代理方法" class="headerlink" title="UICollectionViewDelegate 代理方法"></a>UICollectionViewDelegate 代理方法</h2><h3 id="1-设置单元格是否允许高亮"><a href="#1-设置单元格是否允许高亮" class="headerlink" title="1. 设置单元格是否允许高亮"></a>1. 设置单元格是否允许高亮</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置单元格是否允许高亮</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 是否允许</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView shouldHighlightItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-单元格处于高亮状态时触发"><a href="#2-单元格处于高亮状态时触发" class="headerlink" title="2. 单元格处于高亮状态时触发"></a>2. 单元格处于高亮状态时触发</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 单元格处于高亮状态时触发</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView didHighlightItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    CollectionViewCell *cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]; <span class="comment">// 得到当前选中单元格对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-单元格取消高亮状态时触发"><a href="#3-单元格取消高亮状态时触发" class="headerlink" title="3. 单元格取消高亮状态时触发"></a>3. 单元格取消高亮状态时触发</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 单元格取消高亮状态时触发</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView didUnhighlightItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    CollectionViewCell *cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]; <span class="comment">// 得到当前选中单元格对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-设置单元格是否允许点击"><a href="#4-设置单元格是否允许点击" class="headerlink" title="4. 设置单元格是否允许点击"></a>4. 设置单元格是否允许点击</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置单元格是否允许点击</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 是否允许</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView shouldSelectItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-设置单元格是否允许取消点击"><a href="#5-设置单元格是否允许取消点击" class="headerlink" title="5. 设置单元格是否允许取消点击"></a>5. 设置单元格是否允许取消点击</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置单元格是否允许取消点击</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> @return 是否允许</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView shouldDeselectItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-点击单元格触发"><a href="#6-点击单元格触发" class="headerlink" title="6. 点击单元格触发"></a>6. 点击单元格触发</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 点击单元格触发</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 单元格对象</span></span><br><span class="line"><span class="comment"> @param indexPath 位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView didSelectItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    [collectionView deselectItemAtIndexPath:indexPath animated:<span class="literal">YES</span>]; <span class="comment">// 取消单元格当前选中状态</span></span><br><span class="line">    CollectionViewCell *cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]; <span class="comment">// 得到当前选中单元格对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="7-设置上下左右间隔"><a href="#7-设置上下左右间隔" class="headerlink" title="7. 设置上下左右间隔"></a>7. 设置上下左右间隔</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 设置上下左右间隔</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param collectionView 集合视图对象</span></span><br><span class="line"><span class="comment"> @param collectionViewLayout 单元格布局</span></span><br><span class="line"><span class="comment"> @param section 哪一段</span></span><br><span class="line"><span class="comment"> @return 间隔</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">UIEdgeInsets</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView layout:(<span class="built_in">UICollectionViewLayout</span> *)collectionViewLayout insetForSectionAtIndex:(<span class="built_in">NSInteger</span>)section &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>); <span class="comment">// 分别为上、左、下、右</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<blockquote>
-<p>还有一些不常用的暂时先不写，等用到的时候再补上，哪里有问题的话可以在下面留言。</p>
-</blockquote>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>iOS 开发</category>
-      </categories>
-      <tags>
-        <tag>iOS 开发</tag>
-        <tag>UICollectionView</tag>
-        <tag>集合视图</tag>
       </tags>
   </entry>
   <entry>
@@ -3870,6 +3870,51 @@
       </tags>
   </entry>
   <entry>
+    <title>【iOS 开发】Git 中无法忽略 .xcuserstate 的解决方法</title>
+    <url>/2017/08/15/iOS/201708151124/</url>
+    <content><![CDATA[<blockquote>
+<p>在平时的 <code>iOS</code> 开发中使用 <code>Git</code> 时会遇到这样的问题，明明在 <code>.gitignore</code> 文件中添加了 <code>.xcuserstate</code> 忽略，之后每次 <code>push</code> 时文件改动中还是会出现 <code>UserInterfaceState.xcuserstate</code> 文件，下面是解决方法。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<ul>
+<li>打开终端，<code>cd</code> 到你的项目文件夹下，然后输入以下命令。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后会显示 <code>UserInterfaceState.xcuserstate</code> 文件有改动，这时候复制 <code>modified:</code> 后面的地址。</li>
+</ul>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163409.png" alt="git status"></p>
+<ul>
+<li>接着输入 <code>git rm --cached 刚才复制的地址</code> ，如下。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git rm --cached client_swift_fm_a/client_swift_fm_a.xcworkspace/xcuserdata/Jonzzs.xcuserdatad/UserInterfaceState.xcuserstate</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接着将代码提交推送到服务器。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;删除xcuserstate文件&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>之后再提交时就不会出现 <code>UserInterfaceState.xcuserstate</code> 文件了，要注意路径不能弄错，否则会报错。</li>
+</ul>
+<hr>
+<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
+]]></content>
+      <categories>
+        <category>iOS 开发</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>iOS 开发</tag>
+        <tag>iOS 开发问题</tag>
+        <tag>gitignore</tag>
+        <tag>xcuserstate</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【iOS 开发】Objective-C 中 Charts 的 CombinedChart 使用汇总</title>
     <url>/2017/08/10/iOS/201708101503/</url>
     <content><![CDATA[<blockquote>
@@ -3925,51 +3970,6 @@
         <tag>CombinedChart</tag>
         <tag>BarChart</tag>
         <tag>LineChart</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【iOS 开发】Git 中无法忽略 .xcuserstate 的解决方法</title>
-    <url>/2017/08/15/iOS/201708151124/</url>
-    <content><![CDATA[<blockquote>
-<p>在平时的 <code>iOS</code> 开发中使用 <code>Git</code> 时会遇到这样的问题，明明在 <code>.gitignore</code> 文件中添加了 <code>.xcuserstate</code> 忽略，之后每次 <code>push</code> 时文件改动中还是会出现 <code>UserInterfaceState.xcuserstate</code> 文件，下面是解决方法。</p>
-</blockquote>
-<a id="more"></a>
-
-<hr>
-<ul>
-<li>打开终端，<code>cd</code> 到你的项目文件夹下，然后输入以下命令。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后会显示 <code>UserInterfaceState.xcuserstate</code> 文件有改动，这时候复制 <code>modified:</code> 后面的地址。</li>
-</ul>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509163409.png" alt="git status"></p>
-<ul>
-<li>接着输入 <code>git rm --cached 刚才复制的地址</code> ，如下。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git rm --cached client_swift_fm_a/client_swift_fm_a.xcworkspace/xcuserdata/Jonzzs.xcuserdatad/UserInterfaceState.xcuserstate</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>接着将代码提交推送到服务器。</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;删除xcuserstate文件&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>之后再提交时就不会出现 <code>UserInterfaceState.xcuserstate</code> 文件了，要注意路径不能弄错，否则会报错。</li>
-</ul>
-<hr>
-<p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
-]]></content>
-      <categories>
-        <category>iOS 开发</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-        <tag>iOS 开发</tag>
-        <tag>iOS 开发问题</tag>
-        <tag>gitignore</tag>
-        <tag>xcuserstate</tag>
       </tags>
   </entry>
   <entry>
@@ -4301,33 +4301,21 @@
       </tags>
   </entry>
   <entry>
-    <title>【iOS 开发】导航栏各种右滑返回失效的解决方法</title>
-    <url>/2017/12/12/iOS/201712121005/</url>
+    <title>【iOS 开发】一个音频格式转换库 GZZAudioConverter</title>
+    <url>/2018/05/28/iOS/201805280923/</url>
     <content><![CDATA[<blockquote>
-<p><code>iOS</code> 的几乎全部页面都是需要右滑返回的，否则用户体验会大打折扣，但是在开发过程中经常会碰到某些页面右滑返回失效的情况，下面记录一下各种情况下右滑返回失效的解决方法。</p>
+<p>大多数代码源自于 <a href="https://github.com/lixing123/ExtAudioFileConverter">ExtAudioFileConverter</a>，因为网上关于音频格式转换的太少了，而且还特别麻烦，故封装为 <code>Cocoapods</code> 库，方便使用，转换 <code>MP3</code> 格式需要用到 <code>lame</code> 静态库，使用 <code>pod</code> 之后不需要单独集成 <code>lame</code> 静态库，直接 <code>pod install</code> 即可使用，这是库的地址：<a href="https://github.com/Jonzzs/GZZAudioConverter">GZZAudioConverter</a> 。</p>
 </blockquote>
 <a id="more"></a>
 
 <hr>
-<h3 id="自定义返回按钮时失效"><a href="#自定义返回按钮时失效" class="headerlink" title="自定义返回按钮时失效"></a>自定义返回按钮时失效</h3><ul>
-<li>当你重写 <code>self.navigationItem.leftBarButtonItem</code> 之后，自带的返回按钮就会被覆盖，右滑返回就会失效，解决办法只要加入下面这句代码即可。</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">self</span>.navigationController.interactivePopGestureRecognizer.delegate = <span class="keyword">self</span>; <span class="comment">// 解决右滑返回失效问题</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p> 仅支持 <code>CocoaPods</code>，将如下代码加入 <code>Podfile</code> 文件中。</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">pod</span> <span class="string">&#x27;GZZAudioConverter&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>然后你可以使用下面这句代码来控制是否允许右滑返回，这句代码要加在 <code>viewDidAppear</code> 里面，否则多个页面切换时会出现异常。</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidAppear:(<span class="built_in">BOOL</span>)animated &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidAppear:animated];</span><br><span class="line"></span><br><span class="line">    [<span class="keyword">self</span>.navigationController.interactivePopGestureRecognizer setEnabled:_isShowBackButton]; <span class="comment">// 是否允许右滑返回</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Useage"><a href="#Useage" class="headerlink" title="Useage"></a>Useage</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 例如：转换为 MP3</span></span><br><span class="line"><span class="built_in">dispatch_async</span>(dispatch_queue_create(<span class="literal">NULL</span>, DISPATCH_QUEUE_SERIAL), ^ &#123;</span><br><span class="line">    GZZAudioConverter *converter = [[GZZAudioConverter alloc] init];</span><br><span class="line">    converter.inputFile = <span class="string">@&quot;/var/mobile/Containers/Data/Application/xxx/Documents/xxx.wav&quot;</span>;</span><br><span class="line">    converter.outputFile = <span class="string">@&quot;/var/mobile/Containers/Data/Application/xxx/Documents/xxx.mp3&quot;</span>;</span><br><span class="line">    converter.outputFileType = kAudioFileMP3Type;</span><br><span class="line">    converter.outputFormatID = kAudioFormatMPEGLayer3;</span><br><span class="line">    <span class="built_in">BOOL</span> success = [converter convert];</span><br><span class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^ &#123;</span><br><span class="line">        <span class="keyword">if</span> (success) &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@&quot;转换成功&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@&quot;转换失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<h3 id="UIScrollView-页面中失效"><a href="#UIScrollView-页面中失效" class="headerlink" title="UIScrollView 页面中失效"></a>UIScrollView 页面中失效</h3><ul>
-<li>当使用 <code>UIScrollView</code> 、<code>UITableView</code> 、<code>UICollectionView</code> 等滑动视图的左右滑动时，滑动手势就会和右滑返回的手势冲突，右滑返回就会失效，解决办法只要加入下面这句代码即可。</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 解决右滑返回失效的问题</span></span><br><span class="line">[scrollView.panGestureRecognizer requireGestureRecognizerToFail:<span class="keyword">self</span>.navigationController.interactivePopGestureRecognizer];</span><br></pre></td></tr></table></figure>
-
-<h3 id="UIWebView-页面中失效"><a href="#UIWebView-页面中失效" class="headerlink" title="UIWebView 页面中失效"></a>UIWebView 页面中失效</h3><ul>
-<li><code>UIWebView</code> 页面比较特殊，不仅右滑返回会失效，自定义的手势也会全部失效，因为 <code>UIWebView</code> 中已经内部集成了点击、滑动等多个手势，上面的方法在 <code>UIWebView</code> 中并没有作用，解决办法是加入以下允许多个手势并发的代理方法。</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 允许多个手势并发</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)gestureRecognizer:(<span class="built_in">UIGestureRecognizer</span> *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(<span class="built_in">UIGestureRecognizer</span> *)otherGestureRecognizer &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p>注意：文件格式和数据格式要根据你要转换的音频格式来设置，不同文件格式对应的数据格式是不同的，这是关于文件格式和数据格式的 <a href="https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/CoreAudioOverview/SupportedAudioFormatsMacOSX/SupportedAudioFormatsMacOSX.html">说明文档</a> 。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 采样率</span></span><br><span class="line">converter.outputSampleRate = <span class="number">44100</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声道数</span></span><br><span class="line">converter.outputNumberChannels = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 位深</span></span><br><span class="line">converter.outputBitDepth = BitDepth_16;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件格式</span></span><br><span class="line">converter.outputFileType = kAudioFileWAVEType;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据格式</span></span><br><span class="line">converter.outputFormatID = kAudioFormatLinearPCM;</span><br></pre></td></tr></table></figure>
 
 <hr>
 <p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
@@ -4336,10 +4324,8 @@
         <category>iOS 开发</category>
       </categories>
       <tags>
-        <tag>iOS 开发</tag>
-        <tag>iOS 开发问题</tag>
-        <tag>导航栏</tag>
-        <tag>右滑返回失效</tag>
+        <tag>iOS</tag>
+        <tag>格式转换</tag>
       </tags>
   </entry>
   <entry>
@@ -4572,21 +4558,33 @@
       </tags>
   </entry>
   <entry>
-    <title>【iOS 开发】一个音频格式转换库 GZZAudioConverter</title>
-    <url>/2018/05/28/iOS/201805280923/</url>
+    <title>【iOS 开发】导航栏各种右滑返回失效的解决方法</title>
+    <url>/2017/12/12/iOS/201712121005/</url>
     <content><![CDATA[<blockquote>
-<p>大多数代码源自于 <a href="https://github.com/lixing123/ExtAudioFileConverter">ExtAudioFileConverter</a>，因为网上关于音频格式转换的太少了，而且还特别麻烦，故封装为 <code>Cocoapods</code> 库，方便使用，转换 <code>MP3</code> 格式需要用到 <code>lame</code> 静态库，使用 <code>pod</code> 之后不需要单独集成 <code>lame</code> 静态库，直接 <code>pod install</code> 即可使用，这是库的地址：<a href="https://github.com/Jonzzs/GZZAudioConverter">GZZAudioConverter</a> 。</p>
+<p><code>iOS</code> 的几乎全部页面都是需要右滑返回的，否则用户体验会大打折扣，但是在开发过程中经常会碰到某些页面右滑返回失效的情况，下面记录一下各种情况下右滑返回失效的解决方法。</p>
 </blockquote>
 <a id="more"></a>
 
 <hr>
-<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p> 仅支持 <code>CocoaPods</code>，将如下代码加入 <code>Podfile</code> 文件中。</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">pod</span> <span class="string">&#x27;GZZAudioConverter&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="自定义返回按钮时失效"><a href="#自定义返回按钮时失效" class="headerlink" title="自定义返回按钮时失效"></a>自定义返回按钮时失效</h3><ul>
+<li>当你重写 <code>self.navigationItem.leftBarButtonItem</code> 之后，自带的返回按钮就会被覆盖，右滑返回就会失效，解决办法只要加入下面这句代码即可。</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">self</span>.navigationController.interactivePopGestureRecognizer.delegate = <span class="keyword">self</span>; <span class="comment">// 解决右滑返回失效问题</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Useage"><a href="#Useage" class="headerlink" title="Useage"></a>Useage</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 例如：转换为 MP3</span></span><br><span class="line"><span class="built_in">dispatch_async</span>(dispatch_queue_create(<span class="literal">NULL</span>, DISPATCH_QUEUE_SERIAL), ^ &#123;</span><br><span class="line">    GZZAudioConverter *converter = [[GZZAudioConverter alloc] init];</span><br><span class="line">    converter.inputFile = <span class="string">@&quot;/var/mobile/Containers/Data/Application/xxx/Documents/xxx.wav&quot;</span>;</span><br><span class="line">    converter.outputFile = <span class="string">@&quot;/var/mobile/Containers/Data/Application/xxx/Documents/xxx.mp3&quot;</span>;</span><br><span class="line">    converter.outputFileType = kAudioFileMP3Type;</span><br><span class="line">    converter.outputFormatID = kAudioFormatMPEGLayer3;</span><br><span class="line">    <span class="built_in">BOOL</span> success = [converter convert];</span><br><span class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^ &#123;</span><br><span class="line">        <span class="keyword">if</span> (success) &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@&quot;转换成功&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@&quot;转换失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后你可以使用下面这句代码来控制是否允许右滑返回，这句代码要加在 <code>viewDidAppear</code> 里面，否则多个页面切换时会出现异常。</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidAppear:(<span class="built_in">BOOL</span>)animated &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidAppear:animated];</span><br><span class="line"></span><br><span class="line">    [<span class="keyword">self</span>.navigationController.interactivePopGestureRecognizer setEnabled:_isShowBackButton]; <span class="comment">// 是否允许右滑返回</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p>注意：文件格式和数据格式要根据你要转换的音频格式来设置，不同文件格式对应的数据格式是不同的，这是关于文件格式和数据格式的 <a href="https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/CoreAudioOverview/SupportedAudioFormatsMacOSX/SupportedAudioFormatsMacOSX.html">说明文档</a> 。</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 采样率</span></span><br><span class="line">converter.outputSampleRate = <span class="number">44100</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声道数</span></span><br><span class="line">converter.outputNumberChannels = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 位深</span></span><br><span class="line">converter.outputBitDepth = BitDepth_16;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件格式</span></span><br><span class="line">converter.outputFileType = kAudioFileWAVEType;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据格式</span></span><br><span class="line">converter.outputFormatID = kAudioFormatLinearPCM;</span><br></pre></td></tr></table></figure>
+<h3 id="UIScrollView-页面中失效"><a href="#UIScrollView-页面中失效" class="headerlink" title="UIScrollView 页面中失效"></a>UIScrollView 页面中失效</h3><ul>
+<li>当使用 <code>UIScrollView</code> 、<code>UITableView</code> 、<code>UICollectionView</code> 等滑动视图的左右滑动时，滑动手势就会和右滑返回的手势冲突，右滑返回就会失效，解决办法只要加入下面这句代码即可。</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 解决右滑返回失效的问题</span></span><br><span class="line">[scrollView.panGestureRecognizer requireGestureRecognizerToFail:<span class="keyword">self</span>.navigationController.interactivePopGestureRecognizer];</span><br></pre></td></tr></table></figure>
+
+<h3 id="UIWebView-页面中失效"><a href="#UIWebView-页面中失效" class="headerlink" title="UIWebView 页面中失效"></a>UIWebView 页面中失效</h3><ul>
+<li><code>UIWebView</code> 页面比较特殊，不仅右滑返回会失效，自定义的手势也会全部失效，因为 <code>UIWebView</code> 中已经内部集成了点击、滑动等多个手势，上面的方法在 <code>UIWebView</code> 中并没有作用，解决办法是加入以下允许多个手势并发的代理方法。</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 允许多个手势并发</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)gestureRecognizer:(<span class="built_in">UIGestureRecognizer</span> *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(<span class="built_in">UIGestureRecognizer</span> *)otherGestureRecognizer &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
 <p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>
@@ -4595,8 +4593,10 @@
         <category>iOS 开发</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
-        <tag>格式转换</tag>
+        <tag>iOS 开发</tag>
+        <tag>iOS 开发问题</tag>
+        <tag>导航栏</tag>
+        <tag>右滑返回失效</tag>
       </tags>
   </entry>
   <entry>
