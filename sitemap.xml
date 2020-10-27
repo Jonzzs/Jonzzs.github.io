@@ -16,14 +16,14 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/index.html</loc>
+    <loc>http://jonzzs.cn/schedule/index.html</loc>
     
     <lastmod>2020-04-13</lastmod>
     
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/schedule/index.html</loc>
+    <loc>http://jonzzs.cn/tags/index.html</loc>
     
     <lastmod>2020-04-13</lastmod>
     
@@ -44,14 +44,14 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/about/index.html</loc>
+    <loc>http://jonzzs.cn/catalog/index.html</loc>
     
     <lastmod>2020-04-13</lastmod>
     
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/catalog/index.html</loc>
+    <loc>http://jonzzs.cn/about/index.html</loc>
     
     <lastmod>2020-04-13</lastmod>
     
@@ -114,14 +114,14 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/2018/01/18/iOS/201801181428/</loc>
+    <loc>http://jonzzs.cn/2017/12/12/iOS/201712121005/</loc>
     
     <lastmod>2020-04-13</lastmod>
     
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/2017/12/12/iOS/201712121005/</loc>
+    <loc>http://jonzzs.cn/2018/01/18/iOS/201801181428/</loc>
     
     <lastmod>2020-04-13</lastmod>
     
@@ -282,14 +282,14 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/2017/04/14/iOS/201704141546/</loc>
+    <loc>http://jonzzs.cn/2017/04/18/iOS/201704181444/</loc>
     
     <lastmod>2020-04-13</lastmod>
     
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/2017/04/18/iOS/201704181444/</loc>
+    <loc>http://jonzzs.cn/2017/04/14/iOS/201704141546/</loc>
     
     <lastmod>2020-04-13</lastmod>
     
@@ -303,21 +303,7 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/2017/07/04/Tool/201707041209/</loc>
-    
-    <lastmod>2020-04-13</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jonzzs.cn/2017/03/16/iOS/201703161013/</loc>
-    
-    <lastmod>2020-04-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/2017/03/16/iOS/201703161202/</loc>
     
     <lastmod>2020-04-13</lastmod>
     
@@ -331,7 +317,14 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/2018/01/29/Other/201801291605/</loc>
+    <loc>http://jonzzs.cn/2017/03/16/iOS/201703161202/</loc>
+    
+    <lastmod>2020-04-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/2017/07/04/Tool/201707041209/</loc>
     
     <lastmod>2020-04-13</lastmod>
     
@@ -346,6 +339,13 @@
   
   <url>
     <loc>http://jonzzs.cn/2017/06/12/PHP/201706121613/</loc>
+    
+    <lastmod>2020-04-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/2018/01/29/Other/201801291605/</loc>
     
     <lastmod>2020-04-13</lastmod>
     
@@ -478,27 +478,6 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/2017/04/17/Java/201704171814/</loc>
-    
-    <lastmod>2020-04-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/2017/05/19/Java/201705190959/</loc>
-    
-    <lastmod>2020-04-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/2017/06/09/Java/201706092354/</loc>
-    
-    <lastmod>2020-04-13</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jonzzs.cn/2017/04/05/Mac/201704051635/</loc>
     
     <lastmod>2020-04-13</lastmod>
@@ -514,6 +493,27 @@
   
   <url>
     <loc>http://jonzzs.cn/2017/07/03/Mac/201707031450/</loc>
+    
+    <lastmod>2020-04-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/2017/04/17/Java/201704171814/</loc>
+    
+    <lastmod>2020-04-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/2017/05/19/Java/201705190959/</loc>
+    
+    <lastmod>2020-04-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/2017/06/09/Java/201706092354/</loc>
     
     <lastmod>2020-04-13</lastmod>
     
@@ -548,14 +548,14 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/2017/05/05/Hexo/201705051311/</loc>
+    <loc>http://jonzzs.cn/2017/05/03/Hexo/201705031747/</loc>
     
     <lastmod>2020-04-13</lastmod>
     
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/2017/05/03/Hexo/201705031747/</loc>
+    <loc>http://jonzzs.cn/2017/05/05/Hexo/201705051311/</loc>
     
     <lastmod>2020-04-13</lastmod>
     
@@ -627,20 +627,6 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/%E7%99%BE%E5%BA%A6/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E8%B0%B7%E6%AD%8C/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jonzzs.cn/tags/GitHub/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
@@ -649,6 +635,20 @@
   
   <url>
     <loc>http://jonzzs.cn/tags/GitHub-Pages/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E7%99%BE%E5%BA%A6/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E8%B0%B7%E6%AD%8C/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -690,20 +690,6 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/%E8%AF%84%E8%AE%BA/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/Gitalk/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jonzzs.cn/tags/%E5%9F%9F%E5%90%8D/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
@@ -718,21 +704,21 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/Java-%E5%BC%80%E5%8F%91/</loc>
+    <loc>http://jonzzs.cn/tags/%E8%AF%84%E8%AE%BA/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/MqSQL/</loc>
+    <loc>http://jonzzs.cn/tags/Gitalk/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/Mac/</loc>
+    <loc>http://jonzzs.cn/tags/Mac-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -746,21 +732,7 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/Java-JDK/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/MySQL/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/Mac-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
+    <loc>http://jonzzs.cn/tags/Mac/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -886,6 +858,55 @@
   </url>
   
   <url>
+    <loc>http://jonzzs.cn/tags/Java-%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/MqSQL/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/Java-JDK/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/MySQL/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/PHP-%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/mcrypt/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/PHP-%E6%89%A9%E5%B1%95/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://jonzzs.cn/tags/%E5%85%B6%E4%BB%96%E7%9B%B8%E5%85%B3/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
@@ -984,48 +1005,6 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/PHP-%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/mcrypt/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/PHP-%E6%89%A9%E5%B1%95/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/SourceTree/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/Atom/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jonzzs.cn/tags/iOS-%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
@@ -1054,6 +1033,13 @@
   </url>
   
   <url>
+    <loc>http://jonzzs.cn/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://jonzzs.cn/tags/%E5%AF%8C%E6%96%87%E6%9C%AC/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
@@ -1069,13 +1055,6 @@
   
   <url>
     <loc>http://jonzzs.cn/tags/Attribute/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1103,14 +1082,14 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/CocoaPods/</loc>
+    <loc>http://jonzzs.cn/tags/iOS-%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/iOS-%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/</loc>
+    <loc>http://jonzzs.cn/tags/CocoaPods/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1327,28 +1306,7 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/Jenkins/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jonzzs.cn/tags/Fastlane/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1362,21 +1320,21 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</loc>
+    <loc>http://jonzzs.cn/tags/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0/</loc>
+    <loc>http://jonzzs.cn/tags/Jenkins/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/Carthage/</loc>
+    <loc>http://jonzzs.cn/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1390,7 +1348,49 @@
   </url>
   
   <url>
+    <loc>http://jonzzs.cn/tags/%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/Carthage/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://jonzzs.cn/tags/Cocoapods/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/SourceTree/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/Atom/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1448,13 +1448,6 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/categories/Java-%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2020-10-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jonzzs.cn/categories/Mac-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
@@ -1462,7 +1455,7 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/categories/%E5%85%B6%E4%BB%96%E7%9B%B8%E5%85%B3/</loc>
+    <loc>http://jonzzs.cn/categories/Java-%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1476,7 +1469,7 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
+    <loc>http://jonzzs.cn/categories/%E5%85%B6%E4%BB%96%E7%9B%B8%E5%85%B3/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1484,6 +1477,13 @@
   
   <url>
     <loc>http://jonzzs.cn/categories/iOS-%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2020-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
