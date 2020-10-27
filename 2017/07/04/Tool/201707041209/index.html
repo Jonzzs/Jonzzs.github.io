@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/Jonzzs.jpeg">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/Jonzzs.jpeg">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/Jonzzs.jpeg">
-  <link rel="mask-icon" href="/images/Jonzzs.jpeg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Cat.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/Cat.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/Cat.jpg">
+  <link rel="mask-icon" href="/images/Cat.jpg" color="#222">
   <meta name="google-site-verification" content="6FbWia2UHu0Rj0-k91-sJlCX_0u5twNvlB9Nha097oc">
   <meta name="baidu-site-verification" content="fecPuO9wLA">
 
@@ -16,10 +16,11 @@
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"请输入搜索内容...","hits_empty":"没有搜索到关于 “${query}” 的任何内容。","hits_stats":"一共搜索到 ${hits} 个结果，使用了 ${time} 毫秒。"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"请输入搜索内容...","hits_empty":"没有搜索到关于 “${query}” 的任何内容。","hits_stats":"一共搜索到 ${hits} 个结果，使用了 ${time} 毫秒。"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="Atom 是 Github 专门为程序员推出的一个跨平台文本编辑器，和 SublimeText 十分类似，但我更喜欢 Atom 也配置了很多喜欢的配置与插件，但是如果需要换电脑时要重新配置的话就会变得十分麻烦，下面分享一下 Atom 配置和插件的备份同步以及恢复的方法。">
@@ -32,7 +33,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/16834649/57367568-d3569280-71bb-11e9-92e3-d02dbff2f185.png">
 <meta property="article:published_time" content="2017-07-04T04:09:00.000Z">
 <meta property="article:modified_time" content="2020-04-13T07:44:26.902Z">
-<meta property="article:author" content="Jonzzs">
+<meta property="article:author" content="爱吃鸭梨的猫">
 <meta property="article:tag" content="开发工具">
 <meta property="article:tag" content="Atom">
 <meta name="twitter:card" content="summary">
@@ -54,7 +55,7 @@
   <title>Atom 配置和插件的备份同步以及恢复的方法 | 爱吃鸭梨的猫</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101397377-1"></script>
-    <script>
+    <script data-pjax>
       if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -64,7 +65,7 @@
     </script>
 
 
-  <script>
+  <script data-pjax>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -120,7 +121,7 @@
   <div class="site-meta custom-logo">
       <div class="site-meta-headline">
         <a>
-          <img class="custom-logo-image" src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509154326.jpeg" alt="爱吃鸭梨的猫">
+          <img class="custom-logo-image" src="https://upload-images.jianshu.io/upload_images/1930874-60b51257328ad408.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="爱吃鸭梨的猫">
         </a>
       </div>
 
@@ -129,7 +130,7 @@
       <h1 class="site-title">爱吃鸭梨的猫</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">个人博客</p>
+      <p class="site-subtitle" itemprop="description">创造财富 才是时间最正确的归宿</p>
   </div>
 
   <div class="site-nav-right">
@@ -213,6 +214,12 @@
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -230,9 +237,9 @@
     <link itemprop="mainEntityOfPage" href="http://jonzzs.cn/2017/07/04/Tool/201707041209/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509154326.jpeg">
-      <meta itemprop="name" content="Jonzzs">
-      <meta itemprop="description" content="将来的你 一定会感激现在拼命的自己">
+      <meta itemprop="image" content="https://upload-images.jianshu.io/upload_images/1930874-60b51257328ad408.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+      <meta itemprop="name" content="爱吃鸭梨的猫">
+      <meta itemprop="description" content="创造财富 才是时间最正确的归宿">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -299,59 +306,59 @@
 <h2 id="1-安装-sync-settings-插件"><a href="#1-安装-sync-settings-插件" class="headerlink" title="1. 安装 sync-settings 插件"></a>1. 安装 sync-settings 插件</h2><ul>
 <li>首先打开 <code>Atom</code> 设置，搜索 <code>sync-settings</code> 插件，然后安装。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165721.png" alt="安装 sync-settings "></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165721.png" alt="安装 sync-settings "></p>
 <ul>
 <li>然后打开 <code>sync-settings</code> 插件的设置，可以看到这边需要配置一下 <code>Personal Access Token</code> 和 <code>Gist ID</code> ，至于这两个怎么获得，只需要有一个 <code>GitHub</code> 账号即可。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165735.png" alt="sync-settings 设置"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165735.png" alt="sync-settings 设置"></p>
 <h2 id="2-获取-Personal-Access-Token"><a href="#2-获取-Personal-Access-Token" class="headerlink" title="2. 获取 Personal Access Token"></a>2. 获取 Personal Access Token</h2><ul>
 <li>打开你的 <code>GitHub</code> ，点击 <code>Settings</code> 选项。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165746.png" alt="Settings"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165746.png" alt="Settings"></p>
 <ul>
 <li>点击左侧菜单最下方的 <code>Personal access tokens</code> 选项。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165803.png" alt="Personal access tokens"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165803.png" alt="Personal access tokens"></p>
 <ul>
 <li>点击 <code>Generate new token</code> 创建一个新的 <code>token</code> 。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165815.png" alt="Generate new token"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165815.png" alt="Generate new token"></p>
 <ul>
 <li>随便填一个 <code>token</code> 描述，勾选 <code>gist</code> 选项，然后创建即可。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165828.png" alt="New personal access token"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165828.png" alt="New personal access token"></p>
 <ul>
 <li>创建完成后就能直接看到你的 <code>Personal Access Token</code> 了，这里要注意这个 <code>Personal Access Token</code> 只会显示这一次，必须要把它复制下来，下次进来就看不到这个 <code>Personal Access Token</code> 了。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165846.png" alt="Personal Access Token"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165846.png" alt="Personal Access Token"></p>
 <h2 id="3-获取-Gist-ID"><a href="#3-获取-Gist-ID" class="headerlink" title="3. 获取 Gist ID"></a>3. 获取 Gist ID</h2><ul>
 <li><code>Personal Access Token</code> 复制完成以后，点击顶部的 <code>Gist</code> 选项。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165857.png" alt="Gist"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165857.png" alt="Gist"></p>
 <ul>
 <li>进去后会让你创建一个新的 <code>Gist</code> ，将刚才复制的 <code>Personal Access Token</code> 黏贴进去，随便填一个名字以及描述，然后点击 <code>Create secret gist</code> 即可。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165908.png" alt="创建 Gist"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165908.png" alt="创建 Gist"></p>
 <ul>
 <li>创建完成后进入你创建的 <code>Gist</code> ，地址栏中最后面的一串字符就是你的 <code>Gist ID</code> ，将它复制下来。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165925.png" alt="Gist ID"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165925.png" alt="Gist ID"></p>
 <h2 id="4-配置-sync-settings-插件"><a href="#4-配置-sync-settings-插件" class="headerlink" title="4. 配置 sync-settings 插件"></a>4. 配置 sync-settings 插件</h2><ul>
 <li>打开 <code>Atom</code> 中 <code>sync-settings</code> 插件的设置，将刚才复制的 <code>Personal Access Token</code> 和 <code>Gist ID</code> 配置进去。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165936.png" alt="sync-settings 设置"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165936.png" alt="sync-settings 设置"></p>
 <h2 id="5-开始同步配置"><a href="#5-开始同步配置" class="headerlink" title="5. 开始同步配置"></a>5. 开始同步配置</h2><ul>
 <li>在 <code>Atom</code> 中按下 <code>command + shift + P</code> ，搜索 <code>sync</code> 找到 <code>Sync Settings: Backup</code> 选项执行即可。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165950.png" alt="Sync Settings: Backup"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509165950.png" alt="Sync Settings: Backup"></p>
 <ul>
 <li>执行结束后，可以前往刚才 <code>GitHub</code> 创建的 <code>Gist</code> 中，可以看到同步的配置文件已经显示。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170002.png" alt="Gist"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170002.png" alt="Gist"></p>
 <h2 id="6-开始恢复配置"><a href="#6-开始恢复配置" class="headerlink" title="6. 开始恢复配置"></a>6. 开始恢复配置</h2><ul>
 <li>如果想要在另一台电脑上恢复配置的话，安装完 <code>Atom</code> 以后，同样安装 <code>sync-settings</code> 这个插件，然后将 <code>GitHub</code> 上已存在的 <code>Personal Access Token</code> 和 <code>Gist ID</code> 配置进去，然后按下 <code>command + shift + P</code> ，搜索 <code>sync</code> 找到 <code>Sync Settings: Restore </code> 选项执行恢复即可。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170015.png" alt="Sync Settings: Restore"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170015.png" alt="Sync Settings: Restore"></p>
 <hr>
 <blockquote>
 <p>大致步骤就是这样，换电脑直接同步配置，另附上本文 <a target="_blank" rel="noopener" href="http://www.jianshu.com/p/bd006b349d03">参考地址</a> 。</p>
@@ -371,16 +378,33 @@
   <div id="qr" style="display: none;">
       
       <div style="display: inline-block;">
-        <img src="/images/wechatpay.png" alt="Jonzzs 微信支付">
+        <img src="/images/wechatpay.png" alt="爱吃鸭梨的猫 微信支付">
         <p>微信支付</p>
       </div>
       
       <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="Jonzzs 支付宝">
+        <img src="/images/alipay.png" alt="爱吃鸭梨的猫 支付宝">
         <p>支付宝</p>
       </div>
 
   </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>爱吃鸭梨的猫
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://jonzzs.cn/2017/07/04/Tool/201707041209/" title="Atom 配置和插件的备份同步以及恢复的方法">http://jonzzs.cn/2017/07/04/Tool/201707041209/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
 
 
@@ -468,10 +492,10 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Jonzzs"
-      src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509154326.jpeg">
-  <p class="site-author-name" itemprop="name">Jonzzs</p>
-  <div class="site-description" itemprop="description">将来的你 一定会感激现在拼命的自己</div>
+    <img class="site-author-image" itemprop="image" alt="爱吃鸭梨的猫"
+      src="https://upload-images.jianshu.io/upload_images/1930874-60b51257328ad408.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  <p class="site-author-name" itemprop="name">爱吃鸭梨的猫</p>
+  <div class="site-description" itemprop="description">创造财富 才是时间最正确的归宿</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -498,12 +522,6 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="/qrcode/qq" title="QQ → &#x2F;qrcode&#x2F;qq"><i class="fa fa-fw fa-qq"></i>QQ</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/qrcode/wechat" title="微信 → &#x2F;qrcode&#x2F;wechat"><i class="fa fa-fw fa-wechat"></i>微信</a>
-      </span>
-      <span class="links-of-author-item">
         <a href="http://weibo.com/Jonzzs" title="微博 → http:&#x2F;&#x2F;weibo.com&#x2F;Jonzzs" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
       </span>
       <span class="links-of-author-item">
@@ -516,25 +534,13 @@
         <a href="https://github.com/Jonzzs" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jonzzs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
-      友情站点
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="http://scorpiocc.cn/" title="http:&#x2F;&#x2F;scorpiocc.cn" rel="noopener" target="_blank">做自己的太阳</a>
-        </li>
-    </ul>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
+
+
       </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
 
     </div>
   </aside>
@@ -557,12 +563,12 @@
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Jonzzs</span>
+  <span class="author" itemprop="copyrightHolder">爱吃鸭梨的猫</span>
 </div>
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -584,7 +590,7 @@
 
 
   <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1262401548&web_id=1262401548"></script>
+    <script data-pjax src="//s95.cnzz.com/z_stat.php?id=1262401548&web_id=1262401548"></script>
   </div>
 
 
@@ -598,6 +604,11 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -611,11 +622,72 @@
 
 <script src="/js/next-boot.js"></script>
 
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
 
 
 
   
-  <script>
+  <script data-pjax>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -646,6 +718,9 @@
 
 
 
+    <div id="pjax">
+  
+
   
 
   
@@ -670,5 +745,6 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
 });
 </script>
 
+    </div>
 </body>
 </html>

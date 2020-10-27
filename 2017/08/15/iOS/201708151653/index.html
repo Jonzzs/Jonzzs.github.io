@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/Jonzzs.jpeg">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/Jonzzs.jpeg">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/Jonzzs.jpeg">
-  <link rel="mask-icon" href="/images/Jonzzs.jpeg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Cat.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/Cat.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/Cat.jpg">
+  <link rel="mask-icon" href="/images/Cat.jpg" color="#222">
   <meta name="google-site-verification" content="6FbWia2UHu0Rj0-k91-sJlCX_0u5twNvlB9Nha097oc">
   <meta name="baidu-site-verification" content="fecPuO9wLA">
 
@@ -16,10 +16,11 @@
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"请输入搜索内容...","hits_empty":"没有搜索到关于 “${query}” 的任何内容。","hits_stats":"一共搜索到 ${hits} 个结果，使用了 ${time} 毫秒。"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"请输入搜索内容...","hits_empty":"没有搜索到关于 “${query}” 的任何内容。","hits_stats":"一共搜索到 ${hits} 个结果，使用了 ${time} 毫秒。"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="在平时的 iOS 开发过程中，少不了要使用很多的框架，一个适合的框架能够将开发效率提高几倍，这里将一些不错的 Swift 框架收集起来，有需要的可以收藏一下。">
@@ -32,7 +33,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/16834649/57366912-8e7e2c00-71ba-11e9-8fb7-9a65a11909d7.png">
 <meta property="article:published_time" content="2017-08-15T08:53:40.000Z">
 <meta property="article:modified_time" content="2020-04-13T07:44:26.908Z">
-<meta property="article:author" content="Jonzzs">
+<meta property="article:author" content="爱吃鸭梨的猫">
 <meta property="article:tag" content="iOS 开发">
 <meta property="article:tag" content="CocoaPods">
 <meta property="article:tag" content="Swift">
@@ -57,7 +58,7 @@
   <title>【iOS 开发】Swift 常用的 CocoaPods 开源库收集 | 爱吃鸭梨的猫</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101397377-1"></script>
-    <script>
+    <script data-pjax>
       if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -67,7 +68,7 @@
     </script>
 
 
-  <script>
+  <script data-pjax>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -123,7 +124,7 @@
   <div class="site-meta custom-logo">
       <div class="site-meta-headline">
         <a>
-          <img class="custom-logo-image" src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509154326.jpeg" alt="爱吃鸭梨的猫">
+          <img class="custom-logo-image" src="https://upload-images.jianshu.io/upload_images/1930874-60b51257328ad408.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="爱吃鸭梨的猫">
         </a>
       </div>
 
@@ -132,7 +133,7 @@
       <h1 class="site-title">爱吃鸭梨的猫</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">个人博客</p>
+      <p class="site-subtitle" itemprop="description">创造财富 才是时间最正确的归宿</p>
   </div>
 
   <div class="site-nav-right">
@@ -216,6 +217,12 @@
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -233,9 +240,9 @@
     <link itemprop="mainEntityOfPage" href="http://jonzzs.cn/2017/08/15/iOS/201708151653/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509154326.jpeg">
-      <meta itemprop="name" content="Jonzzs">
-      <meta itemprop="description" content="将来的你 一定会感激现在拼命的自己">
+      <meta itemprop="image" content="https://upload-images.jianshu.io/upload_images/1930874-60b51257328ad408.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+      <meta itemprop="name" content="爱吃鸭梨的猫">
+      <meta itemprop="description" content="创造财富 才是时间最正确的归宿">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -300,41 +307,41 @@
 
 <hr>
 <h1 id="弹框提示"><a href="#弹框提示" class="headerlink" title="弹框提示"></a>弹框提示</h1><h2 id="XLActionController-选择框"><a href="#XLActionController-选择框" class="headerlink" title="XLActionController - 选择框"></a><a target="_blank" rel="noopener" href="https://github.com/xmartlabs/XLActionController">XLActionController - 选择框</a></h2><p><strong>★ Star：2088</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170038.png" alt="XLActionController"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170038.png" alt="XLActionController"></p>
 <p><code>XLActionController</code> 是一个支持各种自定义的底部选择框。</p>
 <hr>
 <h2 id="SCLAlertView-提示框"><a href="#SCLAlertView-提示框" class="headerlink" title="SCLAlertView - 提示框"></a><a target="_blank" rel="noopener" href="https://github.com/vikmeup/SCLAlertView-Swift">SCLAlertView - 提示框</a></h2><p><strong>★ Star：3937</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170052.png" alt="SCLAlertView"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170052.png" alt="SCLAlertView"></p>
 <p><code>SCLAlertView</code> 是一个非常漂亮的提示框，<code>Swift</code> 和 <code>OC</code> 都有，<code>OC</code> 版本点击 <a target="_blank" rel="noopener" href="https://github.com/dogo/SCLAlertView">这里</a> 。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/730f1eca2b4b"><em>SCLAlertView</em>(提醒框)的基本使用(swift)</a></p>
 <hr>
 <h2 id="PopupDialog-提示框"><a href="#PopupDialog-提示框" class="headerlink" title="PopupDialog - 提示框"></a><a target="_blank" rel="noopener" href="https://github.com/Orderella/PopupDialog">PopupDialog - 提示框</a></h2><p><strong>★ Star：2056</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170110.png" alt="PopupDialog"></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170127.png" alt="预览图"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170110.png" alt="PopupDialog"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170127.png" alt="预览图"></p>
 <p><code>PopupDialog</code> 是一个非常不错的 <code>AlertView</code> 框架，支持各种自定义。</p>
 <hr>
 <h2 id="SwiftMessages-信息提示"><a href="#SwiftMessages-信息提示" class="headerlink" title="SwiftMessages - 信息提示"></a><a target="_blank" rel="noopener" href="https://github.com/SwiftKickMobile/SwiftMessages">SwiftMessages - 信息提示</a></h2><p><strong>★ Star：2293</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170144.png" alt="SwiftMessages"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170144.png" alt="SwiftMessages"></p>
 <p><code>SwiftMessages</code> 是一个信息提示框架，可以自定义提示位置和样式。</p>
 <hr>
 <h2 id="AMPopTip-文字提示"><a href="#AMPopTip-文字提示" class="headerlink" title="AMPopTip - 文字提示"></a><a target="_blank" rel="noopener" href="https://github.com/andreamazz/AMPopTip">AMPopTip - 文字提示</a></h2><p><strong>★ Star：1878</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170200.png" alt="AMPopTip"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170200.png" alt="AMPopTip"></p>
 <p><code>AMPopTip</code> 是一个漂亮的气泡文字提示框架，并且支持 <code>Objective-C</code> 和 <code>Swift</code> 。</p>
 <hr>
 <h2 id="EasyTipView-文字提示"><a href="#EasyTipView-文字提示" class="headerlink" title="EasyTipView - 文字提示"></a><a target="_blank" rel="noopener" href="https://github.com/teodorpatras/EasyTipView">EasyTipView - 文字提示</a></h2><p><strong>★ Star：1621</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170213.png" alt="EasyTipView"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170213.png" alt="EasyTipView"></p>
 <p><code>EasyTipView</code> 是一个完全可自定义的提示视图框架。</p>
 <hr>
 <h1 id="动画框架"><a href="#动画框架" class="headerlink" title="动画框架"></a>动画框架</h1><h2 id="Hero-过渡动画"><a href="#Hero-过渡动画" class="headerlink" title="Hero - 过渡动画"></a><a target="_blank" rel="noopener" href="https://github.com/lkzhao/Hero">Hero - 过渡动画</a></h2><p><strong>★ Star：10098</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170227.png" alt="Hero"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170227.png" alt="Hero"></p>
 <p><code>Hero</code> 是为了构建 <code>iOS</code> 试图控制器过渡动画的库，它在 <code>UIKit</code> 繁琐的过渡动画 <code>API</code> 之上提供了一个层，使得自定义过渡动画对于开发人员来说是一个轻松的任务。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/fdab69f7440a">(<em>IOS</em>) 向<em>Hero</em>致敬與分析 (一) - Double研究所</a></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/a7012ec2c5e5">(<em>IOS</em>) 向<em>Hero</em>致敬與分析 (二) - Double研究所</a></p>
 <hr>
 <h2 id="EasyAnimation-简单动画"><a href="#EasyAnimation-简单动画" class="headerlink" title="EasyAnimation - 简单动画"></a><a target="_blank" rel="noopener" href="https://github.com/icanzilb/EasyAnimation">EasyAnimation - 简单动画</a></h2><p><strong>★ Star：2449</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170241.png" alt="EasyAnimation"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170241.png" alt="EasyAnimation"></p>
 <p>在动画实现过程中，一个看似简单的效果往往需要大量的代码，尤其是作用于 <code>layer</code> 上的动画，为此有了 <code>EasyAnimation</code> 这个库，这个库可以将 <code>Layer Animations</code> 写成 <code>View Animations</code> 的样式。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/6af8a7a8a15a">iOS动画指南 - 1.View Animations</a></p>
@@ -346,19 +353,19 @@
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/9ee292b5b695">iOS动画指南 - 7.简化动画实现的EasyAnimation库</a></p>
 <hr>
 <h2 id="Spring-动画框架"><a href="#Spring-动画框架" class="headerlink" title="Spring - 动画框架"></a><a target="_blank" rel="noopener" href="https://github.com/MengTo/Spring">Spring - 动画框架</a></h2><p><strong>★ Star：11134</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170306.png" alt="Spring"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170306.png" alt="Spring"></p>
 <p><code>Spring</code> 是一个使用非常简单的动画框架。</p>
 <hr>
 <h2 id="PeekPop-3D-Touch-动画"><a href="#PeekPop-3D-Touch-动画" class="headerlink" title="PeekPop - 3D Touch 动画"></a><a target="_blank" rel="noopener" href="https://github.com/marmelroy/PeekPop">PeekPop - 3D Touch 动画</a></h2><p><strong>★ Star：1836</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170320.png" alt="PeekPop"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170320.png" alt="PeekPop"></p>
 <p><code>PeekPop</code> 是一个 <code>3D Touch</code> 动画框架。</p>
 <hr>
 <h2 id="Animations-动画库"><a href="#Animations-动画库" class="headerlink" title="Animations - 动画库"></a><a target="_blank" rel="noopener" href="https://github.com/YouXianMing/Swift-Animations">Animations - 动画库</a></h2><p><strong>★ Star：2184</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170332.gif" alt="Animations"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170332.gif" alt="Animations"></p>
 <p><code>Animations</code> 不是一个 <code>CocoaPods</code> 库，但是其中写了很多关于各种动画的 <code>Demo</code> 页面，很多都是经常用到的页面，页面效果写的非常棒，<code>Swift</code> 和 <code>Objective-C</code> 版本都有，<code>Objective-C</code> 版本点击 <a target="_blank" rel="noopener" href="https://github.com/YouXianMing/Animations">这里</a> 。</p>
 <hr>
 <h1 id="图片显示"><a href="#图片显示" class="headerlink" title="图片显示"></a>图片显示</h1><h2 id="Kingfisher-网络图片"><a href="#Kingfisher-网络图片" class="headerlink" title="Kingfisher - 网络图片"></a><a target="_blank" rel="noopener" href="https://github.com/onevcat/Kingfisher">Kingfisher - 网络图片</a></h2><p><strong>★ Star：9333</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170345.png" alt="Kingfisher"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170345.png" alt="Kingfisher"></p>
 <p><code>Kingfisher</code> 是一个轻量、纯 <code>Swift</code> 的库，可以从网络中异步下载和缓存图片，相当于 <code>Swift </code> 版的 <code>SDWebImage</code> 。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://project.onevcat.com/">Kingfisher 中文简介</a></p>
@@ -366,14 +373,14 @@
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/03b6b66b5103">Kingfisher 3.x 学习（二）</a></p>
 <hr>
 <h2 id="Onboard-导航页"><a href="#Onboard-导航页" class="headerlink" title="Onboard - 导航页"></a><a target="_blank" rel="noopener" href="https://github.com/mamaral/Onboard">Onboard - 导航页</a></h2><p><strong>★ Star：5676</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170400.gif" alt="Onboard"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170400.gif" alt="Onboard"></p>
 <p><code>Onboard</code> 是一个导航页框架，只需几行代码，即可轻松创建漂亮，引人入胜的用户指导页体验。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000004039340">Onboard,迷人的引导页样式制作库</a></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/cb098ee6dc90">优美整洁的引导页大神框架<em>Onboard</em></a></p>
 <hr>
 <h2 id="FSPagerView-图片轮播"><a href="#FSPagerView-图片轮播" class="headerlink" title="FSPagerView - 图片轮播"></a><a target="_blank" rel="noopener" href="https://github.com/WenchaoD/FSPagerView">FSPagerView - 图片轮播</a></h2><p><strong>★ Star：1816</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170417.png" alt="FSPagerView"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170417.png" alt="FSPagerView"></p>
 <p><code>FSPagerView</code> 是一款基于 <code>UICollectionView</code> 实现的多功能轮播器，具有以下特点：</p>
 <ul>
 <li>支持无限轮播和自动轮播。</li>
@@ -384,12 +391,12 @@
 </ul>
 <hr>
 <h2 id="TZImagePickerController-图片选择器"><a href="#TZImagePickerController-图片选择器" class="headerlink" title="TZImagePickerController - 图片选择器"></a><a target="_blank" rel="noopener" href="https://github.com/banchichen/TZImagePickerController">TZImagePickerController - 图片选择器</a></h2><p><strong>★ Star：3808</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170431.png" alt="TZImagePickerController"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170431.png" alt="TZImagePickerController"></p>
 <p><code>TZImagePickerController</code> 是一个支持多选、选原图和视频的图片选择器，同时有预览、裁剪功能。</p>
 <hr>
 <h2 id="ZLPhotoBrowser-图片选择器"><a href="#ZLPhotoBrowser-图片选择器" class="headerlink" title="ZLPhotoBrowser - 图片选择器"></a><a target="_blank" rel="noopener" href="https://github.com/longitachi/ZLPhotoBrowser">ZLPhotoBrowser - 图片选择器</a></h2><p><strong>★ Star：1276</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170447.png" alt="ZLPhotoBrowser"></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170500.png" alt="预览图"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170447.png" alt="ZLPhotoBrowser"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170500.png" alt="预览图"></p>
 <p><code>ZLPhotoBrowser </code> 是一个方便易用的相册多选框架，支持预览/相册内拍照、预览快速多选照片，<code>3DTouch</code> 预览照片，编辑裁剪图片，编辑视频，混合多选 <code>image、gif、Live Photo 及 video</code> ，相册混合选择，原图功能，支持多语言国际化（中文简/繁，英语，日语），在线下载 <code>iCloud</code> 端图片，自定义最大选择量及最大预览量，自定义照片升序降序排列，自定义照片显示圆角弧度，支持预览网络及本地图片。</p>
 <p><strong>功能介绍：</strong></p>
 <ul>
@@ -415,36 +422,36 @@
 </ul>
 <hr>
 <h2 id="CBPic2ker-图片选择器"><a href="#CBPic2ker-图片选择器" class="headerlink" title="CBPic2ker - 图片选择器"></a><a target="_blank" rel="noopener" href="https://github.com/cbangchen/CBPic2ker">CBPic2ker - 图片选择器</a></h2><p><strong>★ Star：225</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170521.gif" alt="CBPic2ker"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170521.gif" alt="CBPic2ker"></p>
 <p><code>CBPic2ker</code> 是一个简单的 <code>iOS</code> 照片选择器，界面非常简洁。</p>
 <hr>
 <h2 id="PYPhotoBrowser-图片浏览器"><a href="#PYPhotoBrowser-图片浏览器" class="headerlink" title="PYPhotoBrowser - 图片浏览器"></a><a target="_blank" rel="noopener" href="https://github.com/iphone5solo/PYPhotoBrowser">PYPhotoBrowser - 图片浏览器</a></h2><p><strong>★ Star：1574</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170617.gif" alt="预览图"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170617.gif" alt="预览图"></p>
 <p><code>PYPhotoBrowser</code> 是一个 <code>iOS</code> 中使用简单的图片浏览器，支持流水布局 、 线性布局，支持单击 、双击 、捏合 、旋转、拖拽、侧滑手势，主要用于社交  <code>App</code> ，用于呈现一组图片。</p>
 <hr>
 <h1 id="颜色管理"><a href="#颜色管理" class="headerlink" title="颜色管理"></a>颜色管理</h1><h2 id="Chameleon-颜色框架"><a href="#Chameleon-颜色框架" class="headerlink" title="Chameleon - 颜色框架"></a><a target="_blank" rel="noopener" href="https://github.com/ViccAlexander/Chameleon">Chameleon - 颜色框架</a></h2><p><strong>★ Star：9722</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170707.png" alt="Chameleon"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170707.png" alt="Chameleon"></p>
 <p><code>Chameleon</code> 是一个轻量却功能强大的 <code>iOS</code> （支持 <code>Objective-C</code> 和 <code>Swift</code>）颜色框架软件，它基于的理念是：软件应用程序应该可以不费力气且同时保持多个漂亮的界面，使用 <code>Chameleon</code> ，你不再需要调配 <code>RGB</code> 值，不用浪费时间去找你的 <code>APP</code> 合适的颜色组合，也不用担心你 <code>APP</code> 的文字是否能在不同背景色上可读。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/15008c8eed4f"><em>Chameleon</em>——轻量级 iOS 颜色框架</a></p>
 <hr>
 <h2 id="DynamicColor-颜色框架"><a href="#DynamicColor-颜色框架" class="headerlink" title="DynamicColor - 颜色框架"></a><a target="_blank" rel="noopener" href="https://github.com/yannickl/DynamicColor">DynamicColor - 颜色框架</a></h2><p><strong>★ Star：1664</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170720.png" alt="DynamicColor"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170720.png" alt="DynamicColor"></p>
 <p><code>DynamicColor</code> 是一个用于操作颜色的 <code>Swift</code> 扩展。</p>
 <hr>
 <h1 id="权限请求"><a href="#权限请求" class="headerlink" title="权限请求"></a>权限请求</h1><h2 id="PermissionScope-系统权限请求"><a href="#PermissionScope-系统权限请求" class="headerlink" title="PermissionScope - 系统权限请求"></a><a target="_blank" rel="noopener" href="https://github.com/nickoneill/PermissionScope">PermissionScope - 系统权限请求</a></h2><p><strong>★ Star：4457</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170735.png" alt="PermissionScope"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170735.png" alt="PermissionScope"></p>
 <p><code>PermissionScope</code> 是一个请求权限的封装库，可以很方便的请求系统的权限。它不只包含简单的权限请求 <code>UI</code> ，还有统一的权限 <code>API</code> 可以告诉你任意给定的系统权限的状态，当然也可以轻松地请求它们。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/c9aa0a0ae2c4">【第三方库初级使用系列】PermissionScope的使用方法</a></p>
 <hr>
 <h2 id="RequestPermission-权限请求"><a href="#RequestPermission-权限请求" class="headerlink" title="RequestPermission - 权限请求"></a><a target="_blank" rel="noopener" href="https://github.com/IvanVorobei/RequestPermission">RequestPermission - 权限请求</a></h2><p><strong>★ Star：1556</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170748.png" alt="RequestPermission"></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170803.gif" alt="预览图"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170748.png" alt="RequestPermission"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170803.gif" alt="预览图"></p>
 <p><code>RequestPermission</code> 是关于使用可定制的视觉效果管理权限，美丽的对话增加了批准的机会，这在我们要求通知时很重要，该模块的简单控制可节省开发时间，您可以开始使用这个项目，只需两行代码就能轻松自定义。</p>
 <hr>
 <h1 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h1><h2 id="Alamofire-网络请求"><a href="#Alamofire-网络请求" class="headerlink" title="Alamofire - 网络请求"></a><a target="_blank" rel="noopener" href="https://github.com/Alamofire/Alamofire">Alamofire - 网络请求</a></h2><p><strong>★ Star：24794</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170838.png" alt="Alamofire"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170838.png" alt="Alamofire"></p>
 <ul>
 <li><p><code>Alamofire</code> 的前身是 <code>AFNetworking</code> ，<code>AFNetworking</code> 是 <code>iOS</code> 和 <code>OS X</code> 上很受欢迎的第三方 <code>HTTP</code> 网络基础库。</p>
 </li>
@@ -462,7 +469,7 @@
 <p><a target="_blank" rel="noopener" href="http://www.hangge.com/blog/cache/detail_973.html">Swift - HTTP网络操作库Alamofire使用详解4（用户权限认证）</a></p>
 <hr>
 <h2 id="HandyJSON-JSON-模型转化"><a href="#HandyJSON-JSON-模型转化" class="headerlink" title="HandyJSON - JSON 模型转化"></a><a target="_blank" rel="noopener" href="https://github.com/alibaba/HandyJSON">HandyJSON - JSON 模型转化</a></h2><p><strong>★ Star：1231</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170902.png" alt="JSON"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170902.png" alt="JSON"></p>
 <p><code>HandyJSON</code> 是一个用于 <code>Swift</code> 语言中的 <code>JSON</code> 序列化 / 反序列化库，相当于 <code>Swift</code> 版的 <code>MJExtension</code> 和 <code>YYModel</code> ，能够将 <code>JSON</code> 和 <code>模型</code> 相互转化，可以和 <code>Alamofire </code> 搭配使用。</p>
 <p><strong>模型转 JSON（序列化）</strong></p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>: <span class="title">HandyJSON</span> </span>&#123;</span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String!</span></span><br><span class="line">    <span class="keyword">var</span> age: <span class="type">Int!</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = <span class="type">Person</span>()</span><br><span class="line">person.name = <span class="string">&quot;张三&quot;</span></span><br><span class="line">person.age = <span class="number">20</span></span><br><span class="line"><span class="built_in">print</span>(person.toJSON()!) <span class="comment">// 转换成 Dictionary 字典</span></span><br><span class="line"><span class="built_in">print</span>(person.toJSONString()!) <span class="comment">// 转换成 JSON 字符串</span></span><br><span class="line"><span class="built_in">print</span>(person.toJSONString(prettyPrint: <span class="literal">true</span>)!) <span class="comment">// 转换成有格式的 JSON 字符串</span></span><br></pre></td></tr></table></figure>
@@ -472,7 +479,7 @@
 
 <hr>
 <h2 id="SwiftyJSON-JSON-解析"><a href="#SwiftyJSON-JSON-解析" class="headerlink" title="SwiftyJSON - JSON 解析"></a><a target="_blank" rel="noopener" href="https://github.com/SwiftyJSON/SwiftyJSON">SwiftyJSON - JSON 解析</a></h2><p><strong>★ Star：15207</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170915.png" alt="JSON"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170915.png" alt="JSON"></p>
 <p><code>SwiftyJSON</code> 是个使用 <code>Swift</code> 语言编写的开源库，可以让我们很方便地处理 <code>JSON</code> 数据（解析数据、生成数据），和 <code>HandyJSON</code> 有着完全不同的作用，是将 <code>iOS</code> 自带的 <code>JSONSerialization</code> 大大的简化了。</p>
 <p><strong>JSONSerialization 复杂代码</strong></p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> dataArray = <span class="keyword">try</span>? <span class="type">JSONSerialization</span>.jsonObject(with: data, options: .allowFragments) <span class="keyword">as</span>? [[<span class="type">String</span>: <span class="type">Any</span>]],</span><br><span class="line">    <span class="keyword">let</span> user = dataArray[<span class="number">0</span>][<span class="string">&quot;user&quot;</span>] <span class="keyword">as</span>? [<span class="type">String</span>: <span class="type">Any</span>],</span><br><span class="line">    <span class="keyword">let</span> name = user[<span class="string">&quot;name&quot;</span>] <span class="keyword">as</span>? <span class="type">String</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -487,14 +494,14 @@
 <p><a target="_blank" rel="noopener" href="http://www.hangge.com/blog/cache/detail_968.html">Swift - SwiftyJSON的使用详解（附样例，用于JSON数据处理）</a></p>
 <hr>
 <h2 id="Moya-抽象网络层"><a href="#Moya-抽象网络层" class="headerlink" title="Moya - 抽象网络层"></a><a target="_blank" rel="noopener" href="https://github.com/Moya/Moya">Moya - 抽象网络层</a></h2><p><strong>★ Star：6718</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170936.png" alt="Moya"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170936.png" alt="Moya"></p>
 <p><code>Moya</code> 是你的 <code>App</code> 中缺失的网络层。不用再去想在哪儿或者如何安放网络请求，<code>Moya</code> 替你管理。<code>Moya</code> 是一个基于 <code>Alamofire</code> 的 <code>Networking library</code>，并且添加了对于 <code>ReactiveCocoa</code> 和 <code>RxSwift</code> 的接口支持，大大简化了开发过程，是 <code>Reactive Functional Programming</code> 的网络层首选。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/c1494681400b">如何写出最简洁优雅的网络封装 Moya + RxSwift</a></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/178b6e24ba7e">用 RxSwift + Moya 写出优雅的网络请求代码</a></p>
 <hr>
 <h1 id="简化编程"><a href="#简化编程" class="headerlink" title="简化编程"></a>简化编程</h1><h2 id="ReactiveCocoa-响应式编程"><a href="#ReactiveCocoa-响应式编程" class="headerlink" title="ReactiveCocoa - 响应式编程"></a><a target="_blank" rel="noopener" href="https://github.com/ReactiveCocoa/ReactiveCocoa">ReactiveCocoa - 响应式编程</a></h2><p><strong>★ Star：17694</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170947.png" alt="ReactiveCocoa"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509170947.png" alt="ReactiveCocoa"></p>
 <p><code>RactiveCocoa</code> 简称 <code>RAC</code> ，是 <code>Github</code> 的一个开源框架，能够帮我们提供大量方便的事件处理方案，让我们更简单粗暴地去处理事件，现在分为 <a target="_blank" rel="noopener" href="https://github.com/ReactiveCocoa/ReactiveObjC">ReactiveObjC</a> 和 <a target="_blank" rel="noopener" href="https://github.com/ReactiveCocoa/ReactiveSwift">ReactiveSwift</a> ，两个框架的功能使用相似。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/0845b1a07bfa">ReactiveObjC（RAC）的使用汇总</a></p>
@@ -505,7 +512,7 @@
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/ec4e248a56a6">Hello ReactiveSwift(5): 调试技术 ——(简译)</a></p>
 <hr>
 <h2 id="RxSwift-响应式编程"><a href="#RxSwift-响应式编程" class="headerlink" title="RxSwift - 响应式编程"></a><a target="_blank" rel="noopener" href="https://github.com/ReactiveX/RxSwift">RxSwift - 响应式编程</a></h2><p><strong>★ Star：10382</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171004.png" alt=" RxSwift"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171004.png" alt=" RxSwift"></p>
 <p><code>RxSwift</code> 也是一个响应式编程的框架，想了解它与 <code>ReactiveCocoa</code> 的区别，可以看这篇文章：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/2f83b766a081">iOS响应式编程：ReactiveCocoa vs RxSwift 选谁好</a> 。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/76211eed0ab3">[整理]RxSwift完全入坑手册</a></p>
@@ -522,17 +529,17 @@
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/75aefe7dc484">RxSwift文档翻译9 - Debugging Operators</a></p>
 <hr>
 <h2 id="PromiseKit-异步编程"><a href="#PromiseKit-异步编程" class="headerlink" title="PromiseKit - 异步编程"></a><a target="_blank" rel="noopener" href="https://github.com/mxcl/PromiseKit">PromiseKit - 异步编程</a></h2><p><strong>★ Star：8060</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171021.png" alt="PromiseKit"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171021.png" alt="PromiseKit"></p>
 <p><code>PromiseKit</code> 是一个异步编程类库，提供了很多实用的异步函数，让异步编程更简单。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/18e35e1154a8"><em>PromiseKit</em> 使用</a></p>
 <hr>
 <h2 id="Material-材料设计库"><a href="#Material-材料设计库" class="headerlink" title="Material - 材料设计库"></a><a target="_blank" rel="noopener" href="https://github.com/CosmicMind/Material">Material - 材料设计库</a></h2><p><strong>★ Star：8324</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171034.png" alt="Material"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171034.png" alt="Material"></p>
 <p><code>Material</code> 是一个用于创建漂亮应用程序的材料设计库，就如同它的名字一样，其中包含了大多数开发中需要的控件，并且也提供了非常多基础类的扩展，能够大大的简化我们的代码。</p>
 <hr>
 <h2 id="EZSwiftExtensions-扩展"><a href="#EZSwiftExtensions-扩展" class="headerlink" title="EZSwiftExtensions - 扩展"></a><a target="_blank" rel="noopener" href="https://github.com/goktugyil/EZSwiftExtensions">EZSwiftExtensions - 扩展</a></h2><p><strong>★ Star：2163</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171046.png" alt="EZSwiftExtensions"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171046.png" alt="EZSwiftExtensions"></p>
 <p><code>EZSwiftExtensions</code> 对 <code>Swift</code> 标准库、 <code>Foundation</code> 、 <code>UIKit</code> 提供了很多高级扩展函数。</p>
 <p>下面举几个例子，具体用法在 <code>GitHub</code> 上都有。</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> myArray = [<span class="string">&quot;charmander&quot;</span>,<span class="string">&quot;bulbasaur&quot;</span>,<span class="string">&quot;squirtle&quot;</span>,<span class="string">&quot;charmander&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(myArray.<span class="keyword">get</span>(<span class="number">1</span>)) <span class="comment">// &quot;bulbasaur&quot;</span></span><br><span class="line"><span class="built_in">print</span>(myArray.random()) <span class="comment">// 数组中随机一个</span></span><br><span class="line"><span class="built_in">print</span>(myArray.indexesOf(<span class="string">&quot;charmander&quot;</span>)) <span class="comment">// [0,3]</span></span><br><span class="line"><span class="built_in">print</span>(myArray.containsArray([<span class="string">&quot;charmander&quot;</span>,<span class="string">&quot;bulbasaur&quot;</span>])) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">print</span>(myArray.containsArray([<span class="string">&quot;string&quot;</span>])) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
@@ -543,16 +550,16 @@
 
 <hr>
 <h1 id="开发调试"><a href="#开发调试" class="headerlink" title="开发调试"></a>开发调试</h1><h2 id="Dotzu-调试工具"><a href="#Dotzu-调试工具" class="headerlink" title="Dotzu - 调试工具"></a><a target="_blank" rel="noopener" href="https://github.com/remirobert/Dotzu">Dotzu - 调试工具</a></h2><p><strong>★ Star：1166</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171059.png" alt="Dotzu"></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171112.gif" alt="预览图"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171059.png" alt="Dotzu"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171112.gif" alt="预览图"></p>
 <p><code>Dotzu</code> 是一个应用内 <code>iOS</code> 调试工具，具有增强的日志记录，网络信息，崩溃报告等，并且也有 <code>Objective-C</code> 版本点击 <a target="_blank" rel="noopener" href="https://github.com/remirobert/Dotzu-Objective-c">这里</a> 。</p>
 <hr>
 <h2 id="GDPerformanceView-实时-FPS-和-CPU-用量"><a href="#GDPerformanceView-实时-FPS-和-CPU-用量" class="headerlink" title="GDPerformanceView - 实时 FPS 和 CPU 用量"></a><a target="_blank" rel="noopener" href="https://github.com/dani-gavrilov/GDPerformanceView-Swift">GDPerformanceView - 实时 FPS 和 CPU 用量</a></h2><p><strong>★ Star：1494</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171127.png" alt="GDPerformanceView"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171127.png" alt="GDPerformanceView"></p>
 <p><code>GDPerformanceView</code> 可以在状态栏上方显示 <code>FPS</code> 、<code>CPU</code> 使用情况、<code>App</code> 和 <code>iOS</code> 版本，并通过 <code>Delegate</code> 报告 <code>FPS</code> 和 <code>CPU</code> 使用情况。</p>
 <hr>
 <h1 id="扫二维码"><a href="#扫二维码" class="headerlink" title="扫二维码"></a>扫二维码</h1><h2 id="swiftScan-二维码扫描"><a href="#swiftScan-二维码扫描" class="headerlink" title="swiftScan - 二维码扫描"></a><a target="_blank" rel="noopener" href="https://github.com/MxABC/swiftScan">swiftScan - 二维码扫描</a></h2><p><strong>★ Star：569</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171142.png" alt="预览图"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171142.png" alt="预览图"></p>
 <p><code>swiftScan</code> 是一个二维码库，支持各种码识别、生成、以及界面效果。</p>
 <p><strong>功能介绍：</strong></p>
 <ul>
@@ -566,7 +573,7 @@
 </ul>
 <hr>
 <h2 id="SGQRCode-二维码扫描"><a href="#SGQRCode-二维码扫描" class="headerlink" title="SGQRCode - 二维码扫描"></a><a target="_blank" rel="noopener" href="https://github.com/kingsic/SGQRCode">SGQRCode - 二维码扫描</a></h2><p><strong>★ Star：624</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171159.png" alt="预览图"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171159.png" alt="预览图"></p>
 <p><code>SGQRCode</code> 是一个二维码库，支持各种码识别、生成、以及界面效果，是一个 <code>OC</code> 框架。</p>
 <p><strong>功能介绍：</strong></p>
 <ul>
@@ -582,7 +589,7 @@
 </ul>
 <hr>
 <h1 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h1><h2 id="Realm-数据库"><a href="#Realm-数据库" class="headerlink" title="Realm - 数据库"></a><a target="_blank" rel="noopener" href="https://github.com/realm/realm-cocoa">Realm - 数据库</a></h2><p><strong>★ Star：11158</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171217.png" alt="Realm"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171217.png" alt="Realm"></p>
 <p><code>Realm</code> 于 <code>2014</code> 年 <code>7</code> 月发布，是一个跨平台的移动数据库引擎，专门为移动应用的数据持久化而生，其目的是要取代 <code>Core Data</code> 和 <code>SQLite</code> ，<code>Realm</code> 不是基于 <code>Core Data</code> ，也不是基于 <code>SQLite</code> 封装构建的，它有自己的数据库存储引擎，具有 <code>跨平台</code> 、<code>简单易用</code> 、<code>可视化</code> 等优点，这是 <a target="_blank" rel="noopener" href="https://realm.io/cn/docs/swift/latest/">中文官方文档地址</a> 。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/06782df0b901">Swift - Realm 数据库使用汇总</a></p>
@@ -590,23 +597,23 @@
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/50e0efb66bdf">OC - Realm 数据库 从入门到“放弃”</a></p>
 <hr>
 <h2 id="Valet-钥匙串存储"><a href="#Valet-钥匙串存储" class="headerlink" title="Valet - 钥匙串存储"></a><a target="_blank" rel="noopener" href="https://github.com/square/Valet">Valet - 钥匙串存储</a></h2><p><strong>★ Star：2681</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171231.png" alt="iCloud 钥匙串"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171231.png" alt="iCloud 钥匙串"></p>
 <p><code>Valet</code> 允许你安全的在 <code>iOS</code> 或 <code>OS X</code> 钥匙链中存储数据，而不需要掌握任何钥匙链如何工作的知识。它支持在一台设备的多个应用（同一个开发者）间分享数据，以及在一个应用中在多个设备间利用 <code>iCloud</code> 进行分享，同时支持 <code>Touch ID</code> 。</p>
 <hr>
 <h2 id="SwiftyUserDefaults-UserDefaults-框架"><a href="#SwiftyUserDefaults-UserDefaults-框架" class="headerlink" title="SwiftyUserDefaults - UserDefaults 框架"></a><a target="_blank" rel="noopener" href="https://github.com/radex/SwiftyUserDefaults">SwiftyUserDefaults - UserDefaults 框架</a></h2><p><strong>★ Star：2719</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171245.png" alt="SwiftyUserDefaults"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171245.png" alt="SwiftyUserDefaults"></p>
 <p><code>SwiftyUserDefaults</code> 让 <code>UserDefaults</code> 用起来很愉悦，通过结合意味深长的 <code>Swifty API</code> 和静态输入的益处，在一个地方定义键，轻松地使用值类型，获得额外的安全性和方便的编译时检查，这些都是免费的。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000004090831">用 SwiftyUserDefaults 操作 NSUserDefaluts</a></p>
 <hr>
 <h2 id="GVUserDefaults-UserDefaults-框架"><a href="#GVUserDefaults-UserDefaults-框架" class="headerlink" title="GVUserDefaults - UserDefaults 框架"></a><a target="_blank" rel="noopener" href="https://github.com/gangverk/GVUserDefaults">GVUserDefaults - UserDefaults 框架</a></h2><p><strong>★ Star：880</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171258.jpg" alt="GVUserDefaults"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171258.jpg" alt="GVUserDefaults"></p>
 <p><code>GVUserDefaults</code> 让 <code>UserDefaults</code> 用起来更加简单，之前使用 <code>[[NSUserDefaults standardUserDefaults] objectForKey:@&quot;userName&quot;]</code> 而现在只需要使用 <code>[GVUserDefaults standardUserDefaults].userName</code> 就能完成，这是一个 <code>Objective-C</code> 框架，<code>Swift</code> 版还没有，可以用上面的 <a target="_blank" rel="noopener" href="https://github.com/radex/SwiftyUserDefaults">SwiftyUserDefaults</a> 。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/b686567ac73e">GVUserDefaults学习笔记</a></p>
 <hr>
 <h1 id="时间日期"><a href="#时间日期" class="headerlink" title="时间日期"></a>时间日期</h1><h2 id="FSCalendar-日历"><a href="#FSCalendar-日历" class="headerlink" title="FSCalendar - 日历"></a><a target="_blank" rel="noopener" href="https://github.com/WenchaoD/FSCalendar">FSCalendar - 日历</a></h2><p><strong>★ Star：4882</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171313.png" alt="FSCalendar"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171313.png" alt="FSCalendar"></p>
 <p><code>FSCalendar</code> 是一个完全自定义的 <code>iOS</code> 日历库，兼容 <code>Objective-C</code> 和 <code>Swift</code> ，支持横向、纵向滑动模式，全屏模式，带有子标题、事件设置等功能。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/59c5d535a710">FSCalendar使用介绍(一) - Hello World</a></p>
@@ -614,18 +621,18 @@
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/b2e330b60104">FSCalendar使用介绍(三) - 订制</a></p>
 <hr>
 <h2 id="Timepiece-时间日期"><a href="#Timepiece-时间日期" class="headerlink" title="Timepiece - 时间日期"></a><a target="_blank" rel="noopener" href="https://github.com/naoty/Timepiece">Timepiece - 时间日期</a></h2><p><strong>★ Star：2206</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171327.png" alt="Timepiece"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171327.png" alt="Timepiece"></p>
 <p><code>Timepiece</code> 是一个直观的日期处理框架。</p>
 <hr>
 <h2 id="DateTools-日期工具"><a href="#DateTools-日期工具" class="headerlink" title="DateTools - 日期工具"></a><a target="_blank" rel="noopener" href="https://github.com/MatthewYork/DateTools">DateTools - 日期工具</a></h2><p><strong>★ Star：5918</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171339.png" alt="DateTools"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171339.png" alt="DateTools"></p>
 <p><code>DateTools</code> 是一个让时间日期处理起来更加简单的一个框架，并且 <code>Swift</code> 和 <code>Objective-C</code> 版本都有 。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000009096792">DateTools使用「日期工具库」</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ios122/p/4839726.html">DateTools,可能是最好用的iOS日期工具库</a></p>
 <hr>
 <h1 id="界面显示"><a href="#界面显示" class="headerlink" title="界面显示"></a>界面显示</h1><h2 id="IGListKit-UICollectionView-框架"><a href="#IGListKit-UICollectionView-框架" class="headerlink" title="IGListKit - UICollectionView 框架"></a><a target="_blank" rel="noopener" href="https://github.com/Instagram/IGListKit">IGListKit - UICollectionView 框架</a></h2><p><strong>★ Star：6452</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171351.png" alt="IGListKit"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171351.png" alt="IGListKit"></p>
 <p><code>IGListKit</code> 是 <code>Instagram</code> 推出的新的 <code>UICollectionView</code> 框架，使用数据驱动，旨在创造一个更快更灵活的列表控件。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/30e4895b8790">Instagram 开源IGListKit学习</a></p>
@@ -633,7 +640,7 @@
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/35981ce5541b">IGListKit 教程</a></p>
 <hr>
 <h2 id="DZNEmptyDataSet-空数据显示"><a href="#DZNEmptyDataSet-空数据显示" class="headerlink" title="DZNEmptyDataSet - 空数据显示"></a><a target="_blank" rel="noopener" href="https://github.com/dzenbot/DZNEmptyDataSet">DZNEmptyDataSet - 空数据显示</a></h2><p><strong>★ Star：9042</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171404.png" alt="DZNEmptyDataSet"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171404.png" alt="DZNEmptyDataSet"></p>
 <p>在 <code>iOS</code> 开发中，经常会遇到页面无数据的情况，当没有数据时，页面一片空白，顿时令用户心情很不好，<code>DZNEmptyDataSet</code> 能够帮助你避免这个情况，不过 <code>DZNEmptyDataSet</code> 只有 <code>OC</code> 版本，在 <code>Swift</code> 中需要混编使用。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/84308457527e">iOS开发之 - <em>DZNEmptyDataSet</em> 空白页占位图</a></p>
@@ -641,47 +648,47 @@
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/77f6aca82564">[swift]使用<em>DZNEmptyDataSet</em>空数据占位图</a></p>
 <hr>
 <h2 id="Charts-图表"><a href="#Charts-图表" class="headerlink" title="Charts - 图表"></a><a target="_blank" rel="noopener" href="https://github.com/danielgindi/Charts">Charts - 图表</a></h2><p><strong>★ Star：15438</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171417.png" alt="Charts"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171417.png" alt="Charts"></p>
 <p><code>Charts</code> 可以说是最好的图表库了，是 <a target="_blank" rel="noopener" href="https://github.com/PhilJay/MPAndroidChart">MPAndroidChart</a> 在 <code>iOS</code> 上的移植，具有漂亮的线图、饼图、条形图、分布图、气泡图、雷达图还有更多种类。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000003111508">如何在 Swift 语言下使用 iOS Charts API 制作漂亮图表？</a></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/e531d97dbb62">Objective-C 中 Charts 的 CombinedChart 使用汇总</a></p>
 <hr>
 <h2 id="DGElasticPullToRefresh-下拉刷新"><a href="#DGElasticPullToRefresh-下拉刷新" class="headerlink" title="DGElasticPullToRefresh - 下拉刷新"></a><a target="_blank" rel="noopener" href="https://github.com/gontovnik/DGElasticPullToRefresh">DGElasticPullToRefresh - 下拉刷新</a></h2><p><strong>★ Star：2871</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171433.gif" alt="DGElasticPullToRefresh"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171433.gif" alt="DGElasticPullToRefresh"></p>
 <p><code>DGElasticPullToRefresh</code> 是一个下拉刷新控件，具有非常棒的动画效果。</p>
 <hr>
 <h2 id="JSBadgeView-角标控件"><a href="#JSBadgeView-角标控件" class="headerlink" title="JSBadgeView - 角标控件"></a><a target="_blank" rel="noopener" href="https://github.com/JaviSoto/JSBadgeView">JSBadgeView - 角标控件</a></h2><p><strong>★ Star：1157</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171505.png" alt="JSBadgeView"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171505.png" alt="JSBadgeView"></p>
 <p><code>JSBadgeView</code> 是一个可以自由定制的角标控件，使用起来也非常简单，暂时只有 <code>Objective-C</code> 版本。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/3bedc5d32674">角标 - JSBadgeView的基本使用</a></p>
 <hr>
 <h2 id="DACircularProgress-加载进度显示"><a href="#DACircularProgress-加载进度显示" class="headerlink" title="DACircularProgress - 加载进度显示"></a><a target="_blank" rel="noopener" href="https://github.com/danielamitay/DACircularProgress">DACircularProgress - 加载进度显示</a></h2><p><strong>★ Star：2248</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171931.jpg" alt="DACircularProgress"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171931.jpg" alt="DACircularProgress"></p>
 <p><code>DACircularProgress</code> 是一个用来显示加载进度的控件，暂时只有 <code>Objective-C</code> 版本。</p>
 <hr>
 <h1 id="导航栏页"><a href="#导航栏页" class="headerlink" title="导航栏页"></a>导航栏页</h1><h2 id="WRNavigationBar-导航栏设置"><a href="#WRNavigationBar-导航栏设置" class="headerlink" title="WRNavigationBar - 导航栏设置"></a><a target="_blank" rel="noopener" href="https://github.com/wangrui460/WRNavigationBar">WRNavigationBar - 导航栏设置</a></h2><p><strong>★ Star：1299</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171518.png" alt="WRNavigationBar"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171518.png" alt="WRNavigationBar"></p>
 <p><code>WRNavigationBar</code> 是一个导航栏设置工具，能够一行代码设置状态栏、导航栏按钮、标题、颜色、透明度，移动等。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/540a7e6f7b40">超简单！！！ iOS设置状态栏、导航栏按钮、标题、颜色、透明度，偏移等</a></p>
 <hr>
 <h2 id="KMNavigationBarTransition-导航栏过渡效果"><a href="#KMNavigationBarTransition-导航栏过渡效果" class="headerlink" title="KMNavigationBarTransition - 导航栏过渡效果"></a><a target="_blank" rel="noopener" href="https://github.com/MoZhouqi/KMNavigationBarTransition">KMNavigationBarTransition - 导航栏过渡效果</a></h2><p><strong>★ Star：2317</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171535.gif" alt="KMNavigationBarTransition"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171535.gif" alt="KMNavigationBarTransition"></p>
 <p><code>KMNavigationBarTransition</code> 是一个用来统一管理导航栏转场以及当 <code>push</code> 或者 <code>pop</code> 的时候使动画效果更加顺滑的通用库，并且同时支持竖屏和横屏。<br>使用时不用 <code>import</code> 任何头文件，全部通过 <code>Method Swizzling</code> 在底层做了处理，你不用为这个库写一行代码，所有的改变都悄然发生。<br>本库的设计理念是使用者只用关心当前 <code>view controller</code> 导航栏的背景样式，而不用在 <code>push</code> 或者 <code>pop</code> 的时候处理各种背景样式。<br>当 <code>push</code> 的时候本库会保存消失的 <code>view controller</code> 导航栏的背景样式，当 <code>pop</code> 回去后就会还原成以前的样式，因此你不用考虑 <code>pop</code> 后各种导航栏样式改变的情况。同时你也不必考虑 <code>push</code> 后的情况，因为这个是被 <code>push</code> 的 <code>view controller</code> 本身需要考虑的。</p>
 <hr>
 <h2 id="SAHistoryNavigationViewController-导航栏页面返回"><a href="#SAHistoryNavigationViewController-导航栏页面返回" class="headerlink" title="SAHistoryNavigationViewController - 导航栏页面返回"></a><a target="_blank" rel="noopener" href="https://github.com/marty-suzuki/SAHistoryNavigationViewController">SAHistoryNavigationViewController - 导航栏页面返回</a></h2><p><strong>★ Star：1497</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171550.gif" alt="SAHistoryNavigationViewController"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171550.gif" alt="SAHistoryNavigationViewController"></p>
 <p><code>SAHistoryNavigationViewController</code> 是一个导航栏页面返回的库，当你重按返回按钮的时候，你可以选择之前 <code>push</code> 过的任何一个页面来返回，效果非常酷炫。</p>
 <hr>
 <h2 id="TLYShyNavBar-导航栏滚动隐藏"><a href="#TLYShyNavBar-导航栏滚动隐藏" class="headerlink" title="TLYShyNavBar - 导航栏滚动隐藏"></a><a target="_blank" rel="noopener" href="https://github.com/telly/TLYShyNavBar">TLYShyNavBar - 导航栏滚动隐藏</a></h2><p><strong>★ Star：3458</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172845.jpg" alt="TLYShyNavBar"></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172901.gif" alt="TLYShyNavBar"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172845.jpg" alt="TLYShyNavBar"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172901.gif" alt="TLYShyNavBar"></p>
 <p><code>TLYShyNavBar</code> 可以帮助你在页面滚动时自动隐藏导航栏。</p>
 <hr>
 <h1 id="表格视图"><a href="#表格视图" class="headerlink" title="表格视图"></a>表格视图</h1><h2 id="MGSwipeTableCell-UITableViewCell-滑动菜单"><a href="#MGSwipeTableCell-UITableViewCell-滑动菜单" class="headerlink" title="MGSwipeTableCell - UITableViewCell 滑动菜单"></a><a target="_blank" rel="noopener" href="https://github.com/MortimerGoro/MGSwipeTableCell">MGSwipeTableCell - UITableViewCell 滑动菜单</a></h2><p><strong>★ Star：5623</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171615.gif" alt="MGSwipeTableCell.gif"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171615.gif" alt="MGSwipeTableCell.gif"></p>
 <p><code>MGSwipeTableCell</code> 是一个易于使用的 <code>UITableViewCell</code> 子类，允许显示带有多种转换的可滑动按钮。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/25908a61f849"><em>MGSwipeTableCell</em>的使用</a></p>
@@ -689,59 +696,59 @@
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/352ca6f2e3b1">有关UITableViewCell的侧滑删除以及使用相关大神框架<em>MGSwipeTableCell</em>遇到的小问题</a></p>
 <hr>
 <h2 id="SWTableViewCell-UITableViewCell-滑动菜单"><a href="#SWTableViewCell-UITableViewCell-滑动菜单" class="headerlink" title="SWTableViewCell - UITableViewCell 滑动菜单"></a><a target="_blank" rel="noopener" href="https://github.com/CEWendel/SWTableViewCell">SWTableViewCell - UITableViewCell 滑动菜单</a></h2><p><strong>★ Star：6980</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173136.gif" alt="SWTableViewCell"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173136.gif" alt="SWTableViewCell"></p>
 <p><code>SWTableViewCell</code> 也是一个易于使用的 <code>UITableViewCell</code> 子类，允许显示带有多种转换的可滑动按钮，是一个 <code>Objective-C</code> 框架。</p>
 <hr>
 <h2 id="SwipeCellKit-UITableViewCell-滑动菜单"><a href="#SwipeCellKit-UITableViewCell-滑动菜单" class="headerlink" title="SwipeCellKit - UITableViewCell 滑动菜单"></a><a target="_blank" rel="noopener" href="https://github.com/SwipeCellKit/SwipeCellKit">SwipeCellKit - UITableViewCell 滑动菜单</a></h2><p><strong>★ Star：2668</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173156.gif" alt="SwipeCellKit"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173156.gif" alt="SwipeCellKit"></p>
 <p><code>SwipeCellKit</code> 也是一个易于使用的 <code>UITableViewCell</code> 子类，允许显示带有多种转换的可滑动按钮。</p>
 <hr>
 <h1 id="滑动菜单"><a href="#滑动菜单" class="headerlink" title="滑动菜单"></a>滑动菜单</h1><h2 id="SwipeTableView-滑动菜单"><a href="#SwipeTableView-滑动菜单" class="headerlink" title="SwipeTableView - 滑动菜单"></a><a target="_blank" rel="noopener" href="https://github.com/Roylee-ML/SwipeTableView">SwipeTableView - 滑动菜单</a></h2><p><strong>★ Star：1256</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173223.jpg" alt="SwipeTableView"></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173243.gif" alt="SwipeTableView"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173223.jpg" alt="SwipeTableView"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173243.gif" alt="SwipeTableView"></p>
 <p><code>SwipeTableView</code> 可以实现不同菜单的左右滑动切换，同时支持类似 <code>tableview</code> 的顶部工具栏悬停（既可以左右滑动，又可以上下滑动），兼容下拉刷新，自定义 <code>collectionview</code> 实现自适应 <code>contentSize</code> 还可实现瀑布流功能，是一个 <code>Objective-C</code> 框架。</p>
 <hr>
 <h2 id="RKSwipeBetweenViewControllers-滑动菜单"><a href="#RKSwipeBetweenViewControllers-滑动菜单" class="headerlink" title="RKSwipeBetweenViewControllers - 滑动菜单"></a><a target="_blank" rel="noopener" href="https://github.com/cwRichardKim/RKSwipeBetweenViewControllers">RKSwipeBetweenViewControllers - 滑动菜单</a></h2><p><strong>★ Star：1675</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173302.gif" alt="RKSwipeBetweenViewControllers"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173302.gif" alt="RKSwipeBetweenViewControllers"></p>
 <p><code>RKSwipeBetweenViewControllers</code> 能够实现在不同页面之间左右滑动切换，是一个 <code>Objective-C</code> 框架。</p>
 <hr>
 <h2 id="SwipeViewController-滑动菜单"><a href="#SwipeViewController-滑动菜单" class="headerlink" title="SwipeViewController - 滑动菜单"></a><a target="_blank" rel="noopener" href="https://github.com/fortmarek/SwipeViewController">SwipeViewController - 滑动菜单</a></h2><p><strong>★ Star：462</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173329.gif" alt="SwipeViewController"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173329.gif" alt="SwipeViewController"></p>
 <p><code>SwipeViewController</code> 使你可以修改导航栏，并实现滑动按钮，用户可以切换页面，同时用户也可以很容易地看到他所使用的页面。<code>SwipeViewController</code> 是从 <a target="_blank" rel="noopener" href="https://github.com/cwRichardKim/RKSwipeBetweenViewControllers">RKSwipeBetweenViewControllers</a> 这个库改造为 <code>Swift</code> 的，不仅将语法转换为 <code>Swift</code> ，还增加了一些功能和其他一些细微的变化。</p>
 <hr>
 <h2 id="SwipeMenuViewController-滑动菜单"><a href="#SwipeMenuViewController-滑动菜单" class="headerlink" title="SwipeMenuViewController - 滑动菜单"></a><a target="_blank" rel="noopener" href="https://github.com/yysskk/SwipeMenuViewController">SwipeMenuViewController - 滑动菜单</a></h2><p><strong>★ Star：383</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173349.jpg" alt="SwipeMenuViewController"></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173402.gif" alt="SwipeMenuViewController"></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173420.gif" alt="SwipeMenuViewController"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173349.jpg" alt="SwipeMenuViewController"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173402.gif" alt="SwipeMenuViewController"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173420.gif" alt="SwipeMenuViewController"></p>
 <p><code>SwipeMenuViewController</code> 也是一个可以实现页面左右滑动的一个框架。</p>
 <hr>
 <h1 id="侧滑页面"><a href="#侧滑页面" class="headerlink" title="侧滑页面"></a>侧滑页面</h1><h2 id="MMDrawerController-侧滑页面"><a href="#MMDrawerController-侧滑页面" class="headerlink" title="MMDrawerController - 侧滑页面"></a><a target="_blank" rel="noopener" href="https://github.com/mutualmobile/MMDrawerController">MMDrawerController - 侧滑页面</a></h2><p><strong>★ Star：6505</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173437.jpg" alt="MMDrawerController"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173437.jpg" alt="MMDrawerController"></p>
 <p><code>MMDrawerController</code> 是一个侧滑视图控制器，它的设计目的是支持越来越多的应用程序来利用侧滑，是一个 <code>Objective-C</code> 框架。</p>
 <hr>
 <h2 id="REFrostedViewController-侧滑视图"><a href="#REFrostedViewController-侧滑视图" class="headerlink" title="REFrostedViewController - 侧滑视图"></a><a target="_blank" rel="noopener" href="https://github.com/romaonthego/REFrostedViewController">REFrostedViewController - 侧滑视图</a></h2><p><strong>★ Star：3043</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173451.gif" alt="REFrostedViewController"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173451.gif" alt="REFrostedViewController"></p>
 <p><code>REFrostedViewController</code> 是一个侧滑控制器，这个框架是将整个视图侧滑出来，而不是将原来的视图给推过去，可以满足一下不同的需求，是一个 <code>Objective-C</code> 框架。</p>
 <hr>
 <h2 id="MSDynamicsDrawerViewController-侧滑视图"><a href="#MSDynamicsDrawerViewController-侧滑视图" class="headerlink" title="MSDynamicsDrawerViewController - 侧滑视图"></a><a target="_blank" rel="noopener" href="https://github.com/erichoracek/MSDynamicsDrawerViewController">MSDynamicsDrawerViewController - 侧滑视图</a></h2><p><strong>★ Star：3312</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173508.gif" alt="MSDynamicsDrawerViewController"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173508.gif" alt="MSDynamicsDrawerViewController"></p>
 <p><code>MSDynamicsDrawerViewController</code> 也是一个侧滑控制器，并且侧滑过程中会有一个反弹的动画效果，是一个 <code>Objective-C</code> 框架。</p>
 <hr>
 <h2 id="JVFloatingDrawer-侧滑视图"><a href="#JVFloatingDrawer-侧滑视图" class="headerlink" title="JVFloatingDrawer - 侧滑视图"></a><a target="_blank" rel="noopener" href="https://github.com/JVillella/JVFloatingDrawer">JVFloatingDrawer - 侧滑视图</a></h2><p><strong>★ Star：1430</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173526.gif" alt="JVFloatingDrawer"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173526.gif" alt="JVFloatingDrawer"></p>
 <p><code>JVFloatingDrawer</code> 是一个浮动样式的侧滑页面，利用侧滑页面的应用程序越来越多，这个框架的侧滑效果看上去非常的棒。</p>
 <hr>
 <h2 id="CWLateralSlide-侧滑视图"><a href="#CWLateralSlide-侧滑视图" class="headerlink" title="CWLateralSlide - 侧滑视图"></a><a target="_blank" rel="noopener" href="https://github.com/ChavezChen/CWLateralSlide">CWLateralSlide - 侧滑视图</a></h2><p><strong>★ Star：439</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173543.gif" alt="CWLateralSlide"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173543.gif" alt="CWLateralSlide"></p>
 <p><code>CWLateralSlide</code> 是一个非常简单的侧滑抽屉框架，目前有一些侧滑框架适用场景的局限性很高，且固定死的模板，比如设置一个 <code>leftVC</code> ，<code>rightVC</code> ，<code>middleVC</code> 为 <code>TabbarVC</code>（根控制器），如果我要使用这种方式来实现侧滑，就必须根据它的要求来调整我们整个 <code>APP</code> 的架构，侵入型很高，新项目还好，老项目只能说，o shit！😁。假如界面要换交互方式，由于耦合高，替换成本是比较大的，而且侧滑的抽屉界面会一直存在内存里，展示在我们看不见的地方（屏幕外，或者根控制器下边）。</p>
 <p>我们的优势: 没有所谓的 <code>leftVC</code> ，<code>rightVC</code> ，对整个项目没有任何限制和依赖，不需要设置啥 <code>XXXTabbarController</code> 这种根控制器，也没有任何需要继承自某某类～真正的0耦合、0侵入、0污染。使用极致简单，真正的大白话操作。侧滑的控制器拥有完整的生命周期函数调用。也就是说，侧滑的界面在隐藏的情况下，并不会对 <code>App</code> 产生额外的内存占用（正确的被释放）最重要的是简单：只要一行代码就能拥有一个侧滑抽屉。</p>
 <hr>
 <h2 id="FDFullscreenPopGesture-全屏侧滑返回"><a href="#FDFullscreenPopGesture-全屏侧滑返回" class="headerlink" title="FDFullscreenPopGesture - 全屏侧滑返回"></a><a target="_blank" rel="noopener" href="https://github.com/forkingdog/FDFullscreenPopGesture">FDFullscreenPopGesture - 全屏侧滑返回</a></h2><p><strong>★ Star：4704</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173600.gif" alt="FDFullscreenPopGesture"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509173600.gif" alt="FDFullscreenPopGesture"></p>
 <p><code>FDFullscreenPopGesture</code> 是一个简单的全屏侧滑返回框架，低耦合十分的轻量级。</p>
 <hr>
 <h1 id="其他框架"><a href="#其他框架" class="headerlink" title="其他框架"></a>其他框架</h1><h2 id="SnapKit-自动布局"><a href="#SnapKit-自动布局" class="headerlink" title="SnapKit - 自动布局"></a><a target="_blank" rel="noopener" href="https://github.com/SnapKit/SnapKit">SnapKit - 自动布局</a></h2><p><strong>★ Star：10488</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171638.png" alt="SnapKit.png"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171638.png" alt="SnapKit.png"></p>
 <p><code>SnapKit</code> 是一个优秀的第三方自适应布局库，它可以让 <code>iOS</code> 、<code>OS X</code> 应用更简单地实现自动布局（<code>Auto Layout</code>），<code>SnapKit</code> 的前身是 <a target="_blank" rel="noopener" href="https://github.com/SnapKit/Masonry">Masonry</a> ，一个 <code>OC</code> 版的布局库。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.hangge.com/blog/cache/detail_1097.html">Swift - 自动布局库SnapKit的使用详解1（配置、使用方法、样例）</a></p>
@@ -751,7 +758,7 @@
 <p><a target="_blank" rel="noopener" href="http://www.hangge.com/blog/cache/detail_1113.html">Swift - 自动布局库SnapKit的使用详解5（样例2：实现一个计算器界面）</a></p>
 <hr>
 <h2 id="AsyncDisplayKit-异步界面渲染"><a href="#AsyncDisplayKit-异步界面渲染" class="headerlink" title="AsyncDisplayKit - 异步界面渲染"></a><a target="_blank" rel="noopener" href="https://github.com/facebook/AsyncDisplayKit">AsyncDisplayKit - 异步界面渲染</a></h2><p><strong>★ Star：11858</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171653.png" alt="AsyncDisplayKit"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171653.png" alt="AsyncDisplayKit"></p>
 <p><code>AsyncDisplayKit</code> 是 <code>Facebook</code> 在 <code>2014</code> 年开源的一个异步界面渲染库，她是构筑于 <code>UIKit</code> 之上的一个封装库，与 <code>UIView</code> 是平级的关系（同时提供 <code>UIView bridge</code> 接口）。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://awhisper.github.io/2016/05/04/AsyncDisplayKit%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91/">AsyncDisplayKit官方文档翻译</a></p>
@@ -762,32 +769,32 @@
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/25a53e87b099">AsyncDisplayKit 系列教程 —— 添加一个 UIActivityIndicatorView 到 ASCellNode</a></p>
 <hr>
 <h2 id="FileKit-文件管理"><a href="#FileKit-文件管理" class="headerlink" title="FileKit - 文件管理"></a><a target="_blank" rel="noopener" href="https://github.com/nvzqz/FileKit">FileKit - 文件管理</a></h2><p><strong>★ Star：1540</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171706.png" alt="FileKit"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171706.png" alt="FileKit"></p>
 <p><code>FileKit</code> 是一个 <code>Swift</code> 框架，可以用来简单而直观地进行文件管理。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://hao.jobbole.com/filekit/">FileKit：Swift 实现简单快捷的文件管理工具</a></p>
 <hr>
 <h2 id="DeviceKit-设备信息"><a href="#DeviceKit-设备信息" class="headerlink" title="DeviceKit - 设备信息"></a><a target="_blank" rel="noopener" href="https://github.com/dennisweissmann/DeviceKit">DeviceKit - 设备信息</a></h2><p><strong>★ Star：1491</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171717.png" alt="DeviceKit"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171717.png" alt="DeviceKit"></p>
 <p><code>DeviceKit</code> 是 <code>UIDevice</code> 的值类型替换，可以轻松获取设备信息和电池电量。</p>
 <hr>
 <h2 id="RandomKit-随机数"><a href="#RandomKit-随机数" class="headerlink" title="RandomKit - 随机数"></a><a target="_blank" rel="noopener" href="https://github.com/nvzqz/RandomKit">RandomKit - 随机数</a></h2><p><strong>★ Star：1180</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171729.png" alt="RandomKit"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171729.png" alt="RandomKit"></p>
 <p><code>RandomKit</code> 是一个简单易用的随机数据生成框架，<code>RandomKit</code> 基于一系列接口构建，因此我们也能非常方便地按相同风格添加一些自定义随机数据类型。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/3a668fe8d335">用 <em>RandomKit</em> 快速生成随机数据</a></p>
 <p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000003910491">Swift随机数产生</a></p>
 <hr>
 <h2 id="SwiftyStoreKit-应用内购买"><a href="#SwiftyStoreKit-应用内购买" class="headerlink" title="SwiftyStoreKit - 应用内购买"></a><a target="_blank" rel="noopener" href="https://github.com/bizz84/SwiftyStoreKit">SwiftyStoreKit - 应用内购买</a></h2><p><strong>★ Star：2304</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171740.png" alt="SwiftyStoreKit"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171740.png" alt="SwiftyStoreKit"></p>
 <p><code>SwiftyStoreKit</code> 是一个轻量的 <code>App</code> 内购框架，支持 <code>iOS 8.0+</code> ，<code>tvOS 9.0+</code> 和 <code>macOS 10.10+</code> 。</p>
 <hr>
 <h2 id="CryptoSwift-数据加密"><a href="#CryptoSwift-数据加密" class="headerlink" title="CryptoSwift - 数据加密"></a><a target="_blank" rel="noopener" href="https://github.com/krzyzanowskim/CryptoSwift">CryptoSwift - 数据加密</a></h2><p><strong>★ Star：4200</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171752.png" alt="CryptoSwift"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171752.png" alt="CryptoSwift"></p>
 <p><code>CryptoSwift</code> 是一个加密相关的帮助函数实现，支持 <code>md5</code> 、<code>sha1</code> 、<code>sha224</code> 、<code>sha256</code> 等等。</p>
 <hr>
 <h2 id="IQKeyboardManager-键盘自适应"><a href="#IQKeyboardManager-键盘自适应" class="headerlink" title="IQKeyboardManager - 键盘自适应"></a><a target="_blank" rel="noopener" href="https://github.com/hackiftekhar/IQKeyboardManager">IQKeyboardManager - 键盘自适应</a></h2><p><strong>★ Star：9631</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171805.png" alt="IQKeyboardManager"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509171805.png" alt="IQKeyboardManager"></p>
 <p><code>IQKeyboardManager</code> 是 <code>iOS</code> 中解决键盘弹起遮挡 <code>UITextField / UITextView</code> 的一种很实用的工具，无需输入任何代码，不需要额外的设置，使用 <code>IQKeyboardManager</code> 的你只需要将源文件添加到项目，并且支持 <code>Objective-C</code> 和 <code>Swift</code> 。</p>
 <p><strong>参考文章：</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/988504987acd"><em>IQKeyboardManager</em>(“零行代码”解决键盘遮挡问题) 源码分析</a></p>
@@ -811,16 +818,33 @@
   <div id="qr" style="display: none;">
       
       <div style="display: inline-block;">
-        <img src="/images/wechatpay.png" alt="Jonzzs 微信支付">
+        <img src="/images/wechatpay.png" alt="爱吃鸭梨的猫 微信支付">
         <p>微信支付</p>
       </div>
       
       <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="Jonzzs 支付宝">
+        <img src="/images/alipay.png" alt="爱吃鸭梨的猫 支付宝">
         <p>支付宝</p>
       </div>
 
   </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>爱吃鸭梨的猫
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://jonzzs.cn/2017/08/15/iOS/201708151653/" title="【iOS 开发】Swift 常用的 CocoaPods 开源库收集">http://jonzzs.cn/2017/08/15/iOS/201708151653/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
 
 
@@ -911,10 +935,10 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Jonzzs"
-      src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509154326.jpeg">
-  <p class="site-author-name" itemprop="name">Jonzzs</p>
-  <div class="site-description" itemprop="description">将来的你 一定会感激现在拼命的自己</div>
+    <img class="site-author-image" itemprop="image" alt="爱吃鸭梨的猫"
+      src="https://upload-images.jianshu.io/upload_images/1930874-60b51257328ad408.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  <p class="site-author-name" itemprop="name">爱吃鸭梨的猫</p>
+  <div class="site-description" itemprop="description">创造财富 才是时间最正确的归宿</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -941,12 +965,6 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="/qrcode/qq" title="QQ → &#x2F;qrcode&#x2F;qq"><i class="fa fa-fw fa-qq"></i>QQ</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/qrcode/wechat" title="微信 → &#x2F;qrcode&#x2F;wechat"><i class="fa fa-fw fa-wechat"></i>微信</a>
-      </span>
-      <span class="links-of-author-item">
         <a href="http://weibo.com/Jonzzs" title="微博 → http:&#x2F;&#x2F;weibo.com&#x2F;Jonzzs" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
       </span>
       <span class="links-of-author-item">
@@ -959,25 +977,13 @@
         <a href="https://github.com/Jonzzs" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jonzzs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
-      友情站点
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="http://scorpiocc.cn/" title="http:&#x2F;&#x2F;scorpiocc.cn" rel="noopener" target="_blank">做自己的太阳</a>
-        </li>
-    </ul>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
+
+
       </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
 
     </div>
   </aside>
@@ -1000,12 +1006,12 @@
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Jonzzs</span>
+  <span class="author" itemprop="copyrightHolder">爱吃鸭梨的猫</span>
 </div>
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -1027,7 +1033,7 @@
 
 
   <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1262401548&web_id=1262401548"></script>
+    <script data-pjax src="//s95.cnzz.com/z_stat.php?id=1262401548&web_id=1262401548"></script>
   </div>
 
 
@@ -1041,6 +1047,11 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -1054,11 +1065,72 @@
 
 <script src="/js/next-boot.js"></script>
 
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
 
 
 
   
-  <script>
+  <script data-pjax>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -1089,6 +1161,9 @@
 
 
 
+    <div id="pjax">
+  
+
   
 
   
@@ -1113,5 +1188,6 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
 });
 </script>
 
+    </div>
 </body>
 </html>

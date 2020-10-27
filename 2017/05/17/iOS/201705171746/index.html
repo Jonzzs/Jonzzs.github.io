@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/Jonzzs.jpeg">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/Jonzzs.jpeg">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/Jonzzs.jpeg">
-  <link rel="mask-icon" href="/images/Jonzzs.jpeg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Cat.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/Cat.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/Cat.jpg">
+  <link rel="mask-icon" href="/images/Cat.jpg" color="#222">
   <meta name="google-site-verification" content="6FbWia2UHu0Rj0-k91-sJlCX_0u5twNvlB9Nha097oc">
   <meta name="baidu-site-verification" content="fecPuO9wLA">
 
@@ -16,10 +16,11 @@
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"请输入搜索内容...","hits_empty":"没有搜索到关于 “${query}” 的任何内容。","hits_stats":"一共搜索到 ${hits} 个结果，使用了 ${time} 毫秒。"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"请输入搜索内容...","hits_empty":"没有搜索到关于 “${query}” 的任何内容。","hits_stats":"一共搜索到 ${hits} 个结果，使用了 ${time} 毫秒。"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="苹果 企业开发者账号 一年 $299 ，用这种账号开发的 App 不能上架到 AppStore 上面，只能分发到自己的服务器上，然后自行下载安装 App。这种类型的账号没有设备数量的限制，也不用苹果审核 App ，所以需要 快速迭代 或者 订制化 的 App 就可以选择这种类型的账号进行开发。下面分享一下如何用 企业开发者账号 打包发布 App 到服务器上。">
@@ -32,7 +33,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/16834649/57366285-41e62100-71b9-11e9-9ea9-ad5fe86d74e3.png">
 <meta property="article:published_time" content="2017-05-17T09:46:00.000Z">
 <meta property="article:modified_time" content="2020-04-13T07:44:26.903Z">
-<meta property="article:author" content="Jonzzs">
+<meta property="article:author" content="爱吃鸭梨的猫">
 <meta property="article:tag" content="iOS 开发">
 <meta property="article:tag" content="企业开发者账号">
 <meta property="article:tag" content="打包发布">
@@ -55,7 +56,7 @@
   <title>【iOS 开发】企业开发者账号打包发布 App 到服务器上的流程 | 爱吃鸭梨的猫</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101397377-1"></script>
-    <script>
+    <script data-pjax>
       if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -65,7 +66,7 @@
     </script>
 
 
-  <script>
+  <script data-pjax>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -121,7 +122,7 @@
   <div class="site-meta custom-logo">
       <div class="site-meta-headline">
         <a>
-          <img class="custom-logo-image" src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509154326.jpeg" alt="爱吃鸭梨的猫">
+          <img class="custom-logo-image" src="https://upload-images.jianshu.io/upload_images/1930874-60b51257328ad408.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="爱吃鸭梨的猫">
         </a>
       </div>
 
@@ -130,7 +131,7 @@
       <h1 class="site-title">爱吃鸭梨的猫</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">个人博客</p>
+      <p class="site-subtitle" itemprop="description">创造财富 才是时间最正确的归宿</p>
   </div>
 
   <div class="site-nav-right">
@@ -214,6 +215,12 @@
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -231,9 +238,9 @@
     <link itemprop="mainEntityOfPage" href="http://jonzzs.cn/2017/05/17/iOS/201705171746/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509154326.jpeg">
-      <meta itemprop="name" content="Jonzzs">
-      <meta itemprop="description" content="将来的你 一定会感激现在拼命的自己">
+      <meta itemprop="image" content="https://upload-images.jianshu.io/upload_images/1930874-60b51257328ad408.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+      <meta itemprop="name" content="爱吃鸭梨的猫">
+      <meta itemprop="description" content="创造财富 才是时间最正确的归宿">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -301,31 +308,31 @@
 <h2 id="企业开发者账号打包发布-App-到服务器上的流程"><a href="#企业开发者账号打包发布-App-到服务器上的流程" class="headerlink" title="企业开发者账号打包发布 App 到服务器上的流程"></a>企业开发者账号打包发布 App 到服务器上的流程</h2><h3 id="1-App-打包"><a href="#1-App-打包" class="headerlink" title="1. App 打包"></a>1. App 打包</h3><ul>
 <li><code>Xcode</code> 选择 <code>Product</code> - <code>Archive</code> 进行 <code>App</code> 打包。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161204.png" alt="Archive"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161204.png" alt="Archive"></p>
 <ul>
 <li>选择 <code>Export</code> 导出 <code>ipa</code> 安装包。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161234.png" alt="Export"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161234.png" alt="Export"></p>
 <ul>
 <li>选择 <code>Save for Enterprise Deployment</code> 进行打包。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161246.png" alt="Save for Enterprise Deployment"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161246.png" alt="Save for Enterprise Deployment"></p>
 <ul>
 <li>这里要勾选下图这一栏 <code>Include manifest for over-the-air installation.</code> ，勾选以后会生成一个 <code>manifest.plist</code> 的文件，之后发布会用到。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161257.png" alt="manifest"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161257.png" alt="manifest"></p>
 <ul>
 <li>打包完成后得到两个文件 <code>ipa</code> 和 <code>plist</code> 。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161310.png" alt="打包文件"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161310.png" alt="打包文件"></p>
 <h3 id="2-制作-App-安装图标"><a href="#2-制作-App-安装图标" class="headerlink" title="2. 制作 App 安装图标"></a>2. 制作 App 安装图标</h3><ul>
 <li>这里需要两个不同尺寸的图标文件，尺寸分别是 <code>57 * 57</code> 和 <code>512 * 512</code> ，这个是在安装时显示安装进度时的图标，安装完成后显示的还是 <code>App</code> 本身的图标。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161325.png" alt="图标"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161325.png" alt="图标"></p>
 <h3 id="3-将安装包和图片上传至服务器"><a href="#3-将安装包和图片上传至服务器" class="headerlink" title="3. 将安装包和图片上传至服务器"></a>3. 将安装包和图片上传至服务器</h3><ul>
 <li>将 <code>ipa 安装包</code> 以及 <code>图标</code> 文件上传至自己的服务器。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161339.png" alt="上传文件"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161339.png" alt="上传文件"></p>
 <h3 id="4-修改-manifest-plist-文件"><a href="#4-修改-manifest-plist-文件" class="headerlink" title="4. 修改 manifest.plist 文件"></a>4. 修改 manifest.plist 文件</h3><ul>
 <li>根据以下代码，填写相应内容。</li>
 </ul>
@@ -334,18 +341,18 @@
 <ul>
 <li>下面三处分别填写对应服务器上文件地址，且服务器必须支持 <code>HTTPS</code> 协议。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161352.png" alt="manifest.plist"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161352.png" alt="manifest.plist"></p>
 <ul>
 <li>上面是同一个文件，都是 <code>manifest.plist </code> ，一个是源码，一个是用 <code>Xcode</code> 打开的，用哪种方法编辑都可以。</li>
 </ul>
 <h3 id="4-将-plist-文件上传至服务器"><a href="#4-将-plist-文件上传至服务器" class="headerlink" title="4. 将 plist 文件上传至服务器"></a>4. 将 plist 文件上传至服务器</h3><ul>
 <li><code>plist</code> 文件可以不用和 <code>ipa 安装包</code> 以及 <code>图标</code> 文件放在一起，只要 <code>plist</code> 文件中的地址指向是正确的就行，并且存放 <code>plist</code> 的服务器必须支持 <code>HTTPS</code> 协议。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161415.png" alt="plist 文件"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161415.png" alt="plist 文件"></p>
 <ul>
 <li>如果暂时没有支持 <code>Https</code> 的协议的服务器，可以使用 <code>GitHub</code> 来测试一下：新建一个 <code>GitHub</code> 仓库，将 <code>plist</code> 文件传上去，点开 <code>plist 文件</code> 选择 <code>Raw</code> 。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161427.png" alt="Raw"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509161427.png" alt="Raw"></p>
 <ul>
 <li>地址栏的地址就是你 <code>plist</code> 文件的地址，如果你是上传到自己服务器的话，就用自己服务器的地址，我的地址如下：</li>
 </ul>
@@ -383,16 +390,33 @@
   <div id="qr" style="display: none;">
       
       <div style="display: inline-block;">
-        <img src="/images/wechatpay.png" alt="Jonzzs 微信支付">
+        <img src="/images/wechatpay.png" alt="爱吃鸭梨的猫 微信支付">
         <p>微信支付</p>
       </div>
       
       <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="Jonzzs 支付宝">
+        <img src="/images/alipay.png" alt="爱吃鸭梨的猫 支付宝">
         <p>支付宝</p>
       </div>
 
   </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>爱吃鸭梨的猫
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://jonzzs.cn/2017/05/17/iOS/201705171746/" title="【iOS 开发】企业开发者账号打包发布 App 到服务器上的流程">http://jonzzs.cn/2017/05/17/iOS/201705171746/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
 
 
@@ -481,10 +505,10 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Jonzzs"
-      src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509154326.jpeg">
-  <p class="site-author-name" itemprop="name">Jonzzs</p>
-  <div class="site-description" itemprop="description">将来的你 一定会感激现在拼命的自己</div>
+    <img class="site-author-image" itemprop="image" alt="爱吃鸭梨的猫"
+      src="https://upload-images.jianshu.io/upload_images/1930874-60b51257328ad408.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  <p class="site-author-name" itemprop="name">爱吃鸭梨的猫</p>
+  <div class="site-description" itemprop="description">创造财富 才是时间最正确的归宿</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -511,12 +535,6 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="/qrcode/qq" title="QQ → &#x2F;qrcode&#x2F;qq"><i class="fa fa-fw fa-qq"></i>QQ</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/qrcode/wechat" title="微信 → &#x2F;qrcode&#x2F;wechat"><i class="fa fa-fw fa-wechat"></i>微信</a>
-      </span>
-      <span class="links-of-author-item">
         <a href="http://weibo.com/Jonzzs" title="微博 → http:&#x2F;&#x2F;weibo.com&#x2F;Jonzzs" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
       </span>
       <span class="links-of-author-item">
@@ -529,25 +547,13 @@
         <a href="https://github.com/Jonzzs" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jonzzs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
-      友情站点
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="http://scorpiocc.cn/" title="http:&#x2F;&#x2F;scorpiocc.cn" rel="noopener" target="_blank">做自己的太阳</a>
-        </li>
-    </ul>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
+
+
       </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
 
     </div>
   </aside>
@@ -570,12 +576,12 @@
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Jonzzs</span>
+  <span class="author" itemprop="copyrightHolder">爱吃鸭梨的猫</span>
 </div>
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -597,7 +603,7 @@
 
 
   <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1262401548&web_id=1262401548"></script>
+    <script data-pjax src="//s95.cnzz.com/z_stat.php?id=1262401548&web_id=1262401548"></script>
   </div>
 
 
@@ -611,6 +617,11 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -624,11 +635,72 @@
 
 <script src="/js/next-boot.js"></script>
 
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
 
 
 
   
-  <script>
+  <script data-pjax>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -659,6 +731,9 @@
 
 
 
+    <div id="pjax">
+  
+
   
 
   
@@ -683,5 +758,6 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
 });
 </script>
 
+    </div>
 </body>
 </html>

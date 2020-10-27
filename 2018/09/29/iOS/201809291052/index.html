@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/Jonzzs.jpeg">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/Jonzzs.jpeg">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/Jonzzs.jpeg">
-  <link rel="mask-icon" href="/images/Jonzzs.jpeg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Cat.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/Cat.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/Cat.jpg">
+  <link rel="mask-icon" href="/images/Cat.jpg" color="#222">
   <meta name="google-site-verification" content="6FbWia2UHu0Rj0-k91-sJlCX_0u5twNvlB9Nha097oc">
   <meta name="baidu-site-verification" content="fecPuO9wLA">
 
@@ -16,10 +16,11 @@
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"请输入搜索内容...","hits_empty":"没有搜索到关于 “${query}” 的任何内容。","hits_stats":"一共搜索到 ${hits} 个结果，使用了 ${time} 毫秒。"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"jonzzs.cn","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"appID":"6R1TPR58SX","apiKey":"b7b85229dc744164111c058bfea5448c","indexName":"Jonzzs","hits":{"per_page":10},"labels":{"input_placeholder":"请输入搜索内容...","hits_empty":"没有搜索到关于 “${query}” 的任何内容。","hits_stats":"一共搜索到 ${hits} 个结果，使用了 ${time} 毫秒。"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="最近需要将自己公司的项目的打包成 Framework 然后以 SDK 的形式来供客户使用，但是项目中用到不少 Cocoapods 第三方的库，怎么才能将项目打包 Framework 并依赖 CocoaPods 第三方库呢，网上找了很久都没有找到一篇专门说这个的，让我走了很多的坑，手动打包 Framework 太麻烦，开始尝试了 cocoapods-packager 方式打包，但是这个插件貌似对于">
@@ -32,7 +33,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/16834649/57366996-c1c0bb00-71ba-11e9-99a1-b4e1b6251046.png">
 <meta property="article:published_time" content="2018-09-29T02:52:00.000Z">
 <meta property="article:modified_time" content="2020-04-13T07:44:26.910Z">
-<meta property="article:author" content="Jonzzs">
+<meta property="article:author" content="爱吃鸭梨的猫">
 <meta property="article:tag" content="iOS">
 <meta property="article:tag" content="CocoaPods">
 <meta property="article:tag" content="Framework">
@@ -56,7 +57,7 @@
   <title>【iOS 开发】利用 Carthage 将项目打包 Framework 并依赖 CocoaPods 第三方库的方法 | 爱吃鸭梨的猫</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101397377-1"></script>
-    <script>
+    <script data-pjax>
       if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -66,7 +67,7 @@
     </script>
 
 
-  <script>
+  <script data-pjax>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -122,7 +123,7 @@
   <div class="site-meta custom-logo">
       <div class="site-meta-headline">
         <a>
-          <img class="custom-logo-image" src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509154326.jpeg" alt="爱吃鸭梨的猫">
+          <img class="custom-logo-image" src="https://upload-images.jianshu.io/upload_images/1930874-60b51257328ad408.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="爱吃鸭梨的猫">
         </a>
       </div>
 
@@ -131,7 +132,7 @@
       <h1 class="site-title">爱吃鸭梨的猫</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">个人博客</p>
+      <p class="site-subtitle" itemprop="description">创造财富 才是时间最正确的归宿</p>
   </div>
 
   <div class="site-nav-right">
@@ -215,6 +216,12 @@
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -232,9 +239,9 @@
     <link itemprop="mainEntityOfPage" href="http://jonzzs.cn/2018/09/29/iOS/201809291052/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509154326.jpeg">
-      <meta itemprop="name" content="Jonzzs">
-      <meta itemprop="description" content="将来的你 一定会感激现在拼命的自己">
+      <meta itemprop="image" content="https://upload-images.jianshu.io/upload_images/1930874-60b51257328ad408.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+      <meta itemprop="name" content="爱吃鸭梨的猫">
+      <meta itemprop="description" content="创造财富 才是时间最正确的归宿">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -301,7 +308,7 @@
 <h2 id="创建工程并打包-Framework"><a href="#创建工程并打包-Framework" class="headerlink" title="创建工程并打包 Framework"></a>创建工程并打包 Framework</h2><p>我这边演示的是 <code>Swift</code> 工程，<code>Objective-C</code> 也是一样的，<a target="_blank" rel="noopener" href="https://github.com/Jonzzs/FrameworkDemo">演示Demo</a> 我会保留，不懂的可以看一下。</p>
 <h3 id="1-创建-Framework-工程"><a href="#1-创建-Framework-工程" class="headerlink" title="1. 创建 Framework 工程"></a>1. 创建 Framework 工程</h3><ul>
 <li><p>新建一个工程或者在现有工程下创建一个新的 <code>target</code> ，类型需要选择 <code>Coaoa Touch Framework</code> ，这里说一下我的 <code>Xcode</code> 版本是 <code>10.0.0</code> 。</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172139.jpg"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172139.jpg"></p>
 </li>
 <li><p>由于 <code>Carthage</code> 在 <code>build</code> 时，会自动将设置为 <code>Shared</code> 的 <code>framework target</code> 构建成 <code>framework</code> ，所以需要单击顶部 <code>target</code> ，在弹出选项中选中 <code>Manager Schemes</code>  ，将 <code>framework target</code> 的 <code>Shared</code> 选项选中。</p>
 </li>
@@ -310,21 +317,21 @@
 <li><p>假设我的代码中要用到 <code>Alamofire</code> 这个第三方库（用于演示），然后使用 <code>CocoaPods</code> 在工程中集成 <code>Alamofire</code> ，集成方法和普通项目一模一样。</p>
 </li>
 <li><p>创建 <code>podfile</code> 并加入 <code>pod &#39;Alamofire&#39;</code> ，然后执行 <code>pod install</code> ，然后选择工程下的 <code>FrameworkDemo.xcworkspace</code> 重新打开工程。</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172153.jpg"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172153.jpg"></p>
 </li>
 </ul>
 <h3 id="3-创建测试代码"><a href="#3-创建测试代码" class="headerlink" title="3. 创建测试代码"></a>3. 创建测试代码</h3><ul>
 <li><p>我这边创建了一个 <code>TestAlamofire.swift</code> 的测试文件，并在里面使用了 <code>Alamofire</code> 这个库，一会打包就打包这个文件。</p>
 </li>
 <li><p>然后编译一下，编译通过，测试代码如下。</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172206.jpg"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172206.jpg"></p>
 </li>
 </ul>
 <h3 id="4-构建-framework"><a href="#4-构建-framework" class="headerlink" title="4. 构建 framework"></a>4. 构建 framework</h3><ul>
 <li><p>打开终端 <code>cd</code> 到工程目录下，执行以下命令开始打包 <code>framework</code> ，执行完成后会自动将 <code>framework</code> 文件保存在工程的 <code>Carthage/Build/iOS</code> 文件夹下。</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">carthage build --no-skip-current</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172218.jpg"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172218.jpg"></p>
 </li>
 <li><p>到此 <code>framework</code> 就打包完成了，想了解更多关于 <code>Carthage</code> 打包的详情，可以看我另一篇文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8ccb26206730">【iOS 开发】给自己项目添加 Carthage 支持的方法</a> ，方法基本一致，我这边就不详述了。</p>
 </li>
@@ -338,7 +345,7 @@
 <li><p>在仓库目录下新建一个 <code>podspec</code> 文件，文件名就是 <code>pod</code> 库的名称，我这边叫 <code>FrameworkDemo_Gzz.podspec</code> ，或者使用以下命令创建。</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pod spec create FrameworkDemo_Gzz</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172230.jpg"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172230.jpg"></p>
 </li>
 <li><p>然后打开 <code>podspec</code> 文件，内容编辑如下，内容的具体意思我这边就不详述了。</p>
 <figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">Pod</span>:<span class="string">:Spec.new do |s|</span></span><br><span class="line">  <span class="meta">s.name</span>                      = <span class="string">&#x27;FrameworkDemo_Gzz&#x27;</span></span><br><span class="line">  <span class="meta">s.version</span>                   = <span class="string">&#x27;1.0.0&#x27;</span></span><br><span class="line">  <span class="meta">s.summary</span>                   = <span class="string">&#x27;测试 Framework&#x27;</span></span><br><span class="line">  <span class="meta">s.homepage</span>                  = <span class="string">&#x27;https://github.com/Jonzzs/FrameworkDemo&#x27;</span></span><br><span class="line">  <span class="meta">s.license</span>                   = <span class="string">&#123; :type =&gt; &#x27;MIT&#x27;, :file =&gt; &#x27;LICENSE&#x27; &#125;</span></span><br><span class="line">  <span class="meta">s.author</span>                    = <span class="string">&#123; &#x27;Jonzzs&#x27; =&gt; &#x27;292710547@qq.com&#x27; &#125;</span></span><br><span class="line">  <span class="meta">s.source</span>                    = <span class="string">&#123; :git =&gt; &#x27;https://github.com/Jonzzs/FrameworkDemo.git&#x27;, :tag =&gt; s.version &#125;</span></span><br><span class="line">  <span class="meta">s.platform</span>                  = <span class="string">:ios</span></span><br><span class="line">  <span class="meta">s.ios.deployment_target</span>     = <span class="string">&#x27;9.0&#x27;</span></span><br><span class="line">  <span class="meta">s.swift_version</span>             = <span class="string">&#x27;4.0&#x27;</span></span><br><span class="line">  <span class="meta">s.ios.vendored_frameworks</span>   = <span class="string">&#x27;Carthage/Build/iOS/*.framework&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">  # 依赖库</span></span><br><span class="line">  <span class="meta">s.dependency</span> <span class="string">&#x27;Alamofire&#x27;</span></span><br><span class="line"><span class="attr">end</span></span><br></pre></td></tr></table></figure>
@@ -371,16 +378,16 @@
 </ul>
 <h2 id="测试-Framework-的-Pod-库"><a href="#测试-Framework-的-Pod-库" class="headerlink" title="测试 Framework 的 Pod 库"></a>测试 Framework 的 Pod 库</h2><ul>
 <li><p>新建一个测试工程 <code>Test</code> ，然后将刚才传到 <code>CocoaPods</code> 的库引入，然后执行 <code>pod install</code> 。</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172241.jpg"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172241.jpg"></p>
 </li>
 <li><p>可以看到 <code>pod</code> 将我们的 <code>framework</code> 和 <code>Alamofire</code> 依赖库一起 <code>pod</code> 下来了。</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172255.jpg"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172255.jpg"></p>
 </li>
 <li><p>然后在控制器中 <code>import FrameworkDemo</code> 引入我们的库，执行库中用到 <code>Alamofire</code> 的一个方法。</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172325.jpg"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172325.jpg"></p>
 </li>
 <li><p>编译运行成功，打印结果正常。</p>
-<p><img src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172340.jpg"></p>
+<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172340.jpg"></p>
 </li>
 </ul>
 <hr>
@@ -402,16 +409,33 @@
   <div id="qr" style="display: none;">
       
       <div style="display: inline-block;">
-        <img src="/images/wechatpay.png" alt="Jonzzs 微信支付">
+        <img src="/images/wechatpay.png" alt="爱吃鸭梨的猫 微信支付">
         <p>微信支付</p>
       </div>
       
       <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="Jonzzs 支付宝">
+        <img src="/images/alipay.png" alt="爱吃鸭梨的猫 支付宝">
         <p>支付宝</p>
       </div>
 
   </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>爱吃鸭梨的猫
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://jonzzs.cn/2018/09/29/iOS/201809291052/" title="【iOS 开发】利用 Carthage 将项目打包 Framework 并依赖 CocoaPods 第三方库的方法">http://jonzzs.cn/2018/09/29/iOS/201809291052/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
 
 
@@ -501,10 +525,10 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Jonzzs"
-      src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509154326.jpeg">
-  <p class="site-author-name" itemprop="name">Jonzzs</p>
-  <div class="site-description" itemprop="description">将来的你 一定会感激现在拼命的自己</div>
+    <img class="site-author-image" itemprop="image" alt="爱吃鸭梨的猫"
+      src="https://upload-images.jianshu.io/upload_images/1930874-60b51257328ad408.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  <p class="site-author-name" itemprop="name">爱吃鸭梨的猫</p>
+  <div class="site-description" itemprop="description">创造财富 才是时间最正确的归宿</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -531,12 +555,6 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="/qrcode/qq" title="QQ → &#x2F;qrcode&#x2F;qq"><i class="fa fa-fw fa-qq"></i>QQ</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/qrcode/wechat" title="微信 → &#x2F;qrcode&#x2F;wechat"><i class="fa fa-fw fa-wechat"></i>微信</a>
-      </span>
-      <span class="links-of-author-item">
         <a href="http://weibo.com/Jonzzs" title="微博 → http:&#x2F;&#x2F;weibo.com&#x2F;Jonzzs" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
       </span>
       <span class="links-of-author-item">
@@ -549,25 +567,13 @@
         <a href="https://github.com/Jonzzs" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jonzzs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
-      友情站点
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="http://scorpiocc.cn/" title="http:&#x2F;&#x2F;scorpiocc.cn" rel="noopener" target="_blank">做自己的太阳</a>
-        </li>
-    </ul>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
+
+
       </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
 
     </div>
   </aside>
@@ -590,12 +596,12 @@
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Jonzzs</span>
+  <span class="author" itemprop="copyrightHolder">爱吃鸭梨的猫</span>
 </div>
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -617,7 +623,7 @@
 
 
   <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1262401548&web_id=1262401548"></script>
+    <script data-pjax src="//s95.cnzz.com/z_stat.php?id=1262401548&web_id=1262401548"></script>
   </div>
 
 
@@ -631,6 +637,11 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -644,11 +655,72 @@
 
 <script src="/js/next-boot.js"></script>
 
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
 
 
 
   
-  <script>
+  <script data-pjax>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -679,6 +751,9 @@
 
 
 
+    <div id="pjax">
+  
+
   
 
   
@@ -703,5 +778,6 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
 });
 </script>
 
+    </div>
 </body>
 </html>
