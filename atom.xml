@@ -472,11 +472,11 @@
     
     <category term="iOS 开发" scheme="http://jonzzs.cn/tags/iOS-%E5%BC%80%E5%8F%91/"/>
     
+    <category term="Jenkins" scheme="http://jonzzs.cn/tags/Jenkins/"/>
+    
     <category term="Fastlane" scheme="http://jonzzs.cn/tags/Fastlane/"/>
     
     <category term="持续集成" scheme="http://jonzzs.cn/tags/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/"/>
-    
-    <category term="Jenkins" scheme="http://jonzzs.cn/tags/Jenkins/"/>
     
     <category term="自动化打包" scheme="http://jonzzs.cn/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85/"/>
     
@@ -505,9 +505,9 @@
     
     <category term="Fastlane" scheme="http://jonzzs.cn/tags/Fastlane/"/>
     
-    <category term="自动打包" scheme="http://jonzzs.cn/tags/%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85/"/>
-    
     <category term="持续集成" scheme="http://jonzzs.cn/tags/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/"/>
+    
+    <category term="自动打包" scheme="http://jonzzs.cn/tags/%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85/"/>
     
   </entry>
   
