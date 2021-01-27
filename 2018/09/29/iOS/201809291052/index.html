@@ -30,16 +30,16 @@
 <meta property="og:site_name" content="爱吃鸭梨的猫">
 <meta property="og:description" content="最近需要将自己公司的项目的打包成 Framework 然后以 SDK 的形式来供客户使用，但是项目中用到不少 Cocoapods 第三方的库，怎么才能将项目打包 Framework 并依赖 CocoaPods 第三方库呢，网上找了很久都没有找到一篇专门说这个的，让我走了很多的坑，手动打包 Framework 太麻烦，开始尝试了 cocoapods-packager 方式打包，但是这个插件貌似对于">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://user-images.githubusercontent.com/16834649/57366996-c1c0bb00-71ba-11e9-99a1-b4e1b6251046.png">
+<meta property="og:image" content="https://gitee.com/Jonzzs/ImageHosting/raw/master/image/57366996-c1c0bb00-71ba-11e9-99a1-b4e1b6251046.png">
 <meta property="article:published_time" content="2018-09-29T02:52:00.000Z">
-<meta property="article:modified_time" content="2020-04-13T07:44:26.910Z">
+<meta property="article:modified_time" content="2021-01-27T01:46:08.939Z">
 <meta property="article:author" content="爱吃鸭梨的猫">
 <meta property="article:tag" content="iOS">
 <meta property="article:tag" content="CocoaPods">
 <meta property="article:tag" content="Framework">
 <meta property="article:tag" content="Carthage">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://user-images.githubusercontent.com/16834649/57366996-c1c0bb00-71ba-11e9-99a1-b4e1b6251046.png">
+<meta name="twitter:image" content="https://gitee.com/Jonzzs/ImageHosting/raw/master/image/57366996-c1c0bb00-71ba-11e9-99a1-b4e1b6251046.png">
 
 <link rel="canonical" href="http://jonzzs.cn/2018/09/29/iOS/201809291052/">
 
@@ -266,7 +266,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-13 15:44:26" itemprop="dateModified" datetime="2020-04-13T15:44:26+08:00">2020-04-13</time>
+                <time title="修改时间：2021-01-27 09:46:08" itemprop="dateModified" datetime="2021-01-27T09:46:08+08:00">2021-01-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -297,7 +297,7 @@
 
       
         <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-            <img src="https://user-images.githubusercontent.com/16834649/57366996-c1c0bb00-71ba-11e9-99a1-b4e1b6251046.png" itemprop="contentUrl">
+            <img src="https://gitee.com/Jonzzs/ImageHosting/raw/master/image/57366996-c1c0bb00-71ba-11e9-99a1-b4e1b6251046.png" itemprop="contentUrl">
         </div>
         <blockquote>
 <p>最近需要将自己公司的项目的打包成 <code>Framework</code> 然后以 <code>SDK</code> 的形式来供客户使用，但是项目中用到不少 <code>Cocoapods</code> 第三方的库，怎么才能将项目打包 <code>Framework</code> 并依赖 <code>CocoaPods</code> 第三方库呢，网上找了很久都没有找到一篇专门说这个的，让我走了很多的坑，手动打包 <code>Framework</code> 太麻烦，开始尝试了 <a target="_blank" rel="noopener" href="https://github.com/CocoaPods/cocoapods-packager">cocoapods-packager</a> 方式打包，但是这个插件貌似对于 <code>Swift</code> 项目的支持并不是很好，尝试很久都没有打包成功，作者貌似也不是很活跃，无奈放弃，最后选择用 <code>Carthage</code> 方式来打包 <code>Framework</code> ，下面就分享一下利用 <code>Carthage</code> 将项目打包 <code>Framework</code> 并依赖 <code>CocoaPods</code> 第三方库的方法。</p>
@@ -308,7 +308,7 @@
 <h2 id="创建工程并打包-Framework"><a href="#创建工程并打包-Framework" class="headerlink" title="创建工程并打包 Framework"></a>创建工程并打包 Framework</h2><p>我这边演示的是 <code>Swift</code> 工程，<code>Objective-C</code> 也是一样的，<a target="_blank" rel="noopener" href="https://github.com/Jonzzs/FrameworkDemo">演示Demo</a> 我会保留，不懂的可以看一下。</p>
 <h3 id="1-创建-Framework-工程"><a href="#1-创建-Framework-工程" class="headerlink" title="1. 创建 Framework 工程"></a>1. 创建 Framework 工程</h3><ul>
 <li><p>新建一个工程或者在现有工程下创建一个新的 <code>target</code> ，类型需要选择 <code>Coaoa Touch Framework</code> ，这里说一下我的 <code>Xcode</code> 版本是 <code>10.0.0</code> 。</p>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172139.jpg"></p>
+<p><img data-src="https://gitee.com/Jonzzs/ImageHosting/raw/master/image/20190509172139.jpg"></p>
 </li>
 <li><p>由于 <code>Carthage</code> 在 <code>build</code> 时，会自动将设置为 <code>Shared</code> 的 <code>framework target</code> 构建成 <code>framework</code> ，所以需要单击顶部 <code>target</code> ，在弹出选项中选中 <code>Manager Schemes</code>  ，将 <code>framework target</code> 的 <code>Shared</code> 选项选中。</p>
 </li>
@@ -317,21 +317,21 @@
 <li><p>假设我的代码中要用到 <code>Alamofire</code> 这个第三方库（用于演示），然后使用 <code>CocoaPods</code> 在工程中集成 <code>Alamofire</code> ，集成方法和普通项目一模一样。</p>
 </li>
 <li><p>创建 <code>podfile</code> 并加入 <code>pod &#39;Alamofire&#39;</code> ，然后执行 <code>pod install</code> ，然后选择工程下的 <code>FrameworkDemo.xcworkspace</code> 重新打开工程。</p>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172153.jpg"></p>
+<p><img data-src="https://gitee.com/Jonzzs/ImageHosting/raw/master/image/20190509172153.jpg"></p>
 </li>
 </ul>
 <h3 id="3-创建测试代码"><a href="#3-创建测试代码" class="headerlink" title="3. 创建测试代码"></a>3. 创建测试代码</h3><ul>
 <li><p>我这边创建了一个 <code>TestAlamofire.swift</code> 的测试文件，并在里面使用了 <code>Alamofire</code> 这个库，一会打包就打包这个文件。</p>
 </li>
 <li><p>然后编译一下，编译通过，测试代码如下。</p>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172206.jpg"></p>
+<p><img data-src="https://gitee.com/Jonzzs/ImageHosting/raw/master/image/20190509172206.jpg"></p>
 </li>
 </ul>
 <h3 id="4-构建-framework"><a href="#4-构建-framework" class="headerlink" title="4. 构建 framework"></a>4. 构建 framework</h3><ul>
 <li><p>打开终端 <code>cd</code> 到工程目录下，执行以下命令开始打包 <code>framework</code> ，执行完成后会自动将 <code>framework</code> 文件保存在工程的 <code>Carthage/Build/iOS</code> 文件夹下。</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">carthage build --no-skip-current</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172218.jpg"></p>
+<p><img data-src="https://gitee.com/Jonzzs/ImageHosting/raw/master/image/20190509172218.jpg"></p>
 </li>
 <li><p>到此 <code>framework</code> 就打包完成了，想了解更多关于 <code>Carthage</code> 打包的详情，可以看我另一篇文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8ccb26206730">【iOS 开发】给自己项目添加 Carthage 支持的方法</a> ，方法基本一致，我这边就不详述了。</p>
 </li>
@@ -345,7 +345,7 @@
 <li><p>在仓库目录下新建一个 <code>podspec</code> 文件，文件名就是 <code>pod</code> 库的名称，我这边叫 <code>FrameworkDemo_Gzz.podspec</code> ，或者使用以下命令创建。</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pod spec create FrameworkDemo_Gzz</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172230.jpg"></p>
+<p><img data-src="https://gitee.com/Jonzzs/ImageHosting/raw/master/image/20190509172230.jpg"></p>
 </li>
 <li><p>然后打开 <code>podspec</code> 文件，内容编辑如下，内容的具体意思我这边就不详述了。</p>
 <figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">Pod</span>:<span class="string">:Spec.new do |s|</span></span><br><span class="line">  <span class="meta">s.name</span>                      = <span class="string">&#x27;FrameworkDemo_Gzz&#x27;</span></span><br><span class="line">  <span class="meta">s.version</span>                   = <span class="string">&#x27;1.0.0&#x27;</span></span><br><span class="line">  <span class="meta">s.summary</span>                   = <span class="string">&#x27;测试 Framework&#x27;</span></span><br><span class="line">  <span class="meta">s.homepage</span>                  = <span class="string">&#x27;https://github.com/Jonzzs/FrameworkDemo&#x27;</span></span><br><span class="line">  <span class="meta">s.license</span>                   = <span class="string">&#123; :type =&gt; &#x27;MIT&#x27;, :file =&gt; &#x27;LICENSE&#x27; &#125;</span></span><br><span class="line">  <span class="meta">s.author</span>                    = <span class="string">&#123; &#x27;Jonzzs&#x27; =&gt; &#x27;292710547@qq.com&#x27; &#125;</span></span><br><span class="line">  <span class="meta">s.source</span>                    = <span class="string">&#123; :git =&gt; &#x27;https://github.com/Jonzzs/FrameworkDemo.git&#x27;, :tag =&gt; s.version &#125;</span></span><br><span class="line">  <span class="meta">s.platform</span>                  = <span class="string">:ios</span></span><br><span class="line">  <span class="meta">s.ios.deployment_target</span>     = <span class="string">&#x27;9.0&#x27;</span></span><br><span class="line">  <span class="meta">s.swift_version</span>             = <span class="string">&#x27;4.0&#x27;</span></span><br><span class="line">  <span class="meta">s.ios.vendored_frameworks</span>   = <span class="string">&#x27;Carthage/Build/iOS/*.framework&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">  # 依赖库</span></span><br><span class="line">  <span class="meta">s.dependency</span> <span class="string">&#x27;Alamofire&#x27;</span></span><br><span class="line"><span class="attr">end</span></span><br></pre></td></tr></table></figure>
@@ -378,16 +378,16 @@
 </ul>
 <h2 id="测试-Framework-的-Pod-库"><a href="#测试-Framework-的-Pod-库" class="headerlink" title="测试 Framework 的 Pod 库"></a>测试 Framework 的 Pod 库</h2><ul>
 <li><p>新建一个测试工程 <code>Test</code> ，然后将刚才传到 <code>CocoaPods</code> 的库引入，然后执行 <code>pod install</code> 。</p>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172241.jpg"></p>
+<p><img data-src="https://gitee.com/Jonzzs/ImageHosting/raw/master/image/20190509172241.jpg"></p>
 </li>
 <li><p>可以看到 <code>pod</code> 将我们的 <code>framework</code> 和 <code>Alamofire</code> 依赖库一起 <code>pod</code> 下来了。</p>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172255.jpg"></p>
+<p><img data-src="https://gitee.com/Jonzzs/ImageHosting/raw/master/image/20190509172255.jpg"></p>
 </li>
 <li><p>然后在控制器中 <code>import FrameworkDemo</code> 引入我们的库，执行库中用到 <code>Alamofire</code> 的一个方法。</p>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172325.jpg"></p>
+<p><img data-src="https://gitee.com/Jonzzs/ImageHosting/raw/master/image/20190509172325.jpg"></p>
 </li>
 <li><p>编译运行成功，打印结果正常。</p>
-<p><img data-src="https://raw.githubusercontent.com/Jonzzs/ImageHosting/master/image/20190509172340.jpg"></p>
+<p><img data-src="https://gitee.com/Jonzzs/ImageHosting/raw/master/image/20190509172340.jpg"></p>
 </li>
 </ul>
 <hr>
@@ -592,7 +592,7 @@
 <div class="copyright">
   
   &copy; 2017 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>
