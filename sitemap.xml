@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jonzzs.cn/2021/01/27/Mac/202101271553/</loc>
+    
+    <lastmod>2021-01-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/2017/03/15/Other/201703151637/</loc>
+    
+    <lastmod>2021-01-27</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jonzzs.cn/2017/07/04/Tool/201707041209/</loc>
     
     <lastmod>2021-01-27</lastmod>
@@ -80,13 +94,6 @@
   
   <url>
     <loc>http://jonzzs.cn/2017/04/17/Other/201704171145/</loc>
-    
-    <lastmod>2021-01-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/2017/03/15/Other/201703151637/</loc>
     
     <lastmod>2021-01-27</lastmod>
     
@@ -599,6 +606,125 @@
 
   
   <url>
+    <loc>http://jonzzs.cn/tags/Android-%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/Android-Studio/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/Hexo-%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E7%99%BE%E5%BA%A6/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E8%B0%B7%E6%AD%8C/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/GitHub/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/GitHub-Pages/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E7%A0%81%E4%BA%91/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/git-oschina/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E7%A0%81%E4%BA%91-Pages/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/RSS/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/Swiftype-%E6%90%9C%E7%B4%A2/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E5%9F%9F%E5%90%8D/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E8%AF%84%E8%AE%BA/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/Gitalk/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://jonzzs.cn/tags/Java-%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
@@ -627,6 +753,13 @@
   </url>
   
   <url>
+    <loc>http://jonzzs.cn/tags/Java-JDK/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://jonzzs.cn/tags/MySQL/</loc>
     <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
@@ -634,7 +767,98 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/Java-JDK/</loc>
+    <loc>http://jonzzs.cn/tags/Mac-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/mac/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/SIP/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E8%BE%93%E5%85%A5%E6%B3%95/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/Alfred/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/EFI-Boot/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/Windows/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E5%90%AF%E5%8A%A8%E7%9B%98/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E7%BB%88%E7%AB%AF/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/iTerm2/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E6%96%87%E4%BB%B6%E5%A4%B9%E6%98%BE%E7%A4%BA%E9%80%89%E9%A1%B9/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/aria2/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E4%B8%8B%E8%BD%BD/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/Magic-Mouse/</loc>
     <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -648,34 +872,6 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/Git/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/GitHub/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/git-oschina/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E7%A0%81%E4%BA%91/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jonzzs.cn/tags/Markdown/</loc>
     <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
@@ -683,7 +879,42 @@
   </url>
   
   <url>
+    <loc>http://jonzzs.cn/tags/BootCamp/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E5%8F%8C%E7%B3%BB%E7%BB%9F/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E5%88%86%E5%8C%BA%E9%94%99%E8%AF%AF/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/Git/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://jonzzs.cn/tags/DMCA/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/</loc>
     <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -767,13 +998,6 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/mac/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jonzzs.cn/tags/mcrypt/</loc>
     <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
@@ -796,13 +1020,6 @@
   
   <url>
     <loc>http://jonzzs.cn/tags/SourceTree/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/Windows/</loc>
     <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -844,13 +1061,6 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jonzzs.cn/tags/%E5%AF%8C%E6%96%87%E6%9C%AC/</loc>
     <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
@@ -866,6 +1076,13 @@
   
   <url>
     <loc>http://jonzzs.cn/tags/Attribute/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/</loc>
     <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -977,20 +1194,6 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/GCD/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jonzzs.cn/tags/SDWebImage/</loc>
     <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
@@ -999,6 +1202,20 @@
   
   <url>
     <loc>http://jonzzs.cn/tags/%E7%BD%91%E7%BB%9C%E5%9B%BE%E7%89%87/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/GCD/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
     <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1034,13 +1251,6 @@
   
   <url>
     <loc>http://jonzzs.cn/tags/%E9%9B%86%E5%90%88%E8%A7%86%E5%9B%BE/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/Xcode/</loc>
     <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1187,210 +1397,7 @@
   </url>
   
   <url>
-    <loc>http://jonzzs.cn/tags/Hexo-%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/GitHub-Pages/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E7%99%BE%E5%BA%A6/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E8%B0%B7%E6%AD%8C/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E7%A0%81%E4%BA%91-Pages/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/RSS/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/Swiftype-%E6%90%9C%E7%B4%A2/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E5%9F%9F%E5%90%8D/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E8%AF%84%E8%AE%BA/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/Gitalk/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/Android-%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/Android-Studio/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/Mac-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/SIP/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E8%BE%93%E5%85%A5%E6%B3%95/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/Alfred/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/EFI-Boot/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E5%90%AF%E5%8A%A8%E7%9B%98/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E7%BB%88%E7%AB%AF/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/iTerm2/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/Magic-Mouse/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/BootCamp/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E5%8F%8C%E7%B3%BB%E7%BB%9F/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E5%88%86%E5%8C%BA%E9%94%99%E8%AF%AF/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E6%96%87%E4%BB%B6%E5%A4%B9%E6%98%BE%E7%A4%BA%E9%80%89%E9%A1%B9/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/aria2/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E4%B8%8B%E8%BD%BD/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/tags/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/</loc>
+    <loc>http://jonzzs.cn/tags/Xcode/</loc>
     <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1434,7 +1441,28 @@
 
   
   <url>
+    <loc>http://jonzzs.cn/categories/Android-%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/categories/Hexo-%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://jonzzs.cn/categories/Java-%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jonzzs.cn/categories/Mac-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
     <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1463,27 +1491,6 @@
   
   <url>
     <loc>http://jonzzs.cn/categories/iOS-%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/categories/Hexo-%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/categories/Android-%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2021-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jonzzs.cn/categories/Mac-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
     <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

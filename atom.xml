@@ -6,7 +6,7 @@
   <link href="http://jonzzs.cn/atom.xml" rel="self"/>
   
   <link href="http://jonzzs.cn/"/>
-  <updated>2021-01-27T01:36:51.262Z</updated>
+  <updated>2021-01-27T07:57:06.120Z</updated>
   <id>http://jonzzs.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mac 关闭/开启更新红点</title>
+    <link href="http://jonzzs.cn/2021/01/27/Mac/202101271553/"/>
+    <id>http://jonzzs.cn/2021/01/27/Mac/202101271553/</id>
+    <published>2021-01-27T07:53:00.000Z</published>
+    <updated>2021-01-27T07:57:06.120Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>使用系统偏好设置时，右上角经常出现一个更新提示，不想更新，也不想看到这个红点，所以使用下面方法关闭/开启更新红点。</p></blockquote><a id="more"></a><p>更新提示的设置在文件 <code>~/Library/Preferences/com.apple.systempreferences.plist</code> 中，下文我们使用 <code>defaults</code> 命令读写修改这个文件 <code>AttentionPrefBundleIDs</code> 键的值。</p><p><img data-src="https://gitee.com/Jonzzs/ImageHosting/raw/master/image/20210127154845.png"></p><h2 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ defaults write com.apple.systempreferences AttentionPrefBundleIDs  -dict com.apple.preferences.softwareupdate 0</span><br><span class="line">$ killall -SIGTERM cfprefsd  <span class="comment"># 重启偏好设置进程</span></span><br><span class="line">$ killall Dock <span class="comment"># 重启 Dock</span></span><br></pre></td></tr></table></figure><p>这时 <code>Dock</code> 栏上 偏好设置图标右上角的红圈不会显示了，如果偏好设置面板如果是打开状态，软件更新 <code>icon</code> 上还会继续显示数字，重启偏好设置应用后，软件更新 <code>icon</code> 右上角只会显示圆圈，不显示数字。</p><p><img data-src="https://gitee.com/Jonzzs/ImageHosting/raw/master/image/20210127155047.png"></p><h2 id="开启"><a href="#开启" class="headerlink" title="开启"></a>开启</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ defaults write com.apple.systempreferences AttentionPrefBundleIDs  -dict com.apple.preferences.softwareupdate 1</span><br><span class="line">$ killall -SIGTERM cfprefsd</span><br><span class="line">$ killall Dock</span><br></pre></td></tr></table></figure><p>以上操作不会马上显示更新的红点，或者在面板中显示了红色圆圈，但没有数字，可能是没有触发对新版本的检测，这时我们点击 软件更新 进入这个面板，等待加载新版本信息，再退出来，稍等一会儿儿，更新数字就会出现。</p><hr><p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>]]></content>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;使用系统偏好设置时，右上角经常出现一个更新提示，不想更新，也不想看到这个红点，所以使用下面方法关闭/开启更新红点。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Mac 使用指南" scheme="http://jonzzs.cn/categories/Mac-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
+    
+    
+    <category term="mac" scheme="http://jonzzs.cn/tags/mac/"/>
+    
+  </entry>
   
   <entry>
     <title>为 Hexo 的 Next 主题添加 Gitalk 评论</title>
@@ -439,13 +462,13 @@
     <category term="Mac 使用指南" scheme="http://jonzzs.cn/categories/Mac-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
     
     
-    <category term="mac" scheme="http://jonzzs.cn/tags/mac/"/>
-    
-    <category term="Windows" scheme="http://jonzzs.cn/tags/Windows/"/>
-    
     <category term="Mac 使用指南" scheme="http://jonzzs.cn/tags/Mac-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
     
+    <category term="mac" scheme="http://jonzzs.cn/tags/mac/"/>
+    
     <category term="EFI Boot" scheme="http://jonzzs.cn/tags/EFI-Boot/"/>
+    
+    <category term="Windows" scheme="http://jonzzs.cn/tags/Windows/"/>
     
     <category term="启动盘" scheme="http://jonzzs.cn/tags/%E5%90%AF%E5%8A%A8%E7%9B%98/"/>
     
@@ -535,31 +558,6 @@
     <category term="Android Studio" scheme="http://jonzzs.cn/tags/Android-Studio/"/>
     
     <category term="夜神模拟器" scheme="http://jonzzs.cn/tags/%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Android 开发】Android Studio 出现 unable to access android sdk add-on list 的解决方法</title>
-    <link href="http://jonzzs.cn/2017/10/30/Android/201710301728/"/>
-    <id>http://jonzzs.cn/2017/10/30/Android/201710301728/</id>
-    <published>2017-10-30T09:28:23.000Z</published>
-    <updated>2021-01-27T01:25:54.847Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>出现这个提示的原因主要是因为电脑第一次安装 <code>Android Studio</code>，启动后 <code>Android Studio</code> 没有检测到电脑有 <code>SDK</code> ，所以才有这个提示，下面说一下解决方法。</p></blockquote><a id="more"></a><hr><p><img data-src="https://gitee.com/Jonzzs/ImageHosting/raw/master/image/57364176-3e509b00-71b5-11e9-8c76-6a09228dd98c.png" alt="Android Studio"></p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ul><li><p>如果是 <code>windows</code> 系统，在 <code>Android Studio</code> 的安装目录下，找到 <code>\bin\idea.properties</code> 文件。</p></li><li><p>如果是 <code>macOS</code> 系统，右键应用程序中的 <code>Android Studio.app</code> ，选择 <code>显示包内容</code> ，接着找到 <code>Contents/bin/idea.properties</code> 文件。</p></li><li><p>打开 <code>idea.properties</code> 文件，在末尾加入以下配置，这个配置是设置初次打开 <code>Android Studio</code> 时，不检测 <code>SDK</code> 。</p></li></ul><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">disable.android.first.run</span> = <span class="string">true</span></span><br></pre></td></tr></table></figure><hr><blockquote><p>如果不想这么设置的话，也可以点击 <code>Cancel</code> 然后按照一步步提示自动下载 <code>SDK</code> 。</p></blockquote><p><strong>我的传送门：</strong> <a href="https://jonzzs.cn/">博客</a> 、<a href="https://jianshu.com/u/63659e722f3b">简书</a> 、<a href="https://weibo.com/Jonzzs">微博</a> 、<a href="https://github.com/Jonzzs">GitHub</a> 。</p>]]></content>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;出现这个提示的原因主要是因为电脑第一次安装 &lt;code&gt;Android Studio&lt;/code&gt;，启动后 &lt;code&gt;Android Studio&lt;/code&gt; 没有检测到电脑有 &lt;code&gt;SDK&lt;/code&gt; ，所以才有这个提示，下面说一下解决方法。&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="Android 开发" scheme="http://jonzzs.cn/categories/Android-%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="Android 开发" scheme="http://jonzzs.cn/tags/Android-%E5%BC%80%E5%8F%91/"/>
-    
-    <category term="Android Studio" scheme="http://jonzzs.cn/tags/Android-Studio/"/>
     
   </entry>
   
